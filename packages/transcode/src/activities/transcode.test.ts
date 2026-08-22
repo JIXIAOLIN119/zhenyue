@@ -1,10 +1,10 @@
-import { metadataService } from '@shumai/core/src/metadata/metadata'
-import { s3Service } from '@shumai/core/src/s3/s3'
-import { prisma } from '@shumai/db'
-import { setupTestDbHooks } from '@shumai/db/test'
+import { metadataService } from '@zhenyue/core/src/metadata/metadata'
+import { s3Service } from '@zhenyue/core/src/s3/s3'
+import { prisma } from '@zhenyue/db'
+import { setupTestDbHooks } from '@zhenyue/db/test'
 import { beforeEach, describe, expect, it, vi } from 'vitest'
-import { gotenbergService } from '@shumai/core/src/gotenberg/gotenberg'
-import { transcodeService } from '@shumai/core/src/transcode/transcode'
+import { gotenbergService } from '@zhenyue/core/src/gotenberg/gotenberg'
+import { transcodeService } from '@zhenyue/core/src/transcode/transcode'
 import * as child_process from 'child_process'
 
 vi.mock('child_process', () => ({
@@ -27,7 +27,7 @@ import {
   createAutofillTaskIfEnabledActivity,
 } from './transcode'
 
-vi.mock('@shumai/core/src/s3/s3', () => ({
+vi.mock('@zhenyue/core/src/s3/s3', () => ({
   s3Service: {
     getObject: vi.fn(),
     putObject: vi.fn(),
@@ -38,8 +38,8 @@ vi.mock('@shumai/core/src/s3/s3', () => ({
   },
 }))
 
-vi.mock('@shumai/core/src/transcode/transcode', async (importOriginal) => {
-  const actual = await importOriginal<typeof import('@shumai/core/src/transcode/transcode')>()
+vi.mock('@zhenyue/core/src/transcode/transcode', async (importOriginal) => {
+  const actual = await importOriginal<typeof import('@zhenyue/core/src/transcode/transcode')>()
   return {
     ...actual,
     transcodeService: {
@@ -76,7 +76,7 @@ vi.mock('@shumai/core/src/transcode/transcode', async (importOriginal) => {
   }
 })
 
-vi.mock('@shumai/core/src/metadata/metadata', () => ({
+vi.mock('@zhenyue/core/src/metadata/metadata', () => ({
   metadataService: {
     updateAssetMetadata: vi.fn(),
   },
@@ -828,7 +828,7 @@ describe('Transcode Activities', () => {
 
       // Verify S3 upload
       expect(s3Service.putObject).toHaveBeenCalledWith(
-        'shumai',
+        'zhenyue',
         expect.stringMatching(/^files\/asset-abc\/tmp-embedding-chunks\/chunk-10-25-.*\.mp4$/),
         expect.any(Buffer),
         expect.any(Number),
@@ -840,7 +840,7 @@ describe('Transcode Activities', () => {
 
     it('should delete S3 object successfully', async () => {
       await deleteS3ObjectActivity({ key: 'files/test-key.mp4' })
-      expect(s3Service.deleteObject).toHaveBeenCalledWith('shumai', 'files/test-key.mp4')
+      expect(s3Service.deleteObject).toHaveBeenCalledWith('zhenyue', 'files/test-key.mp4')
     })
 
     it('should transcode audio file and upload proxy to S3', async () => {
@@ -859,7 +859,7 @@ describe('Transcode Activities', () => {
       })
 
       expect(s3Service.putObject).toHaveBeenCalledWith(
-        'shumai',
+        'zhenyue',
         'files/proj-123/a-audio-proxy.mp4',
         expect.any(ReadableStream),
         expect.any(Number),

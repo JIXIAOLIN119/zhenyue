@@ -4,13 +4,13 @@
 * | "1 Hour" |
 *
 * @param {Quota_Period_1hourInputs} inputs
-* @param {{ locale?: "en" | "zh" }} options
+* @param {{ locale?: "zh" | "en" }} options
 * @returns {LocalizedString}
 */
 export const quota_period_1hour: ((inputs?: Quota_Period_1hourInputs, options?: {
-    locale?: "en" | "zh";
+    locale?: "zh" | "en";
 }) => LocalizedString) & import("../runtime.js").MessageMetadata<Quota_Period_1hourInputs, {
-    locale?: "en" | "zh";
+    locale?: "zh" | "en";
 }, {}>;
 export type LocalizedString = import("../runtime.js").LocalizedString;
 export type Quota_Period_1hourInputs = {};

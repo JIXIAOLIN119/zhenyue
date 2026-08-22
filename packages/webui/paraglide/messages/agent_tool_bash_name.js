@@ -5,12 +5,12 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 
 /** @typedef {{}} Agent_Tool_Bash_NameInputs */
 
-const en_agent_tool_bash_name = /** @type {(inputs: Agent_Tool_Bash_NameInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Sandboxed Terminal`)
-};
-
 const zh_agent_tool_bash_name = /** @type {(inputs: Agent_Tool_Bash_NameInputs) => LocalizedString} */ () => {
 	return /** @type {LocalizedString} */ (`沙箱终端`)
+};
+
+const en_agent_tool_bash_name = /** @type {(inputs: Agent_Tool_Bash_NameInputs) => LocalizedString} */ () => {
+	return /** @type {LocalizedString} */ (`Sandboxed Terminal`)
 };
 
 /**
@@ -19,11 +19,11 @@ const zh_agent_tool_bash_name = /** @type {(inputs: Agent_Tool_Bash_NameInputs) 
 * | "Sandboxed Terminal" |
 *
 * @param {Agent_Tool_Bash_NameInputs} inputs
-* @param {{ locale?: "en" | "zh" }} options
+* @param {{ locale?: "zh" | "en" }} options
 * @returns {LocalizedString}
 */
-export const agent_tool_bash_name = /** @type {((inputs?: Agent_Tool_Bash_NameInputs, options?: { locale?: "en" | "zh" }) => LocalizedString) & import('../runtime.js').MessageMetadata<Agent_Tool_Bash_NameInputs, { locale?: "en" | "zh" }, {}>} */ ((inputs = {}, options = {}) => {
+export const agent_tool_bash_name = /** @type {((inputs?: Agent_Tool_Bash_NameInputs, options?: { locale?: "zh" | "en" }) => LocalizedString) & import('../runtime.js').MessageMetadata<Agent_Tool_Bash_NameInputs, { locale?: "zh" | "en" }, {}>} */ ((inputs = {}, options = {}) => {
 	const locale = experimentalStaticLocale ?? options.locale ?? getLocale()
-	if (locale === "en") return en_agent_tool_bash_name(inputs)
-	return zh_agent_tool_bash_name(inputs)
+	if (locale === "zh") return zh_agent_tool_bash_name(inputs)
+	return en_agent_tool_bash_name(inputs)
 });

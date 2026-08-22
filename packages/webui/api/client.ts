@@ -1,5 +1,5 @@
 import { hc } from 'hono/client'
-import type { AppType } from '@shumai/api'
+import type { AppType } from '@zhenyue/api'
 import { useAuthStore } from '@/ui/stores/auth'
 import { toast } from 'sonner'
 

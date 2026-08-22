@@ -1,9 +1,9 @@
 ---
 title: Environment Variables
-description: Comprehensive configuration reference for Shumai.
+description: Comprehensive configuration reference for ZhenYue.
 ---
 
-Shumai is configured via environment variables. You can define these variables in a `.env` file at the root of your application workspace, or pass them directly to your Docker containers.
+ZhenYue is configured via environment variables. You can define these variables in a `.env` file at the root of your application workspace, or pass them directly to your Docker containers.
 
 ---
 
@@ -19,7 +19,7 @@ Shumai is configured via environment variables. You can define these variables i
 
 | Variable                | Description                                                                                       | Example / Default |
 | :---------------------- | :------------------------------------------------------------------------------------------------ | :---------------- |
-| `SHUMAI_SERVER_PORT`    | The port on which the Shumai web server will listen.                                              | `3000` (default)  |
+| `ZHENYUE_SERVER_PORT`    | The port on which the ZhenYue web server will listen.                                              | `3000` (default)  |
 | `MAX_REQUEST_BODY_SIZE` | Maximum allowed size for request bodies (e.g., for large file uploads). Default is 10GB in bytes. | `10737418240`     |
 
 ---
@@ -29,19 +29,19 @@ Shumai is configured via environment variables. You can define these variables i
 | Variable             | Description                                                            | Example / Default                                                |
 | :------------------- | :--------------------------------------------------------------------- | :--------------------------------------------------------------- |
 | `BETTER_AUTH_SECRET` | A secure, random 32-byte secret used to sign session cookies and JWTs. | Generate with `openssl rand -base64 32`                          |
-| `BETTER_AUTH_URL`    | The public URL of your Hono backend API. Used for redirect flows.      | `http://localhost:3000` (respects `SHUMAI_SERVER_PORT` fallback) |
+| `BETTER_AUTH_URL`    | The public URL of your Hono backend API. Used for redirect flows.      | `http://localhost:3000` (respects `ZHENYUE_SERVER_PORT` fallback) |
 
 ---
 
 ## Storage Config
 
-Shumai supports storing files locally or on S3-compatible endpoints.
+ZhenYue supports storing files locally or on S3-compatible endpoints.
 
 | Variable                   | Description                                                                                                                                             | Example / Default                                                         |
 | :------------------------- | :------------------------------------------------------------------------------------------------------------------------------------------------------ | :------------------------------------------------------------------------ |
 | `STORAGE_BACKEND`          | Storage type. Use `local` for local file system storage, or `s3` for S3-compatible cloud storage.                                                       | `local` (default) or `s3`                                                 |
-| `AWS_ENDPOINT_URL_S3`      | Endpoint for S3 storage or local storage. Used by the browser to build file upload URLs. Must include port if deploying remotely or using custom ports. | `http://localhost:3000` (respects `SHUMAI_SERVER_PORT` fallback if unset) |
-| `S3_BUCKET`                | S3 bucket name.                                                                                                                                         | `shumai` (default)                                                        |
+| `AWS_ENDPOINT_URL_S3`      | Endpoint for S3 storage or local storage. Used by the browser to build file upload URLs. Must include port if deploying remotely or using custom ports. | `http://localhost:3000` (respects `ZHENYUE_SERVER_PORT` fallback if unset) |
+| `S3_BUCKET`                | S3 bucket name.                                                                                                                                         | `zhenyue` (default)                                                        |
 | `S3_ACCESS_KEY_ID`         | Access key credentials for S3.                                                                                                                          | `minioadmin` (default)                                                    |
 | `S3_SECRET_ACCESS_KEY`     | Secret key credentials for S3.                                                                                                                          | `minioadmin` (default)                                                    |
 | `S3_REGION`                | S3 storage region.                                                                                                                                      | `auto` (default)                                                          |
@@ -51,12 +51,12 @@ Shumai supports storing files locally or on S3-compatible endpoints.
 
 When `STORAGE_BACKEND` is set to `local` (default):
 
-- `SHUMAI_SERVER_PORT` configures the port on which the Shumai web server starts and listens.
+- `ZHENYUE_SERVER_PORT` configures the port on which the ZhenYue web server starts and listens.
 - `AWS_ENDPOINT_URL_S3` configures the public/external endpoint used by client browsers to upload and download files. It must include the scheme and port.
 
-For example, if you deploy Shumai on a remote server at `http://123.456.7.8` and configure port mapping `12345:3000` (exposing port 3000 internally as port 12345 externally) in Docker Compose:
+For example, if you deploy ZhenYue on a remote server at `http://123.456.7.8` and configure port mapping `12345:3000` (exposing port 3000 internally as port 12345 externally) in Docker Compose:
 
-- Set `SHUMAI_SERVER_PORT` to `3000`.
+- Set `ZHENYUE_SERVER_PORT` to `3000`.
 - Set `AWS_ENDPOINT_URL_S3` to `http://123.456.7.8:12345`.
 
 ---

@@ -5,12 +5,12 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 
 /** @typedef {{}} Best_MatchInputs */
 
-const en_best_match = /** @type {(inputs: Best_MatchInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Best match`)
-};
-
 const zh_best_match = /** @type {(inputs: Best_MatchInputs) => LocalizedString} */ () => {
 	return /** @type {LocalizedString} */ (`最佳匹配`)
+};
+
+const en_best_match = /** @type {(inputs: Best_MatchInputs) => LocalizedString} */ () => {
+	return /** @type {LocalizedString} */ (`Best match`)
 };
 
 /**
@@ -19,11 +19,11 @@ const zh_best_match = /** @type {(inputs: Best_MatchInputs) => LocalizedString} 
 * | "Best match" |
 *
 * @param {Best_MatchInputs} inputs
-* @param {{ locale?: "en" | "zh" }} options
+* @param {{ locale?: "zh" | "en" }} options
 * @returns {LocalizedString}
 */
-export const best_match = /** @type {((inputs?: Best_MatchInputs, options?: { locale?: "en" | "zh" }) => LocalizedString) & import('../runtime.js').MessageMetadata<Best_MatchInputs, { locale?: "en" | "zh" }, {}>} */ ((inputs = {}, options = {}) => {
+export const best_match = /** @type {((inputs?: Best_MatchInputs, options?: { locale?: "zh" | "en" }) => LocalizedString) & import('../runtime.js').MessageMetadata<Best_MatchInputs, { locale?: "zh" | "en" }, {}>} */ ((inputs = {}, options = {}) => {
 	const locale = experimentalStaticLocale ?? options.locale ?? getLocale()
-	if (locale === "en") return en_best_match(inputs)
-	return zh_best_match(inputs)
+	if (locale === "zh") return zh_best_match(inputs)
+	return en_best_match(inputs)
 });

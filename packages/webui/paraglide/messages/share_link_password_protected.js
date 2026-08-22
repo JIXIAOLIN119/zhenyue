@@ -5,12 +5,12 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 
 /** @typedef {{}} Share_Link_Password_ProtectedInputs */
 
-const en_share_link_password_protected = /** @type {(inputs: Share_Link_Password_ProtectedInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`This share link is password protected.`)
-};
-
 const zh_share_link_password_protected = /** @type {(inputs: Share_Link_Password_ProtectedInputs) => LocalizedString} */ () => {
 	return /** @type {LocalizedString} */ (`此分享链接受密码保护。`)
+};
+
+const en_share_link_password_protected = /** @type {(inputs: Share_Link_Password_ProtectedInputs) => LocalizedString} */ () => {
+	return /** @type {LocalizedString} */ (`This share link is password protected.`)
 };
 
 /**
@@ -19,11 +19,11 @@ const zh_share_link_password_protected = /** @type {(inputs: Share_Link_Password
 * | "This share link is password protected." |
 *
 * @param {Share_Link_Password_ProtectedInputs} inputs
-* @param {{ locale?: "en" | "zh" }} options
+* @param {{ locale?: "zh" | "en" }} options
 * @returns {LocalizedString}
 */
-export const share_link_password_protected = /** @type {((inputs?: Share_Link_Password_ProtectedInputs, options?: { locale?: "en" | "zh" }) => LocalizedString) & import('../runtime.js').MessageMetadata<Share_Link_Password_ProtectedInputs, { locale?: "en" | "zh" }, {}>} */ ((inputs = {}, options = {}) => {
+export const share_link_password_protected = /** @type {((inputs?: Share_Link_Password_ProtectedInputs, options?: { locale?: "zh" | "en" }) => LocalizedString) & import('../runtime.js').MessageMetadata<Share_Link_Password_ProtectedInputs, { locale?: "zh" | "en" }, {}>} */ ((inputs = {}, options = {}) => {
 	const locale = experimentalStaticLocale ?? options.locale ?? getLocale()
-	if (locale === "en") return en_share_link_password_protected(inputs)
-	return zh_share_link_password_protected(inputs)
+	if (locale === "zh") return zh_share_link_password_protected(inputs)
+	return en_share_link_password_protected(inputs)
 });

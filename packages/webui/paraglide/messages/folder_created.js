@@ -5,12 +5,12 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 
 /** @typedef {{}} Folder_CreatedInputs */
 
-const en_folder_created = /** @type {(inputs: Folder_CreatedInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Folder created`)
-};
-
 const zh_folder_created = /** @type {(inputs: Folder_CreatedInputs) => LocalizedString} */ () => {
 	return /** @type {LocalizedString} */ (`文件夹已创建`)
+};
+
+const en_folder_created = /** @type {(inputs: Folder_CreatedInputs) => LocalizedString} */ () => {
+	return /** @type {LocalizedString} */ (`Folder created`)
 };
 
 /**
@@ -19,11 +19,11 @@ const zh_folder_created = /** @type {(inputs: Folder_CreatedInputs) => Localized
 * | "Folder created" |
 *
 * @param {Folder_CreatedInputs} inputs
-* @param {{ locale?: "en" | "zh" }} options
+* @param {{ locale?: "zh" | "en" }} options
 * @returns {LocalizedString}
 */
-export const folder_created = /** @type {((inputs?: Folder_CreatedInputs, options?: { locale?: "en" | "zh" }) => LocalizedString) & import('../runtime.js').MessageMetadata<Folder_CreatedInputs, { locale?: "en" | "zh" }, {}>} */ ((inputs = {}, options = {}) => {
+export const folder_created = /** @type {((inputs?: Folder_CreatedInputs, options?: { locale?: "zh" | "en" }) => LocalizedString) & import('../runtime.js').MessageMetadata<Folder_CreatedInputs, { locale?: "zh" | "en" }, {}>} */ ((inputs = {}, options = {}) => {
 	const locale = experimentalStaticLocale ?? options.locale ?? getLocale()
-	if (locale === "en") return en_folder_created(inputs)
-	return zh_folder_created(inputs)
+	if (locale === "zh") return zh_folder_created(inputs)
+	return en_folder_created(inputs)
 });

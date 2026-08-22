@@ -12,7 +12,7 @@ import {
   type FieldInfo,
   type FieldInfo as MetadataFieldInfo,
   type SelectOption,
-} from '@shumai/dtos'
+} from '@zhenyue/dtos'
 import { useMutation, useQueryClient } from '@tanstack/react-query'
 import { InferRequestType, InferResponseType } from 'hono/client'
 import {

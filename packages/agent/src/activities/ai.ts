@@ -1,14 +1,14 @@
 import { GoogleGenAI } from '@google/genai'
-import { s3Service } from '@shumai/core/src/s3/s3'
-import { transcodeService } from '@shumai/core'
+import { s3Service } from '@zhenyue/core/src/s3/s3'
+import { transcodeService } from '@zhenyue/core'
 import { execFile } from 'child_process'
 import * as fs from 'fs'
 import * as os from 'os'
 import * as path from 'path'
 import { promisify } from 'util'
 import { ApplicationFailure } from '@temporalio/activity'
-import { prisma } from '@shumai/db'
-import { getProxyType } from '@shumai/core/src/utils/mime'
+import { prisma } from '@zhenyue/db'
+import { getProxyType } from '@zhenyue/core/src/utils/mime'
 
 const execFileAsync = promisify(execFile)
 
@@ -107,7 +107,7 @@ export async function generateEmbeddingActivity(params: GenerateEmbeddingParams)
     throw ApplicationFailure.create({ message: 'asset has no key', nonRetryable: true })
   }
 
-  const { buffer: data } = await s3Service.getObject(process.env.S3_BUCKET || 'shumai', key)
+  const { buffer: data } = await s3Service.getObject(process.env.S3_BUCKET || 'zhenyue', key)
 
   const results: GeneratedEmbedding[] = []
 
@@ -241,7 +241,7 @@ export interface ExtractAiMetadataParams {
 export async function extractAiMetadataActivity(
   params: ExtractAiMetadataParams,
 ): Promise<string[]> {
-  const bucket = process.env.S3_BUCKET || 'shumai'
+  const bucket = process.env.S3_BUCKET || 'zhenyue'
   const assetDir = path.dirname(params.assetKey)
   const aiDir = path.join(assetDir, 'ai_metadata')
   const generatedFiles: string[] = []
@@ -384,7 +384,7 @@ export async function generateImageEmbeddingActivity(
   }
 
   const { buffer: data } = await s3Service.getObject(
-    process.env.S3_BUCKET || 'shumai',
+    process.env.S3_BUCKET || 'zhenyue',
     params.assetKey,
   )
   const embVec = await generateMultimodalEmbedding(ai, data, params.mediaType)
@@ -425,7 +425,7 @@ export async function generateVideoChunkEmbeddingActivity(
 
   try {
     const { buffer: data } = await s3Service.getObject(
-      process.env.S3_BUCKET || 'shumai',
+      process.env.S3_BUCKET || 'zhenyue',
       params.chunkKey,
     )
 

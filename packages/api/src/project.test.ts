@@ -1,11 +1,11 @@
 import { describe, expect, it, vi, beforeEach } from 'vitest'
 import { Hono, type Context, type Next } from 'hono'
 import projectRoute from './project'
-import { authzService, Permission, ResourceType } from '@shumai/core/src/authz/authz'
-import { projectService } from '@shumai/core/src/project/project'
-import { assetService } from '@shumai/core/src/asset/asset'
-import { auditLogService } from '@shumai/core/src/auditLog/auditLog'
-import type { ProjectInfo } from '@shumai/dtos'
+import { authzService, Permission, ResourceType } from '@zhenyue/core/src/authz/authz'
+import { projectService } from '@zhenyue/core/src/project/project'
+import { assetService } from '@zhenyue/core/src/asset/asset'
+import { auditLogService } from '@zhenyue/core/src/auditLog/auditLog'
+import type { ProjectInfo } from '@zhenyue/dtos'
 
 vi.mock('./middleware/auth', () => ({
   authMiddleware: async (
@@ -17,8 +17,8 @@ vi.mock('./middleware/auth', () => ({
   },
 }))
 
-vi.mock('@shumai/core/src/authz/authz')
-vi.mock('@shumai/core/src/project/project', () => ({
+vi.mock('@zhenyue/core/src/authz/authz')
+vi.mock('@zhenyue/core/src/project/project', () => ({
   projectService: {
     createProject: vi.fn(),
     updateProject: vi.fn(),
@@ -34,8 +34,8 @@ vi.mock('@shumai/core/src/project/project', () => ({
     getProjectMe: vi.fn(),
   },
 }))
-vi.mock('@shumai/core/src/asset/asset')
-vi.mock('@shumai/core/src/auditLog/auditLog', () => ({
+vi.mock('@zhenyue/core/src/asset/asset')
+vi.mock('@zhenyue/core/src/auditLog/auditLog', () => ({
   auditLogService: {
     logAction: vi.fn().mockResolvedValue({}),
     listAuditLogs: vi.fn().mockResolvedValue({ nodes: [], pageInfo: {}, total: 0 }),

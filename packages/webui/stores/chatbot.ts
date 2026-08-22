@@ -1,9 +1,9 @@
 import { create } from 'zustand'
 import { client } from '@/ui/api/client'
-import type { ChatMessage, ChatSessionInfo } from '@shumai/dtos'
+import type { ChatMessage, ChatSessionInfo } from '@zhenyue/dtos'
 import { toast } from 'sonner'
 
-export const AGENT_PREFERENCE_STORAGE_KEY = 'shumai_selected_agent_id'
+export const AGENT_PREFERENCE_STORAGE_KEY = 'zhenyue_selected_agent_id'
 
 const getInitialAgentId = (): string | null => {
   if (typeof window !== 'undefined' && window.localStorage) {

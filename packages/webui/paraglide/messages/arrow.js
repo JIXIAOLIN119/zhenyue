@@ -5,12 +5,12 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 
 /** @typedef {{}} ArrowInputs */
 
-const en_arrow = /** @type {(inputs: ArrowInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Arrow`)
-};
-
 const zh_arrow = /** @type {(inputs: ArrowInputs) => LocalizedString} */ () => {
 	return /** @type {LocalizedString} */ (`箭头`)
+};
+
+const en_arrow = /** @type {(inputs: ArrowInputs) => LocalizedString} */ () => {
+	return /** @type {LocalizedString} */ (`Arrow`)
 };
 
 /**
@@ -19,11 +19,11 @@ const zh_arrow = /** @type {(inputs: ArrowInputs) => LocalizedString} */ () => {
 * | "Arrow" |
 *
 * @param {ArrowInputs} inputs
-* @param {{ locale?: "en" | "zh" }} options
+* @param {{ locale?: "zh" | "en" }} options
 * @returns {LocalizedString}
 */
-export const arrow = /** @type {((inputs?: ArrowInputs, options?: { locale?: "en" | "zh" }) => LocalizedString) & import('../runtime.js').MessageMetadata<ArrowInputs, { locale?: "en" | "zh" }, {}>} */ ((inputs = {}, options = {}) => {
+export const arrow = /** @type {((inputs?: ArrowInputs, options?: { locale?: "zh" | "en" }) => LocalizedString) & import('../runtime.js').MessageMetadata<ArrowInputs, { locale?: "zh" | "en" }, {}>} */ ((inputs = {}, options = {}) => {
 	const locale = experimentalStaticLocale ?? options.locale ?? getLocale()
-	if (locale === "en") return en_arrow(inputs)
-	return zh_arrow(inputs)
+	if (locale === "zh") return zh_arrow(inputs)
+	return en_arrow(inputs)
 });

@@ -1,5 +1,5 @@
 import { create } from 'zustand'
-import type { AncestorFolder } from '@shumai/dtos'
+import type { AncestorFolder } from '@zhenyue/dtos'
 
 export interface TopNavProjectState {
   teamId: string

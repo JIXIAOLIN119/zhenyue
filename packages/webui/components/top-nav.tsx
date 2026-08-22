@@ -1,6 +1,6 @@
 import { useTopNavStore } from '@/ui/stores/top-nav'
 import { BreadcrumbNav } from './breadcrumb-nav'
-import { ShumaiLogo } from '@/ui/components/ui/icons'
+import { ZhenYueLogo } from '@/ui/components/ui/icons'
 import { useUiStore } from '@/ui/stores/ui'
 import { useChatbotStore } from '@/ui/stores/chatbot'
 
@@ -137,7 +137,7 @@ export function TopNav() {
 function TeamHeader() {
   return (
     <div className="flex h-14 flex-wrap items-center justify-center gap-2 border-b border-border bg-card px-4 py-2 flex-shrink-0">
-      <ShumaiLogo className="w-10 h-10 text-orange-600" />
+      <ZhenYueLogo className="w-10 h-10 text-orange-600" />
     </div>
   )
 }

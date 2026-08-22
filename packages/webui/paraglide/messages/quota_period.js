@@ -5,12 +5,12 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 
 /** @typedef {{}} Quota_PeriodInputs */
 
-const en_quota_period = /** @type {(inputs: Quota_PeriodInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Period Window`)
-};
-
 const zh_quota_period = /** @type {(inputs: Quota_PeriodInputs) => LocalizedString} */ () => {
 	return /** @type {LocalizedString} */ (`周期窗口`)
+};
+
+const en_quota_period = /** @type {(inputs: Quota_PeriodInputs) => LocalizedString} */ () => {
+	return /** @type {LocalizedString} */ (`Period Window`)
 };
 
 /**
@@ -19,11 +19,11 @@ const zh_quota_period = /** @type {(inputs: Quota_PeriodInputs) => LocalizedStri
 * | "Period Window" |
 *
 * @param {Quota_PeriodInputs} inputs
-* @param {{ locale?: "en" | "zh" }} options
+* @param {{ locale?: "zh" | "en" }} options
 * @returns {LocalizedString}
 */
-export const quota_period = /** @type {((inputs?: Quota_PeriodInputs, options?: { locale?: "en" | "zh" }) => LocalizedString) & import('../runtime.js').MessageMetadata<Quota_PeriodInputs, { locale?: "en" | "zh" }, {}>} */ ((inputs = {}, options = {}) => {
+export const quota_period = /** @type {((inputs?: Quota_PeriodInputs, options?: { locale?: "zh" | "en" }) => LocalizedString) & import('../runtime.js').MessageMetadata<Quota_PeriodInputs, { locale?: "zh" | "en" }, {}>} */ ((inputs = {}, options = {}) => {
 	const locale = experimentalStaticLocale ?? options.locale ?? getLocale()
-	if (locale === "en") return en_quota_period(inputs)
-	return zh_quota_period(inputs)
+	if (locale === "zh") return zh_quota_period(inputs)
+	return en_quota_period(inputs)
 });

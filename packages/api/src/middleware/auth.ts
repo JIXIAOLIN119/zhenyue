@@ -1,7 +1,7 @@
-import type { Prisma } from '@shumai/db'
-import { auth } from '@shumai/core/src/auth/auth'
-import { userService } from '@shumai/core/src/user/user'
-import { teamService } from '@shumai/core/src/team/team'
+import type { Prisma } from '@zhenyue/db'
+import { auth } from '@zhenyue/core/src/auth/auth'
+import { userService } from '@zhenyue/core/src/user/user'
+import { teamService } from '@zhenyue/core/src/team/team'
 import { createMiddleware } from 'hono/factory'
 
 type User = Prisma.UserGetPayload<Record<string, never>>
@@ -33,7 +33,7 @@ export const authMiddleware = createMiddleware<{
 
     c.set('user', user)
 
-    if (process.env.SHUMAI_DEMO_MODE === '1') {
+    if (process.env.ZHENYUE_DEMO_MODE === '1') {
       const method = c.req.method.toUpperCase()
       const path = c.req.path
       if (['POST', 'PUT', 'PATCH', 'DELETE'].includes(method) && !path.endsWith('/search')) {

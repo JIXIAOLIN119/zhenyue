@@ -1,6 +1,6 @@
 import { ApplicationFailure } from '@temporalio/workflow'
-import type { WorkflowTask } from '@shumai/db'
-import { executeActivity, getActivities, TaskQueueAgent } from '@shumai/workflow-core'
+import type { WorkflowTask } from '@zhenyue/db'
+import { executeActivity, getActivities, TaskQueueAgent } from '@zhenyue/workflow-core'
 import { AgentChatPromptBuilder } from './agent-chat-prompt-builder'
 
 export async function agentChat(task: WorkflowTask): Promise<void> {

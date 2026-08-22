@@ -12,9 +12,9 @@ import {
 import { join } from 'node:path'
 import { homedir } from 'node:os'
 
-const SHUMAI_DIR = join(homedir(), '.shumai')
-const PID_DIR = join(SHUMAI_DIR, 'pids')
-const LOG_DIR = join(SHUMAI_DIR, 'logs')
+const ZHENYUE_DIR = join(homedir(), '.zhenyue')
+const PID_DIR = join(ZHENYUE_DIR, 'pids')
+const LOG_DIR = join(ZHENYUE_DIR, 'logs')
 
 function isProcessRunning(pid: number): boolean {
   try {
@@ -122,7 +122,7 @@ function startDaemon(appName: string, pidFile: string, logFile: string): void {
     stdio: ['ignore', logFd, logFd],
     env: {
       ...process.env,
-      SHUMAI_DAEMONIZED: 'true',
+      ZHENYUE_DAEMONIZED: 'true',
     },
   })
 
@@ -191,7 +191,7 @@ export async function handleDaemonCommands(
   const isStop = args.includes('stop')
   const isRestart = args.includes('restart')
   const isLogs = args.includes('logs')
-  const isDaemon = args.includes('-d') && process.env.SHUMAI_DAEMONIZED !== 'true'
+  const isDaemon = args.includes('-d') && process.env.ZHENYUE_DAEMONIZED !== 'true'
 
   if (isStop) {
     await stopProcess(appName, pidFile)

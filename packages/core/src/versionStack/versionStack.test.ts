@@ -1,9 +1,9 @@
 import { describe, it, expect, beforeEach } from 'vitest'
-import { prisma } from '@shumai/db'
-import { setupTestDbHooks } from '@shumai/db/test'
+import { prisma } from '@zhenyue/db'
+import { setupTestDbHooks } from '@zhenyue/db/test'
 import { VersionStackService } from './versionStack'
 import { assetService } from '../asset/asset'
-import { AssetType } from '@shumai/db'
+import { AssetType } from '@zhenyue/db'
 
 describe('VersionStackService', () => {
   setupTestDbHooks()

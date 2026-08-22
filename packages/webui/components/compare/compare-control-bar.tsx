@@ -4,7 +4,7 @@ import {
   type DisplayTranscode,
   type PlayerState,
 } from '@/ui/components/viewers/video/video-control-bar'
-import type { AssetInfo } from '@shumai/dtos'
+import type { AssetInfo } from '@zhenyue/dtos'
 import { Maximize, Minimize } from 'lucide-react'
 import type { PaneReportedState } from './types'
 

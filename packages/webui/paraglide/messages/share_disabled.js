@@ -5,12 +5,12 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 
 /** @typedef {{}} Share_DisabledInputs */
 
-const en_share_disabled = /** @type {(inputs: Share_DisabledInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Share Disabled`)
-};
-
 const zh_share_disabled = /** @type {(inputs: Share_DisabledInputs) => LocalizedString} */ () => {
 	return /** @type {LocalizedString} */ (`分享已禁用`)
+};
+
+const en_share_disabled = /** @type {(inputs: Share_DisabledInputs) => LocalizedString} */ () => {
+	return /** @type {LocalizedString} */ (`Share Disabled`)
 };
 
 /**
@@ -19,11 +19,11 @@ const zh_share_disabled = /** @type {(inputs: Share_DisabledInputs) => Localized
 * | "Share Disabled" |
 *
 * @param {Share_DisabledInputs} inputs
-* @param {{ locale?: "en" | "zh" }} options
+* @param {{ locale?: "zh" | "en" }} options
 * @returns {LocalizedString}
 */
-export const share_disabled = /** @type {((inputs?: Share_DisabledInputs, options?: { locale?: "en" | "zh" }) => LocalizedString) & import('../runtime.js').MessageMetadata<Share_DisabledInputs, { locale?: "en" | "zh" }, {}>} */ ((inputs = {}, options = {}) => {
+export const share_disabled = /** @type {((inputs?: Share_DisabledInputs, options?: { locale?: "zh" | "en" }) => LocalizedString) & import('../runtime.js').MessageMetadata<Share_DisabledInputs, { locale?: "zh" | "en" }, {}>} */ ((inputs = {}, options = {}) => {
 	const locale = experimentalStaticLocale ?? options.locale ?? getLocale()
-	if (locale === "en") return en_share_disabled(inputs)
-	return zh_share_disabled(inputs)
+	if (locale === "zh") return zh_share_disabled(inputs)
+	return en_share_disabled(inputs)
 });

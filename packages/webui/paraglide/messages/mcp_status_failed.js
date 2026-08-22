@@ -5,12 +5,12 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 
 /** @typedef {{}} Mcp_Status_FailedInputs */
 
-const en_mcp_status_failed = /** @type {(inputs: Mcp_Status_FailedInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Failed`)
-};
-
 const zh_mcp_status_failed = /** @type {(inputs: Mcp_Status_FailedInputs) => LocalizedString} */ () => {
 	return /** @type {LocalizedString} */ (`连接失败`)
+};
+
+const en_mcp_status_failed = /** @type {(inputs: Mcp_Status_FailedInputs) => LocalizedString} */ () => {
+	return /** @type {LocalizedString} */ (`Failed`)
 };
 
 /**
@@ -19,11 +19,11 @@ const zh_mcp_status_failed = /** @type {(inputs: Mcp_Status_FailedInputs) => Loc
 * | "Failed" |
 *
 * @param {Mcp_Status_FailedInputs} inputs
-* @param {{ locale?: "en" | "zh" }} options
+* @param {{ locale?: "zh" | "en" }} options
 * @returns {LocalizedString}
 */
-export const mcp_status_failed = /** @type {((inputs?: Mcp_Status_FailedInputs, options?: { locale?: "en" | "zh" }) => LocalizedString) & import('../runtime.js').MessageMetadata<Mcp_Status_FailedInputs, { locale?: "en" | "zh" }, {}>} */ ((inputs = {}, options = {}) => {
+export const mcp_status_failed = /** @type {((inputs?: Mcp_Status_FailedInputs, options?: { locale?: "zh" | "en" }) => LocalizedString) & import('../runtime.js').MessageMetadata<Mcp_Status_FailedInputs, { locale?: "zh" | "en" }, {}>} */ ((inputs = {}, options = {}) => {
 	const locale = experimentalStaticLocale ?? options.locale ?? getLocale()
-	if (locale === "en") return en_mcp_status_failed(inputs)
-	return zh_mcp_status_failed(inputs)
+	if (locale === "zh") return zh_mcp_status_failed(inputs)
+	return en_mcp_status_failed(inputs)
 });

@@ -5,12 +5,12 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 
 /** @typedef {{}} ColorInputs */
 
-const en_color = /** @type {(inputs: ColorInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Color`)
-};
-
 const zh_color = /** @type {(inputs: ColorInputs) => LocalizedString} */ () => {
 	return /** @type {LocalizedString} */ (`颜色`)
+};
+
+const en_color = /** @type {(inputs: ColorInputs) => LocalizedString} */ () => {
+	return /** @type {LocalizedString} */ (`Color`)
 };
 
 /**
@@ -19,11 +19,11 @@ const zh_color = /** @type {(inputs: ColorInputs) => LocalizedString} */ () => {
 * | "Color" |
 *
 * @param {ColorInputs} inputs
-* @param {{ locale?: "en" | "zh" }} options
+* @param {{ locale?: "zh" | "en" }} options
 * @returns {LocalizedString}
 */
-export const color = /** @type {((inputs?: ColorInputs, options?: { locale?: "en" | "zh" }) => LocalizedString) & import('../runtime.js').MessageMetadata<ColorInputs, { locale?: "en" | "zh" }, {}>} */ ((inputs = {}, options = {}) => {
+export const color = /** @type {((inputs?: ColorInputs, options?: { locale?: "zh" | "en" }) => LocalizedString) & import('../runtime.js').MessageMetadata<ColorInputs, { locale?: "zh" | "en" }, {}>} */ ((inputs = {}, options = {}) => {
 	const locale = experimentalStaticLocale ?? options.locale ?? getLocale()
-	if (locale === "en") return en_color(inputs)
-	return zh_color(inputs)
+	if (locale === "zh") return zh_color(inputs)
+	return en_color(inputs)
 });

@@ -6,7 +6,7 @@
  *  1. All persisted state (tokens, client info, PKCE verifier, discovery
  *     state, CSRF state) is stored in the DB via McpDbStore instead of the OS
  *     keyring/files, so the flow survives across HTTP requests and processes.
- *  2. The redirect URI is shumai's own Hono callback endpoint
+ *  2. The redirect URI is zhenyue's own Hono callback endpoint
  *     (`${MCP_OAUTH_REDIRECT_BASE_URL}/api/mcp/oauth/callback`) instead of a
  *     localhost callback server.
  */
@@ -176,8 +176,8 @@ export class McpOauthProvider implements OAuthClientProvider {
   get clientMetadata(): OAuthClientMetadata {
     if (this.usesClientCredentials) {
       return {
-        client_name: this.config.clientName ?? 'Shumai',
-        client_uri: this.config.clientUri ?? 'https://shumai.ai',
+        client_name: this.config.clientName ?? 'ZhenYue',
+        client_uri: this.config.clientUri ?? 'https://zhenyue.ai',
         redirect_uris: [],
         grant_types: ['client_credentials'],
         token_endpoint_auth_method: this.config.clientSecret ? 'client_secret_post' : 'none',
@@ -193,8 +193,8 @@ export class McpOauthProvider implements OAuthClientProvider {
 
     return {
       redirect_uris: [redirectUrl],
-      client_name: this.config.clientName ?? 'Shumai',
-      client_uri: this.config.clientUri ?? 'https://shumai.ai',
+      client_name: this.config.clientName ?? 'ZhenYue',
+      client_uri: this.config.clientUri ?? 'https://zhenyue.ai',
       grant_types: ['authorization_code', 'refresh_token'],
       response_types: ['code'],
       token_endpoint_auth_method: this.config.clientSecret ? 'client_secret_post' : 'none',

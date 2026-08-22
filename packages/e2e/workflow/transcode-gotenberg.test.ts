@@ -1,9 +1,9 @@
 import { describe, it, expect, beforeAll, afterAll, vi } from 'vitest'
-import { prisma, AssetStatus } from '@shumai/db'
-import { setupTestDbHooks } from '@shumai/db/test'
-import { workflowService, TaskQueueTranscode } from '@shumai/workflow-core'
-import { initTranscodeWorkflows } from '@shumai/transcode'
-import { s3Service } from '@shumai/core/src/s3/s3'
+import { prisma, AssetStatus } from '@zhenyue/db'
+import { setupTestDbHooks } from '@zhenyue/db/test'
+import { workflowService, TaskQueueTranscode } from '@zhenyue/workflow-core'
+import { initTranscodeWorkflows } from '@zhenyue/transcode'
+import { s3Service } from '@zhenyue/core/src/s3/s3'
 import { fileURLToPath } from 'url'
 import * as path from 'path'
 import * as fs from 'fs'
@@ -22,7 +22,7 @@ describe.each(['local', 'temporal'] as const)(
     let gotenbergContainer: StartedTestContainer | null = null
 
     beforeAll(async () => {
-      process.env.S3_BUCKET = 'shumai-e2e-test-bucket-gotenberg'
+      process.env.S3_BUCKET = 'zhenyue-e2e-test-bucket-gotenberg'
 
       console.log('Starting Gotenberg container via testcontainers...')
       try {
@@ -69,7 +69,7 @@ describe.each(['local', 'temporal'] as const)(
 
       try {
         console.log('Cleaning up E2E storage files...')
-        await s3Service.deletePrefix('shumai-e2e-test-bucket-gotenberg', '')
+        await s3Service.deletePrefix('zhenyue-e2e-test-bucket-gotenberg', '')
       } catch (err) {
         console.error('Failed to clean up E2E storage folder:', err)
       }
@@ -105,7 +105,7 @@ describe.each(['local', 'temporal'] as const)(
       const docxPath = path.join(fixturesDir, 'test.docx')
       const docxBuffer = fs.readFileSync(docxPath)
       await s3Service.putObject(
-        'shumai-e2e-test-bucket-gotenberg',
+        'zhenyue-e2e-test-bucket-gotenberg',
         'projects/e2e/test.docx',
         docxBuffer,
         docxBuffer.length,
@@ -186,7 +186,7 @@ describe.each(['local', 'temporal'] as const)(
       const pptxPath = path.join(fixturesDir, 'test.pptx')
       const pptxBuffer = fs.readFileSync(pptxPath)
       await s3Service.putObject(
-        'shumai-e2e-test-bucket-gotenberg',
+        'zhenyue-e2e-test-bucket-gotenberg',
         'projects/e2e/test.pptx',
         pptxBuffer,
         pptxBuffer.length,
@@ -267,7 +267,7 @@ describe.each(['local', 'temporal'] as const)(
       const xlsxPath = path.join(fixturesDir, 'test.xlsx')
       const xlsxBuffer = fs.readFileSync(xlsxPath)
       await s3Service.putObject(
-        'shumai-e2e-test-bucket-gotenberg',
+        'zhenyue-e2e-test-bucket-gotenberg',
         'projects/e2e/test.xlsx',
         xlsxBuffer,
         xlsxBuffer.length,

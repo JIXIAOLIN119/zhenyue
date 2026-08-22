@@ -1,10 +1,10 @@
-import { loadEnvConfig } from '@shumai/core/src/env-loader'
+import { loadEnvConfig } from '@zhenyue/core/src/env-loader'
 loadEnvConfig(process.cwd(), process.env.NODE_ENV !== 'production')
 
-import { workflowService } from '@shumai/workflow-core'
-import { TaskQueueAgent } from '@shumai/workflow-core'
-import { initAgentWorkflows } from '@shumai/agent'
-import { handleDaemonCommands } from '@shumai/core/src/utils/daemon'
+import { workflowService } from '@zhenyue/workflow-core'
+import { TaskQueueAgent } from '@zhenyue/workflow-core'
+import { initAgentWorkflows } from '@zhenyue/agent'
+import { handleDaemonCommands } from '@zhenyue/core/src/utils/daemon'
 
 if (process.argv.includes('--check')) {
   console.log('✅ Agent worker evaluated successfully!')
@@ -29,7 +29,7 @@ async function run() {
   await workflowService.startWorkers(TaskQueueAgent, options)
 }
 
-handleDaemonCommands('shumai-agent', run).catch((err) => {
+handleDaemonCommands('zhenyue-agent', run).catch((err) => {
   console.error(err)
   process.exit(1)
 })

@@ -1,5 +1,5 @@
-import { WorkflowTaskType } from '@shumai/db'
-import { registerActivities, registerWorkflow } from '@shumai/workflow-core'
+import { WorkflowTaskType } from '@zhenyue/db'
+import { registerActivities, registerWorkflow } from '@zhenyue/workflow-core'
 import * as transcodeActivities from './activities/transcode'
 import * as watermarkActivities from './activities/watermark'
 import { transcodeVideoWorkflow } from './workflows/transcode-video'

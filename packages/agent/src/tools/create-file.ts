@@ -1,7 +1,7 @@
 import { type AgentTool } from '@earendil-works/pi-agent-core'
-import { s3Service } from '@shumai/core/src/s3/s3'
-import { getFileMimeType, readFileMimeType } from '@shumai/core/src/utils/file-mime'
-import { sanitizeFilename } from '@shumai/core/src/utils/filename'
+import { s3Service } from '@zhenyue/core/src/s3/s3'
+import { getFileMimeType, readFileMimeType } from '@zhenyue/core/src/utils/file-mime'
+import { sanitizeFilename } from '@zhenyue/core/src/utils/filename'
 import { Type, type TSchema } from 'typebox'
 import * as fs from 'fs'
 import * as path from 'path'
@@ -102,7 +102,7 @@ export function createCreateFileTool(userId: string, metadataSchema?: TSchema): 
         mimeType = getFileMimeType(null, source.name, 'text/plain')
 
         s3Key = `files/${ulid()}/${name}`
-        await s3Service.putObject(process.env.S3_BUCKET || 'shumai', s3Key, content, size, mimeType)
+        await s3Service.putObject(process.env.S3_BUCKET || 'zhenyue', s3Key, content, size, mimeType)
       }
 
       const result = await executeAgentToolWorkflow({

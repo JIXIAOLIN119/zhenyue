@@ -1,5 +1,5 @@
-import type { Prisma } from '@shumai/db'
-import { apiTokenService } from '@shumai/core/src/user/api-token'
+import type { Prisma } from '@zhenyue/db'
+import { apiTokenService } from '@zhenyue/core/src/user/api-token'
 import { createMiddleware } from 'hono/factory'
 
 type User = Prisma.UserGetPayload<Record<string, never>>

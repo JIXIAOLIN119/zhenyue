@@ -7,13 +7,13 @@ import {
   type AssetComment,
   type User,
   type WorkflowTask,
-} from '@shumai/db'
-import { s3Service } from '@shumai/core/src/s3/s3'
-import { workflowService } from '@shumai/workflow-core'
-import { authzService } from '@shumai/core/src/authz/authz'
+} from '@zhenyue/db'
+import { s3Service } from '@zhenyue/core/src/s3/s3'
+import { workflowService } from '@zhenyue/workflow-core'
+import { authzService } from '@zhenyue/core/src/authz/authz'
 
-vi.mock('@shumai/db', async (importOriginal) => {
-  const actual = await importOriginal<typeof import('@shumai/db')>()
+vi.mock('@zhenyue/db', async (importOriginal) => {
+  const actual = await importOriginal<typeof import('@zhenyue/db')>()
   return {
     ...actual,
     prisma: {
@@ -33,19 +33,19 @@ vi.mock('@shumai/db', async (importOriginal) => {
   }
 })
 
-vi.mock('@shumai/core/src/s3/s3', () => ({
+vi.mock('@zhenyue/core/src/s3/s3', () => ({
   s3Service: {
     getObject: vi.fn(),
   },
 }))
 
-vi.mock('@shumai/workflow-core', () => ({
+vi.mock('@zhenyue/workflow-core', () => ({
   workflowService: {
     executeWait: vi.fn(),
   },
 }))
 
-vi.mock('@shumai/core/src/authz/authz', () => ({
+vi.mock('@zhenyue/core/src/authz/authz', () => ({
   authzService: {
     hasPermission: vi.fn(),
   },

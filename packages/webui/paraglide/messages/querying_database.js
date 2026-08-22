@@ -5,12 +5,12 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 
 /** @typedef {{}} Querying_DatabaseInputs */
 
-const en_querying_database = /** @type {(inputs: Querying_DatabaseInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Querying database...`)
-};
-
 const zh_querying_database = /** @type {(inputs: Querying_DatabaseInputs) => LocalizedString} */ () => {
 	return /** @type {LocalizedString} */ (`正在查询数据库...`)
+};
+
+const en_querying_database = /** @type {(inputs: Querying_DatabaseInputs) => LocalizedString} */ () => {
+	return /** @type {LocalizedString} */ (`Querying database...`)
 };
 
 /**
@@ -19,11 +19,11 @@ const zh_querying_database = /** @type {(inputs: Querying_DatabaseInputs) => Loc
 * | "Querying database..." |
 *
 * @param {Querying_DatabaseInputs} inputs
-* @param {{ locale?: "en" | "zh" }} options
+* @param {{ locale?: "zh" | "en" }} options
 * @returns {LocalizedString}
 */
-export const querying_database = /** @type {((inputs?: Querying_DatabaseInputs, options?: { locale?: "en" | "zh" }) => LocalizedString) & import('../runtime.js').MessageMetadata<Querying_DatabaseInputs, { locale?: "en" | "zh" }, {}>} */ ((inputs = {}, options = {}) => {
+export const querying_database = /** @type {((inputs?: Querying_DatabaseInputs, options?: { locale?: "zh" | "en" }) => LocalizedString) & import('../runtime.js').MessageMetadata<Querying_DatabaseInputs, { locale?: "zh" | "en" }, {}>} */ ((inputs = {}, options = {}) => {
 	const locale = experimentalStaticLocale ?? options.locale ?? getLocale()
-	if (locale === "en") return en_querying_database(inputs)
-	return zh_querying_database(inputs)
+	if (locale === "zh") return zh_querying_database(inputs)
+	return en_querying_database(inputs)
 });

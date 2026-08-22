@@ -2,16 +2,16 @@ import { describe, expect, it, vi, beforeEach } from 'vitest'
 import { Hono, type Context, type Next } from 'hono'
 import inviteRoute from './invite'
 import publicInviteRoute from './public-invite'
-import { authzService, Permission, ResourceType } from '@shumai/core/src/authz/authz'
-import { inviteService } from '@shumai/core/src/invite/invite'
-import { notificationService } from '@shumai/core/src/notification/notification'
+import { authzService, Permission, ResourceType } from '@zhenyue/core/src/authz/authz'
+import { inviteService } from '@zhenyue/core/src/invite/invite'
+import { notificationService } from '@zhenyue/core/src/notification/notification'
 
-import { auditLogService } from '@shumai/core/src/auditLog/auditLog'
+import { auditLogService } from '@zhenyue/core/src/auditLog/auditLog'
 
-vi.mock('@shumai/core/src/invite/invite')
-vi.mock('@shumai/core/src/notification/notification')
-vi.mock('@shumai/core/src/authz/authz')
-vi.mock('@shumai/core/src/auditLog/auditLog', () => ({
+vi.mock('@zhenyue/core/src/invite/invite')
+vi.mock('@zhenyue/core/src/notification/notification')
+vi.mock('@zhenyue/core/src/authz/authz')
+vi.mock('@zhenyue/core/src/auditLog/auditLog', () => ({
   auditLogService: {
     logAction: vi.fn().mockResolvedValue({}),
   },

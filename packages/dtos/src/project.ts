@@ -1,5 +1,5 @@
 import { z } from 'zod'
-import { UserType } from '@shumai/db/enums'
+import { UserType } from '@zhenyue/db/enums'
 import { paginationPageInfoSchema, paginationParamsSchema } from './pagination'
 
 export const createProjectRequestSchema = z.object({

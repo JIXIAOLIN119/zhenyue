@@ -1,16 +1,16 @@
 import { zValidator } from '@hono/zod-validator'
 import { Hono } from 'hono'
-import { collectionService } from '@shumai/core/src/collection/collection'
-import { authzService, Permission, ResourceType } from '@shumai/core/src/authz/authz'
-import { getAvatarUrl } from '@shumai/core/src/user/avatar'
+import { collectionService } from '@zhenyue/core/src/collection/collection'
+import { authzService, Permission, ResourceType } from '@zhenyue/core/src/authz/authz'
+import { getAvatarUrl } from '@zhenyue/core/src/user/avatar'
 import {
   createCollectionRequestSchema,
   updateCollectionRequestSchema,
   listCollectionsRequestSchema,
   CollectionInfo,
   CollectionFilter,
-} from '@shumai/dtos'
-import type { Prisma } from '@shumai/db'
+} from '@zhenyue/dtos'
+import type { Prisma } from '@zhenyue/db'
 
 type User = Prisma.UserGetPayload<Record<string, never>>
 

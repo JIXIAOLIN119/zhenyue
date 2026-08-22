@@ -5,12 +5,12 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 
 /** @typedef {{}} Field_NameInputs */
 
-const en_field_name = /** @type {(inputs: Field_NameInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Field Name`)
-};
-
 const zh_field_name = /** @type {(inputs: Field_NameInputs) => LocalizedString} */ () => {
 	return /** @type {LocalizedString} */ (`字段名称`)
+};
+
+const en_field_name = /** @type {(inputs: Field_NameInputs) => LocalizedString} */ () => {
+	return /** @type {LocalizedString} */ (`Field Name`)
 };
 
 /**
@@ -19,11 +19,11 @@ const zh_field_name = /** @type {(inputs: Field_NameInputs) => LocalizedString} 
 * | "Field Name" |
 *
 * @param {Field_NameInputs} inputs
-* @param {{ locale?: "en" | "zh" }} options
+* @param {{ locale?: "zh" | "en" }} options
 * @returns {LocalizedString}
 */
-export const field_name = /** @type {((inputs?: Field_NameInputs, options?: { locale?: "en" | "zh" }) => LocalizedString) & import('../runtime.js').MessageMetadata<Field_NameInputs, { locale?: "en" | "zh" }, {}>} */ ((inputs = {}, options = {}) => {
+export const field_name = /** @type {((inputs?: Field_NameInputs, options?: { locale?: "zh" | "en" }) => LocalizedString) & import('../runtime.js').MessageMetadata<Field_NameInputs, { locale?: "zh" | "en" }, {}>} */ ((inputs = {}, options = {}) => {
 	const locale = experimentalStaticLocale ?? options.locale ?? getLocale()
-	if (locale === "en") return en_field_name(inputs)
-	return zh_field_name(inputs)
+	if (locale === "zh") return zh_field_name(inputs)
+	return en_field_name(inputs)
 });

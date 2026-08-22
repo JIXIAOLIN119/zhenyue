@@ -1,15 +1,15 @@
 import { Hono } from 'hono'
 import { zValidator } from '@hono/zod-validator'
-import { authzService, Permission, ResourceType } from '@shumai/core/src/authz/authz'
-import { skillService } from '@shumai/core/src/skill/skill'
+import { authzService, Permission, ResourceType } from '@zhenyue/core/src/authz/authz'
+import { skillService } from '@zhenyue/core/src/skill/skill'
 import {
   upsertSkillRequestSchema,
   updateSkillConfigRequestSchema,
   updateSkillPermissionRequestSchema,
   AuditAction,
-} from '@shumai/dtos'
-import type { Prisma } from '@shumai/db'
-import { auditLogService } from '@shumai/core/src/auditLog/auditLog'
+} from '@zhenyue/dtos'
+import type { Prisma } from '@zhenyue/db'
+import { auditLogService } from '@zhenyue/core/src/auditLog/auditLog'
 
 type User = Prisma.UserGetPayload<Record<string, never>>
 

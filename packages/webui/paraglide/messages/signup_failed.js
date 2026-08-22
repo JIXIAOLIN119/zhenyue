@@ -5,12 +5,12 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 
 /** @typedef {{}} Signup_FailedInputs */
 
-const en_signup_failed = /** @type {(inputs: Signup_FailedInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Signup failed`)
-};
-
 const zh_signup_failed = /** @type {(inputs: Signup_FailedInputs) => LocalizedString} */ () => {
 	return /** @type {LocalizedString} */ (`注册失败`)
+};
+
+const en_signup_failed = /** @type {(inputs: Signup_FailedInputs) => LocalizedString} */ () => {
+	return /** @type {LocalizedString} */ (`Signup failed`)
 };
 
 /**
@@ -19,11 +19,11 @@ const zh_signup_failed = /** @type {(inputs: Signup_FailedInputs) => LocalizedSt
 * | "Signup failed" |
 *
 * @param {Signup_FailedInputs} inputs
-* @param {{ locale?: "en" | "zh" }} options
+* @param {{ locale?: "zh" | "en" }} options
 * @returns {LocalizedString}
 */
-export const signup_failed = /** @type {((inputs?: Signup_FailedInputs, options?: { locale?: "en" | "zh" }) => LocalizedString) & import('../runtime.js').MessageMetadata<Signup_FailedInputs, { locale?: "en" | "zh" }, {}>} */ ((inputs = {}, options = {}) => {
+export const signup_failed = /** @type {((inputs?: Signup_FailedInputs, options?: { locale?: "zh" | "en" }) => LocalizedString) & import('../runtime.js').MessageMetadata<Signup_FailedInputs, { locale?: "zh" | "en" }, {}>} */ ((inputs = {}, options = {}) => {
 	const locale = experimentalStaticLocale ?? options.locale ?? getLocale()
-	if (locale === "en") return en_signup_failed(inputs)
-	return zh_signup_failed(inputs)
+	if (locale === "zh") return zh_signup_failed(inputs)
+	return en_signup_failed(inputs)
 });

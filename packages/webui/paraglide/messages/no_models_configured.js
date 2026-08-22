@@ -5,12 +5,12 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 
 /** @typedef {{}} No_Models_ConfiguredInputs */
 
-const en_no_models_configured = /** @type {(inputs: No_Models_ConfiguredInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`No models configured`)
-};
-
 const zh_no_models_configured = /** @type {(inputs: No_Models_ConfiguredInputs) => LocalizedString} */ () => {
 	return /** @type {LocalizedString} */ (`暂无已配置的模型`)
+};
+
+const en_no_models_configured = /** @type {(inputs: No_Models_ConfiguredInputs) => LocalizedString} */ () => {
+	return /** @type {LocalizedString} */ (`No models configured`)
 };
 
 /**
@@ -19,11 +19,11 @@ const zh_no_models_configured = /** @type {(inputs: No_Models_ConfiguredInputs) 
 * | "No models configured" |
 *
 * @param {No_Models_ConfiguredInputs} inputs
-* @param {{ locale?: "en" | "zh" }} options
+* @param {{ locale?: "zh" | "en" }} options
 * @returns {LocalizedString}
 */
-export const no_models_configured = /** @type {((inputs?: No_Models_ConfiguredInputs, options?: { locale?: "en" | "zh" }) => LocalizedString) & import('../runtime.js').MessageMetadata<No_Models_ConfiguredInputs, { locale?: "en" | "zh" }, {}>} */ ((inputs = {}, options = {}) => {
+export const no_models_configured = /** @type {((inputs?: No_Models_ConfiguredInputs, options?: { locale?: "zh" | "en" }) => LocalizedString) & import('../runtime.js').MessageMetadata<No_Models_ConfiguredInputs, { locale?: "zh" | "en" }, {}>} */ ((inputs = {}, options = {}) => {
 	const locale = experimentalStaticLocale ?? options.locale ?? getLocale()
-	if (locale === "en") return en_no_models_configured(inputs)
-	return zh_no_models_configured(inputs)
+	if (locale === "zh") return zh_no_models_configured(inputs)
+	return en_no_models_configured(inputs)
 });

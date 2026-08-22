@@ -3,7 +3,7 @@ title: Deploy with Temporal
 description: Configure a high-scale production deployment using Temporal and S3-compatible storage.
 ---
 
-For production environments or workloads with high-volume video processing and heavy AI agent usage, running background tasks on a single server can cause bottlenecks. Shumai resolves this by offloading task queue management, retries, and background executions to **Temporal**.
+For production environments or workloads with high-volume video processing and heavy AI agent usage, running background tasks on a single server can cause bottlenecks. ZhenYue resolves this by offloading task queue management, retries, and background executions to **Temporal**.
 
 This allows you to decouple workloads and run specialized worker nodes on separate, dedicated machines.
 
@@ -11,11 +11,11 @@ This allows you to decouple workloads and run specialized worker nodes on separa
 
 ## How it Works
 
-When configured for Temporal, the core Shumai web application does not process background jobs itself. Instead, it publishes tasks to a Temporal Cluster queue.
+When configured for Temporal, the core ZhenYue web application does not process background jobs itself. Instead, it publishes tasks to a Temporal Cluster queue.
 
 ```mermaid
 graph TD
-    UserUpload[User Uploads Video] --> WebApp[Shumai Web UI / API]
+    UserUpload[User Uploads Video] --> WebApp[ZhenYue Web UI / API]
     WebApp -->|Register Task| Temporal[Temporal Cluster]
     Temporal -->|Queue: Transcoding| TranscodeWorker[Transcode Worker Machine]
     Temporal -->|Queue: AI Agents| AgentWorker[Agent Worker Machine]
@@ -31,14 +31,14 @@ graph TD
 
 ## Step 1: Deploy the Core Stack
 
-On your primary host machine, spin up the database, Temporal cluster services, and the main Shumai web application:
+On your primary host machine, spin up the database, Temporal cluster services, and the main ZhenYue web application:
 
 1.  **Download the Temporal Stack Configuration**:
     ```bash
-    curl -o docker-compose.yaml https://raw.githubusercontent.com/shumaiOne/shumai/main/docker-compose/temporal/docker-compose.yaml
+    curl -o docker-compose.yaml https://raw.githubusercontent.com/zhenyueOne/zhenyue/main/docker-compose/temporal/docker-compose.yaml
     ```
 2.  **Configure S3 Settings**:
-    Open the `docker-compose.yaml` file and set your S3 credentials and endpoint environment variables under the `shumai` service.
+    Open the `docker-compose.yaml` file and set your S3 credentials and endpoint environment variables under the `zhenyue` service.
 3.  **Start the Services**:
     ```bash
     docker compose up -d
@@ -52,12 +52,12 @@ On your primary host machine, spin up the database, Temporal cluster services, a
 On your specialized worker machines, you will run the dedicated background worker services. Each worker requires a `.env` file referencing the database, S3 storage, and the Temporal cluster:
 
 ```env
-DATABASE_URL=postgresql://shumai:shumai_password@<primary-host-ip>:5432/shumai_db?schema=public
+DATABASE_URL=postgresql://zhenyue:zhenyue_password@<primary-host-ip>:5432/zhenyue_db?schema=public
 WORKFLOW_EXECUTOR=temporal
 TEMPORAL_ADDRESS=<primary-host-ip>:7233
 STORAGE_BACKEND=s3
 AWS_ENDPOINT_URL_S3=https://your-s3-endpoint.com
-S3_BUCKET=shumai
+S3_BUCKET=zhenyue
 S3_REGION=us-east-1
 S3_ACCESS_KEY_ID=your-access-key-id
 S3_SECRET_ACCESS_KEY=your-secret-access-key
@@ -68,8 +68,8 @@ S3_SECRET_ACCESS_KEY=your-secret-access-key
 Run this on your media processing nodes (requires system installations of `ffmpeg` and `ffprobe`):
 
 ```bash
-npm install -g @shumai-one/shumai-transcode
-shumai-transcode
+npm install -g @zhenyue-one/zhenyue-transcode
+zhenyue-transcode
 ```
 
 ### AI Agent Worker
@@ -77,9 +77,9 @@ shumai-transcode
 Run this on your sandboxed agent execution nodes (requires sandbox dependencies like `bubblewrap` or `sandbox-exec`):
 
 ```bash
-npm install -g @shumai-one/shumai-agent
-shumai-agent
+npm install -g @zhenyue-one/zhenyue-agent
+zhenyue-agent
 ```
 
 > [!IMPORTANT]
-> **For Bun Users:** Since the worker package binaries contain a `#!/usr/bin/env node` shebang, running `shumai-transcode` or `shumai-agent` directly will run under Node.js. If you wish to run them using Bun, prefix the commands with `bun run --bun` (e.g., `bun run --bun shumai-transcode` or `bun run --bun shumai-agent`).
+> **For Bun Users:** Since the worker package binaries contain a `#!/usr/bin/env node` shebang, running `zhenyue-transcode` or `zhenyue-agent` directly will run under Node.js. If you wish to run them using Bun, prefix the commands with `bun run --bun` (e.g., `bun run --bun zhenyue-transcode` or `bun run --bun zhenyue-agent`).

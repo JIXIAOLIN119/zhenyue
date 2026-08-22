@@ -1,9 +1,9 @@
 import { describe, it, expect, vi, beforeEach } from 'vitest'
 import { transcodeImageWorkflow } from './transcode-image'
-import { WorkflowTask, WorkflowTaskStatus, WorkflowTaskType, AssetStatus } from '@shumai/db'
-import * as workflowUtils from '@shumai/workflow-core'
+import { WorkflowTask, WorkflowTaskStatus, WorkflowTaskType, AssetStatus } from '@zhenyue/db'
+import * as workflowUtils from '@zhenyue/workflow-core'
 
-vi.mock('@shumai/workflow-core', async (importOriginal) => {
+vi.mock('@zhenyue/workflow-core', async (importOriginal) => {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const actual = (await importOriginal()) as any
   return {

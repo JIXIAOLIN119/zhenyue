@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest'
 import { getSelectedRangeIds } from './selection-utils'
-import type { AssetInfo } from '@shumai/dtos'
+import type { AssetInfo } from '@zhenyue/dtos'
 
 describe('getSelectedRangeIds', () => {
   const folders = [

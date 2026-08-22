@@ -5,12 +5,12 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 
 /** @typedef {{}} Skill_PermissionInputs */
 
-const en_skill_permission = /** @type {(inputs: Skill_PermissionInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Permission`)
-};
-
 const zh_skill_permission = /** @type {(inputs: Skill_PermissionInputs) => LocalizedString} */ () => {
 	return /** @type {LocalizedString} */ (`权限`)
+};
+
+const en_skill_permission = /** @type {(inputs: Skill_PermissionInputs) => LocalizedString} */ () => {
+	return /** @type {LocalizedString} */ (`Permission`)
 };
 
 /**
@@ -19,11 +19,11 @@ const zh_skill_permission = /** @type {(inputs: Skill_PermissionInputs) => Local
 * | "Permission" |
 *
 * @param {Skill_PermissionInputs} inputs
-* @param {{ locale?: "en" | "zh" }} options
+* @param {{ locale?: "zh" | "en" }} options
 * @returns {LocalizedString}
 */
-export const skill_permission = /** @type {((inputs?: Skill_PermissionInputs, options?: { locale?: "en" | "zh" }) => LocalizedString) & import('../runtime.js').MessageMetadata<Skill_PermissionInputs, { locale?: "en" | "zh" }, {}>} */ ((inputs = {}, options = {}) => {
+export const skill_permission = /** @type {((inputs?: Skill_PermissionInputs, options?: { locale?: "zh" | "en" }) => LocalizedString) & import('../runtime.js').MessageMetadata<Skill_PermissionInputs, { locale?: "zh" | "en" }, {}>} */ ((inputs = {}, options = {}) => {
 	const locale = experimentalStaticLocale ?? options.locale ?? getLocale()
-	if (locale === "en") return en_skill_permission(inputs)
-	return zh_skill_permission(inputs)
+	if (locale === "zh") return zh_skill_permission(inputs)
+	return en_skill_permission(inputs)
 });

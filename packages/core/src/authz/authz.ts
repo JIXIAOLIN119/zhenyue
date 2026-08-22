@@ -1,5 +1,5 @@
-import { prisma, type TeamMemberRole } from '@shumai/db'
-import type { Prisma } from '@shumai/db'
+import { prisma, type TeamMemberRole } from '@zhenyue/db'
+import type { Prisma } from '@zhenyue/db'
 import { HTTPException } from 'hono/http-exception'
 
 type User = Prisma.UserGetPayload<Record<string, never>>

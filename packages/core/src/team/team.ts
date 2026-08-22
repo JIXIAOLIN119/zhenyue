@@ -1,11 +1,11 @@
-import { prisma } from '@shumai/db'
-import { Prisma } from '@shumai/db'
-import { PaginatedData, paginateQuery } from '@shumai/core/src/pagination'
-import { ProviderService, providerService } from '@shumai/core/src/provider/provider'
-import { notificationService } from '@shumai/core/src/notification/notification'
-import { getAvatarUrl } from '@shumai/core/src/user/avatar'
+import { prisma } from '@zhenyue/db'
+import { Prisma } from '@zhenyue/db'
+import { PaginatedData, paginateQuery } from '@zhenyue/core/src/pagination'
+import { ProviderService, providerService } from '@zhenyue/core/src/provider/provider'
+import { notificationService } from '@zhenyue/core/src/notification/notification'
+import { getAvatarUrl } from '@zhenyue/core/src/user/avatar'
 import { HTTPException } from 'hono/http-exception'
-import { getAllowedAgentRoles } from '@shumai/core/src/agent/permissions'
+import { getAllowedAgentRoles } from '@zhenyue/core/src/agent/permissions'
 import {
   ServiceCreateTeamRequest,
   ServiceGetUserTeamsRequest,
@@ -18,7 +18,7 @@ import {
   UserInfo,
   SandboxSettings,
   UpdateSandboxSettingsRequest,
-} from '@shumai/dtos'
+} from '@zhenyue/dtos'
 
 export class TeamService {
   async ensureDefaultTeam() {
@@ -378,7 +378,7 @@ export class TeamService {
     return {
       initialized: count > 0,
       userCount: count,
-      demoMode: process.env.SHUMAI_DEMO_MODE === '1',
+      demoMode: process.env.ZHENYUE_DEMO_MODE === '1',
     }
   }
 

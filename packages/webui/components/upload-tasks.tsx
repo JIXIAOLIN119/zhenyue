@@ -1,5 +1,5 @@
 import { client } from '@/ui/api/client'
-import type { TaskInfo } from '@shumai/dtos'
+import type { TaskInfo } from '@zhenyue/dtos'
 import { useTeamId } from '@/ui/hooks/use-team-id'
 import { useInfiniteQuery } from '@tanstack/react-query'
 import { useUploadStore } from '@/ui/stores/upload'

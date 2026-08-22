@@ -5,12 +5,12 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 
 /** @typedef {{}} Total_TokensInputs */
 
-const en_total_tokens = /** @type {(inputs: Total_TokensInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Total Tokens`)
-};
-
 const zh_total_tokens = /** @type {(inputs: Total_TokensInputs) => LocalizedString} */ () => {
 	return /** @type {LocalizedString} */ (`总 Token`)
+};
+
+const en_total_tokens = /** @type {(inputs: Total_TokensInputs) => LocalizedString} */ () => {
+	return /** @type {LocalizedString} */ (`Total Tokens`)
 };
 
 /**
@@ -19,11 +19,11 @@ const zh_total_tokens = /** @type {(inputs: Total_TokensInputs) => LocalizedStri
 * | "Total Tokens" |
 *
 * @param {Total_TokensInputs} inputs
-* @param {{ locale?: "en" | "zh" }} options
+* @param {{ locale?: "zh" | "en" }} options
 * @returns {LocalizedString}
 */
-export const total_tokens = /** @type {((inputs?: Total_TokensInputs, options?: { locale?: "en" | "zh" }) => LocalizedString) & import('../runtime.js').MessageMetadata<Total_TokensInputs, { locale?: "en" | "zh" }, {}>} */ ((inputs = {}, options = {}) => {
+export const total_tokens = /** @type {((inputs?: Total_TokensInputs, options?: { locale?: "zh" | "en" }) => LocalizedString) & import('../runtime.js').MessageMetadata<Total_TokensInputs, { locale?: "zh" | "en" }, {}>} */ ((inputs = {}, options = {}) => {
 	const locale = experimentalStaticLocale ?? options.locale ?? getLocale()
-	if (locale === "en") return en_total_tokens(inputs)
-	return zh_total_tokens(inputs)
+	if (locale === "zh") return zh_total_tokens(inputs)
+	return en_total_tokens(inputs)
 });

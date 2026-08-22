@@ -4,16 +4,16 @@
 * | "Are you sure you want to remove {name} from this {type}? This action cannot be undone." |
 *
 * @param {Remove_Member_ConfirmationInputs} inputs
-* @param {{ locale?: "en" | "zh" }} options
+* @param {{ locale?: "zh" | "en" }} options
 * @returns {LocalizedString}
 */
 export const remove_member_confirmation: ((inputs: Remove_Member_ConfirmationInputs, options?: {
-    locale?: "en" | "zh";
+    locale?: "zh" | "en";
 }) => LocalizedString) & import("../runtime.js").MessageMetadata<Remove_Member_ConfirmationInputs, {
-    locale?: "en" | "zh";
+    locale?: "zh" | "en";
 }, {}>;
 export type LocalizedString = import("../runtime.js").LocalizedString;
 export type Remove_Member_ConfirmationInputs = {
-    name: NonNullable<unknown>;
     type: NonNullable<unknown>;
+    name: NonNullable<unknown>;
 };

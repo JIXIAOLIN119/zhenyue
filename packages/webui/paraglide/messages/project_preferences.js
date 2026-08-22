@@ -5,12 +5,12 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 
 /** @typedef {{}} Project_PreferencesInputs */
 
-const en_project_preferences = /** @type {(inputs: Project_PreferencesInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Project Preferences`)
-};
-
 const zh_project_preferences = /** @type {(inputs: Project_PreferencesInputs) => LocalizedString} */ () => {
 	return /** @type {LocalizedString} */ (`项目偏好设置`)
+};
+
+const en_project_preferences = /** @type {(inputs: Project_PreferencesInputs) => LocalizedString} */ () => {
+	return /** @type {LocalizedString} */ (`Project Preferences`)
 };
 
 /**
@@ -19,11 +19,11 @@ const zh_project_preferences = /** @type {(inputs: Project_PreferencesInputs) =>
 * | "Project Preferences" |
 *
 * @param {Project_PreferencesInputs} inputs
-* @param {{ locale?: "en" | "zh" }} options
+* @param {{ locale?: "zh" | "en" }} options
 * @returns {LocalizedString}
 */
-export const project_preferences = /** @type {((inputs?: Project_PreferencesInputs, options?: { locale?: "en" | "zh" }) => LocalizedString) & import('../runtime.js').MessageMetadata<Project_PreferencesInputs, { locale?: "en" | "zh" }, {}>} */ ((inputs = {}, options = {}) => {
+export const project_preferences = /** @type {((inputs?: Project_PreferencesInputs, options?: { locale?: "zh" | "en" }) => LocalizedString) & import('../runtime.js').MessageMetadata<Project_PreferencesInputs, { locale?: "zh" | "en" }, {}>} */ ((inputs = {}, options = {}) => {
 	const locale = experimentalStaticLocale ?? options.locale ?? getLocale()
-	if (locale === "en") return en_project_preferences(inputs)
-	return zh_project_preferences(inputs)
+	if (locale === "zh") return zh_project_preferences(inputs)
+	return en_project_preferences(inputs)
 });

@@ -5,12 +5,12 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 
 /** @typedef {{ name: NonNullable<unknown> }} Add_Option_With_NameInputs */
 
-const en_add_option_with_name = /** @type {(inputs: Add_Option_With_NameInputs) => LocalizedString} */ (i) => {
-	return /** @type {LocalizedString} */ (`Add options: ${i?.name}`)
-};
-
 const zh_add_option_with_name = /** @type {(inputs: Add_Option_With_NameInputs) => LocalizedString} */ (i) => {
 	return /** @type {LocalizedString} */ (`添加选项：${i?.name}`)
+};
+
+const en_add_option_with_name = /** @type {(inputs: Add_Option_With_NameInputs) => LocalizedString} */ (i) => {
+	return /** @type {LocalizedString} */ (`Add options: ${i?.name}`)
 };
 
 /**
@@ -19,11 +19,11 @@ const zh_add_option_with_name = /** @type {(inputs: Add_Option_With_NameInputs) 
 * | "Add options: {name}" |
 *
 * @param {Add_Option_With_NameInputs} inputs
-* @param {{ locale?: "en" | "zh" }} options
+* @param {{ locale?: "zh" | "en" }} options
 * @returns {LocalizedString}
 */
-export const add_option_with_name = /** @type {((inputs: Add_Option_With_NameInputs, options?: { locale?: "en" | "zh" }) => LocalizedString) & import('../runtime.js').MessageMetadata<Add_Option_With_NameInputs, { locale?: "en" | "zh" }, {}>} */ ((inputs, options = {}) => {
+export const add_option_with_name = /** @type {((inputs: Add_Option_With_NameInputs, options?: { locale?: "zh" | "en" }) => LocalizedString) & import('../runtime.js').MessageMetadata<Add_Option_With_NameInputs, { locale?: "zh" | "en" }, {}>} */ ((inputs, options = {}) => {
 	const locale = experimentalStaticLocale ?? options.locale ?? getLocale()
-	if (locale === "en") return en_add_option_with_name(inputs)
-	return zh_add_option_with_name(inputs)
+	if (locale === "zh") return zh_add_option_with_name(inputs)
+	return en_add_option_with_name(inputs)
 });

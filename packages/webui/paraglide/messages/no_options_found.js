@@ -5,12 +5,12 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 
 /** @typedef {{}} No_Options_FoundInputs */
 
-const en_no_options_found = /** @type {(inputs: No_Options_FoundInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`No options found`)
-};
-
 const zh_no_options_found = /** @type {(inputs: No_Options_FoundInputs) => LocalizedString} */ () => {
 	return /** @type {LocalizedString} */ (`未找到选项`)
+};
+
+const en_no_options_found = /** @type {(inputs: No_Options_FoundInputs) => LocalizedString} */ () => {
+	return /** @type {LocalizedString} */ (`No options found`)
 };
 
 /**
@@ -19,11 +19,11 @@ const zh_no_options_found = /** @type {(inputs: No_Options_FoundInputs) => Local
 * | "No options found" |
 *
 * @param {No_Options_FoundInputs} inputs
-* @param {{ locale?: "en" | "zh" }} options
+* @param {{ locale?: "zh" | "en" }} options
 * @returns {LocalizedString}
 */
-export const no_options_found = /** @type {((inputs?: No_Options_FoundInputs, options?: { locale?: "en" | "zh" }) => LocalizedString) & import('../runtime.js').MessageMetadata<No_Options_FoundInputs, { locale?: "en" | "zh" }, {}>} */ ((inputs = {}, options = {}) => {
+export const no_options_found = /** @type {((inputs?: No_Options_FoundInputs, options?: { locale?: "zh" | "en" }) => LocalizedString) & import('../runtime.js').MessageMetadata<No_Options_FoundInputs, { locale?: "zh" | "en" }, {}>} */ ((inputs = {}, options = {}) => {
 	const locale = experimentalStaticLocale ?? options.locale ?? getLocale()
-	if (locale === "en") return en_no_options_found(inputs)
-	return zh_no_options_found(inputs)
+	if (locale === "zh") return zh_no_options_found(inputs)
+	return en_no_options_found(inputs)
 });

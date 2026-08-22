@@ -16,7 +16,7 @@ import {
   AlertDialogHeader,
   AlertDialogTitle,
 } from '@/ui/components/ui/alert-dialog'
-import type { AttachmentInfo, CommentInfo, UserInfo } from '@shumai/dtos'
+import type { AttachmentInfo, CommentInfo, UserInfo } from '@zhenyue/dtos'
 import type { MemberInfo } from '@/ui/stores/members'
 import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query'
 import { Download, File, MoreHorizontal, Trash2 } from 'lucide-react'

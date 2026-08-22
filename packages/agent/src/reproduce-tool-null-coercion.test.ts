@@ -2,10 +2,10 @@ import { describe, it, expect, vi, beforeEach } from 'vitest'
 import { validateToolArguments } from '@earendil-works/pi-ai'
 import { createCreateFileTool } from './tools/create-file'
 import { fieldsToTypeBoxSchema } from './index'
-import { s3Service } from '@shumai/core/src/s3/s3'
+import { s3Service } from '@zhenyue/core/src/s3/s3'
 import { executeAgentToolWorkflow } from './tools/utils'
 
-vi.mock('@shumai/core/src/s3/s3', () => ({
+vi.mock('@zhenyue/core/src/s3/s3', () => ({
   s3Service: {
     uploadFileToKey: vi.fn(),
     putObject: vi.fn(),

@@ -5,12 +5,12 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 
 /** @typedef {{}} Mark_As_IncompleteInputs */
 
-const en_mark_as_incomplete = /** @type {(inputs: Mark_As_IncompleteInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Mark as incomplete`)
-};
-
 const zh_mark_as_incomplete = /** @type {(inputs: Mark_As_IncompleteInputs) => LocalizedString} */ () => {
 	return /** @type {LocalizedString} */ (`标记为未完成`)
+};
+
+const en_mark_as_incomplete = /** @type {(inputs: Mark_As_IncompleteInputs) => LocalizedString} */ () => {
+	return /** @type {LocalizedString} */ (`Mark as incomplete`)
 };
 
 /**
@@ -19,11 +19,11 @@ const zh_mark_as_incomplete = /** @type {(inputs: Mark_As_IncompleteInputs) => L
 * | "Mark as incomplete" |
 *
 * @param {Mark_As_IncompleteInputs} inputs
-* @param {{ locale?: "en" | "zh" }} options
+* @param {{ locale?: "zh" | "en" }} options
 * @returns {LocalizedString}
 */
-export const mark_as_incomplete = /** @type {((inputs?: Mark_As_IncompleteInputs, options?: { locale?: "en" | "zh" }) => LocalizedString) & import('../runtime.js').MessageMetadata<Mark_As_IncompleteInputs, { locale?: "en" | "zh" }, {}>} */ ((inputs = {}, options = {}) => {
+export const mark_as_incomplete = /** @type {((inputs?: Mark_As_IncompleteInputs, options?: { locale?: "zh" | "en" }) => LocalizedString) & import('../runtime.js').MessageMetadata<Mark_As_IncompleteInputs, { locale?: "zh" | "en" }, {}>} */ ((inputs = {}, options = {}) => {
 	const locale = experimentalStaticLocale ?? options.locale ?? getLocale()
-	if (locale === "en") return en_mark_as_incomplete(inputs)
-	return zh_mark_as_incomplete(inputs)
+	if (locale === "zh") return zh_mark_as_incomplete(inputs)
+	return en_mark_as_incomplete(inputs)
 });

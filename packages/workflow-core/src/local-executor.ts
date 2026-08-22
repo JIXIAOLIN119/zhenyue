@@ -1,8 +1,8 @@
-import { prisma } from '@shumai/db'
-import { WorkflowTask, WorkflowTaskStatus } from '@shumai/db'
+import { prisma } from '@zhenyue/db'
+import { WorkflowTask, WorkflowTaskStatus } from '@zhenyue/db'
 import { Executor } from './executor'
 import * as taskActivities from './activities/task'
-import { logger } from '@shumai/core/src/logger'
+import { logger } from '@zhenyue/core/src/logger'
 import { getConcurrencyLimit, triggerLocalCancel } from './workflow-utils'
 
 type WorkflowFn = (task: WorkflowTask) => Promise<void>

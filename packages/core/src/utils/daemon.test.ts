@@ -7,7 +7,7 @@ import { spawn } from 'node:child_process'
 // Mock os.homedir to return a temporary directory for test isolation
 vi.mock('node:os', async (importOriginal) => {
   const actual = await importOriginal<typeof import('node:os')>()
-  const mockTempDir = `${actual.tmpdir()}/shumai-test-daemon-${Math.random().toString(36).substring(2)}`
+  const mockTempDir = `${actual.tmpdir()}/zhenyue-test-daemon-${Math.random().toString(36).substring(2)}`
   return {
     ...actual,
     homedir: () => mockTempDir,
@@ -40,7 +40,7 @@ import { homedir } from 'node:os'
 describe('handleDaemonCommands', () => {
   const appName = 'test-app'
   const mockTempDir = homedir()
-  const pidFile = join(mockTempDir, '.shumai', 'pids', `${appName}.pid`)
+  const pidFile = join(mockTempDir, '.zhenyue', 'pids', `${appName}.pid`)
 
   let mockExit: MockInstance<typeof process.exit>
   let mockKill: MockInstance<typeof process.kill>
@@ -83,7 +83,7 @@ describe('handleDaemonCommands', () => {
     const runFn = vi.fn().mockResolvedValue(undefined)
 
     // Write a dummy PID file
-    mkdirSync(join(mockTempDir, '.shumai', 'pids'), { recursive: true })
+    mkdirSync(join(mockTempDir, '.zhenyue', 'pids'), { recursive: true })
     writeFileSync(pidFile, '12345')
 
     await expect(handleDaemonCommands(appName, runFn)).rejects.toThrow('process.exit')
@@ -112,7 +112,7 @@ describe('handleDaemonCommands', () => {
     const runFn = vi.fn().mockResolvedValue(undefined)
 
     // Write a dummy PID file
-    mkdirSync(join(mockTempDir, '.shumai', 'pids'), { recursive: true })
+    mkdirSync(join(mockTempDir, '.zhenyue', 'pids'), { recursive: true })
     writeFileSync(pidFile, '12345')
 
     await expect(handleDaemonCommands(appName, runFn)).rejects.toThrow('process.exit')

@@ -4,13 +4,13 @@
 * | "Select API Protocol" |
 *
 * @param {Select_Api_ProtocolInputs} inputs
-* @param {{ locale?: "en" | "zh" }} options
+* @param {{ locale?: "zh" | "en" }} options
 * @returns {LocalizedString}
 */
 export const select_api_protocol: ((inputs?: Select_Api_ProtocolInputs, options?: {
-    locale?: "en" | "zh";
+    locale?: "zh" | "en";
 }) => LocalizedString) & import("../runtime.js").MessageMetadata<Select_Api_ProtocolInputs, {
-    locale?: "en" | "zh";
+    locale?: "zh" | "en";
 }, {}>;
 export type LocalizedString = import("../runtime.js").LocalizedString;
 export type Select_Api_ProtocolInputs = {};

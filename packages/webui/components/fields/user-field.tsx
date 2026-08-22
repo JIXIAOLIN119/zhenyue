@@ -1,4 +1,4 @@
-import type { UserInfo } from '@shumai/dtos'
+import type { UserInfo } from '@zhenyue/dtos'
 import { ChevronDown, X } from 'lucide-react'
 import React, { useEffect, useState } from 'react'
 import type { FieldProps } from './field-types'

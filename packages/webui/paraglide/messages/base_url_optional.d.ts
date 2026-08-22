@@ -4,13 +4,13 @@
 * | "Base URL (Optional)" |
 *
 * @param {Base_Url_OptionalInputs} inputs
-* @param {{ locale?: "en" | "zh" }} options
+* @param {{ locale?: "zh" | "en" }} options
 * @returns {LocalizedString}
 */
 export const base_url_optional: ((inputs?: Base_Url_OptionalInputs, options?: {
-    locale?: "en" | "zh";
+    locale?: "zh" | "en";
 }) => LocalizedString) & import("../runtime.js").MessageMetadata<Base_Url_OptionalInputs, {
-    locale?: "en" | "zh";
+    locale?: "zh" | "en";
 }, {}>;
 export type LocalizedString = import("../runtime.js").LocalizedString;
 export type Base_Url_OptionalInputs = {};

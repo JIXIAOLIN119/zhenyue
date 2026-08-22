@@ -5,12 +5,12 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 
 /** @typedef {{}} AddInputs */
 
-const en_add = /** @type {(inputs: AddInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Add`)
-};
-
 const zh_add = /** @type {(inputs: AddInputs) => LocalizedString} */ () => {
 	return /** @type {LocalizedString} */ (`添加`)
+};
+
+const en_add = /** @type {(inputs: AddInputs) => LocalizedString} */ () => {
+	return /** @type {LocalizedString} */ (`Add`)
 };
 
 /**
@@ -19,11 +19,11 @@ const zh_add = /** @type {(inputs: AddInputs) => LocalizedString} */ () => {
 * | "Add" |
 *
 * @param {AddInputs} inputs
-* @param {{ locale?: "en" | "zh" }} options
+* @param {{ locale?: "zh" | "en" }} options
 * @returns {LocalizedString}
 */
-export const add = /** @type {((inputs?: AddInputs, options?: { locale?: "en" | "zh" }) => LocalizedString) & import('../runtime.js').MessageMetadata<AddInputs, { locale?: "en" | "zh" }, {}>} */ ((inputs = {}, options = {}) => {
+export const add = /** @type {((inputs?: AddInputs, options?: { locale?: "zh" | "en" }) => LocalizedString) & import('../runtime.js').MessageMetadata<AddInputs, { locale?: "zh" | "en" }, {}>} */ ((inputs = {}, options = {}) => {
 	const locale = experimentalStaticLocale ?? options.locale ?? getLocale()
-	if (locale === "en") return en_add(inputs)
-	return zh_add(inputs)
+	if (locale === "zh") return zh_add(inputs)
+	return en_add(inputs)
 });

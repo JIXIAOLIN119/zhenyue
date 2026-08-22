@@ -5,12 +5,12 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 
 /** @typedef {{}} Version_Reordered_SuccessfullyInputs */
 
-const en_version_reordered_successfully = /** @type {(inputs: Version_Reordered_SuccessfullyInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Version order updated`)
-};
-
 const zh_version_reordered_successfully = /** @type {(inputs: Version_Reordered_SuccessfullyInputs) => LocalizedString} */ () => {
 	return /** @type {LocalizedString} */ (`版本顺序已更新`)
+};
+
+const en_version_reordered_successfully = /** @type {(inputs: Version_Reordered_SuccessfullyInputs) => LocalizedString} */ () => {
+	return /** @type {LocalizedString} */ (`Version order updated`)
 };
 
 /**
@@ -19,11 +19,11 @@ const zh_version_reordered_successfully = /** @type {(inputs: Version_Reordered_
 * | "Version order updated" |
 *
 * @param {Version_Reordered_SuccessfullyInputs} inputs
-* @param {{ locale?: "en" | "zh" }} options
+* @param {{ locale?: "zh" | "en" }} options
 * @returns {LocalizedString}
 */
-export const version_reordered_successfully = /** @type {((inputs?: Version_Reordered_SuccessfullyInputs, options?: { locale?: "en" | "zh" }) => LocalizedString) & import('../runtime.js').MessageMetadata<Version_Reordered_SuccessfullyInputs, { locale?: "en" | "zh" }, {}>} */ ((inputs = {}, options = {}) => {
+export const version_reordered_successfully = /** @type {((inputs?: Version_Reordered_SuccessfullyInputs, options?: { locale?: "zh" | "en" }) => LocalizedString) & import('../runtime.js').MessageMetadata<Version_Reordered_SuccessfullyInputs, { locale?: "zh" | "en" }, {}>} */ ((inputs = {}, options = {}) => {
 	const locale = experimentalStaticLocale ?? options.locale ?? getLocale()
-	if (locale === "en") return en_version_reordered_successfully(inputs)
-	return zh_version_reordered_successfully(inputs)
+	if (locale === "zh") return zh_version_reordered_successfully(inputs)
+	return en_version_reordered_successfully(inputs)
 });

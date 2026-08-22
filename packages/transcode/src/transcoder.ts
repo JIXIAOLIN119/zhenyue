@@ -1,6 +1,6 @@
-import { prisma } from '@shumai/db'
-import { WorkflowTaskType, WorkflowTaskStatus } from '@shumai/db'
-import '@shumai/db/src/prisma-json-types'
+import { prisma } from '@zhenyue/db'
+import { WorkflowTaskType, WorkflowTaskStatus } from '@zhenyue/db'
+import '@zhenyue/db/src/prisma-json-types'
 
 type TransactionClient = Omit<
   typeof prisma,

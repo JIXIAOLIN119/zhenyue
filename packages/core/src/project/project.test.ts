@@ -1,11 +1,11 @@
 import { describe, it, expect, vi, beforeEach } from 'vitest'
-import { prisma } from '@shumai/db'
-import { setupTestDbHooks } from '@shumai/db/test'
+import { prisma } from '@zhenyue/db'
+import { setupTestDbHooks } from '@zhenyue/db/test'
 import { ProjectService } from './project'
-import { s3Service } from '@shumai/core/src/s3/s3'
-import { assetService } from '@shumai/core/src/asset/asset'
+import { s3Service } from '@zhenyue/core/src/s3/s3'
+import { assetService } from '@zhenyue/core/src/asset/asset'
 
-vi.mock('@shumai/core/src/s3/s3', () => ({
+vi.mock('@zhenyue/core/src/s3/s3', () => ({
   s3Service: {
     presign: vi.fn(),
     deleteObject: vi.fn().mockResolvedValue(1),
@@ -560,6 +560,282 @@ describe('ProjectService', () => {
 
       const result = await projectService.getUserProjects(user.id)
       expect(result).toEqual([])
+    })
+  })
+
+  describe('auto cover from project files', () => {
+    it('derives cover from the first image thumbnail when no cover is uploaded', async () => {
+      const team = await prisma.team.create({ data: { name: 'Cover Team 1' } })
+      const project = await prisma.project.create({ data: { name: 'P1', teamId: team.id } })
+      await prisma.asset.create({
+        data: {
+          name: 'cover.png',
+          type: 'file',
+          projectId: project.id,
+          status: 'processed',
+          media: {
+            proxyType: 'image',
+            thumbnail: {
+              key: 'thumbs/cover.png',
+              width: 400,
+              height: 300,
+              format: 'png',
+              quality: 80,
+            },
+            // eslint-disable-next-line @typescript-eslint/no-explicit-any
+          } as any,
+        },
+      })
+
+      const info = await projectService.getProject(project.id)
+
+      expect(info.coverImage).toBe('http://s3/presigned')
+      expect(vi.mocked(s3Service.presign)).toHaveBeenCalledWith(
+        expect.any(String),
+        'thumbs/cover.png',
+        'GET',
+      )
+    })
+
+    it('uses video poster as the cover when there is no image thumbnail', async () => {
+      const team = await prisma.team.create({ data: { name: 'Cover Team 2' } })
+      const project = await prisma.project.create({ data: { name: 'P2', teamId: team.id } })
+      await prisma.asset.create({
+        data: {
+          name: 'clip.mp4',
+          type: 'file',
+          projectId: project.id,
+          status: 'processed',
+          media: {
+            proxyType: 'video',
+            poster: { key: 'posters/clip.jpg' },
+            // eslint-disable-next-line @typescript-eslint/no-explicit-any
+          } as any,
+        },
+      })
+
+      const info = await projectService.getProject(project.id)
+
+      expect(info.coverImage).toBe('http://s3/presigned')
+      expect(vi.mocked(s3Service.presign)).toHaveBeenCalledWith(
+        expect.any(String),
+        'posters/clip.jpg',
+        'GET',
+      )
+    })
+
+    it('prefers the uploaded cover over a derived one', async () => {
+      const team = await prisma.team.create({ data: { name: 'Cover Team 3' } })
+      const project = await prisma.project.create({
+        data: { name: 'P3', teamId: team.id, coverImageKey: 'covers/uploaded.jpg' },
+      })
+      await prisma.asset.create({
+        data: {
+          name: 'cover.png',
+          type: 'file',
+          projectId: project.id,
+          status: 'processed',
+          media: {
+            proxyType: 'image',
+            thumbnail: {
+              key: 'thumbs/auto.png',
+              width: 400,
+              height: 300,
+              format: 'png',
+              quality: 80,
+            },
+            // eslint-disable-next-line @typescript-eslint/no-explicit-any
+          } as any,
+        },
+      })
+
+      const info = await projectService.getProject(project.id)
+
+      expect(info.coverImage).toBe('http://s3/presigned')
+      expect(vi.mocked(s3Service.presign)).toHaveBeenCalledWith(
+        expect.any(String),
+        'covers/uploaded.jpg',
+        'GET',
+      )
+      expect(vi.mocked(s3Service.presign)).not.toHaveBeenCalledWith(
+        expect.any(String),
+        'thumbs/auto.png',
+        'GET',
+      )
+    })
+
+    it('skips deleted assets when deriving the cover', async () => {
+      const team = await prisma.team.create({ data: { name: 'Cover Team 4' } })
+      const project = await prisma.project.create({ data: { name: 'P4', teamId: team.id } })
+      await prisma.asset.create({
+        data: {
+          name: 'deleted.png',
+          type: 'file',
+          projectId: project.id,
+          status: 'processed',
+          isDeleted: true,
+          media: {
+            proxyType: 'image',
+            thumbnail: {
+              key: 'thumbs/deleted.png',
+              width: 400,
+              height: 300,
+              format: 'png',
+              quality: 80,
+            },
+            // eslint-disable-next-line @typescript-eslint/no-explicit-any
+          } as any,
+        },
+      })
+
+      const info = await projectService.getProject(project.id)
+
+      expect(info.coverImage).toBeUndefined()
+      expect(vi.mocked(s3Service.presign)).not.toHaveBeenCalledWith(
+        expect.any(String),
+        'thumbs/deleted.png',
+        'GET',
+      )
+    })
+
+    it('returns no cover when no file has a thumbnail or poster', async () => {
+      const team = await prisma.team.create({ data: { name: 'Cover Team 5' } })
+      const project = await prisma.project.create({ data: { name: 'P5', teamId: team.id } })
+      await prisma.asset.create({
+        data: {
+          name: 'doc.pdf',
+          type: 'file',
+          projectId: project.id,
+          status: 'processed',
+          media: {
+            proxyType: 'pdf',
+            // eslint-disable-next-line @typescript-eslint/no-explicit-any
+          } as any,
+        },
+      })
+
+      const info = await projectService.getProject(project.id)
+
+      expect(info.coverImage).toBeUndefined()
+    })
+
+    it('picks the first coverable file in creation order', async () => {
+      const team = await prisma.team.create({ data: { name: 'Cover Team 6' } })
+      const project = await prisma.project.create({ data: { name: 'P6', teamId: team.id } })
+      await prisma.asset.create({
+        data: {
+          name: 'spec.pdf',
+          type: 'file',
+          projectId: project.id,
+          status: 'processed',
+          media: {
+            proxyType: 'pdf',
+            // eslint-disable-next-line @typescript-eslint/no-explicit-any
+          } as any,
+        },
+      })
+      await prisma.asset.create({
+        data: {
+          name: 'photo.jpg',
+          type: 'file',
+          projectId: project.id,
+          status: 'processed',
+          media: {
+            proxyType: 'image',
+            thumbnail: {
+              key: 'thumbs/photo.jpg',
+              width: 400,
+              height: 300,
+              format: 'jpg',
+              quality: 80,
+            },
+            // eslint-disable-next-line @typescript-eslint/no-explicit-any
+          } as any,
+        },
+      })
+
+      const info = await projectService.getProject(project.id)
+
+      expect(info.coverImage).toBe('http://s3/presigned')
+      expect(vi.mocked(s3Service.presign)).toHaveBeenCalledWith(
+        expect.any(String),
+        'thumbs/photo.jpg',
+        'GET',
+      )
+    })
+
+    it('returns derived covers from listProjects', async () => {
+      const team = await prisma.team.create({ data: { name: 'Cover Team 7' } })
+      const project = await prisma.project.create({ data: { name: 'P7', teamId: team.id } })
+      await prisma.asset.create({
+        data: {
+          name: 'banner.png',
+          type: 'file',
+          projectId: project.id,
+          status: 'processed',
+          media: {
+            proxyType: 'image',
+            thumbnail: {
+              key: 'thumbs/banner.png',
+              width: 800,
+              height: 600,
+              format: 'png',
+              quality: 80,
+            },
+            // eslint-disable-next-line @typescript-eslint/no-explicit-any
+          } as any,
+        },
+      })
+      const user = await prisma.user.create({
+        data: { name: 'cover-u7', email: 'cover-u7@example.com' },
+      })
+      await prisma.teamMember.create({
+        data: { teamId: team.id, userId: user.id, role: 'editor', scope: 'team' },
+      })
+
+      const res = await projectService.listProjects({
+        teamId: team.id,
+        userId: user.id,
+        pagination: {},
+      })
+
+      expect(res.data).toHaveLength(1)
+      expect(res.data[0].coverImage).toBe('http://s3/presigned')
+    })
+
+    it('does not derive covers in getUserProjects', async () => {
+      const team = await prisma.team.create({ data: { name: 'Cover Team 8' } })
+      const project = await prisma.project.create({ data: { name: 'P8', teamId: team.id } })
+      await prisma.asset.create({
+        data: {
+          name: 'cover.png',
+          type: 'file',
+          projectId: project.id,
+          status: 'processed',
+          media: {
+            proxyType: 'image',
+            thumbnail: {
+              key: 'thumbs/cover8.png',
+              width: 400,
+              height: 300,
+              format: 'png',
+              quality: 80,
+            },
+            // eslint-disable-next-line @typescript-eslint/no-explicit-any
+          } as any,
+        },
+      })
+      const user = await prisma.user.create({
+        data: { name: 'cover-u8', email: 'cover-u8@example.com' },
+      })
+      await prisma.teamMember.create({
+        data: { teamId: team.id, userId: user.id, role: 'editor', scope: 'team' },
+      })
+
+      const result = await projectService.getUserProjects(user.id)
+
+      expect(result).toHaveLength(1)
+      expect(result[0].coverImage).toBeUndefined()
     })
   })
 })

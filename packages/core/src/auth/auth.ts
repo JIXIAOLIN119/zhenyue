@@ -1,10 +1,10 @@
 import { betterAuth } from 'better-auth'
 import { prismaAdapter } from 'better-auth/adapters/prisma'
-import { prisma } from '@shumai/db'
-import { teamService } from '@shumai/core/src/team/team'
-import { inviteService } from '@shumai/core/src/invite/invite'
+import { prisma } from '@zhenyue/db'
+import { teamService } from '@zhenyue/core/src/team/team'
+import { inviteService } from '@zhenyue/core/src/invite/invite'
 import { createAuthMiddleware } from 'better-auth/api'
-import { userMetadataService } from '@shumai/core/src/user-metadata/user-metadata'
+import { userMetadataService } from '@zhenyue/core/src/user-metadata/user-metadata'
 
 export const auth = betterAuth({
   database: prismaAdapter(prisma, {
@@ -17,11 +17,11 @@ export const auth = betterAuth({
   secret: process.env.BETTER_AUTH_SECRET,
   // eslint-disable-next-line @typescript-eslint/naming-convention
   baseURL:
-    process.env.BETTER_AUTH_URL || `http://localhost:${process.env.SHUMAI_SERVER_PORT || '3000'}`,
+    process.env.BETTER_AUTH_URL || `http://localhost:${process.env.ZHENYUE_SERVER_PORT || '3000'}`,
   basePath: '/api/auth',
   trustedOrigins: [
-    `http://localhost:${process.env.SHUMAI_SERVER_PORT || '3000'}`,
-    `http://127.0.0.1:${process.env.SHUMAI_SERVER_PORT || '3000'}`,
+    `http://localhost:${process.env.ZHENYUE_SERVER_PORT || '3000'}`,
+    `http://127.0.0.1:${process.env.ZHENYUE_SERVER_PORT || '3000'}`,
   ],
   advanced: {
     disableCSRFCheck: true,

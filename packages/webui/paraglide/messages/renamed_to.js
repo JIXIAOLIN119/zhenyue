@@ -5,12 +5,12 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 
 /** @typedef {{}} Renamed_ToInputs */
 
-const en_renamed_to = /** @type {(inputs: Renamed_ToInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Renamed to`)
-};
-
 const zh_renamed_to = /** @type {(inputs: Renamed_ToInputs) => LocalizedString} */ () => {
 	return /** @type {LocalizedString} */ (`已重命名为`)
+};
+
+const en_renamed_to = /** @type {(inputs: Renamed_ToInputs) => LocalizedString} */ () => {
+	return /** @type {LocalizedString} */ (`Renamed to`)
 };
 
 /**
@@ -19,11 +19,11 @@ const zh_renamed_to = /** @type {(inputs: Renamed_ToInputs) => LocalizedString} 
 * | "Renamed to" |
 *
 * @param {Renamed_ToInputs} inputs
-* @param {{ locale?: "en" | "zh" }} options
+* @param {{ locale?: "zh" | "en" }} options
 * @returns {LocalizedString}
 */
-export const renamed_to = /** @type {((inputs?: Renamed_ToInputs, options?: { locale?: "en" | "zh" }) => LocalizedString) & import('../runtime.js').MessageMetadata<Renamed_ToInputs, { locale?: "en" | "zh" }, {}>} */ ((inputs = {}, options = {}) => {
+export const renamed_to = /** @type {((inputs?: Renamed_ToInputs, options?: { locale?: "zh" | "en" }) => LocalizedString) & import('../runtime.js').MessageMetadata<Renamed_ToInputs, { locale?: "zh" | "en" }, {}>} */ ((inputs = {}, options = {}) => {
 	const locale = experimentalStaticLocale ?? options.locale ?? getLocale()
-	if (locale === "en") return en_renamed_to(inputs)
-	return zh_renamed_to(inputs)
+	if (locale === "zh") return zh_renamed_to(inputs)
+	return en_renamed_to(inputs)
 });

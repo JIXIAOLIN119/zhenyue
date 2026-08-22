@@ -1,5 +1,5 @@
-import { prisma, Prisma } from '@shumai/db'
-import type { TeamUsageStatsResponse, Timeframe } from '@shumai/dtos'
+import { prisma, Prisma } from '@zhenyue/db'
+import type { TeamUsageStatsResponse, Timeframe } from '@zhenyue/dtos'
 import { HTTPException } from 'hono/http-exception'
 
 export interface RecordUsageParams {

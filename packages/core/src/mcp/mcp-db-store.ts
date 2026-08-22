@@ -1,4 +1,4 @@
-import { prisma, Prisma } from '@shumai/db'
+import { prisma, Prisma } from '@zhenyue/db'
 
 export interface StoredTokens {
   accessToken: string

@@ -4,7 +4,7 @@ import {
   type FieldInfo,
   type FieldInfo as MetadataFieldInfo,
   type SelectOption,
-} from '@shumai/dtos'
+} from '@zhenyue/dtos'
 import { ulid } from 'ulid'
 import { client } from '@/ui/api/client'
 import { useFieldStore } from '@/ui/stores/fields'

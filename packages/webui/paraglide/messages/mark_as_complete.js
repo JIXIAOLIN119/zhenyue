@@ -5,12 +5,12 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 
 /** @typedef {{}} Mark_As_CompleteInputs */
 
-const en_mark_as_complete = /** @type {(inputs: Mark_As_CompleteInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Mark as complete`)
-};
-
 const zh_mark_as_complete = /** @type {(inputs: Mark_As_CompleteInputs) => LocalizedString} */ () => {
 	return /** @type {LocalizedString} */ (`标记为已完成`)
+};
+
+const en_mark_as_complete = /** @type {(inputs: Mark_As_CompleteInputs) => LocalizedString} */ () => {
+	return /** @type {LocalizedString} */ (`Mark as complete`)
 };
 
 /**
@@ -19,11 +19,11 @@ const zh_mark_as_complete = /** @type {(inputs: Mark_As_CompleteInputs) => Local
 * | "Mark as complete" |
 *
 * @param {Mark_As_CompleteInputs} inputs
-* @param {{ locale?: "en" | "zh" }} options
+* @param {{ locale?: "zh" | "en" }} options
 * @returns {LocalizedString}
 */
-export const mark_as_complete = /** @type {((inputs?: Mark_As_CompleteInputs, options?: { locale?: "en" | "zh" }) => LocalizedString) & import('../runtime.js').MessageMetadata<Mark_As_CompleteInputs, { locale?: "en" | "zh" }, {}>} */ ((inputs = {}, options = {}) => {
+export const mark_as_complete = /** @type {((inputs?: Mark_As_CompleteInputs, options?: { locale?: "zh" | "en" }) => LocalizedString) & import('../runtime.js').MessageMetadata<Mark_As_CompleteInputs, { locale?: "zh" | "en" }, {}>} */ ((inputs = {}, options = {}) => {
 	const locale = experimentalStaticLocale ?? options.locale ?? getLocale()
-	if (locale === "en") return en_mark_as_complete(inputs)
-	return zh_mark_as_complete(inputs)
+	if (locale === "zh") return zh_mark_as_complete(inputs)
+	return en_mark_as_complete(inputs)
 });

@@ -17,7 +17,7 @@ describe('MarkdownEditor', () => {
   it('renders in readOnly mode without toolbar', () => {
     const { container } = render(<MarkdownEditor readOnly initialContent="Read only text" />)
 
-    expect(container.querySelector('.shumai-editor-toolbar')).toBeNull()
+    expect(container.querySelector('.zhenyue-editor-toolbar')).toBeNull()
     expect(container.querySelector('.read-only')).toBeDefined()
   })
 })

@@ -5,12 +5,12 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 
 /** @typedef {{}} Mcp_Auth_BearerInputs */
 
-const en_mcp_auth_bearer = /** @type {(inputs: Mcp_Auth_BearerInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Bearer Token`)
-};
-
 const zh_mcp_auth_bearer = /** @type {(inputs: Mcp_Auth_BearerInputs) => LocalizedString} */ () => {
 	return /** @type {LocalizedString} */ (`Bearer 令牌`)
+};
+
+const en_mcp_auth_bearer = /** @type {(inputs: Mcp_Auth_BearerInputs) => LocalizedString} */ () => {
+	return /** @type {LocalizedString} */ (`Bearer Token`)
 };
 
 /**
@@ -19,11 +19,11 @@ const zh_mcp_auth_bearer = /** @type {(inputs: Mcp_Auth_BearerInputs) => Localiz
 * | "Bearer Token" |
 *
 * @param {Mcp_Auth_BearerInputs} inputs
-* @param {{ locale?: "en" | "zh" }} options
+* @param {{ locale?: "zh" | "en" }} options
 * @returns {LocalizedString}
 */
-export const mcp_auth_bearer = /** @type {((inputs?: Mcp_Auth_BearerInputs, options?: { locale?: "en" | "zh" }) => LocalizedString) & import('../runtime.js').MessageMetadata<Mcp_Auth_BearerInputs, { locale?: "en" | "zh" }, {}>} */ ((inputs = {}, options = {}) => {
+export const mcp_auth_bearer = /** @type {((inputs?: Mcp_Auth_BearerInputs, options?: { locale?: "zh" | "en" }) => LocalizedString) & import('../runtime.js').MessageMetadata<Mcp_Auth_BearerInputs, { locale?: "zh" | "en" }, {}>} */ ((inputs = {}, options = {}) => {
 	const locale = experimentalStaticLocale ?? options.locale ?? getLocale()
-	if (locale === "en") return en_mcp_auth_bearer(inputs)
-	return zh_mcp_auth_bearer(inputs)
+	if (locale === "zh") return zh_mcp_auth_bearer(inputs)
+	return en_mcp_auth_bearer(inputs)
 });

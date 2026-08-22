@@ -5,12 +5,12 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 
 /** @typedef {{ count: NonNullable<unknown> }} N_Folders_SingularInputs */
 
-const en_n_folders_singular = /** @type {(inputs: N_Folders_SingularInputs) => LocalizedString} */ (i) => {
-	return /** @type {LocalizedString} */ (`${i?.count} Folder`)
-};
-
 const zh_n_folders_singular = /** @type {(inputs: N_Folders_SingularInputs) => LocalizedString} */ (i) => {
 	return /** @type {LocalizedString} */ (`${i?.count} 个文件夹`)
+};
+
+const en_n_folders_singular = /** @type {(inputs: N_Folders_SingularInputs) => LocalizedString} */ (i) => {
+	return /** @type {LocalizedString} */ (`${i?.count} Folder`)
 };
 
 /**
@@ -19,11 +19,11 @@ const zh_n_folders_singular = /** @type {(inputs: N_Folders_SingularInputs) => L
 * | "{count} Folder" |
 *
 * @param {N_Folders_SingularInputs} inputs
-* @param {{ locale?: "en" | "zh" }} options
+* @param {{ locale?: "zh" | "en" }} options
 * @returns {LocalizedString}
 */
-export const n_folders_singular = /** @type {((inputs: N_Folders_SingularInputs, options?: { locale?: "en" | "zh" }) => LocalizedString) & import('../runtime.js').MessageMetadata<N_Folders_SingularInputs, { locale?: "en" | "zh" }, {}>} */ ((inputs, options = {}) => {
+export const n_folders_singular = /** @type {((inputs: N_Folders_SingularInputs, options?: { locale?: "zh" | "en" }) => LocalizedString) & import('../runtime.js').MessageMetadata<N_Folders_SingularInputs, { locale?: "zh" | "en" }, {}>} */ ((inputs, options = {}) => {
 	const locale = experimentalStaticLocale ?? options.locale ?? getLocale()
-	if (locale === "en") return en_n_folders_singular(inputs)
-	return zh_n_folders_singular(inputs)
+	if (locale === "zh") return zh_n_folders_singular(inputs)
+	return en_n_folders_singular(inputs)
 });

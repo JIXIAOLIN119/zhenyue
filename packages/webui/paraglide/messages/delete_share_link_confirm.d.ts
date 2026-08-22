@@ -4,13 +4,13 @@
 * | "Delete Share Link?" |
 *
 * @param {Delete_Share_Link_ConfirmInputs} inputs
-* @param {{ locale?: "en" | "zh" }} options
+* @param {{ locale?: "zh" | "en" }} options
 * @returns {LocalizedString}
 */
 export const delete_share_link_confirm: ((inputs?: Delete_Share_Link_ConfirmInputs, options?: {
-    locale?: "en" | "zh";
+    locale?: "zh" | "en";
 }) => LocalizedString) & import("../runtime.js").MessageMetadata<Delete_Share_Link_ConfirmInputs, {
-    locale?: "en" | "zh";
+    locale?: "zh" | "en";
 }, {}>;
 export type LocalizedString = import("../runtime.js").LocalizedString;
 export type Delete_Share_Link_ConfirmInputs = {};

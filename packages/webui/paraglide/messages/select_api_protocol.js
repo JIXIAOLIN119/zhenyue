@@ -5,12 +5,12 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 
 /** @typedef {{}} Select_Api_ProtocolInputs */
 
-const en_select_api_protocol = /** @type {(inputs: Select_Api_ProtocolInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Select API Protocol`)
-};
-
 const zh_select_api_protocol = /** @type {(inputs: Select_Api_ProtocolInputs) => LocalizedString} */ () => {
 	return /** @type {LocalizedString} */ (`选择 API 协议`)
+};
+
+const en_select_api_protocol = /** @type {(inputs: Select_Api_ProtocolInputs) => LocalizedString} */ () => {
+	return /** @type {LocalizedString} */ (`Select API Protocol`)
 };
 
 /**
@@ -19,11 +19,11 @@ const zh_select_api_protocol = /** @type {(inputs: Select_Api_ProtocolInputs) =>
 * | "Select API Protocol" |
 *
 * @param {Select_Api_ProtocolInputs} inputs
-* @param {{ locale?: "en" | "zh" }} options
+* @param {{ locale?: "zh" | "en" }} options
 * @returns {LocalizedString}
 */
-export const select_api_protocol = /** @type {((inputs?: Select_Api_ProtocolInputs, options?: { locale?: "en" | "zh" }) => LocalizedString) & import('../runtime.js').MessageMetadata<Select_Api_ProtocolInputs, { locale?: "en" | "zh" }, {}>} */ ((inputs = {}, options = {}) => {
+export const select_api_protocol = /** @type {((inputs?: Select_Api_ProtocolInputs, options?: { locale?: "zh" | "en" }) => LocalizedString) & import('../runtime.js').MessageMetadata<Select_Api_ProtocolInputs, { locale?: "zh" | "en" }, {}>} */ ((inputs = {}, options = {}) => {
 	const locale = experimentalStaticLocale ?? options.locale ?? getLocale()
-	if (locale === "en") return en_select_api_protocol(inputs)
-	return zh_select_api_protocol(inputs)
+	if (locale === "zh") return zh_select_api_protocol(inputs)
+	return en_select_api_protocol(inputs)
 });

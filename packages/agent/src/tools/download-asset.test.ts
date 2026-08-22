@@ -1,13 +1,13 @@
 import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest'
 import { createDownloadAssetTool } from './download-asset'
-import { prisma, type Asset } from '@shumai/db'
-import { s3Service } from '@shumai/core/src/s3/s3'
-import { authzService } from '@shumai/core/src/authz/authz'
+import { prisma, type Asset } from '@zhenyue/db'
+import { s3Service } from '@zhenyue/core/src/s3/s3'
+import { authzService } from '@zhenyue/core/src/authz/authz'
 import * as fs from 'fs'
 import * as path from 'path'
 
-vi.mock('@shumai/db', async (importOriginal) => {
-  const actual = await importOriginal<typeof import('@shumai/db')>()
+vi.mock('@zhenyue/db', async (importOriginal) => {
+  const actual = await importOriginal<typeof import('@zhenyue/db')>()
   return {
     ...actual,
     prisma: {
@@ -19,13 +19,13 @@ vi.mock('@shumai/db', async (importOriginal) => {
   }
 })
 
-vi.mock('@shumai/core/src/s3/s3', () => ({
+vi.mock('@zhenyue/core/src/s3/s3', () => ({
   s3Service: {
     getObject: vi.fn(),
   },
 }))
 
-vi.mock('@shumai/core/src/authz/authz', () => ({
+vi.mock('@zhenyue/core/src/authz/authz', () => ({
   authzService: {
     hasPermission: vi.fn(),
   },
@@ -94,7 +94,7 @@ describe('downloadAssetTool', () => {
       id: 'asset-img-1',
     })
 
-    expect(s3Service.getObject).toHaveBeenCalledWith('shumai', 'proxy/sample_photo.webp')
+    expect(s3Service.getObject).toHaveBeenCalledWith('zhenyue', 'proxy/sample_photo.webp')
 
     const expectedPath = path.join(piDir, 'asset-img-1_sample_photo.jpg')
     createdFiles.push(expectedPath)
@@ -129,7 +129,7 @@ describe('downloadAssetTool', () => {
     const tool = createDownloadAssetTool('user-1')
     const result = await tool.execute('call-1', { assetId: 'asset-vid-1' })
 
-    expect(s3Service.getObject).toHaveBeenCalledWith('shumai', 'proxy/video_test.mp4')
+    expect(s3Service.getObject).toHaveBeenCalledWith('zhenyue', 'proxy/video_test.mp4')
 
     const expectedPath = path.join(piDir, 'asset-vid-1_video_test.mov')
     createdFiles.push(expectedPath)
@@ -159,7 +159,7 @@ describe('downloadAssetTool', () => {
     const tool = createDownloadAssetTool('user-1')
     const result = await tool.execute('call-1', { assetId: 'asset-md-1' })
 
-    expect(s3Service.getObject).toHaveBeenCalledWith('shumai', 'raw/doc.md')
+    expect(s3Service.getObject).toHaveBeenCalledWith('zhenyue', 'raw/doc.md')
 
     const expectedPath = path.join(piDir, 'asset-md-1_doc.md')
     createdFiles.push(expectedPath)
@@ -203,7 +203,7 @@ describe('downloadAssetTool', () => {
       include: { storageKey: true },
     })
 
-    expect(s3Service.getObject).toHaveBeenCalledWith('shumai', 'proxy/banana_pig.webp')
+    expect(s3Service.getObject).toHaveBeenCalledWith('zhenyue', 'proxy/banana_pig.webp')
 
     const expectedPath = path.join(piDir, 'file-ver-2_banana_pig.png')
     createdFiles.push(expectedPath)

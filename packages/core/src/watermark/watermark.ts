@@ -6,23 +6,23 @@ import {
   WatermarkFileStatus,
   WatermarkConfig,
   WatermarkTemplate,
-} from '@shumai/db'
-import type { Prisma } from '@shumai/db'
-import '@shumai/db/src/prisma-json-types'
+} from '@zhenyue/db'
+import type { Prisma } from '@zhenyue/db'
+import '@zhenyue/db/src/prisma-json-types'
 import {
   WatermarkConfigSpec,
   WatermarkConfigInfo,
   WatermarkTemplateInfo,
   ShareLinkInfo,
-} from '@shumai/dtos'
-import { computeWatermarkConfigHash } from '@shumai/core/src/watermark/watermark-hash'
-import { s3Service } from '@shumai/core/src/s3/s3'
+} from '@zhenyue/dtos'
+import { computeWatermarkConfigHash } from '@zhenyue/core/src/watermark/watermark-hash'
+import { s3Service } from '@zhenyue/core/src/s3/s3'
 import {
   ShareLinkNotFoundError,
   ShareLinkWatermarkProcessingError,
-} from '@shumai/core/src/share/errors'
-import { shareService } from '@shumai/core/src/share/share'
-import { logger } from '@shumai/core/src/logger'
+} from '@zhenyue/core/src/share/errors'
+import { shareService } from '@zhenyue/core/src/share/share'
+import { logger } from '@zhenyue/core/src/logger'
 
 // Union of the global client and interactive-transaction client, which share the
 // same delegate shapes for the models used by this service.
@@ -241,7 +241,7 @@ export class WatermarkService {
 
     let dispatchedCount = 0
     for (const assetId of targetMediaAssets) {
-      // Deliberately one create() per task: the @shumai/db client extension that
+      // Deliberately one create() per task: the @zhenyue/db client extension that
       // submits tasks to the workflow engine only hooks `workflowTask.create`,
       // not `createMany`.
       await client.workflowTask.create({
@@ -421,7 +421,7 @@ export class WatermarkService {
    * Runs as part of background cleanup.
    */
   async purgeOrphanWatermarkConfigs(): Promise<number> {
-    const bucket = process.env.S3_BUCKET || 'shumai'
+    const bucket = process.env.S3_BUCKET || 'zhenyue'
 
     // 1. Find orphan configs with 0 sharelinks attached and no in-flight watermark
     //    tasks, using FOR UPDATE SKIP LOCKED. Configs with pending/processing tasks
@@ -532,7 +532,7 @@ export class WatermarkService {
     config: WatermarkConfigSpec,
   ): Promise<WatermarkConfigSpec> {
     if (!config || !config.blocks || config.blocks.length === 0) return config
-    const bucket = process.env.S3_BUCKET || 'shumai'
+    const bucket = process.env.S3_BUCKET || 'zhenyue'
     const enrichedBlocks = await Promise.all(
       config.blocks.map(async (block) => {
         if (block.type === 'image' && block.imageAssetKey) {

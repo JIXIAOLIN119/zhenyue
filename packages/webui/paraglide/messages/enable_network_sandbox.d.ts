@@ -4,13 +4,13 @@
 * | "Enable Network Sandbox" |
 *
 * @param {Enable_Network_SandboxInputs} inputs
-* @param {{ locale?: "en" | "zh" }} options
+* @param {{ locale?: "zh" | "en" }} options
 * @returns {LocalizedString}
 */
 export const enable_network_sandbox: ((inputs?: Enable_Network_SandboxInputs, options?: {
-    locale?: "en" | "zh";
+    locale?: "zh" | "en";
 }) => LocalizedString) & import("../runtime.js").MessageMetadata<Enable_Network_SandboxInputs, {
-    locale?: "en" | "zh";
+    locale?: "zh" | "en";
 }, {}>;
 export type LocalizedString = import("../runtime.js").LocalizedString;
 export type Enable_Network_SandboxInputs = {};

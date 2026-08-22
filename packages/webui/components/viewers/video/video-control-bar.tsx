@@ -1,7 +1,7 @@
 import { cn } from '@/ui/lib/utils'
 import { m } from '@/ui/paraglide/messages.js'
 import { useUiStore } from '@/ui/stores/ui'
-import type { AssetInfo, VideoTranscode } from '@shumai/dtos'
+import type { AssetInfo, VideoTranscode } from '@zhenyue/dtos'
 import {
   Check,
   ChevronDown,

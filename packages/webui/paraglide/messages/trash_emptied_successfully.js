@@ -5,12 +5,12 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 
 /** @typedef {{}} Trash_Emptied_SuccessfullyInputs */
 
-const en_trash_emptied_successfully = /** @type {(inputs: Trash_Emptied_SuccessfullyInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Trash emptied successfully`)
-};
-
 const zh_trash_emptied_successfully = /** @type {(inputs: Trash_Emptied_SuccessfullyInputs) => LocalizedString} */ () => {
 	return /** @type {LocalizedString} */ (`回收站已清空`)
+};
+
+const en_trash_emptied_successfully = /** @type {(inputs: Trash_Emptied_SuccessfullyInputs) => LocalizedString} */ () => {
+	return /** @type {LocalizedString} */ (`Trash emptied successfully`)
 };
 
 /**
@@ -19,11 +19,11 @@ const zh_trash_emptied_successfully = /** @type {(inputs: Trash_Emptied_Successf
 * | "Trash emptied successfully" |
 *
 * @param {Trash_Emptied_SuccessfullyInputs} inputs
-* @param {{ locale?: "en" | "zh" }} options
+* @param {{ locale?: "zh" | "en" }} options
 * @returns {LocalizedString}
 */
-export const trash_emptied_successfully = /** @type {((inputs?: Trash_Emptied_SuccessfullyInputs, options?: { locale?: "en" | "zh" }) => LocalizedString) & import('../runtime.js').MessageMetadata<Trash_Emptied_SuccessfullyInputs, { locale?: "en" | "zh" }, {}>} */ ((inputs = {}, options = {}) => {
+export const trash_emptied_successfully = /** @type {((inputs?: Trash_Emptied_SuccessfullyInputs, options?: { locale?: "zh" | "en" }) => LocalizedString) & import('../runtime.js').MessageMetadata<Trash_Emptied_SuccessfullyInputs, { locale?: "zh" | "en" }, {}>} */ ((inputs = {}, options = {}) => {
 	const locale = experimentalStaticLocale ?? options.locale ?? getLocale()
-	if (locale === "en") return en_trash_emptied_successfully(inputs)
-	return zh_trash_emptied_successfully(inputs)
+	if (locale === "zh") return zh_trash_emptied_successfully(inputs)
+	return en_trash_emptied_successfully(inputs)
 });

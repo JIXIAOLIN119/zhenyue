@@ -4,7 +4,7 @@ import { useScreenSize } from '@/ui/hooks/useScreenSize'
 import { getBestTranscode } from '@/ui/lib/media'
 import { useAnnotationStore } from '@/ui/stores/annotation-store'
 import type { Annotation } from '@/ui/types'
-import type { AssetInfo } from '@shumai/dtos'
+import type { AssetInfo } from '@zhenyue/dtos'
 import { forwardRef, useCallback, useEffect, useImperativeHandle, useRef, useState } from 'react'
 import type { ComparePaneHandle, PaneReportedState } from '../../compare/types'
 

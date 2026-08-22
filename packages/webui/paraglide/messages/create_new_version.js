@@ -5,12 +5,12 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 
 /** @typedef {{}} Create_New_VersionInputs */
 
-const en_create_new_version = /** @type {(inputs: Create_New_VersionInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Create new version`)
-};
-
 const zh_create_new_version = /** @type {(inputs: Create_New_VersionInputs) => LocalizedString} */ () => {
 	return /** @type {LocalizedString} */ (`创建新版本`)
+};
+
+const en_create_new_version = /** @type {(inputs: Create_New_VersionInputs) => LocalizedString} */ () => {
+	return /** @type {LocalizedString} */ (`Create new version`)
 };
 
 /**
@@ -19,11 +19,11 @@ const zh_create_new_version = /** @type {(inputs: Create_New_VersionInputs) => L
 * | "Create new version" |
 *
 * @param {Create_New_VersionInputs} inputs
-* @param {{ locale?: "en" | "zh" }} options
+* @param {{ locale?: "zh" | "en" }} options
 * @returns {LocalizedString}
 */
-export const create_new_version = /** @type {((inputs?: Create_New_VersionInputs, options?: { locale?: "en" | "zh" }) => LocalizedString) & import('../runtime.js').MessageMetadata<Create_New_VersionInputs, { locale?: "en" | "zh" }, {}>} */ ((inputs = {}, options = {}) => {
+export const create_new_version = /** @type {((inputs?: Create_New_VersionInputs, options?: { locale?: "zh" | "en" }) => LocalizedString) & import('../runtime.js').MessageMetadata<Create_New_VersionInputs, { locale?: "zh" | "en" }, {}>} */ ((inputs = {}, options = {}) => {
 	const locale = experimentalStaticLocale ?? options.locale ?? getLocale()
-	if (locale === "en") return en_create_new_version(inputs)
-	return zh_create_new_version(inputs)
+	if (locale === "zh") return zh_create_new_version(inputs)
+	return en_create_new_version(inputs)
 });

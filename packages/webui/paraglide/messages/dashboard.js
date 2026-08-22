@@ -5,12 +5,12 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 
 /** @typedef {{}} DashboardInputs */
 
-const en_dashboard = /** @type {(inputs: DashboardInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Dashboard`)
-};
-
 const zh_dashboard = /** @type {(inputs: DashboardInputs) => LocalizedString} */ () => {
 	return /** @type {LocalizedString} */ (`仪表板`)
+};
+
+const en_dashboard = /** @type {(inputs: DashboardInputs) => LocalizedString} */ () => {
+	return /** @type {LocalizedString} */ (`Dashboard`)
 };
 
 /**
@@ -19,11 +19,11 @@ const zh_dashboard = /** @type {(inputs: DashboardInputs) => LocalizedString} */
 * | "Dashboard" |
 *
 * @param {DashboardInputs} inputs
-* @param {{ locale?: "en" | "zh" }} options
+* @param {{ locale?: "zh" | "en" }} options
 * @returns {LocalizedString}
 */
-export const dashboard = /** @type {((inputs?: DashboardInputs, options?: { locale?: "en" | "zh" }) => LocalizedString) & import('../runtime.js').MessageMetadata<DashboardInputs, { locale?: "en" | "zh" }, {}>} */ ((inputs = {}, options = {}) => {
+export const dashboard = /** @type {((inputs?: DashboardInputs, options?: { locale?: "zh" | "en" }) => LocalizedString) & import('../runtime.js').MessageMetadata<DashboardInputs, { locale?: "zh" | "en" }, {}>} */ ((inputs = {}, options = {}) => {
 	const locale = experimentalStaticLocale ?? options.locale ?? getLocale()
-	if (locale === "en") return en_dashboard(inputs)
-	return zh_dashboard(inputs)
+	if (locale === "zh") return zh_dashboard(inputs)
+	return en_dashboard(inputs)
 });

@@ -5,12 +5,12 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 
 /** @typedef {{}} NotificationsInputs */
 
-const en_notifications = /** @type {(inputs: NotificationsInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Notifications`)
-};
-
 const zh_notifications = /** @type {(inputs: NotificationsInputs) => LocalizedString} */ () => {
 	return /** @type {LocalizedString} */ (`通知`)
+};
+
+const en_notifications = /** @type {(inputs: NotificationsInputs) => LocalizedString} */ () => {
+	return /** @type {LocalizedString} */ (`Notifications`)
 };
 
 /**
@@ -19,11 +19,11 @@ const zh_notifications = /** @type {(inputs: NotificationsInputs) => LocalizedSt
 * | "Notifications" |
 *
 * @param {NotificationsInputs} inputs
-* @param {{ locale?: "en" | "zh" }} options
+* @param {{ locale?: "zh" | "en" }} options
 * @returns {LocalizedString}
 */
-export const notifications = /** @type {((inputs?: NotificationsInputs, options?: { locale?: "en" | "zh" }) => LocalizedString) & import('../runtime.js').MessageMetadata<NotificationsInputs, { locale?: "en" | "zh" }, {}>} */ ((inputs = {}, options = {}) => {
+export const notifications = /** @type {((inputs?: NotificationsInputs, options?: { locale?: "zh" | "en" }) => LocalizedString) & import('../runtime.js').MessageMetadata<NotificationsInputs, { locale?: "zh" | "en" }, {}>} */ ((inputs = {}, options = {}) => {
 	const locale = experimentalStaticLocale ?? options.locale ?? getLocale()
-	if (locale === "en") return en_notifications(inputs)
-	return zh_notifications(inputs)
+	if (locale === "zh") return zh_notifications(inputs)
+	return en_notifications(inputs)
 });

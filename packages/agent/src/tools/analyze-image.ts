@@ -1,10 +1,10 @@
 import { Type } from 'typebox'
 import { type AgentTool } from '@earendil-works/pi-agent-core'
 import { type ImageContent } from '@earendil-works/pi-ai'
-import { prisma, WorkflowTaskType, WorkflowTaskStatus, type User } from '@shumai/db'
-import { s3Service } from '@shumai/core/src/s3/s3'
-import { workflowService } from '@shumai/workflow-core'
-import { authzService, Permission, ResourceType } from '@shumai/core/src/authz/authz'
+import { prisma, WorkflowTaskType, WorkflowTaskStatus, type User } from '@zhenyue/db'
+import { s3Service } from '@zhenyue/core/src/s3/s3'
+import { workflowService } from '@zhenyue/workflow-core'
+import { authzService, Permission, ResourceType } from '@zhenyue/core/src/authz/authz'
 
 const analyzeImageSchema = Type.Object({
   assetId: Type.String({
@@ -114,7 +114,7 @@ export function createAnalyzeImageTool(
       }
 
       // Retrieve the image content from S3
-      const bucket = process.env.S3_BUCKET || 'shumai'
+      const bucket = process.env.S3_BUCKET || 'zhenyue'
       const { buffer, contentType } = await s3Service.getObject(bucket, keyToUse)
 
       const mimeType =

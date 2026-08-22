@@ -3,7 +3,7 @@ import type {
   AssetInfo,
   AssetInfoPaginatedList,
   UpdateShareLinkRequest,
-} from '@shumai/dtos'
+} from '@zhenyue/dtos'
 import { client } from '@/ui/api/client'
 import { useMutation, useInfiniteQuery, useQuery, useQueryClient } from '@tanstack/react-query'
 import { useEffect, useState, useMemo } from 'react'
@@ -18,7 +18,7 @@ import { SnapToPointer } from './dnd-modifiers'
 import { useUiStore } from '@/ui/stores/ui'
 import { useUserMetadataStore } from '@/ui/stores/user-metadata'
 import { useTopNavStore } from '@/ui/stores/top-nav'
-import type { ShareLinkInfo } from '@shumai/dtos'
+import type { ShareLinkInfo } from '@zhenyue/dtos'
 import { toast } from 'sonner'
 import { m } from '@/ui/paraglide/messages.js'
 

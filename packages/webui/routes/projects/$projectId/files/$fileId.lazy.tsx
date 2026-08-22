@@ -5,6 +5,7 @@ import { CompareViewer } from '@/ui/components/compare/compare-viewer'
 import { FileViewer } from '@/ui/components/file-viewer'
 import { FileViewerLeftSidebar } from '@/ui/components/file-viewer-left-sidebar'
 import { FileViewerRightSidebar } from '@/ui/components/file-viewer-right-sidebar'
+import { FileShareButton } from '@/ui/components/file-share-button'
 import { FileDetailSkeleton } from '@/ui/components/loading-skeletons'
 import { ResizeHandle } from '@/ui/components/resize-handle'
 import { m } from '@/ui/paraglide/messages.js'
@@ -40,7 +41,7 @@ import { Input } from '@/ui/components/ui/input'
 import { selectFileNameWithoutExtension } from '@/ui/lib/rename-utils'
 import { toast } from 'sonner'
 import type { MediaController } from '@/ui/components/viewers/types'
-import type { AssetInfo, AssetInfoPaginatedList, CommentInfo } from '@shumai/dtos'
+import type { AssetInfo, AssetInfoPaginatedList, CommentInfo } from '@zhenyue/dtos'
 import { keepPreviousData, useQuery, useQueryClient } from '@tanstack/react-query'
 import { useNavigate } from '@tanstack/react-router'
 import { Loader2 } from 'lucide-react'
@@ -519,6 +520,15 @@ function FileViewPage() {
     <div className="h-full flex flex-1 flex-col bg-background">
       <div className="h-full flex flex-1 overflow-hidden">
         <div className="flex-1 relative">
+          {!isCompareMode && (
+            <div className="absolute top-3 right-3 z-20">
+              <FileShareButton
+                projectId={projectId}
+                fileId={activeFileId}
+                fileName={fileData?.name}
+              />
+            </div>
+          )}
           {isFetching && !isCompareMode && (
             <div className="absolute inset-0 z-10 flex items-center justify-center bg-background/50">
               <Loader2 className="h-8 w-8 animate-spin text-foreground" />

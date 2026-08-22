@@ -1,5 +1,5 @@
 import { getBuiltinProviders, getBuiltinModels } from '@earendil-works/pi-ai/providers/all'
-import type { ProviderConfigSerializable, providerModelSchema } from '@shumai/dtos'
+import type { ProviderConfigSerializable, providerModelSchema } from '@zhenyue/dtos'
 import type { z } from 'zod'
 
 type ProviderModel = z.infer<typeof providerModelSchema>

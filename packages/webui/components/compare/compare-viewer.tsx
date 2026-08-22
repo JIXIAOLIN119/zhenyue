@@ -1,6 +1,6 @@
 import { client } from '@/ui/api/client'
 import type { Annotation } from '@/ui/types'
-import type { AssetInfo } from '@shumai/dtos'
+import type { AssetInfo } from '@zhenyue/dtos'
 import { useQuery } from '@tanstack/react-query'
 import { Loader2 } from 'lucide-react'
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react'

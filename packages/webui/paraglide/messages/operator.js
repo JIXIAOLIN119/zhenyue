@@ -5,12 +5,12 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 
 /** @typedef {{}} OperatorInputs */
 
-const en_operator = /** @type {(inputs: OperatorInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Operator`)
-};
-
 const zh_operator = /** @type {(inputs: OperatorInputs) => LocalizedString} */ () => {
 	return /** @type {LocalizedString} */ (`运算符`)
+};
+
+const en_operator = /** @type {(inputs: OperatorInputs) => LocalizedString} */ () => {
+	return /** @type {LocalizedString} */ (`Operator`)
 };
 
 /**
@@ -19,11 +19,11 @@ const zh_operator = /** @type {(inputs: OperatorInputs) => LocalizedString} */ (
 * | "Operator" |
 *
 * @param {OperatorInputs} inputs
-* @param {{ locale?: "en" | "zh" }} options
+* @param {{ locale?: "zh" | "en" }} options
 * @returns {LocalizedString}
 */
-export const operator = /** @type {((inputs?: OperatorInputs, options?: { locale?: "en" | "zh" }) => LocalizedString) & import('../runtime.js').MessageMetadata<OperatorInputs, { locale?: "en" | "zh" }, {}>} */ ((inputs = {}, options = {}) => {
+export const operator = /** @type {((inputs?: OperatorInputs, options?: { locale?: "zh" | "en" }) => LocalizedString) & import('../runtime.js').MessageMetadata<OperatorInputs, { locale?: "zh" | "en" }, {}>} */ ((inputs = {}, options = {}) => {
 	const locale = experimentalStaticLocale ?? options.locale ?? getLocale()
-	if (locale === "en") return en_operator(inputs)
-	return zh_operator(inputs)
+	if (locale === "zh") return zh_operator(inputs)
+	return en_operator(inputs)
 });

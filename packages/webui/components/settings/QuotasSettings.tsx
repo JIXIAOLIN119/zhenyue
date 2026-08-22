@@ -35,7 +35,7 @@ import {
 } from 'lucide-react'
 import { toast } from 'sonner'
 import { m } from '@/ui/paraglide/messages.js'
-import type { QuotaRuleResponse } from '@shumai/dtos'
+import type { QuotaRuleResponse } from '@zhenyue/dtos'
 import {
   QUOTA_RESOURCE_META,
   formatQuotaResourceValue,

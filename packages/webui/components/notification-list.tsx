@@ -9,7 +9,7 @@ import { CheckCheckIcon, Loader2 } from 'lucide-react'
 import { useEffect, useMemo, useState } from 'react'
 import { useInView } from 'react-intersection-observer'
 import type { InferResponseType } from 'hono/client'
-import type { GetMeResponse } from '@shumai/dtos'
+import type { GetMeResponse } from '@zhenyue/dtos'
 
 export const NotificationList = () => {
   const { teamId } = useTeamContextStore()

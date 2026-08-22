@@ -5,12 +5,12 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 
 /** @typedef {{}} WatermarkInputs */
 
-const en_watermark = /** @type {(inputs: WatermarkInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Watermark`)
-};
-
 const zh_watermark = /** @type {(inputs: WatermarkInputs) => LocalizedString} */ () => {
 	return /** @type {LocalizedString} */ (`水印`)
+};
+
+const en_watermark = /** @type {(inputs: WatermarkInputs) => LocalizedString} */ () => {
+	return /** @type {LocalizedString} */ (`Watermark`)
 };
 
 /**
@@ -19,11 +19,11 @@ const zh_watermark = /** @type {(inputs: WatermarkInputs) => LocalizedString} */
 * | "Watermark" |
 *
 * @param {WatermarkInputs} inputs
-* @param {{ locale?: "en" | "zh" }} options
+* @param {{ locale?: "zh" | "en" }} options
 * @returns {LocalizedString}
 */
-export const watermark = /** @type {((inputs?: WatermarkInputs, options?: { locale?: "en" | "zh" }) => LocalizedString) & import('../runtime.js').MessageMetadata<WatermarkInputs, { locale?: "en" | "zh" }, {}>} */ ((inputs = {}, options = {}) => {
+export const watermark = /** @type {((inputs?: WatermarkInputs, options?: { locale?: "zh" | "en" }) => LocalizedString) & import('../runtime.js').MessageMetadata<WatermarkInputs, { locale?: "zh" | "en" }, {}>} */ ((inputs = {}, options = {}) => {
 	const locale = experimentalStaticLocale ?? options.locale ?? getLocale()
-	if (locale === "en") return en_watermark(inputs)
-	return zh_watermark(inputs)
+	if (locale === "zh") return zh_watermark(inputs)
+	return en_watermark(inputs)
 });

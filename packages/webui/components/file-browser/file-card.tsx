@@ -1,6 +1,6 @@
 import { client } from '@/ui/api/client'
 import { m } from '@/ui/paraglide/messages.js'
-import type { AssetInfo, FieldValueInfo } from '@shumai/dtos'
+import type { AssetInfo, FieldValueInfo } from '@zhenyue/dtos'
 import { useQuery } from '@tanstack/react-query'
 
 import { Badge } from '@/ui/components/ui/badge'
@@ -27,7 +27,7 @@ import type { DragState } from '../dnd-types'
 import FieldRenderer from '../field-renderer'
 import { FilePreview } from './file-preview'
 
-import { FieldType, type FieldInfo as MetadataFieldInfo } from '@shumai/dtos'
+import { FieldType, type FieldInfo as MetadataFieldInfo } from '@zhenyue/dtos'
 import { FIELD_TYPE_ICONS } from '../fields-manager'
 
 interface FileCardProps {

@@ -1,7 +1,7 @@
 import { describe, it, expect, beforeAll, afterAll } from 'vitest'
-import { prisma } from '@shumai/db'
-import { setupTestDbHooks } from '@shumai/db/test'
-import '@shumai/db/src/prisma-json-types'
+import { prisma } from '@zhenyue/db'
+import { setupTestDbHooks } from '@zhenyue/db/test'
+import '@zhenyue/db/src/prisma-json-types'
 import { McpService } from './mcp-service'
 import {
   startTestMcpServer,
@@ -14,7 +14,7 @@ async function seedAgentAndUser(teamId: string, agentName: string) {
   const user = await prisma.user.create({
     data: {
       name: agentName,
-      email: `${agentName.toLowerCase().replace(/\s+/g, '-')}@shumai.ai`,
+      email: `${agentName.toLowerCase().replace(/\s+/g, '-')}@zhenyue.ai`,
       type: 'agent',
     },
   })
@@ -490,7 +490,7 @@ describe('McpService', () => {
 
     // Reviewer user is denied.
     const reviewer = await prisma.user.create({
-      data: { name: 'Reviewer', email: 'reviewer@shumai.ai', type: 'human' },
+      data: { name: 'Reviewer', email: 'reviewer@zhenyue.ai', type: 'human' },
     })
     await prisma.teamMember.create({ data: { teamId, userId: reviewer.id, role: 'reviewer' } })
 
@@ -505,7 +505,7 @@ describe('McpService', () => {
 
     // Editor user is allowed.
     const editor = await prisma.user.create({
-      data: { name: 'Editor', email: 'editor@shumai.ai', type: 'human' },
+      data: { name: 'Editor', email: 'editor@zhenyue.ai', type: 'human' },
     })
     await prisma.teamMember.create({ data: { teamId, userId: editor.id, role: 'editor' } })
     const allowed = await service.callMcpTool(
@@ -547,7 +547,7 @@ describe('McpService', () => {
 
     // Team editor demoted to project reviewer: denied inside the project
     const demoted = await prisma.user.create({
-      data: { name: 'Demoted MCP', email: `dem-mcp-${Date.now()}@shumai.ai`, type: 'human' },
+      data: { name: 'Demoted MCP', email: `dem-mcp-${Date.now()}@zhenyue.ai`, type: 'human' },
     })
     const demotedTm = await prisma.teamMember.create({
       data: { teamId, userId: demoted.id, role: 'editor', scope: 'team' },
@@ -567,7 +567,7 @@ describe('McpService', () => {
 
     // Project-scoped member invited as editor: allowed
     const projEditor = await prisma.user.create({
-      data: { name: 'PE MCP', email: `pe-mcp-${Date.now()}@shumai.ai`, type: 'human' },
+      data: { name: 'PE MCP', email: `pe-mcp-${Date.now()}@zhenyue.ai`, type: 'human' },
     })
     const peTm = await prisma.teamMember.create({
       data: { teamId, userId: projEditor.id, role: 'reviewer', scope: 'project' },
@@ -619,7 +619,7 @@ describe('McpService', () => {
     // Project-scoped member invited as reviewer: only the reviewer server's
     // tools are attached; the editor server's tools are not even registered.
     const reviewer = await prisma.user.create({
-      data: { name: 'Filter Reviewer', email: `fr-${Date.now()}@shumai.ai`, type: 'human' },
+      data: { name: 'Filter Reviewer', email: `fr-${Date.now()}@zhenyue.ai`, type: 'human' },
     })
     const reviewerTm = await prisma.teamMember.create({
       data: { teamId, userId: reviewer.id, role: 'reviewer', scope: 'project' },
@@ -960,7 +960,7 @@ describe('McpService', () => {
     const srvB = await startTestMcpServer({ tools: toolsB, serverInfo: { name: 'srvB' } })
     try {
       const agent = await prisma.user.create({
-        data: { name: 'Two Srv Agent', email: 'two-srv-agent@shumai.ai', type: 'agent' },
+        data: { name: 'Two Srv Agent', email: 'two-srv-agent@zhenyue.ai', type: 'agent' },
       })
       await prisma.teamMember.create({ data: { teamId, userId: agent.id, role: 'editor' } })
       await prisma.agent.create({

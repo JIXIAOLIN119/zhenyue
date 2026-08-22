@@ -5,12 +5,12 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 
 /** @typedef {{}} Count_Overflow_FoldersInputs */
 
-const en_count_overflow_folders = /** @type {(inputs: Count_Overflow_FoldersInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`10000+ Folders`)
-};
-
 const zh_count_overflow_folders = /** @type {(inputs: Count_Overflow_FoldersInputs) => LocalizedString} */ () => {
 	return /** @type {LocalizedString} */ (`10000+ 文件夹`)
+};
+
+const en_count_overflow_folders = /** @type {(inputs: Count_Overflow_FoldersInputs) => LocalizedString} */ () => {
+	return /** @type {LocalizedString} */ (`10000+ Folders`)
 };
 
 /**
@@ -19,11 +19,11 @@ const zh_count_overflow_folders = /** @type {(inputs: Count_Overflow_FoldersInpu
 * | "10000+ Folders" |
 *
 * @param {Count_Overflow_FoldersInputs} inputs
-* @param {{ locale?: "en" | "zh" }} options
+* @param {{ locale?: "zh" | "en" }} options
 * @returns {LocalizedString}
 */
-export const count_overflow_folders = /** @type {((inputs?: Count_Overflow_FoldersInputs, options?: { locale?: "en" | "zh" }) => LocalizedString) & import('../runtime.js').MessageMetadata<Count_Overflow_FoldersInputs, { locale?: "en" | "zh" }, {}>} */ ((inputs = {}, options = {}) => {
+export const count_overflow_folders = /** @type {((inputs?: Count_Overflow_FoldersInputs, options?: { locale?: "zh" | "en" }) => LocalizedString) & import('../runtime.js').MessageMetadata<Count_Overflow_FoldersInputs, { locale?: "zh" | "en" }, {}>} */ ((inputs = {}, options = {}) => {
 	const locale = experimentalStaticLocale ?? options.locale ?? getLocale()
-	if (locale === "en") return en_count_overflow_folders(inputs)
-	return zh_count_overflow_folders(inputs)
+	if (locale === "zh") return zh_count_overflow_folders(inputs)
+	return en_count_overflow_folders(inputs)
 });

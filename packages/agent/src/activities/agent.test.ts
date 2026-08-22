@@ -23,7 +23,7 @@ import {
 import * as piAgent from '../index'
 import { type AgentHarness, type Session } from '@earendil-works/pi-agent-core'
 import { DatabaseSessionStorage, type DatabaseSessionMetadata } from '../database-session-storage'
-import { triggerLocalCancel } from '@shumai/workflow-core'
+import { triggerLocalCancel } from '@zhenyue/workflow-core'
 import { Context } from '@temporalio/activity'
 
 import {
@@ -34,10 +34,10 @@ import {
   type User,
   type Project,
   type Asset,
-} from '@shumai/db'
-import { setupTestDbHooks } from '@shumai/db/test'
-import { authzService } from '@shumai/core/src/authz/authz'
-import { uploadService } from '@shumai/core/src/upload/upload'
+} from '@zhenyue/db'
+import { setupTestDbHooks } from '@zhenyue/db/test'
+import { authzService } from '@zhenyue/core/src/authz/authz'
+import { uploadService } from '@zhenyue/core/src/upload/upload'
 
 vi.mock('../index', async () => {
   const actual = await vi.importActual('../index')
@@ -100,7 +100,7 @@ describe('Agent Activities', () => {
   })
 
   it('should subscribe to harness events and record usage for assistant message_end events', async () => {
-    const { aiUsageService } = await import('@shumai/core/src/ai-usage/ai-usage')
+    const { aiUsageService } = await import('@zhenyue/core/src/ai-usage/ai-usage')
     const spyRecordUsage = vi.spyOn(aiUsageService, 'recordUsage').mockResolvedValue()
 
     let subscribeListener!: (event: unknown) => Promise<void>
@@ -534,7 +534,7 @@ describe('Agent Database Activities Integration', () => {
     user = await prisma.user.create({
       data: {
         name: 'Test Human',
-        email: 'human@shumai.ai',
+        email: 'human@zhenyue.ai',
         type: 'human',
       },
     })
@@ -852,7 +852,7 @@ describe('Agent Database Activities Integration', () => {
       await sleep(2)
       // msg3 (top level asking agent)
       const msg3 = await prisma.assetComment.create({
-        data: { assetId: asset.id, message: '<@shumai-x1> what did i say', creatorId: user.id },
+        data: { assetId: asset.id, message: '<@zhenyue-x1> what did i say', creatorId: user.id },
       })
 
       const sessionId = await initializeAgentSessionActivity({
@@ -892,7 +892,7 @@ describe('Agent Database Activities Integration', () => {
       await sleep(2)
       // msg3 (top level asking agent)
       const msg3 = await prisma.assetComment.create({
-        data: { assetId: asset.id, message: '<@shumai-x1> what did i say', creatorId: user.id },
+        data: { assetId: asset.id, message: '<@zhenyue-x1> what did i say', creatorId: user.id },
       })
 
       await initializeAgentSessionActivity({
@@ -921,7 +921,7 @@ describe('Agent Database Activities Integration', () => {
 
     it('should safely upsert entry without unique constraint error when appendEntry is called for pre-existing userComment.id', async () => {
       const msg3 = await prisma.assetComment.create({
-        data: { assetId: asset.id, message: '<@shumai-x1> what did i say', creatorId: user.id },
+        data: { assetId: asset.id, message: '<@zhenyue-x1> what did i say', creatorId: user.id },
       })
 
       const sessionId = await initializeAgentSessionActivity({
@@ -1051,7 +1051,7 @@ describe('Agent Database Activities Integration', () => {
         data: {
           id: 'chat-agent-id',
           name: 'Chat Agent User',
-          email: 'chatagent@shumai.ai',
+          email: 'chatagent@zhenyue.ai',
           type: 'agent',
         },
       })
@@ -1106,7 +1106,7 @@ describe('Agent Database Activities Integration', () => {
       // Test permission enforcement in getAgentChatContextActivity
       // Create owner-only agent
       const ownerAgentUser = await prisma.user.create({
-        data: { name: 'Owner Bot', email: `ownerbot-${Date.now()}@shumai.ai`, type: 'agent' },
+        data: { name: 'Owner Bot', email: `ownerbot-${Date.now()}@zhenyue.ai`, type: 'agent' },
       })
       const ownerAgent = await prisma.agent.create({
         data: {
@@ -1122,14 +1122,14 @@ describe('Agent Database Activities Integration', () => {
 
       // Create owner and reviewer members
       const ownerUser = await prisma.user.create({
-        data: { name: 'Owner User', email: `owner-${Date.now()}@shumai.ai` },
+        data: { name: 'Owner User', email: `owner-${Date.now()}@zhenyue.ai` },
       })
       await prisma.teamMember.create({
         data: { teamId: team.id, userId: ownerUser.id, role: 'owner' },
       })
 
       const reviewerUser = await prisma.user.create({
-        data: { name: 'Reviewer User', email: `reviewer-${Date.now()}@shumai.ai` },
+        data: { name: 'Reviewer User', email: `reviewer-${Date.now()}@zhenyue.ai` },
       })
       await prisma.teamMember.create({
         data: { teamId: team.id, userId: reviewerUser.id, role: 'reviewer' },
@@ -1156,7 +1156,7 @@ describe('Agent Database Activities Integration', () => {
       const autofillUser = await prisma.user.create({
         data: {
           name: 'Autofill Agent User',
-          email: 'autofillagent@shumai.ai',
+          email: 'autofillagent@zhenyue.ai',
           type: 'agent',
         },
       })
@@ -1229,7 +1229,7 @@ describe('Agent Database Activities Integration', () => {
       const agentUser = await prisma.user.create({
         data: {
           name: 'No Skill Agent User',
-          email: 'noskillagent@shumai.ai',
+          email: 'noskillagent@zhenyue.ai',
           type: 'agent',
         },
       })
@@ -1940,7 +1940,7 @@ describe('Agent Database Activities Integration', () => {
         data: {
           id: 'agent-123',
           name: 'Chat Agent User',
-          email: 'agent@shumai.ai',
+          email: 'agent@zhenyue.ai',
           type: 'agent',
         },
       })
@@ -2048,7 +2048,7 @@ describe('Agent Database Activities Integration', () => {
         data: {
           id: 'agent-123',
           name: 'Chat Agent User',
-          email: 'agent2@shumai.ai',
+          email: 'agent2@zhenyue.ai',
           type: 'agent',
         },
       })

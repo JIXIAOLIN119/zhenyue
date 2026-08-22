@@ -5,12 +5,12 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 
 /** @typedef {{}} Attach_FilesInputs */
 
-const en_attach_files = /** @type {(inputs: Attach_FilesInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Attach files`)
-};
-
 const zh_attach_files = /** @type {(inputs: Attach_FilesInputs) => LocalizedString} */ () => {
 	return /** @type {LocalizedString} */ (`附加文件`)
+};
+
+const en_attach_files = /** @type {(inputs: Attach_FilesInputs) => LocalizedString} */ () => {
+	return /** @type {LocalizedString} */ (`Attach files`)
 };
 
 /**
@@ -19,11 +19,11 @@ const zh_attach_files = /** @type {(inputs: Attach_FilesInputs) => LocalizedStri
 * | "Attach files" |
 *
 * @param {Attach_FilesInputs} inputs
-* @param {{ locale?: "en" | "zh" }} options
+* @param {{ locale?: "zh" | "en" }} options
 * @returns {LocalizedString}
 */
-export const attach_files = /** @type {((inputs?: Attach_FilesInputs, options?: { locale?: "en" | "zh" }) => LocalizedString) & import('../runtime.js').MessageMetadata<Attach_FilesInputs, { locale?: "en" | "zh" }, {}>} */ ((inputs = {}, options = {}) => {
+export const attach_files = /** @type {((inputs?: Attach_FilesInputs, options?: { locale?: "zh" | "en" }) => LocalizedString) & import('../runtime.js').MessageMetadata<Attach_FilesInputs, { locale?: "zh" | "en" }, {}>} */ ((inputs = {}, options = {}) => {
 	const locale = experimentalStaticLocale ?? options.locale ?? getLocale()
-	if (locale === "en") return en_attach_files(inputs)
-	return zh_attach_files(inputs)
+	if (locale === "zh") return zh_attach_files(inputs)
+	return en_attach_files(inputs)
 });

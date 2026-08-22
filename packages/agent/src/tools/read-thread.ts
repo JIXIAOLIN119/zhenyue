@@ -1,4 +1,4 @@
-import { prisma } from '@shumai/db'
+import { prisma } from '@zhenyue/db'
 import { Type } from 'typebox'
 import { type AgentTool } from '@earendil-works/pi-agent-core'
 

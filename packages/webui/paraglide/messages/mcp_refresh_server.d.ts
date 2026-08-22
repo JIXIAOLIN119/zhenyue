@@ -4,13 +4,13 @@
 * | "Refresh Server" |
 *
 * @param {Mcp_Refresh_ServerInputs} inputs
-* @param {{ locale?: "en" | "zh" }} options
+* @param {{ locale?: "zh" | "en" }} options
 * @returns {LocalizedString}
 */
 export const mcp_refresh_server: ((inputs?: Mcp_Refresh_ServerInputs, options?: {
-    locale?: "en" | "zh";
+    locale?: "zh" | "en";
 }) => LocalizedString) & import("../runtime.js").MessageMetadata<Mcp_Refresh_ServerInputs, {
-    locale?: "en" | "zh";
+    locale?: "zh" | "en";
 }, {}>;
 export type LocalizedString = import("../runtime.js").LocalizedString;
 export type Mcp_Refresh_ServerInputs = {};

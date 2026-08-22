@@ -5,12 +5,12 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 
 /** @typedef {{ name: NonNullable<unknown> }} Delete_Project_WarningInputs */
 
-const en_delete_project_warning = /** @type {(inputs: Delete_Project_WarningInputs) => LocalizedString} */ (i) => {
-	return /** @type {LocalizedString} */ (`This action cannot be undone. This will permanently delete the project "${i?.name}" and all its assets.`)
-};
-
 const zh_delete_project_warning = /** @type {(inputs: Delete_Project_WarningInputs) => LocalizedString} */ (i) => {
 	return /** @type {LocalizedString} */ (`此操作无法撤销。这将永久删除项目 "${i?.name}" 及其所有资产。`)
+};
+
+const en_delete_project_warning = /** @type {(inputs: Delete_Project_WarningInputs) => LocalizedString} */ (i) => {
+	return /** @type {LocalizedString} */ (`This action cannot be undone. This will permanently delete the project "${i?.name}" and all its assets.`)
 };
 
 /**
@@ -19,11 +19,11 @@ const zh_delete_project_warning = /** @type {(inputs: Delete_Project_WarningInpu
 * | "This action cannot be undone. This will permanently delete the project \"{name}\" and all its assets." |
 *
 * @param {Delete_Project_WarningInputs} inputs
-* @param {{ locale?: "en" | "zh" }} options
+* @param {{ locale?: "zh" | "en" }} options
 * @returns {LocalizedString}
 */
-export const delete_project_warning = /** @type {((inputs: Delete_Project_WarningInputs, options?: { locale?: "en" | "zh" }) => LocalizedString) & import('../runtime.js').MessageMetadata<Delete_Project_WarningInputs, { locale?: "en" | "zh" }, {}>} */ ((inputs, options = {}) => {
+export const delete_project_warning = /** @type {((inputs: Delete_Project_WarningInputs, options?: { locale?: "zh" | "en" }) => LocalizedString) & import('../runtime.js').MessageMetadata<Delete_Project_WarningInputs, { locale?: "zh" | "en" }, {}>} */ ((inputs, options = {}) => {
 	const locale = experimentalStaticLocale ?? options.locale ?? getLocale()
-	if (locale === "en") return en_delete_project_warning(inputs)
-	return zh_delete_project_warning(inputs)
+	if (locale === "zh") return zh_delete_project_warning(inputs)
+	return en_delete_project_warning(inputs)
 });

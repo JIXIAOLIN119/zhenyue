@@ -1,5 +1,5 @@
 import { z } from 'zod'
-import { InviteRole } from '@shumai/db/enums'
+import { InviteRole } from '@zhenyue/db/enums'
 
 export { InviteRole }
 

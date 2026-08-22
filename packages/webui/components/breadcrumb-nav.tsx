@@ -28,7 +28,7 @@ import {
 import { usePermissions } from '@/ui/hooks/use-permissions'
 import { cn } from '@/ui/lib/utils'
 import { m } from '@/ui/paraglide/messages.js'
-import type { AncestorFolder } from '@shumai/dtos'
+import type { AncestorFolder } from '@zhenyue/dtos'
 import { Link, useNavigate } from '@tanstack/react-router'
 import {
   Bot,

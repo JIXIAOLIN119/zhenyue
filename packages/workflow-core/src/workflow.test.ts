@@ -1,11 +1,11 @@
 import { describe, it, expect, beforeEach, afterEach, vi } from 'vitest'
-import { prisma } from '@shumai/db'
+import { prisma } from '@zhenyue/db'
 import { workflowService } from './workflow'
-import { WorkflowTaskStatus, WorkflowTaskType } from '@shumai/db'
-import { initAgentWorkflows } from '@shumai/agent'
-import { initTranscodeWorkflows } from '@shumai/transcode'
+import { WorkflowTaskStatus, WorkflowTaskType } from '@zhenyue/db'
+import { initAgentWorkflows } from '@zhenyue/agent'
+import { initTranscodeWorkflows } from '@zhenyue/transcode'
 
-vi.mock('@shumai/core/src/s3/s3', () => ({
+vi.mock('@zhenyue/core/src/s3/s3', () => ({
   s3Service: {
     getObject: vi.fn(),
     putObject: vi.fn(),
@@ -15,12 +15,12 @@ vi.mock('@shumai/core/src/s3/s3', () => ({
   },
 }))
 
-vi.mock('@shumai/transcode', async (importOriginal) => {
+vi.mock('@zhenyue/transcode', async (importOriginal) => {
   const actual = (await importOriginal()) as Record<string, unknown>
   return {
     ...actual,
     transcodeService: {
-      createTempDir: vi.fn().mockReturnValue('/tmp/shumai-test'),
+      createTempDir: vi.fn().mockReturnValue('/tmp/zhenyue-test'),
       removeDir: vi.fn(),
       extractAudio: vi.fn(),
       extractVideoFrames: vi.fn().mockResolvedValue([]),

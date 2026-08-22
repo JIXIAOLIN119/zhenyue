@@ -1,4 +1,4 @@
-import { prisma } from '@shumai/db'
+import { prisma } from '@zhenyue/db'
 
 export class UserService {
   constructor(private readonly prismaClient: typeof prisma = prisma) {}

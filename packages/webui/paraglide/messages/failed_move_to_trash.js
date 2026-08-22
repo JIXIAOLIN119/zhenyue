@@ -5,12 +5,12 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 
 /** @typedef {{}} Failed_Move_To_TrashInputs */
 
-const en_failed_move_to_trash = /** @type {(inputs: Failed_Move_To_TrashInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Failed to move to trash`)
-};
-
 const zh_failed_move_to_trash = /** @type {(inputs: Failed_Move_To_TrashInputs) => LocalizedString} */ () => {
 	return /** @type {LocalizedString} */ (`移至回收站失败`)
+};
+
+const en_failed_move_to_trash = /** @type {(inputs: Failed_Move_To_TrashInputs) => LocalizedString} */ () => {
+	return /** @type {LocalizedString} */ (`Failed to move to trash`)
 };
 
 /**
@@ -19,11 +19,11 @@ const zh_failed_move_to_trash = /** @type {(inputs: Failed_Move_To_TrashInputs) 
 * | "Failed to move to trash" |
 *
 * @param {Failed_Move_To_TrashInputs} inputs
-* @param {{ locale?: "en" | "zh" }} options
+* @param {{ locale?: "zh" | "en" }} options
 * @returns {LocalizedString}
 */
-export const failed_move_to_trash = /** @type {((inputs?: Failed_Move_To_TrashInputs, options?: { locale?: "en" | "zh" }) => LocalizedString) & import('../runtime.js').MessageMetadata<Failed_Move_To_TrashInputs, { locale?: "en" | "zh" }, {}>} */ ((inputs = {}, options = {}) => {
+export const failed_move_to_trash = /** @type {((inputs?: Failed_Move_To_TrashInputs, options?: { locale?: "zh" | "en" }) => LocalizedString) & import('../runtime.js').MessageMetadata<Failed_Move_To_TrashInputs, { locale?: "zh" | "en" }, {}>} */ ((inputs = {}, options = {}) => {
 	const locale = experimentalStaticLocale ?? options.locale ?? getLocale()
-	if (locale === "en") return en_failed_move_to_trash(inputs)
-	return zh_failed_move_to_trash(inputs)
+	if (locale === "zh") return zh_failed_move_to_trash(inputs)
+	return en_failed_move_to_trash(inputs)
 });

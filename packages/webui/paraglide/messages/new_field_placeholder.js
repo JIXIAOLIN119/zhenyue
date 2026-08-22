@@ -5,12 +5,12 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 
 /** @typedef {{}} New_Field_PlaceholderInputs */
 
-const en_new_field_placeholder = /** @type {(inputs: New_Field_PlaceholderInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`New Field`)
-};
-
 const zh_new_field_placeholder = /** @type {(inputs: New_Field_PlaceholderInputs) => LocalizedString} */ () => {
 	return /** @type {LocalizedString} */ (`新字段`)
+};
+
+const en_new_field_placeholder = /** @type {(inputs: New_Field_PlaceholderInputs) => LocalizedString} */ () => {
+	return /** @type {LocalizedString} */ (`New Field`)
 };
 
 /**
@@ -19,11 +19,11 @@ const zh_new_field_placeholder = /** @type {(inputs: New_Field_PlaceholderInputs
 * | "New Field" |
 *
 * @param {New_Field_PlaceholderInputs} inputs
-* @param {{ locale?: "en" | "zh" }} options
+* @param {{ locale?: "zh" | "en" }} options
 * @returns {LocalizedString}
 */
-export const new_field_placeholder = /** @type {((inputs?: New_Field_PlaceholderInputs, options?: { locale?: "en" | "zh" }) => LocalizedString) & import('../runtime.js').MessageMetadata<New_Field_PlaceholderInputs, { locale?: "en" | "zh" }, {}>} */ ((inputs = {}, options = {}) => {
+export const new_field_placeholder = /** @type {((inputs?: New_Field_PlaceholderInputs, options?: { locale?: "zh" | "en" }) => LocalizedString) & import('../runtime.js').MessageMetadata<New_Field_PlaceholderInputs, { locale?: "zh" | "en" }, {}>} */ ((inputs = {}, options = {}) => {
 	const locale = experimentalStaticLocale ?? options.locale ?? getLocale()
-	if (locale === "en") return en_new_field_placeholder(inputs)
-	return zh_new_field_placeholder(inputs)
+	if (locale === "zh") return zh_new_field_placeholder(inputs)
+	return en_new_field_placeholder(inputs)
 });

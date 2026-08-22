@@ -5,12 +5,12 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 
 /** @typedef {{}} Folder_DeletedInputs */
 
-const en_folder_deleted = /** @type {(inputs: Folder_DeletedInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Folder deleted`)
-};
-
 const zh_folder_deleted = /** @type {(inputs: Folder_DeletedInputs) => LocalizedString} */ () => {
 	return /** @type {LocalizedString} */ (`文件夹已删除`)
+};
+
+const en_folder_deleted = /** @type {(inputs: Folder_DeletedInputs) => LocalizedString} */ () => {
+	return /** @type {LocalizedString} */ (`Folder deleted`)
 };
 
 /**
@@ -19,11 +19,11 @@ const zh_folder_deleted = /** @type {(inputs: Folder_DeletedInputs) => Localized
 * | "Folder deleted" |
 *
 * @param {Folder_DeletedInputs} inputs
-* @param {{ locale?: "en" | "zh" }} options
+* @param {{ locale?: "zh" | "en" }} options
 * @returns {LocalizedString}
 */
-export const folder_deleted = /** @type {((inputs?: Folder_DeletedInputs, options?: { locale?: "en" | "zh" }) => LocalizedString) & import('../runtime.js').MessageMetadata<Folder_DeletedInputs, { locale?: "en" | "zh" }, {}>} */ ((inputs = {}, options = {}) => {
+export const folder_deleted = /** @type {((inputs?: Folder_DeletedInputs, options?: { locale?: "zh" | "en" }) => LocalizedString) & import('../runtime.js').MessageMetadata<Folder_DeletedInputs, { locale?: "zh" | "en" }, {}>} */ ((inputs = {}, options = {}) => {
 	const locale = experimentalStaticLocale ?? options.locale ?? getLocale()
-	if (locale === "en") return en_folder_deleted(inputs)
-	return zh_folder_deleted(inputs)
+	if (locale === "zh") return zh_folder_deleted(inputs)
+	return en_folder_deleted(inputs)
 });

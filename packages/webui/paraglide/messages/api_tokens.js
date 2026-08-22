@@ -5,12 +5,12 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 
 /** @typedef {{}} Api_TokensInputs */
 
-const en_api_tokens = /** @type {(inputs: Api_TokensInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`API Tokens`)
-};
-
 const zh_api_tokens = /** @type {(inputs: Api_TokensInputs) => LocalizedString} */ () => {
 	return /** @type {LocalizedString} */ (`API 令牌`)
+};
+
+const en_api_tokens = /** @type {(inputs: Api_TokensInputs) => LocalizedString} */ () => {
+	return /** @type {LocalizedString} */ (`API Tokens`)
 };
 
 /**
@@ -19,11 +19,11 @@ const zh_api_tokens = /** @type {(inputs: Api_TokensInputs) => LocalizedString} 
 * | "API Tokens" |
 *
 * @param {Api_TokensInputs} inputs
-* @param {{ locale?: "en" | "zh" }} options
+* @param {{ locale?: "zh" | "en" }} options
 * @returns {LocalizedString}
 */
-export const api_tokens = /** @type {((inputs?: Api_TokensInputs, options?: { locale?: "en" | "zh" }) => LocalizedString) & import('../runtime.js').MessageMetadata<Api_TokensInputs, { locale?: "en" | "zh" }, {}>} */ ((inputs = {}, options = {}) => {
+export const api_tokens = /** @type {((inputs?: Api_TokensInputs, options?: { locale?: "zh" | "en" }) => LocalizedString) & import('../runtime.js').MessageMetadata<Api_TokensInputs, { locale?: "zh" | "en" }, {}>} */ ((inputs = {}, options = {}) => {
 	const locale = experimentalStaticLocale ?? options.locale ?? getLocale()
-	if (locale === "en") return en_api_tokens(inputs)
-	return zh_api_tokens(inputs)
+	if (locale === "zh") return zh_api_tokens(inputs)
+	return en_api_tokens(inputs)
 });

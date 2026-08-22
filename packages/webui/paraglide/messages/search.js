@@ -5,12 +5,12 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 
 /** @typedef {{}} SearchInputs */
 
-const en_search = /** @type {(inputs: SearchInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Search`)
-};
-
 const zh_search = /** @type {(inputs: SearchInputs) => LocalizedString} */ () => {
 	return /** @type {LocalizedString} */ (`搜索`)
+};
+
+const en_search = /** @type {(inputs: SearchInputs) => LocalizedString} */ () => {
+	return /** @type {LocalizedString} */ (`Search`)
 };
 
 /**
@@ -19,11 +19,11 @@ const zh_search = /** @type {(inputs: SearchInputs) => LocalizedString} */ () =>
 * | "Search" |
 *
 * @param {SearchInputs} inputs
-* @param {{ locale?: "en" | "zh" }} options
+* @param {{ locale?: "zh" | "en" }} options
 * @returns {LocalizedString}
 */
-export const search = /** @type {((inputs?: SearchInputs, options?: { locale?: "en" | "zh" }) => LocalizedString) & import('../runtime.js').MessageMetadata<SearchInputs, { locale?: "en" | "zh" }, {}>} */ ((inputs = {}, options = {}) => {
+export const search = /** @type {((inputs?: SearchInputs, options?: { locale?: "zh" | "en" }) => LocalizedString) & import('../runtime.js').MessageMetadata<SearchInputs, { locale?: "zh" | "en" }, {}>} */ ((inputs = {}, options = {}) => {
 	const locale = experimentalStaticLocale ?? options.locale ?? getLocale()
-	if (locale === "en") return en_search(inputs)
-	return zh_search(inputs)
+	if (locale === "zh") return zh_search(inputs)
+	return en_search(inputs)
 });

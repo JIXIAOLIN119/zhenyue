@@ -4,13 +4,13 @@
 * | "Renamed successfully" |
 *
 * @param {Renamed_SuccessfullyInputs} inputs
-* @param {{ locale?: "en" | "zh" }} options
+* @param {{ locale?: "zh" | "en" }} options
 * @returns {LocalizedString}
 */
 export const renamed_successfully: ((inputs?: Renamed_SuccessfullyInputs, options?: {
-    locale?: "en" | "zh";
+    locale?: "zh" | "en";
 }) => LocalizedString) & import("../runtime.js").MessageMetadata<Renamed_SuccessfullyInputs, {
-    locale?: "en" | "zh";
+    locale?: "zh" | "en";
 }, {}>;
 export type LocalizedString = import("../runtime.js").LocalizedString;
 export type Renamed_SuccessfullyInputs = {};

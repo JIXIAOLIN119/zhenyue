@@ -1,4 +1,4 @@
-import type { AssetInfo } from '@shumai/dtos'
+import type { AssetInfo } from '@zhenyue/dtos'
 import { FileTypeDefinition } from './types'
 import { videoTypeDefinition } from './video'
 import { imageTypeDefinition } from './image'

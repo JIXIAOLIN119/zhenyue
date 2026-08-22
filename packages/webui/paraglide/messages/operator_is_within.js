@@ -5,12 +5,12 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 
 /** @typedef {{}} Operator_Is_WithinInputs */
 
-const en_operator_is_within = /** @type {(inputs: Operator_Is_WithinInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`is within`)
-};
-
 const zh_operator_is_within = /** @type {(inputs: Operator_Is_WithinInputs) => LocalizedString} */ () => {
 	return /** @type {LocalizedString} */ (`在范围内`)
+};
+
+const en_operator_is_within = /** @type {(inputs: Operator_Is_WithinInputs) => LocalizedString} */ () => {
+	return /** @type {LocalizedString} */ (`is within`)
 };
 
 /**
@@ -19,11 +19,11 @@ const zh_operator_is_within = /** @type {(inputs: Operator_Is_WithinInputs) => L
 * | "is within" |
 *
 * @param {Operator_Is_WithinInputs} inputs
-* @param {{ locale?: "en" | "zh" }} options
+* @param {{ locale?: "zh" | "en" }} options
 * @returns {LocalizedString}
 */
-export const operator_is_within = /** @type {((inputs?: Operator_Is_WithinInputs, options?: { locale?: "en" | "zh" }) => LocalizedString) & import('../runtime.js').MessageMetadata<Operator_Is_WithinInputs, { locale?: "en" | "zh" }, {}>} */ ((inputs = {}, options = {}) => {
+export const operator_is_within = /** @type {((inputs?: Operator_Is_WithinInputs, options?: { locale?: "zh" | "en" }) => LocalizedString) & import('../runtime.js').MessageMetadata<Operator_Is_WithinInputs, { locale?: "zh" | "en" }, {}>} */ ((inputs = {}, options = {}) => {
 	const locale = experimentalStaticLocale ?? options.locale ?? getLocale()
-	if (locale === "en") return en_operator_is_within(inputs)
-	return zh_operator_is_within(inputs)
+	if (locale === "zh") return zh_operator_is_within(inputs)
+	return en_operator_is_within(inputs)
 });

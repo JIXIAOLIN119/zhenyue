@@ -1,5 +1,5 @@
-import { Prisma } from '@shumai/db'
-import { AssetType } from '@shumai/db'
+import { Prisma } from '@zhenyue/db'
+import { AssetType } from '@zhenyue/db'
 
 interface DedupeSymlinksParams {
   /** Files being merged into a version stack — symlinks pointing at them are the candidates. */

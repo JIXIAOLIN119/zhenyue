@@ -5,12 +5,12 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 
 /** @typedef {{}} Operator_Is_On_Or_AfterInputs */
 
-const en_operator_is_on_or_after = /** @type {(inputs: Operator_Is_On_Or_AfterInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`is on or after`)
-};
-
 const zh_operator_is_on_or_after = /** @type {(inputs: Operator_Is_On_Or_AfterInputs) => LocalizedString} */ () => {
 	return /** @type {LocalizedString} */ (`在当天或之后`)
+};
+
+const en_operator_is_on_or_after = /** @type {(inputs: Operator_Is_On_Or_AfterInputs) => LocalizedString} */ () => {
+	return /** @type {LocalizedString} */ (`is on or after`)
 };
 
 /**
@@ -19,11 +19,11 @@ const zh_operator_is_on_or_after = /** @type {(inputs: Operator_Is_On_Or_AfterIn
 * | "is on or after" |
 *
 * @param {Operator_Is_On_Or_AfterInputs} inputs
-* @param {{ locale?: "en" | "zh" }} options
+* @param {{ locale?: "zh" | "en" }} options
 * @returns {LocalizedString}
 */
-export const operator_is_on_or_after = /** @type {((inputs?: Operator_Is_On_Or_AfterInputs, options?: { locale?: "en" | "zh" }) => LocalizedString) & import('../runtime.js').MessageMetadata<Operator_Is_On_Or_AfterInputs, { locale?: "en" | "zh" }, {}>} */ ((inputs = {}, options = {}) => {
+export const operator_is_on_or_after = /** @type {((inputs?: Operator_Is_On_Or_AfterInputs, options?: { locale?: "zh" | "en" }) => LocalizedString) & import('../runtime.js').MessageMetadata<Operator_Is_On_Or_AfterInputs, { locale?: "zh" | "en" }, {}>} */ ((inputs = {}, options = {}) => {
 	const locale = experimentalStaticLocale ?? options.locale ?? getLocale()
-	if (locale === "en") return en_operator_is_on_or_after(inputs)
-	return zh_operator_is_on_or_after(inputs)
+	if (locale === "zh") return zh_operator_is_on_or_after(inputs)
+	return en_operator_is_on_or_after(inputs)
 });

@@ -5,12 +5,12 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 
 /** @typedef {{}} FilterInputs */
 
-const en_filter = /** @type {(inputs: FilterInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Filter`)
-};
-
 const zh_filter = /** @type {(inputs: FilterInputs) => LocalizedString} */ () => {
 	return /** @type {LocalizedString} */ (`筛选`)
+};
+
+const en_filter = /** @type {(inputs: FilterInputs) => LocalizedString} */ () => {
+	return /** @type {LocalizedString} */ (`Filter`)
 };
 
 /**
@@ -19,11 +19,11 @@ const zh_filter = /** @type {(inputs: FilterInputs) => LocalizedString} */ () =>
 * | "Filter" |
 *
 * @param {FilterInputs} inputs
-* @param {{ locale?: "en" | "zh" }} options
+* @param {{ locale?: "zh" | "en" }} options
 * @returns {LocalizedString}
 */
-export const filter = /** @type {((inputs?: FilterInputs, options?: { locale?: "en" | "zh" }) => LocalizedString) & import('../runtime.js').MessageMetadata<FilterInputs, { locale?: "en" | "zh" }, {}>} */ ((inputs = {}, options = {}) => {
+export const filter = /** @type {((inputs?: FilterInputs, options?: { locale?: "zh" | "en" }) => LocalizedString) & import('../runtime.js').MessageMetadata<FilterInputs, { locale?: "zh" | "en" }, {}>} */ ((inputs = {}, options = {}) => {
 	const locale = experimentalStaticLocale ?? options.locale ?? getLocale()
-	if (locale === "en") return en_filter(inputs)
-	return zh_filter(inputs)
+	if (locale === "zh") return zh_filter(inputs)
+	return en_filter(inputs)
 });

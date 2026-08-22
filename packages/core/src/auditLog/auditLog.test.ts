@@ -1,7 +1,7 @@
 import { describe, it, expect } from 'vitest'
-import { prisma } from '@shumai/db'
-import { AuditAction } from '@shumai/dtos'
-import { setupTestDbHooks } from '@shumai/db/test'
+import { prisma } from '@zhenyue/db'
+import { AuditAction } from '@zhenyue/dtos'
+import { setupTestDbHooks } from '@zhenyue/db/test'
 import { auditLogService } from './auditLog'
 
 describe('AuditLogService', () => {

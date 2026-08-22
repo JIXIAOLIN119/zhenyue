@@ -5,12 +5,12 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 
 /** @typedef {{}} Name_ColumnInputs */
 
-const en_name_column = /** @type {(inputs: Name_ColumnInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Name`)
-};
-
 const zh_name_column = /** @type {(inputs: Name_ColumnInputs) => LocalizedString} */ () => {
 	return /** @type {LocalizedString} */ (`名称`)
+};
+
+const en_name_column = /** @type {(inputs: Name_ColumnInputs) => LocalizedString} */ () => {
+	return /** @type {LocalizedString} */ (`Name`)
 };
 
 /**
@@ -19,11 +19,11 @@ const zh_name_column = /** @type {(inputs: Name_ColumnInputs) => LocalizedString
 * | "Name" |
 *
 * @param {Name_ColumnInputs} inputs
-* @param {{ locale?: "en" | "zh" }} options
+* @param {{ locale?: "zh" | "en" }} options
 * @returns {LocalizedString}
 */
-export const name_column = /** @type {((inputs?: Name_ColumnInputs, options?: { locale?: "en" | "zh" }) => LocalizedString) & import('../runtime.js').MessageMetadata<Name_ColumnInputs, { locale?: "en" | "zh" }, {}>} */ ((inputs = {}, options = {}) => {
+export const name_column = /** @type {((inputs?: Name_ColumnInputs, options?: { locale?: "zh" | "en" }) => LocalizedString) & import('../runtime.js').MessageMetadata<Name_ColumnInputs, { locale?: "zh" | "en" }, {}>} */ ((inputs = {}, options = {}) => {
 	const locale = experimentalStaticLocale ?? options.locale ?? getLocale()
-	if (locale === "en") return en_name_column(inputs)
-	return zh_name_column(inputs)
+	if (locale === "zh") return zh_name_column(inputs)
+	return en_name_column(inputs)
 });

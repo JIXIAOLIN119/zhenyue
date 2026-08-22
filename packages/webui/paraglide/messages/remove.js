@@ -5,12 +5,12 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 
 /** @typedef {{}} RemoveInputs */
 
-const en_remove = /** @type {(inputs: RemoveInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Remove`)
-};
-
 const zh_remove = /** @type {(inputs: RemoveInputs) => LocalizedString} */ () => {
 	return /** @type {LocalizedString} */ (`移除`)
+};
+
+const en_remove = /** @type {(inputs: RemoveInputs) => LocalizedString} */ () => {
+	return /** @type {LocalizedString} */ (`Remove`)
 };
 
 /**
@@ -19,11 +19,11 @@ const zh_remove = /** @type {(inputs: RemoveInputs) => LocalizedString} */ () =>
 * | "Remove" |
 *
 * @param {RemoveInputs} inputs
-* @param {{ locale?: "en" | "zh" }} options
+* @param {{ locale?: "zh" | "en" }} options
 * @returns {LocalizedString}
 */
-export const remove = /** @type {((inputs?: RemoveInputs, options?: { locale?: "en" | "zh" }) => LocalizedString) & import('../runtime.js').MessageMetadata<RemoveInputs, { locale?: "en" | "zh" }, {}>} */ ((inputs = {}, options = {}) => {
+export const remove = /** @type {((inputs?: RemoveInputs, options?: { locale?: "zh" | "en" }) => LocalizedString) & import('../runtime.js').MessageMetadata<RemoveInputs, { locale?: "zh" | "en" }, {}>} */ ((inputs = {}, options = {}) => {
 	const locale = experimentalStaticLocale ?? options.locale ?? getLocale()
-	if (locale === "en") return en_remove(inputs)
-	return zh_remove(inputs)
+	if (locale === "zh") return zh_remove(inputs)
+	return en_remove(inputs)
 });

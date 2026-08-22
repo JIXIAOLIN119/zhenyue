@@ -1,14 +1,14 @@
 {
-  "name": "@shumai/agent-app",
+  "name": "@zhenyue/agent-app",
   "version": "0.3.9",
   "private": true,
   "type": "module",
   "bin": {
-    "shumai-agent": "./src/index.ts"
+    "zhenyue-agent": "./src/index.ts"
   },
   "dependencies": {
-    "@shumai/agent": "workspace:*",
-    "@shumai/core": "workspace:*",
-    "@shumai/workflow-core": "workspace:*"
+    "@zhenyue/agent": "workspace:*",
+    "@zhenyue/core": "workspace:*",
+    "@zhenyue/workflow-core": "workspace:*"
   }
 }

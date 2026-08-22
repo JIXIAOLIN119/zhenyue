@@ -5,12 +5,12 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 
 /** @typedef {{}} PreviewInputs */
 
-const en_preview = /** @type {(inputs: PreviewInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Preview`)
-};
-
 const zh_preview = /** @type {(inputs: PreviewInputs) => LocalizedString} */ () => {
 	return /** @type {LocalizedString} */ (`预览`)
+};
+
+const en_preview = /** @type {(inputs: PreviewInputs) => LocalizedString} */ () => {
+	return /** @type {LocalizedString} */ (`Preview`)
 };
 
 /**
@@ -19,11 +19,11 @@ const zh_preview = /** @type {(inputs: PreviewInputs) => LocalizedString} */ () 
 * | "Preview" |
 *
 * @param {PreviewInputs} inputs
-* @param {{ locale?: "en" | "zh" }} options
+* @param {{ locale?: "zh" | "en" }} options
 * @returns {LocalizedString}
 */
-export const preview = /** @type {((inputs?: PreviewInputs, options?: { locale?: "en" | "zh" }) => LocalizedString) & import('../runtime.js').MessageMetadata<PreviewInputs, { locale?: "en" | "zh" }, {}>} */ ((inputs = {}, options = {}) => {
+export const preview = /** @type {((inputs?: PreviewInputs, options?: { locale?: "zh" | "en" }) => LocalizedString) & import('../runtime.js').MessageMetadata<PreviewInputs, { locale?: "zh" | "en" }, {}>} */ ((inputs = {}, options = {}) => {
 	const locale = experimentalStaticLocale ?? options.locale ?? getLocale()
-	if (locale === "en") return en_preview(inputs)
-	return zh_preview(inputs)
+	if (locale === "zh") return zh_preview(inputs)
+	return en_preview(inputs)
 });

@@ -1,4 +1,4 @@
-import type { ProjectInfo } from '@shumai/dtos'
+import type { ProjectInfo } from '@zhenyue/dtos'
 import { client } from '@/ui/api/client'
 import { Button } from '@/ui/components/ui/button'
 import {

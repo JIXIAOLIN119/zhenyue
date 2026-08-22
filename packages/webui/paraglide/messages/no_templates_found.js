@@ -5,12 +5,12 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 
 /** @typedef {{}} No_Templates_FoundInputs */
 
-const en_no_templates_found = /** @type {(inputs: No_Templates_FoundInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`No saved templates`)
-};
-
 const zh_no_templates_found = /** @type {(inputs: No_Templates_FoundInputs) => LocalizedString} */ () => {
 	return /** @type {LocalizedString} */ (`没有保存的模板`)
+};
+
+const en_no_templates_found = /** @type {(inputs: No_Templates_FoundInputs) => LocalizedString} */ () => {
+	return /** @type {LocalizedString} */ (`No saved templates`)
 };
 
 /**
@@ -19,11 +19,11 @@ const zh_no_templates_found = /** @type {(inputs: No_Templates_FoundInputs) => L
 * | "No saved templates" |
 *
 * @param {No_Templates_FoundInputs} inputs
-* @param {{ locale?: "en" | "zh" }} options
+* @param {{ locale?: "zh" | "en" }} options
 * @returns {LocalizedString}
 */
-export const no_templates_found = /** @type {((inputs?: No_Templates_FoundInputs, options?: { locale?: "en" | "zh" }) => LocalizedString) & import('../runtime.js').MessageMetadata<No_Templates_FoundInputs, { locale?: "en" | "zh" }, {}>} */ ((inputs = {}, options = {}) => {
+export const no_templates_found = /** @type {((inputs?: No_Templates_FoundInputs, options?: { locale?: "zh" | "en" }) => LocalizedString) & import('../runtime.js').MessageMetadata<No_Templates_FoundInputs, { locale?: "zh" | "en" }, {}>} */ ((inputs = {}, options = {}) => {
 	const locale = experimentalStaticLocale ?? options.locale ?? getLocale()
-	if (locale === "en") return en_no_templates_found(inputs)
-	return zh_no_templates_found(inputs)
+	if (locale === "zh") return zh_no_templates_found(inputs)
+	return en_no_templates_found(inputs)
 });

@@ -4,13 +4,13 @@
 * | "Rename Share Link" |
 *
 * @param {Rename_Share_LinkInputs} inputs
-* @param {{ locale?: "en" | "zh" }} options
+* @param {{ locale?: "zh" | "en" }} options
 * @returns {LocalizedString}
 */
 export const rename_share_link: ((inputs?: Rename_Share_LinkInputs, options?: {
-    locale?: "en" | "zh";
+    locale?: "zh" | "en";
 }) => LocalizedString) & import("../runtime.js").MessageMetadata<Rename_Share_LinkInputs, {
-    locale?: "en" | "zh";
+    locale?: "zh" | "en";
 }, {}>;
 export type LocalizedString = import("../runtime.js").LocalizedString;
 export type Rename_Share_LinkInputs = {};

@@ -5,12 +5,12 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 
 /** @typedef {{}} Failed_Upload_FileInputs */
 
-const en_failed_upload_file = /** @type {(inputs: Failed_Upload_FileInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Failed to upload file`)
-};
-
 const zh_failed_upload_file = /** @type {(inputs: Failed_Upload_FileInputs) => LocalizedString} */ () => {
 	return /** @type {LocalizedString} */ (`上传文件失败`)
+};
+
+const en_failed_upload_file = /** @type {(inputs: Failed_Upload_FileInputs) => LocalizedString} */ () => {
+	return /** @type {LocalizedString} */ (`Failed to upload file`)
 };
 
 /**
@@ -19,11 +19,11 @@ const zh_failed_upload_file = /** @type {(inputs: Failed_Upload_FileInputs) => L
 * | "Failed to upload file" |
 *
 * @param {Failed_Upload_FileInputs} inputs
-* @param {{ locale?: "en" | "zh" }} options
+* @param {{ locale?: "zh" | "en" }} options
 * @returns {LocalizedString}
 */
-export const failed_upload_file = /** @type {((inputs?: Failed_Upload_FileInputs, options?: { locale?: "en" | "zh" }) => LocalizedString) & import('../runtime.js').MessageMetadata<Failed_Upload_FileInputs, { locale?: "en" | "zh" }, {}>} */ ((inputs = {}, options = {}) => {
+export const failed_upload_file = /** @type {((inputs?: Failed_Upload_FileInputs, options?: { locale?: "zh" | "en" }) => LocalizedString) & import('../runtime.js').MessageMetadata<Failed_Upload_FileInputs, { locale?: "zh" | "en" }, {}>} */ ((inputs = {}, options = {}) => {
 	const locale = experimentalStaticLocale ?? options.locale ?? getLocale()
-	if (locale === "en") return en_failed_upload_file(inputs)
-	return zh_failed_upload_file(inputs)
+	if (locale === "zh") return zh_failed_upload_file(inputs)
+	return en_failed_upload_file(inputs)
 });

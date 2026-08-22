@@ -5,12 +5,12 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 
 /** @typedef {{}} Aspect_RatioInputs */
 
-const en_aspect_ratio = /** @type {(inputs: Aspect_RatioInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Aspect Ratio`)
-};
-
 const zh_aspect_ratio = /** @type {(inputs: Aspect_RatioInputs) => LocalizedString} */ () => {
 	return /** @type {LocalizedString} */ (`宽高比`)
+};
+
+const en_aspect_ratio = /** @type {(inputs: Aspect_RatioInputs) => LocalizedString} */ () => {
+	return /** @type {LocalizedString} */ (`Aspect Ratio`)
 };
 
 /**
@@ -19,11 +19,11 @@ const zh_aspect_ratio = /** @type {(inputs: Aspect_RatioInputs) => LocalizedStri
 * | "Aspect Ratio" |
 *
 * @param {Aspect_RatioInputs} inputs
-* @param {{ locale?: "en" | "zh" }} options
+* @param {{ locale?: "zh" | "en" }} options
 * @returns {LocalizedString}
 */
-export const aspect_ratio = /** @type {((inputs?: Aspect_RatioInputs, options?: { locale?: "en" | "zh" }) => LocalizedString) & import('../runtime.js').MessageMetadata<Aspect_RatioInputs, { locale?: "en" | "zh" }, {}>} */ ((inputs = {}, options = {}) => {
+export const aspect_ratio = /** @type {((inputs?: Aspect_RatioInputs, options?: { locale?: "zh" | "en" }) => LocalizedString) & import('../runtime.js').MessageMetadata<Aspect_RatioInputs, { locale?: "zh" | "en" }, {}>} */ ((inputs = {}, options = {}) => {
 	const locale = experimentalStaticLocale ?? options.locale ?? getLocale()
-	if (locale === "en") return en_aspect_ratio(inputs)
-	return zh_aspect_ratio(inputs)
+	if (locale === "zh") return zh_aspect_ratio(inputs)
+	return en_aspect_ratio(inputs)
 });

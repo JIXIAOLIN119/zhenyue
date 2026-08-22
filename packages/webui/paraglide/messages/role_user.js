@@ -5,12 +5,12 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 
 /** @typedef {{}} Role_UserInputs */
 
-const en_role_user = /** @type {(inputs: Role_UserInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`User`)
-};
-
 const zh_role_user = /** @type {(inputs: Role_UserInputs) => LocalizedString} */ () => {
 	return /** @type {LocalizedString} */ (`用户`)
+};
+
+const en_role_user = /** @type {(inputs: Role_UserInputs) => LocalizedString} */ () => {
+	return /** @type {LocalizedString} */ (`User`)
 };
 
 /**
@@ -19,11 +19,11 @@ const zh_role_user = /** @type {(inputs: Role_UserInputs) => LocalizedString} */
 * | "User" |
 *
 * @param {Role_UserInputs} inputs
-* @param {{ locale?: "en" | "zh" }} options
+* @param {{ locale?: "zh" | "en" }} options
 * @returns {LocalizedString}
 */
-export const role_user = /** @type {((inputs?: Role_UserInputs, options?: { locale?: "en" | "zh" }) => LocalizedString) & import('../runtime.js').MessageMetadata<Role_UserInputs, { locale?: "en" | "zh" }, {}>} */ ((inputs = {}, options = {}) => {
+export const role_user = /** @type {((inputs?: Role_UserInputs, options?: { locale?: "zh" | "en" }) => LocalizedString) & import('../runtime.js').MessageMetadata<Role_UserInputs, { locale?: "zh" | "en" }, {}>} */ ((inputs = {}, options = {}) => {
 	const locale = experimentalStaticLocale ?? options.locale ?? getLocale()
-	if (locale === "en") return en_role_user(inputs)
-	return zh_role_user(inputs)
+	if (locale === "zh") return zh_role_user(inputs)
+	return en_role_user(inputs)
 });

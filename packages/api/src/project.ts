@@ -1,9 +1,9 @@
 import { Hono } from 'hono'
 import { zValidator } from '@hono/zod-validator'
-import { authzService, Permission, ResourceType } from '@shumai/core/src/authz/authz'
-import { projectService } from '@shumai/core/src/project/project'
-import { assetService } from '@shumai/core/src/asset/asset'
-import { reparentAssetsRequestSchema, copyAssetsRequestSchema } from '@shumai/dtos'
+import { authzService, Permission, ResourceType } from '@zhenyue/core/src/authz/authz'
+import { projectService } from '@zhenyue/core/src/project/project'
+import { assetService } from '@zhenyue/core/src/asset/asset'
+import { reparentAssetsRequestSchema, copyAssetsRequestSchema } from '@zhenyue/dtos'
 import {
   createProjectRequestSchema,
   updateProjectRequestSchema,
@@ -11,10 +11,10 @@ import {
   recentlyDeletedRequestSchema,
   updateProjectMemberRoleRequestSchema,
   addProjectMemberRequestSchema,
-} from '@shumai/dtos'
-import { listMembersQuerySchema, paginationParamsSchema, AuditAction } from '@shumai/dtos'
-import type { Prisma } from '@shumai/db'
-import { auditLogService } from '@shumai/core/src/auditLog/auditLog'
+} from '@zhenyue/dtos'
+import { listMembersQuerySchema, paginationParamsSchema, AuditAction } from '@zhenyue/dtos'
+import type { Prisma } from '@zhenyue/db'
+import { auditLogService } from '@zhenyue/core/src/auditLog/auditLog'
 
 type User = Prisma.UserGetPayload<Record<string, never>>
 

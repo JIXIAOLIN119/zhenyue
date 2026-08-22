@@ -5,11 +5,11 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 
 /** @typedef {{}} AiInputs */
 
-const en_ai = /** @type {(inputs: AiInputs) => LocalizedString} */ () => {
+const zh_ai = /** @type {(inputs: AiInputs) => LocalizedString} */ () => {
 	return /** @type {LocalizedString} */ (`AI`)
 };
 
-const zh_ai = /** @type {(inputs: AiInputs) => LocalizedString} */ () => {
+const en_ai = /** @type {(inputs: AiInputs) => LocalizedString} */ () => {
 	return /** @type {LocalizedString} */ (`AI`)
 };
 
@@ -19,11 +19,11 @@ const zh_ai = /** @type {(inputs: AiInputs) => LocalizedString} */ () => {
 * | "AI" |
 *
 * @param {AiInputs} inputs
-* @param {{ locale?: "en" | "zh" }} options
+* @param {{ locale?: "zh" | "en" }} options
 * @returns {LocalizedString}
 */
-export const ai = /** @type {((inputs?: AiInputs, options?: { locale?: "en" | "zh" }) => LocalizedString) & import('../runtime.js').MessageMetadata<AiInputs, { locale?: "en" | "zh" }, {}>} */ ((inputs = {}, options = {}) => {
+export const ai = /** @type {((inputs?: AiInputs, options?: { locale?: "zh" | "en" }) => LocalizedString) & import('../runtime.js').MessageMetadata<AiInputs, { locale?: "zh" | "en" }, {}>} */ ((inputs = {}, options = {}) => {
 	const locale = experimentalStaticLocale ?? options.locale ?? getLocale()
-	if (locale === "en") return en_ai(inputs)
-	return zh_ai(inputs)
+	if (locale === "zh") return zh_ai(inputs)
+	return en_ai(inputs)
 });

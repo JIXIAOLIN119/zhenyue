@@ -5,12 +5,12 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 
 /** @typedef {{}} Mcp_ToolsInputs */
 
-const en_mcp_tools = /** @type {(inputs: Mcp_ToolsInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`MCP Tools`)
-};
-
 const zh_mcp_tools = /** @type {(inputs: Mcp_ToolsInputs) => LocalizedString} */ () => {
 	return /** @type {LocalizedString} */ (`MCP 工具`)
+};
+
+const en_mcp_tools = /** @type {(inputs: Mcp_ToolsInputs) => LocalizedString} */ () => {
+	return /** @type {LocalizedString} */ (`MCP Tools`)
 };
 
 /**
@@ -19,11 +19,11 @@ const zh_mcp_tools = /** @type {(inputs: Mcp_ToolsInputs) => LocalizedString} */
 * | "MCP Tools" |
 *
 * @param {Mcp_ToolsInputs} inputs
-* @param {{ locale?: "en" | "zh" }} options
+* @param {{ locale?: "zh" | "en" }} options
 * @returns {LocalizedString}
 */
-export const mcp_tools = /** @type {((inputs?: Mcp_ToolsInputs, options?: { locale?: "en" | "zh" }) => LocalizedString) & import('../runtime.js').MessageMetadata<Mcp_ToolsInputs, { locale?: "en" | "zh" }, {}>} */ ((inputs = {}, options = {}) => {
+export const mcp_tools = /** @type {((inputs?: Mcp_ToolsInputs, options?: { locale?: "zh" | "en" }) => LocalizedString) & import('../runtime.js').MessageMetadata<Mcp_ToolsInputs, { locale?: "zh" | "en" }, {}>} */ ((inputs = {}, options = {}) => {
 	const locale = experimentalStaticLocale ?? options.locale ?? getLocale()
-	if (locale === "en") return en_mcp_tools(inputs)
-	return zh_mcp_tools(inputs)
+	if (locale === "zh") return zh_mcp_tools(inputs)
+	return en_mcp_tools(inputs)
 });

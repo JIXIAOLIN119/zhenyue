@@ -5,12 +5,12 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 
 /** @typedef {{}} Updated_AgoInputs */
 
-const en_updated_ago = /** @type {(inputs: Updated_AgoInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Updated`)
-};
-
 const zh_updated_ago = /** @type {(inputs: Updated_AgoInputs) => LocalizedString} */ () => {
 	return /** @type {LocalizedString} */ (`更新于`)
+};
+
+const en_updated_ago = /** @type {(inputs: Updated_AgoInputs) => LocalizedString} */ () => {
+	return /** @type {LocalizedString} */ (`Updated`)
 };
 
 /**
@@ -19,11 +19,11 @@ const zh_updated_ago = /** @type {(inputs: Updated_AgoInputs) => LocalizedString
 * | "Updated" |
 *
 * @param {Updated_AgoInputs} inputs
-* @param {{ locale?: "en" | "zh" }} options
+* @param {{ locale?: "zh" | "en" }} options
 * @returns {LocalizedString}
 */
-export const updated_ago = /** @type {((inputs?: Updated_AgoInputs, options?: { locale?: "en" | "zh" }) => LocalizedString) & import('../runtime.js').MessageMetadata<Updated_AgoInputs, { locale?: "en" | "zh" }, {}>} */ ((inputs = {}, options = {}) => {
+export const updated_ago = /** @type {((inputs?: Updated_AgoInputs, options?: { locale?: "zh" | "en" }) => LocalizedString) & import('../runtime.js').MessageMetadata<Updated_AgoInputs, { locale?: "zh" | "en" }, {}>} */ ((inputs = {}, options = {}) => {
 	const locale = experimentalStaticLocale ?? options.locale ?? getLocale()
-	if (locale === "en") return en_updated_ago(inputs)
-	return zh_updated_ago(inputs)
+	if (locale === "zh") return zh_updated_ago(inputs)
+	return en_updated_ago(inputs)
 });

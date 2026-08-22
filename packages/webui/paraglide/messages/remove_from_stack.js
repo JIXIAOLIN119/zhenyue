@@ -5,12 +5,12 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 
 /** @typedef {{}} Remove_From_StackInputs */
 
-const en_remove_from_stack = /** @type {(inputs: Remove_From_StackInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Remove from stack`)
-};
-
 const zh_remove_from_stack = /** @type {(inputs: Remove_From_StackInputs) => LocalizedString} */ () => {
 	return /** @type {LocalizedString} */ (`从版本堆栈中移除`)
+};
+
+const en_remove_from_stack = /** @type {(inputs: Remove_From_StackInputs) => LocalizedString} */ () => {
+	return /** @type {LocalizedString} */ (`Remove from stack`)
 };
 
 /**
@@ -19,11 +19,11 @@ const zh_remove_from_stack = /** @type {(inputs: Remove_From_StackInputs) => Loc
 * | "Remove from stack" |
 *
 * @param {Remove_From_StackInputs} inputs
-* @param {{ locale?: "en" | "zh" }} options
+* @param {{ locale?: "zh" | "en" }} options
 * @returns {LocalizedString}
 */
-export const remove_from_stack = /** @type {((inputs?: Remove_From_StackInputs, options?: { locale?: "en" | "zh" }) => LocalizedString) & import('../runtime.js').MessageMetadata<Remove_From_StackInputs, { locale?: "en" | "zh" }, {}>} */ ((inputs = {}, options = {}) => {
+export const remove_from_stack = /** @type {((inputs?: Remove_From_StackInputs, options?: { locale?: "zh" | "en" }) => LocalizedString) & import('../runtime.js').MessageMetadata<Remove_From_StackInputs, { locale?: "zh" | "en" }, {}>} */ ((inputs = {}, options = {}) => {
 	const locale = experimentalStaticLocale ?? options.locale ?? getLocale()
-	if (locale === "en") return en_remove_from_stack(inputs)
-	return zh_remove_from_stack(inputs)
+	if (locale === "zh") return zh_remove_from_stack(inputs)
+	return en_remove_from_stack(inputs)
 });

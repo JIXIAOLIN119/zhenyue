@@ -5,12 +5,12 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 
 /** @typedef {{}} DownloadInputs */
 
-const en_download = /** @type {(inputs: DownloadInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Download`)
-};
-
 const zh_download = /** @type {(inputs: DownloadInputs) => LocalizedString} */ () => {
 	return /** @type {LocalizedString} */ (`下载`)
+};
+
+const en_download = /** @type {(inputs: DownloadInputs) => LocalizedString} */ () => {
+	return /** @type {LocalizedString} */ (`Download`)
 };
 
 /**
@@ -19,11 +19,11 @@ const zh_download = /** @type {(inputs: DownloadInputs) => LocalizedString} */ (
 * | "Download" |
 *
 * @param {DownloadInputs} inputs
-* @param {{ locale?: "en" | "zh" }} options
+* @param {{ locale?: "zh" | "en" }} options
 * @returns {LocalizedString}
 */
-export const download = /** @type {((inputs?: DownloadInputs, options?: { locale?: "en" | "zh" }) => LocalizedString) & import('../runtime.js').MessageMetadata<DownloadInputs, { locale?: "en" | "zh" }, {}>} */ ((inputs = {}, options = {}) => {
+export const download = /** @type {((inputs?: DownloadInputs, options?: { locale?: "zh" | "en" }) => LocalizedString) & import('../runtime.js').MessageMetadata<DownloadInputs, { locale?: "zh" | "en" }, {}>} */ ((inputs = {}, options = {}) => {
 	const locale = experimentalStaticLocale ?? options.locale ?? getLocale()
-	if (locale === "en") return en_download(inputs)
-	return zh_download(inputs)
+	if (locale === "zh") return zh_download(inputs)
+	return en_download(inputs)
 });

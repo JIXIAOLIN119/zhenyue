@@ -1,6 +1,6 @@
-import { prisma } from '@shumai/db'
-import { setupTestDbHooks } from '@shumai/db/test'
-import { teamService } from '@shumai/core/src/team/team'
+import { prisma } from '@zhenyue/db'
+import { setupTestDbHooks } from '@zhenyue/db/test'
+import { teamService } from '@zhenyue/core/src/team/team'
 import { describe, expect, it } from 'vitest'
 
 describe('TeamService', () => {
@@ -208,7 +208,7 @@ describe('TeamService', () => {
     const botReviewer = await prisma.user.create({
       data: {
         name: 'Bot All Users',
-        email: `bot-rev-${Date.now()}@shumai.ai`,
+        email: `bot-rev-${Date.now()}@zhenyue.ai`,
         type: 'agent',
         agent: {
           create: {
@@ -226,7 +226,7 @@ describe('TeamService', () => {
     const botEditor = await prisma.user.create({
       data: {
         name: 'Bot Editor Only',
-        email: `bot-ed-${Date.now()}@shumai.ai`,
+        email: `bot-ed-${Date.now()}@zhenyue.ai`,
         type: 'agent',
         agent: {
           create: {
@@ -244,7 +244,7 @@ describe('TeamService', () => {
     const botOwner = await prisma.user.create({
       data: {
         name: 'Bot Owner Only',
-        email: `bot-own-${Date.now()}@shumai.ai`,
+        email: `bot-own-${Date.now()}@zhenyue.ai`,
         type: 'agent',
         agent: {
           create: {

@@ -5,12 +5,12 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 
 /** @typedef {{}} Activity_NotificationsInputs */
 
-const en_activity_notifications = /** @type {(inputs: Activity_NotificationsInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Activity Notifications`)
-};
-
 const zh_activity_notifications = /** @type {(inputs: Activity_NotificationsInputs) => LocalizedString} */ () => {
 	return /** @type {LocalizedString} */ (`活动通知`)
+};
+
+const en_activity_notifications = /** @type {(inputs: Activity_NotificationsInputs) => LocalizedString} */ () => {
+	return /** @type {LocalizedString} */ (`Activity Notifications`)
 };
 
 /**
@@ -19,11 +19,11 @@ const zh_activity_notifications = /** @type {(inputs: Activity_NotificationsInpu
 * | "Activity Notifications" |
 *
 * @param {Activity_NotificationsInputs} inputs
-* @param {{ locale?: "en" | "zh" }} options
+* @param {{ locale?: "zh" | "en" }} options
 * @returns {LocalizedString}
 */
-export const activity_notifications = /** @type {((inputs?: Activity_NotificationsInputs, options?: { locale?: "en" | "zh" }) => LocalizedString) & import('../runtime.js').MessageMetadata<Activity_NotificationsInputs, { locale?: "en" | "zh" }, {}>} */ ((inputs = {}, options = {}) => {
+export const activity_notifications = /** @type {((inputs?: Activity_NotificationsInputs, options?: { locale?: "zh" | "en" }) => LocalizedString) & import('../runtime.js').MessageMetadata<Activity_NotificationsInputs, { locale?: "zh" | "en" }, {}>} */ ((inputs = {}, options = {}) => {
 	const locale = experimentalStaticLocale ?? options.locale ?? getLocale()
-	if (locale === "en") return en_activity_notifications(inputs)
-	return zh_activity_notifications(inputs)
+	if (locale === "zh") return zh_activity_notifications(inputs)
+	return en_activity_notifications(inputs)
 });

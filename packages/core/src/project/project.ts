@@ -1,10 +1,10 @@
-import { prisma } from '@shumai/db'
-import { Prisma } from '@shumai/db'
-import { s3Service } from '@shumai/core/src/s3/s3'
-import { paginateQuery, PaginatedData } from '@shumai/core/src/pagination'
-import { getAvatarUrl } from '@shumai/core/src/user/avatar'
-import { getAllowedAgentRoles } from '@shumai/core/src/agent/permissions'
-import { resolveEffectiveRole } from '@shumai/core/src/authz/authz'
+import { prisma } from '@zhenyue/db'
+import { Prisma } from '@zhenyue/db'
+import { s3Service } from '@zhenyue/core/src/s3/s3'
+import { paginateQuery, PaginatedData } from '@zhenyue/core/src/pagination'
+import { getAvatarUrl } from '@zhenyue/core/src/user/avatar'
+import { getAllowedAgentRoles } from '@zhenyue/core/src/agent/permissions'
+import { resolveEffectiveRole } from '@zhenyue/core/src/authz/authz'
 import {
   ServiceCreateProjectRequest,
   ServiceUpdateProjectRequest,
@@ -14,7 +14,7 @@ import {
   ServiceUpdateProjectMemberRoleRequest,
   ProjectInfo,
   ProjectUserInfo,
-} from '@shumai/dtos'
+} from '@zhenyue/dtos'
 
 export class ProjectService {
   async createProject(
@@ -184,7 +184,7 @@ export class ProjectService {
         take: limit - allProjects.length,
         include: { rootFolder: true },
       })
-      const infos = await Promise.all(teamProjects.map((p) => this.toProjectInfo(p)))
+      const infos = await Promise.all(teamProjects.map((p) => this.toProjectInfo(p, false)))
       allProjects.push(...infos)
       if (allProjects.length >= limit) {
         break
@@ -377,7 +377,7 @@ export class ProjectService {
 
     // Synchronously delete the project's cover image if it exists
     if (project.coverImageKey) {
-      const bucket = process.env.S3_BUCKET || 'shumai'
+      const bucket = process.env.S3_BUCKET || 'zhenyue'
       try {
         await s3Service.deleteObject(bucket, project.coverImageKey)
       } catch (e: unknown) {
@@ -502,8 +502,22 @@ export class ProjectService {
     }
   }
 
+  private async getAutoCoverKey(projectId: string): Promise<string | null> {
+    const candidates = await prisma.asset.findMany({
+      where: { projectId, isDeleted: false, type: 'file' },
+      orderBy: [{ sortIndex: 'asc' }, { createdAt: 'asc' }],
+      select: { media: true },
+      take: 50,
+    })
+    for (const candidate of candidates) {
+      const key = candidate.media?.thumbnail?.key ?? candidate.media?.poster?.key
+      if (key) return key
+    }
+    return null
+  }
+
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  private async toProjectInfo(p: any): Promise<ProjectInfo> {
+  private async toProjectInfo(p: any, resolveAutoCover = true): Promise<ProjectInfo> {
     const pi: ProjectInfo = {
       id: p.id,
       name: p.name,
@@ -519,10 +533,14 @@ export class ProjectService {
       pi.rootFolder = p.rootFolder.id
     }
 
-    if (p.coverImageKey) {
+    let coverKey = p.coverImageKey || undefined
+    if (!coverKey && resolveAutoCover) {
+      coverKey = (await this.getAutoCoverKey(p.id)) || undefined
+    }
+    if (coverKey) {
       try {
-        const bucket = process.env.S3_BUCKET || 'shumai'
-        const url = await s3Service.presign(bucket, p.coverImageKey, 'GET')
+        const bucket = process.env.S3_BUCKET || 'zhenyue'
+        const url = await s3Service.presign(bucket, coverKey, 'GET')
         pi.coverImage = url
       } catch (e: unknown) {
         // eslint-disable-next-line @typescript-eslint/no-unused-vars

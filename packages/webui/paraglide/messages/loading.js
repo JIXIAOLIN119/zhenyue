@@ -5,12 +5,12 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 
 /** @typedef {{}} LoadingInputs */
 
-const en_loading = /** @type {(inputs: LoadingInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Loading...`)
-};
-
 const zh_loading = /** @type {(inputs: LoadingInputs) => LocalizedString} */ () => {
 	return /** @type {LocalizedString} */ (`加载中...`)
+};
+
+const en_loading = /** @type {(inputs: LoadingInputs) => LocalizedString} */ () => {
+	return /** @type {LocalizedString} */ (`Loading...`)
 };
 
 /**
@@ -19,11 +19,11 @@ const zh_loading = /** @type {(inputs: LoadingInputs) => LocalizedString} */ () 
 * | "Loading..." |
 *
 * @param {LoadingInputs} inputs
-* @param {{ locale?: "en" | "zh" }} options
+* @param {{ locale?: "zh" | "en" }} options
 * @returns {LocalizedString}
 */
-export const loading = /** @type {((inputs?: LoadingInputs, options?: { locale?: "en" | "zh" }) => LocalizedString) & import('../runtime.js').MessageMetadata<LoadingInputs, { locale?: "en" | "zh" }, {}>} */ ((inputs = {}, options = {}) => {
+export const loading = /** @type {((inputs?: LoadingInputs, options?: { locale?: "zh" | "en" }) => LocalizedString) & import('../runtime.js').MessageMetadata<LoadingInputs, { locale?: "zh" | "en" }, {}>} */ ((inputs = {}, options = {}) => {
 	const locale = experimentalStaticLocale ?? options.locale ?? getLocale()
-	if (locale === "en") return en_loading(inputs)
-	return zh_loading(inputs)
+	if (locale === "zh") return zh_loading(inputs)
+	return en_loading(inputs)
 });

@@ -15,7 +15,7 @@ import type {
   SearchCondition,
   SearchSort,
   ShareLinkInfo,
-} from '@shumai/dtos'
+} from '@zhenyue/dtos'
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
 import { useNavigate } from '@tanstack/react-router'
 import { AlertTriangle, Download, Loader2 } from 'lucide-react'

@@ -1,5 +1,5 @@
-import { prisma } from '@shumai/db'
-import { WorkflowTaskStatus, AssetStatus, AssetType, Prisma } from '@shumai/db'
+import { prisma } from '@zhenyue/db'
+import { WorkflowTaskStatus, AssetStatus, AssetType, Prisma } from '@zhenyue/db'
 
 export async function getTranscodeWorkerQueueActivity(): Promise<string> {
   return 'transcode_queue'

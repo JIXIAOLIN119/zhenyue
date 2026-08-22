@@ -18,7 +18,7 @@ import {
   ShareLinkInfo,
   UpdateShareLinkRequest,
   type FieldInfo as MetadataFieldInfo,
-} from '@shumai/dtos'
+} from '@zhenyue/dtos'
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
 import {
   ArrowDownUp,

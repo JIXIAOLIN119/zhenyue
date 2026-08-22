@@ -3,14 +3,14 @@ import { Hono } from 'hono'
 import shareRoute from './share'
 import publicShareRoute from './public-share'
 import { authMiddleware } from './middleware/auth'
-import { shareService } from '@shumai/core/src/share/share'
-import { assetService } from '@shumai/core/src/asset/asset'
-import { authzService, Permission, ResourceType } from '@shumai/core/src/authz/authz'
-import { ShareLinkPasswordInvalidError, ShareLinkExpiredError } from '@shumai/core/src/share/errors'
+import { shareService } from '@zhenyue/core/src/share/share'
+import { assetService } from '@zhenyue/core/src/asset/asset'
+import { authzService, Permission, ResourceType } from '@zhenyue/core/src/authz/authz'
+import { ShareLinkPasswordInvalidError, ShareLinkExpiredError } from '@zhenyue/core/src/share/errors'
 
-import { auditLogService } from '@shumai/core/src/auditLog/auditLog'
-import { watermarkService } from '@shumai/core/src/watermark/watermark'
-import { s3Service } from '@shumai/core/src/s3/s3'
+import { auditLogService } from '@zhenyue/core/src/auditLog/auditLog'
+import { watermarkService } from '@zhenyue/core/src/watermark/watermark'
+import { s3Service } from '@zhenyue/core/src/s3/s3'
 
 vi.mock('./middleware/auth', () => ({
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -21,7 +21,7 @@ vi.mock('./middleware/auth', () => ({
   },
 }))
 
-vi.mock('@shumai/core/src/authz/authz', () => ({
+vi.mock('@zhenyue/core/src/authz/authz', () => ({
   authzService: {
     hasPermission: vi.fn().mockResolvedValue(undefined),
   },
@@ -37,13 +37,13 @@ vi.mock('@shumai/core/src/authz/authz', () => ({
   },
 }))
 
-vi.mock('@shumai/core/src/auditLog/auditLog', () => ({
+vi.mock('@zhenyue/core/src/auditLog/auditLog', () => ({
   auditLogService: {
     logAction: vi.fn().mockResolvedValue({}),
   },
 }))
 
-vi.mock('@shumai/core/src/project/project', () => ({
+vi.mock('@zhenyue/core/src/project/project', () => ({
   projectService: {
     getProjectTeam: vi.fn().mockResolvedValue('t1'),
   },
@@ -681,7 +681,7 @@ describe('Share API', () => {
 
   describe('Watermark API', () => {
     test('PUT /shares/:shareId/watermark success', async () => {
-      const { watermarkService } = await import('@shumai/core/src/watermark/watermark')
+      const { watermarkService } = await import('@zhenyue/core/src/watermark/watermark')
       vi.spyOn(watermarkService, 'updateShareLinkWatermark').mockResolvedValue({
         id: 'share1',
         name: 'test-share',
@@ -726,8 +726,8 @@ describe('Share API', () => {
     })
 
     test('PUT /shares/:shareId/watermark conflict 409', async () => {
-      const { watermarkService } = await import('@shumai/core/src/watermark/watermark')
-      const { ShareLinkWatermarkProcessingError } = await import('@shumai/core/src/share/errors')
+      const { watermarkService } = await import('@zhenyue/core/src/watermark/watermark')
+      const { ShareLinkWatermarkProcessingError } = await import('@zhenyue/core/src/share/errors')
       vi.spyOn(watermarkService, 'updateShareLinkWatermark').mockRejectedValue(
         new ShareLinkWatermarkProcessingError(),
       )
@@ -754,7 +754,7 @@ describe('Share API', () => {
     })
 
     test('GET /shares/:shareId/watermark success', async () => {
-      const { watermarkService } = await import('@shumai/core/src/watermark/watermark')
+      const { watermarkService } = await import('@zhenyue/core/src/watermark/watermark')
       vi.spyOn(watermarkService, 'getShareLinkWatermark').mockResolvedValue({
         watermarkStatus: 'ready',
         watermarkConfig: {

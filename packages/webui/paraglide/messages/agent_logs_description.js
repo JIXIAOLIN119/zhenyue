@@ -5,12 +5,12 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 
 /** @typedef {{}} Agent_Logs_DescriptionInputs */
 
-const en_agent_logs_description = /** @type {(inputs: Agent_Logs_DescriptionInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Step-by-step execution trace of the agent's background tasks and tool calls.`)
-};
-
 const zh_agent_logs_description = /** @type {(inputs: Agent_Logs_DescriptionInputs) => LocalizedString} */ () => {
 	return /** @type {LocalizedString} */ (`智能体后台任务和工具调用的逐步执行跟踪。`)
+};
+
+const en_agent_logs_description = /** @type {(inputs: Agent_Logs_DescriptionInputs) => LocalizedString} */ () => {
+	return /** @type {LocalizedString} */ (`Step-by-step execution trace of the agent's background tasks and tool calls.`)
 };
 
 /**
@@ -19,11 +19,11 @@ const zh_agent_logs_description = /** @type {(inputs: Agent_Logs_DescriptionInpu
 * | "Step-by-step execution trace of the agent's background tasks and tool calls." |
 *
 * @param {Agent_Logs_DescriptionInputs} inputs
-* @param {{ locale?: "en" | "zh" }} options
+* @param {{ locale?: "zh" | "en" }} options
 * @returns {LocalizedString}
 */
-export const agent_logs_description = /** @type {((inputs?: Agent_Logs_DescriptionInputs, options?: { locale?: "en" | "zh" }) => LocalizedString) & import('../runtime.js').MessageMetadata<Agent_Logs_DescriptionInputs, { locale?: "en" | "zh" }, {}>} */ ((inputs = {}, options = {}) => {
+export const agent_logs_description = /** @type {((inputs?: Agent_Logs_DescriptionInputs, options?: { locale?: "zh" | "en" }) => LocalizedString) & import('../runtime.js').MessageMetadata<Agent_Logs_DescriptionInputs, { locale?: "zh" | "en" }, {}>} */ ((inputs = {}, options = {}) => {
 	const locale = experimentalStaticLocale ?? options.locale ?? getLocale()
-	if (locale === "en") return en_agent_logs_description(inputs)
-	return zh_agent_logs_description(inputs)
+	if (locale === "zh") return zh_agent_logs_description(inputs)
+	return en_agent_logs_description(inputs)
 });

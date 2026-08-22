@@ -3,7 +3,7 @@ title: Document PDF Conversion with Gotenberg
 description: Convert Office documents, HTML, Markdown, CSV, and TXT files into high-fidelity PDF proxies for in-browser previewing.
 ---
 
-Office documents, HTML pages, Markdown files, spreadsheets, and plain-text files cannot be rendered natively in web browsers. Shumai uses [Gotenberg](https://gotenberg.dev), an open-source, Docker powered conversion API — to turn these files into PDF proxy assets for seamless in-browser previewing.
+Office documents, HTML pages, Markdown files, spreadsheets, and plain-text files cannot be rendered natively in web browsers. ZhenYue uses [Gotenberg](https://gotenberg.dev), an open-source, Docker powered conversion API — to turn these files into PDF proxy assets for seamless in-browser previewing.
 
 Gotenberg performs the conversion using:
 
@@ -14,7 +14,7 @@ Gotenberg performs the conversion using:
 
 ## Supported File Types
 
-When Gotenberg is configured, Shumai automatically generates a PDF proxy for the following uploads:
+When Gotenberg is configured, ZhenYue automatically generates a PDF proxy for the following uploads:
 
 | Category           | Extensions             | Converter   |
 | ------------------ | ---------------------- | ----------- |
@@ -66,7 +66,7 @@ gotenberg:
     - '3000:3000'
 ```
 
-Then point Shumai at it:
+Then point ZhenYue at it:
 
 ```bash
 GOTENBERG_URL=http://localhost:3000
@@ -76,7 +76,7 @@ GOTENBERG_URL=http://localhost:3000
 
 ## Behavior Without Gotenberg
 
-If Gotenberg is not configured or unreachable, Shumai degrades gracefully:
+If Gotenberg is not configured or unreachable, ZhenYue degrades gracefully:
 
 - **Office documents and HTML**: the upload completes as `processed` without a PDF proxy.
 - **CSV, Markdown, and TXT**: a lightweight built-in PDF generator produces the proxy instead, with reduced fidelity.

@@ -2,9 +2,9 @@ import { describe, expect, test, vi, beforeEach } from 'vitest'
 import { Hono } from 'hono'
 import watermarkTemplateRoute from './watermark-template'
 import { authMiddleware } from './middleware/auth'
-import { authzService } from '@shumai/core/src/authz/authz'
-import { watermarkService } from '@shumai/core/src/watermark/watermark'
-import { teamService } from '@shumai/core/src/team/team'
+import { authzService } from '@zhenyue/core/src/authz/authz'
+import { watermarkService } from '@zhenyue/core/src/watermark/watermark'
+import { teamService } from '@zhenyue/core/src/team/team'
 
 vi.mock('./middleware/auth', () => ({
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -15,7 +15,7 @@ vi.mock('./middleware/auth', () => ({
   },
 }))
 
-vi.mock('@shumai/core/src/authz/authz', () => ({
+vi.mock('@zhenyue/core/src/authz/authz', () => ({
   authzService: {
     hasPermission: vi.fn().mockResolvedValue(undefined),
   },

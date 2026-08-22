@@ -5,12 +5,12 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 
 /** @typedef {{}} CloseInputs */
 
-const en_close = /** @type {(inputs: CloseInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Close`)
-};
-
 const zh_close = /** @type {(inputs: CloseInputs) => LocalizedString} */ () => {
 	return /** @type {LocalizedString} */ (`关闭`)
+};
+
+const en_close = /** @type {(inputs: CloseInputs) => LocalizedString} */ () => {
+	return /** @type {LocalizedString} */ (`Close`)
 };
 
 /**
@@ -19,11 +19,11 @@ const zh_close = /** @type {(inputs: CloseInputs) => LocalizedString} */ () => {
 * | "Close" |
 *
 * @param {CloseInputs} inputs
-* @param {{ locale?: "en" | "zh" }} options
+* @param {{ locale?: "zh" | "en" }} options
 * @returns {LocalizedString}
 */
-export const close = /** @type {((inputs?: CloseInputs, options?: { locale?: "en" | "zh" }) => LocalizedString) & import('../runtime.js').MessageMetadata<CloseInputs, { locale?: "en" | "zh" }, {}>} */ ((inputs = {}, options = {}) => {
+export const close = /** @type {((inputs?: CloseInputs, options?: { locale?: "zh" | "en" }) => LocalizedString) & import('../runtime.js').MessageMetadata<CloseInputs, { locale?: "zh" | "en" }, {}>} */ ((inputs = {}, options = {}) => {
 	const locale = experimentalStaticLocale ?? options.locale ?? getLocale()
-	if (locale === "en") return en_close(inputs)
-	return zh_close(inputs)
+	if (locale === "zh") return zh_close(inputs)
+	return en_close(inputs)
 });

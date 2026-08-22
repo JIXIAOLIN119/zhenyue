@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest'
-import { setupTestDbHooks } from '@shumai/db/test'
-import { prisma } from '@shumai/db'
+import { setupTestDbHooks } from '@zhenyue/db/test'
+import { prisma } from '@zhenyue/db'
 import { apiTokenService } from './api-token'
 
 describe('ApiTokenService', () => {
@@ -10,7 +10,7 @@ describe('ApiTokenService', () => {
     const user = await prisma.user.create({
       data: {
         name: 'Test Dev',
-        email: 'dev@shumai.com',
+        email: 'dev@zhenyue.com',
         password: 'password',
       },
     })

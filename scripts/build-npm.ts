@@ -17,7 +17,7 @@ if (existsSync(distDir)) {
 await mkdir(distDir, { recursive: true })
 
 const dummyRunnerPath = path.join(distDir, 'dummy-runner.ts')
-await writeFile(dummyRunnerPath, '// Shumai Runner Stub\n', 'utf-8')
+await writeFile(dummyRunnerPath, '// ZhenYue Runner Stub\n', 'utf-8')
 
 const rootPackageJson = JSON.parse(await Bun.file('package.json').text())
 const version = rootPackageJson.version || '0.1.0'
@@ -170,7 +170,7 @@ async function buildPlatformPackages(
 ) {
   for (const target of targets) {
     const dirName = `${appName}-${target.platform}-${target.arch}`
-    const npmName = `@shumai-one/${appName}-${target.platform}-${target.arch}`
+    const npmName = `@zhenyue-one/${appName}-${target.platform}-${target.arch}`
     const pkgOutDir = path.join(distDir, dirName)
     const binOutDir = path.join(pkgOutDir, 'bin')
     const binaryName = appName + target.suffix
@@ -277,22 +277,22 @@ let pkgName = ''
 let binaryName = ''
 
 if (platform === 'darwin' && arch === 'arm64') {
-  pkgName = '@shumai-one/${appName}-darwin-arm64'
+  pkgName = '@zhenyue-one/${appName}-darwin-arm64'
   binaryName = '${appName}'
 } else if (platform === 'darwin' && arch === 'x64') {
-  pkgName = '@shumai-one/${appName}-darwin-x64'
+  pkgName = '@zhenyue-one/${appName}-darwin-x64'
   binaryName = '${appName}'
 } else if (platform === 'linux' && arch === 'arm64') {
-  pkgName = '@shumai-one/${appName}-linux-arm64'
+  pkgName = '@zhenyue-one/${appName}-linux-arm64'
   binaryName = '${appName}'
 } else if (platform === 'linux' && arch === 'x64') {
-  pkgName = '@shumai-one/${appName}-linux-x64'
+  pkgName = '@zhenyue-one/${appName}-linux-x64'
   binaryName = '${appName}'
 } else if (platform === 'win32' && arch === 'arm64') {
-  pkgName = '@shumai-one/${appName}-win32-arm64'
+  pkgName = '@zhenyue-one/${appName}-win32-arm64'
   binaryName = '${appName}.exe'
 } else if (platform === 'win32' && arch === 'x64') {
-  pkgName = '@shumai-one/${appName}-win32-x64'
+  pkgName = '@zhenyue-one/${appName}-win32-x64'
   binaryName = '${appName}.exe'
 } else {
   console.error(\`Unsupported platform/architecture: \${platform}/\${arch}\`)
@@ -365,7 +365,7 @@ function loadEnv() {
           }
         }
       } catch (err) {
-        console.error('⚠️ [shumai] Error reading env file:', err)
+        console.error('⚠️ [zhenyue] Error reading env file:', err)
       }
     }
   }
@@ -458,7 +458,7 @@ export default defineConfig({
 
   // Generate package.json
   const optionalDependencies = Object.fromEntries(
-    targets.map((t) => [`@shumai-one/${appName}-${t.platform}-${t.arch}`, version]),
+    targets.map((t) => [`@zhenyue-one/${appName}-${t.platform}-${t.arch}`, version]),
   )
 
   const dependencies = {
@@ -467,7 +467,7 @@ export default defineConfig({
   }
 
   const packageJson = {
-    name: `@shumai-one/${appName}`,
+    name: `@zhenyue-one/${appName}`,
     version,
     description,
     type: 'module',
@@ -487,58 +487,58 @@ export default defineConfig({
   )
 }
 
-// 2. Build shumai (Main app & platform binaries)
-const shumaiPlugins = [
+// 2. Build zhenyue (Main app & platform binaries)
+const zhenyuePlugins = [
   temporalWorkflow({
     bundleOptions: {},
   }),
   tailwindPlugin,
 ]
-const shumaiExternal = commonExternal.filter((dep) => dep !== 'zod')
-await buildPlatformPackages('shumai', dummyRunnerPath, shumaiPlugins, shumaiExternal)
+const zhenyueExternal = commonExternal.filter((dep) => dep !== 'zod')
+await buildPlatformPackages('zhenyue', dummyRunnerPath, zhenyuePlugins, zhenyueExternal)
 await buildMainPackage({
-  appName: 'shumai',
+  appName: 'zhenyue',
   description: 'A fullstack AI-powered media workspace and workflow engine',
   hasPrisma: true,
   entrypoint: './apps/web/src/index.ts',
-  plugins: shumaiPlugins,
-  external: shumaiExternal,
+  plugins: zhenyuePlugins,
+  external: zhenyueExternal,
 })
 
-// 3. Build shumai-agent (Agent app & platform binaries)
+// 3. Build zhenyue-agent (Agent app & platform binaries)
 const agentPlugins = [
   temporalWorkflow({
     bundleOptions: {},
   }),
 ]
-await buildPlatformPackages('shumai-agent', dummyRunnerPath)
+await buildPlatformPackages('zhenyue-agent', dummyRunnerPath)
 await buildMainPackage({
-  appName: 'shumai-agent',
-  description: 'AI worker agent for the shumai media workspace',
+  appName: 'zhenyue-agent',
+  description: 'AI worker agent for the zhenyue media workspace',
   hasPrisma: true,
   entrypoint: './apps/agent/src/index.ts',
   plugins: agentPlugins,
 })
 
-// 4. Build shumai-transcode (Transcode app & platform binaries)
+// 4. Build zhenyue-transcode (Transcode app & platform binaries)
 const transcodePlugins = [
   temporalWorkflow({
     bundleOptions: {},
   }),
 ]
-await buildPlatformPackages('shumai-transcode', dummyRunnerPath)
+await buildPlatformPackages('zhenyue-transcode', dummyRunnerPath)
 await buildMainPackage({
-  appName: 'shumai-transcode',
-  description: 'Media transcoding worker for the shumai media workspace',
+  appName: 'zhenyue-transcode',
+  description: 'Media transcoding worker for the zhenyue media workspace',
   hasPrisma: true,
   entrypoint: './apps/transcode/src/index.ts',
   plugins: transcodePlugins,
 })
 
-// 5. Build shumai-cli (pure Node.js bundle)
+// 5. Build zhenyue-cli (pure Node.js bundle)
 async function buildCliPackage() {
-  console.log('\n📄 Packaging CLI app shumai-cli...')
-  const cliOutDir = path.join(distDir, 'shumai-cli')
+  console.log('\n📄 Packaging CLI app zhenyue-cli...')
+  const cliOutDir = path.join(distDir, 'zhenyue-cli')
   const binOutDir = path.join(cliOutDir, 'bin')
   await mkdir(binOutDir, { recursive: true })
 
@@ -548,7 +548,7 @@ async function buildCliPackage() {
     target: 'node',
     outdir: binOutDir,
     minify: true,
-    naming: 'shumai-cli.js',
+    naming: 'zhenyue-cli.js',
     external: [],
     define: {
       'process.env.NODE_ENV': JSON.stringify('production'),
@@ -556,7 +556,7 @@ async function buildCliPackage() {
   })
 
   if (!buildResult.success) {
-    console.error('❌ JS bundling failed for shumai-cli!')
+    console.error('❌ JS bundling failed for zhenyue-cli!')
     for (const log of buildResult.logs) {
       console.error(log)
     }
@@ -564,7 +564,7 @@ async function buildCliPackage() {
   }
 
   // Prepend shebang #!/usr/bin/env node to the output bundle
-  const bundlePath = path.join(binOutDir, 'shumai-cli.js')
+  const bundlePath = path.join(binOutDir, 'zhenyue-cli.js')
   const bundleContent = await Bun.file(bundlePath).text()
   await writeFile(bundlePath, `#!/usr/bin/env node\n${bundleContent}`, {
     encoding: 'utf-8',
@@ -573,12 +573,12 @@ async function buildCliPackage() {
 
   // Generate package.json for CLI
   const packageJson = {
-    name: '@shumai-one/shumai-cli',
+    name: '@zhenyue-one/zhenyue-cli',
     version,
-    description: 'Command line interface for the shumai media workspace',
+    description: 'Command line interface for the zhenyue media workspace',
     type: 'module',
     bin: {
-      'shumai-cli': './bin/shumai-cli.js',
+      'zhenyue-cli': './bin/zhenyue-cli.js',
     },
     files: ['bin'],
     repository: rootPackageJson.repository,

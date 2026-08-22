@@ -1,6 +1,6 @@
 {
   "$schema": "https://mintlify.com/docs.json",
-  "name": "Shumai",
+  "name": "ZhenYue",
   "theme": "mint",
   "logo": {
     "light": "/logo.png",
@@ -23,7 +23,7 @@
         ]
       },
       {
-        "group": "Using Shumai",
+        "group": "Using ZhenYue",
         "pages": [
           "using-shumai/asset-management",
           "using-shumai/comments",
@@ -39,7 +39,7 @@
         ]
       },
       {
-        "group": "Shumai Agent Settings",
+        "group": "ZhenYue Agent Settings",
         "pages": [
           "using-shumai/agent-providers",
           "using-shumai/agents",

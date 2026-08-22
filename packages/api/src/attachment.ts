@@ -1,14 +1,14 @@
 import { Hono } from 'hono'
 import { zValidator } from '@hono/zod-validator'
-import { postAttachmentRequestSchema, AuditAction } from '@shumai/dtos'
-import { assetService } from '@shumai/core/src/asset/asset'
-import { s3Service } from '@shumai/core/src/s3/s3'
-import { auditLogService } from '@shumai/core/src/auditLog/auditLog'
-import { projectService } from '@shumai/core/src/project/project'
-import { AssetType } from '@shumai/db'
+import { postAttachmentRequestSchema, AuditAction } from '@zhenyue/dtos'
+import { assetService } from '@zhenyue/core/src/asset/asset'
+import { s3Service } from '@zhenyue/core/src/s3/s3'
+import { auditLogService } from '@zhenyue/core/src/auditLog/auditLog'
+import { projectService } from '@zhenyue/core/src/project/project'
+import { AssetType } from '@zhenyue/db'
 import { ulid } from 'ulid'
-import { authzService, Permission, ResourceType } from '@shumai/core/src/authz/authz'
-import type { Prisma } from '@shumai/db'
+import { authzService, Permission, ResourceType } from '@zhenyue/core/src/authz/authz'
+import type { Prisma } from '@zhenyue/db'
 
 type User = Prisma.UserGetPayload<Record<string, never>>
 
@@ -50,7 +50,7 @@ const route = new Hono<{ Variables: { user: User } }>().post(
       })
     }
 
-    const uploadUrl = await s3Service.presign(process.env.S3_BUCKET || 'shumai', key, 'PUT')
+    const uploadUrl = await s3Service.presign(process.env.S3_BUCKET || 'zhenyue', key, 'PUT')
 
     return c.json({
       id: assetInfo.id,

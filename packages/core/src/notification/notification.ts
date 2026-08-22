@@ -1,16 +1,16 @@
-import { prisma } from '@shumai/db'
-import type { Prisma } from '@shumai/db'
-import { NotificationType } from '@shumai/db'
+import { prisma } from '@zhenyue/db'
+import type { Prisma } from '@zhenyue/db'
+import { NotificationType } from '@zhenyue/db'
 import {
   NotificationInfo,
   CreateNotificationRequest,
   ListNotificationParams,
   NotificationSettings,
-} from '@shumai/dtos'
-import { paginateQuery, PaginatedData } from '@shumai/core/src/pagination'
-import '@shumai/db/src/prisma-json-types'
-import { s3Service } from '@shumai/core/src/s3/s3'
-import { userMetadataService } from '@shumai/core/src/user-metadata/user-metadata'
+} from '@zhenyue/dtos'
+import { paginateQuery, PaginatedData } from '@zhenyue/core/src/pagination'
+import '@zhenyue/db/src/prisma-json-types'
+import { s3Service } from '@zhenyue/core/src/s3/s3'
+import { userMetadataService } from '@zhenyue/core/src/user-metadata/user-metadata'
 
 const mentionRegex = /<@([^>]+)>/g
 
@@ -378,7 +378,7 @@ export class NotificationService {
       const media = a.media as PrismaJson.MediaInfo | null
 
       if (media) {
-        const bucket = process.env.S3_BUCKET || 'shumai'
+        const bucket = process.env.S3_BUCKET || 'zhenyue'
         try {
           if (media.sprite) {
             previewUrl = await s3Service.presign(bucket, media.sprite.key, 'GET')

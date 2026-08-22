@@ -1,5 +1,5 @@
-import { prisma } from '@shumai/db'
-import { s3Service } from '@shumai/core/src/s3/s3'
+import { prisma } from '@zhenyue/db'
+import { s3Service } from '@zhenyue/core/src/s3/s3'
 import { ulid } from 'ulid'
 import {
   type AgentMessage,
@@ -7,7 +7,7 @@ import {
   type SessionStorage,
   type SessionTreeEntry,
 } from '@earendil-works/pi-agent-core'
-import { agentService } from '@shumai/core/src/agent/agent'
+import { agentService } from '@zhenyue/core/src/agent/agent'
 
 export interface DatabaseSessionMetadata extends SessionMetadata {
   agentId: string
@@ -393,7 +393,7 @@ export class DatabaseSessionStorage implements SessionStorage<DatabaseSessionMet
             if (item.type === 'image' && item.data === '__S3_DATA__' && sourceKeys[keyIdx]) {
               const key = sourceKeys[keyIdx]
               try {
-                const { buffer } = await s3Service.getObject(process.env.S3_BUCKET || 'shumai', key)
+                const { buffer } = await s3Service.getObject(process.env.S3_BUCKET || 'zhenyue', key)
                 item.data = buffer.toString('base64')
               } catch (err) {
                 console.error(`Failed to re-inject image data for key ${key}:`, err)

@@ -1,4 +1,4 @@
-import type { WorkflowTask } from '@shumai/db'
+import type { WorkflowTask } from '@zhenyue/db'
 import { transcodeVideoWorkflow } from './transcode-video'
 import { transcodeImageWorkflow } from './transcode-image'
 import { transcodePdfWorkflow } from './transcode-pdf'

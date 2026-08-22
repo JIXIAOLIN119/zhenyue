@@ -5,12 +5,12 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 
 /** @typedef {{}} InstallInputs */
 
-const en_install = /** @type {(inputs: InstallInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Install`)
-};
-
 const zh_install = /** @type {(inputs: InstallInputs) => LocalizedString} */ () => {
 	return /** @type {LocalizedString} */ (`安装`)
+};
+
+const en_install = /** @type {(inputs: InstallInputs) => LocalizedString} */ () => {
+	return /** @type {LocalizedString} */ (`Install`)
 };
 
 /**
@@ -19,11 +19,11 @@ const zh_install = /** @type {(inputs: InstallInputs) => LocalizedString} */ () 
 * | "Install" |
 *
 * @param {InstallInputs} inputs
-* @param {{ locale?: "en" | "zh" }} options
+* @param {{ locale?: "zh" | "en" }} options
 * @returns {LocalizedString}
 */
-export const install = /** @type {((inputs?: InstallInputs, options?: { locale?: "en" | "zh" }) => LocalizedString) & import('../runtime.js').MessageMetadata<InstallInputs, { locale?: "en" | "zh" }, {}>} */ ((inputs = {}, options = {}) => {
+export const install = /** @type {((inputs?: InstallInputs, options?: { locale?: "zh" | "en" }) => LocalizedString) & import('../runtime.js').MessageMetadata<InstallInputs, { locale?: "zh" | "en" }, {}>} */ ((inputs = {}, options = {}) => {
 	const locale = experimentalStaticLocale ?? options.locale ?? getLocale()
-	if (locale === "en") return en_install(inputs)
-	return zh_install(inputs)
+	if (locale === "zh") return zh_install(inputs)
+	return en_install(inputs)
 });

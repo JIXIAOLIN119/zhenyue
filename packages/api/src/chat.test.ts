@@ -1,12 +1,12 @@
 import { describe, expect, it, vi, beforeEach } from 'vitest'
 import { Hono } from 'hono'
 import chatRoute from './chat'
-import { chatService } from '@shumai/core/src/chat/chat'
-import { authzService } from '@shumai/core/src/authz/authz'
-import type { ChatMessage } from '@shumai/dtos'
+import { chatService } from '@zhenyue/core/src/chat/chat'
+import { authzService } from '@zhenyue/core/src/authz/authz'
+import type { ChatMessage } from '@zhenyue/dtos'
 
-vi.mock('@shumai/core/src/chat/chat', async (importOriginal) => {
-  const original = await importOriginal<typeof import('@shumai/core/src/chat/chat')>()
+vi.mock('@zhenyue/core/src/chat/chat', async (importOriginal) => {
+  const original = await importOriginal<typeof import('@zhenyue/core/src/chat/chat')>()
   return {
     ...original,
     chatService: {
@@ -20,7 +20,7 @@ vi.mock('@shumai/core/src/chat/chat', async (importOriginal) => {
     },
   }
 })
-vi.mock('@shumai/core/src/authz/authz')
+vi.mock('@zhenyue/core/src/authz/authz')
 
 describe('Chat API', () => {
   const app = new Hono<{ Variables: { user: { id: string; name: string } } }>()

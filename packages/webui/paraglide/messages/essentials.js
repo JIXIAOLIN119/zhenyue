@@ -5,12 +5,12 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 
 /** @typedef {{}} EssentialsInputs */
 
-const en_essentials = /** @type {(inputs: EssentialsInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Essentials`)
-};
-
 const zh_essentials = /** @type {(inputs: EssentialsInputs) => LocalizedString} */ () => {
 	return /** @type {LocalizedString} */ (`基本信息`)
+};
+
+const en_essentials = /** @type {(inputs: EssentialsInputs) => LocalizedString} */ () => {
+	return /** @type {LocalizedString} */ (`Essentials`)
 };
 
 /**
@@ -19,11 +19,11 @@ const zh_essentials = /** @type {(inputs: EssentialsInputs) => LocalizedString} 
 * | "Essentials" |
 *
 * @param {EssentialsInputs} inputs
-* @param {{ locale?: "en" | "zh" }} options
+* @param {{ locale?: "zh" | "en" }} options
 * @returns {LocalizedString}
 */
-export const essentials = /** @type {((inputs?: EssentialsInputs, options?: { locale?: "en" | "zh" }) => LocalizedString) & import('../runtime.js').MessageMetadata<EssentialsInputs, { locale?: "en" | "zh" }, {}>} */ ((inputs = {}, options = {}) => {
+export const essentials = /** @type {((inputs?: EssentialsInputs, options?: { locale?: "zh" | "en" }) => LocalizedString) & import('../runtime.js').MessageMetadata<EssentialsInputs, { locale?: "zh" | "en" }, {}>} */ ((inputs = {}, options = {}) => {
 	const locale = experimentalStaticLocale ?? options.locale ?? getLocale()
-	if (locale === "en") return en_essentials(inputs)
-	return zh_essentials(inputs)
+	if (locale === "zh") return zh_essentials(inputs)
+	return en_essentials(inputs)
 });

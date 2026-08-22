@@ -5,12 +5,12 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 
 /** @typedef {{}} Allow_DownloadInputs */
 
-const en_allow_download = /** @type {(inputs: Allow_DownloadInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Allow download`)
-};
-
 const zh_allow_download = /** @type {(inputs: Allow_DownloadInputs) => LocalizedString} */ () => {
 	return /** @type {LocalizedString} */ (`允许下载`)
+};
+
+const en_allow_download = /** @type {(inputs: Allow_DownloadInputs) => LocalizedString} */ () => {
+	return /** @type {LocalizedString} */ (`Allow download`)
 };
 
 /**
@@ -19,11 +19,11 @@ const zh_allow_download = /** @type {(inputs: Allow_DownloadInputs) => Localized
 * | "Allow download" |
 *
 * @param {Allow_DownloadInputs} inputs
-* @param {{ locale?: "en" | "zh" }} options
+* @param {{ locale?: "zh" | "en" }} options
 * @returns {LocalizedString}
 */
-export const allow_download = /** @type {((inputs?: Allow_DownloadInputs, options?: { locale?: "en" | "zh" }) => LocalizedString) & import('../runtime.js').MessageMetadata<Allow_DownloadInputs, { locale?: "en" | "zh" }, {}>} */ ((inputs = {}, options = {}) => {
+export const allow_download = /** @type {((inputs?: Allow_DownloadInputs, options?: { locale?: "zh" | "en" }) => LocalizedString) & import('../runtime.js').MessageMetadata<Allow_DownloadInputs, { locale?: "zh" | "en" }, {}>} */ ((inputs = {}, options = {}) => {
 	const locale = experimentalStaticLocale ?? options.locale ?? getLocale()
-	if (locale === "en") return en_allow_download(inputs)
-	return zh_allow_download(inputs)
+	if (locale === "zh") return zh_allow_download(inputs)
+	return en_allow_download(inputs)
 });

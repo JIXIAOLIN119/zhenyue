@@ -5,12 +5,12 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 
 /** @typedef {{}} Failed_To_Generate_Invite_LinkInputs */
 
-const en_failed_to_generate_invite_link = /** @type {(inputs: Failed_To_Generate_Invite_LinkInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Failed to generate invite link`)
-};
-
 const zh_failed_to_generate_invite_link = /** @type {(inputs: Failed_To_Generate_Invite_LinkInputs) => LocalizedString} */ () => {
 	return /** @type {LocalizedString} */ (`生成邀请链接失败`)
+};
+
+const en_failed_to_generate_invite_link = /** @type {(inputs: Failed_To_Generate_Invite_LinkInputs) => LocalizedString} */ () => {
+	return /** @type {LocalizedString} */ (`Failed to generate invite link`)
 };
 
 /**
@@ -19,11 +19,11 @@ const zh_failed_to_generate_invite_link = /** @type {(inputs: Failed_To_Generate
 * | "Failed to generate invite link" |
 *
 * @param {Failed_To_Generate_Invite_LinkInputs} inputs
-* @param {{ locale?: "en" | "zh" }} options
+* @param {{ locale?: "zh" | "en" }} options
 * @returns {LocalizedString}
 */
-export const failed_to_generate_invite_link = /** @type {((inputs?: Failed_To_Generate_Invite_LinkInputs, options?: { locale?: "en" | "zh" }) => LocalizedString) & import('../runtime.js').MessageMetadata<Failed_To_Generate_Invite_LinkInputs, { locale?: "en" | "zh" }, {}>} */ ((inputs = {}, options = {}) => {
+export const failed_to_generate_invite_link = /** @type {((inputs?: Failed_To_Generate_Invite_LinkInputs, options?: { locale?: "zh" | "en" }) => LocalizedString) & import('../runtime.js').MessageMetadata<Failed_To_Generate_Invite_LinkInputs, { locale?: "zh" | "en" }, {}>} */ ((inputs = {}, options = {}) => {
 	const locale = experimentalStaticLocale ?? options.locale ?? getLocale()
-	if (locale === "en") return en_failed_to_generate_invite_link(inputs)
-	return zh_failed_to_generate_invite_link(inputs)
+	if (locale === "zh") return zh_failed_to_generate_invite_link(inputs)
+	return en_failed_to_generate_invite_link(inputs)
 });

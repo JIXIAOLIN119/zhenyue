@@ -5,12 +5,12 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 
 /** @typedef {{}} ResetInputs */
 
-const en_reset = /** @type {(inputs: ResetInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Reset`)
-};
-
 const zh_reset = /** @type {(inputs: ResetInputs) => LocalizedString} */ () => {
 	return /** @type {LocalizedString} */ (`重置`)
+};
+
+const en_reset = /** @type {(inputs: ResetInputs) => LocalizedString} */ () => {
+	return /** @type {LocalizedString} */ (`Reset`)
 };
 
 /**
@@ -19,11 +19,11 @@ const zh_reset = /** @type {(inputs: ResetInputs) => LocalizedString} */ () => {
 * | "Reset" |
 *
 * @param {ResetInputs} inputs
-* @param {{ locale?: "en" | "zh" }} options
+* @param {{ locale?: "zh" | "en" }} options
 * @returns {LocalizedString}
 */
-export const reset = /** @type {((inputs?: ResetInputs, options?: { locale?: "en" | "zh" }) => LocalizedString) & import('../runtime.js').MessageMetadata<ResetInputs, { locale?: "en" | "zh" }, {}>} */ ((inputs = {}, options = {}) => {
+export const reset = /** @type {((inputs?: ResetInputs, options?: { locale?: "zh" | "en" }) => LocalizedString) & import('../runtime.js').MessageMetadata<ResetInputs, { locale?: "zh" | "en" }, {}>} */ ((inputs = {}, options = {}) => {
 	const locale = experimentalStaticLocale ?? options.locale ?? getLocale()
-	if (locale === "en") return en_reset(inputs)
-	return zh_reset(inputs)
+	if (locale === "zh") return zh_reset(inputs)
+	return en_reset(inputs)
 });

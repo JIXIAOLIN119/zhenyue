@@ -5,12 +5,12 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 
 /** @typedef {{}} Quota_Limit_PlaceholderInputs */
 
-const en_quota_limit_placeholder = /** @type {(inputs: Quota_Limit_PlaceholderInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`e.g. 100000`)
-};
-
 const zh_quota_limit_placeholder = /** @type {(inputs: Quota_Limit_PlaceholderInputs) => LocalizedString} */ () => {
 	return /** @type {LocalizedString} */ (`例如 100000`)
+};
+
+const en_quota_limit_placeholder = /** @type {(inputs: Quota_Limit_PlaceholderInputs) => LocalizedString} */ () => {
+	return /** @type {LocalizedString} */ (`e.g. 100000`)
 };
 
 /**
@@ -19,11 +19,11 @@ const zh_quota_limit_placeholder = /** @type {(inputs: Quota_Limit_PlaceholderIn
 * | "e.g. 100000" |
 *
 * @param {Quota_Limit_PlaceholderInputs} inputs
-* @param {{ locale?: "en" | "zh" }} options
+* @param {{ locale?: "zh" | "en" }} options
 * @returns {LocalizedString}
 */
-export const quota_limit_placeholder = /** @type {((inputs?: Quota_Limit_PlaceholderInputs, options?: { locale?: "en" | "zh" }) => LocalizedString) & import('../runtime.js').MessageMetadata<Quota_Limit_PlaceholderInputs, { locale?: "en" | "zh" }, {}>} */ ((inputs = {}, options = {}) => {
+export const quota_limit_placeholder = /** @type {((inputs?: Quota_Limit_PlaceholderInputs, options?: { locale?: "zh" | "en" }) => LocalizedString) & import('../runtime.js').MessageMetadata<Quota_Limit_PlaceholderInputs, { locale?: "zh" | "en" }, {}>} */ ((inputs = {}, options = {}) => {
 	const locale = experimentalStaticLocale ?? options.locale ?? getLocale()
-	if (locale === "en") return en_quota_limit_placeholder(inputs)
-	return zh_quota_limit_placeholder(inputs)
+	if (locale === "zh") return zh_quota_limit_placeholder(inputs)
+	return en_quota_limit_placeholder(inputs)
 });

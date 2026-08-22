@@ -33,7 +33,7 @@ import {
   McpToolInfo,
   CreateMcpServerRequest,
   UpdateMcpServerRequest,
-} from '@shumai/dtos'
+} from '@zhenyue/dtos'
 
 interface McpServerFormDialogProps {
   isOpen: boolean

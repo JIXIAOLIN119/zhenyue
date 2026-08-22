@@ -1,19 +1,19 @@
 import { Hono } from 'hono'
 import { zValidator } from '@hono/zod-validator'
-import { authzService, Permission, ResourceType } from '@shumai/core/src/authz/authz'
-import { assetService } from '@shumai/core/src/asset/asset'
-import { searchService } from '@shumai/core/src/search/search'
+import { authzService, Permission, ResourceType } from '@zhenyue/core/src/authz/authz'
+import { assetService } from '@zhenyue/core/src/asset/asset'
+import { searchService } from '@zhenyue/core/src/search/search'
 import {
   createFolderRequestSchema,
   updateFolderRequestSchema,
   deleteFoldersRequestSchema,
   restoreFoldersRequestSchema,
   updateAgentsMdRequestSchema,
-} from '@shumai/dtos'
-import { listChildrenRequestSchema, updateAssetOrderRequestSchema, AuditAction } from '@shumai/dtos'
-import { searchRequestSchema } from '@shumai/dtos'
-import type { Prisma } from '@shumai/db'
-import { auditLogService } from '@shumai/core/src/auditLog/auditLog'
+} from '@zhenyue/dtos'
+import { listChildrenRequestSchema, updateAssetOrderRequestSchema, AuditAction } from '@zhenyue/dtos'
+import { searchRequestSchema } from '@zhenyue/dtos'
+import type { Prisma } from '@zhenyue/db'
+import { auditLogService } from '@zhenyue/core/src/auditLog/auditLog'
 
 type User = Prisma.UserGetPayload<Record<string, never>>
 

@@ -1,6 +1,6 @@
 import { describe, expect, it, vi } from 'vitest'
-import { prisma } from '@shumai/db'
-import { setupTestDbHooks } from '@shumai/db/test'
+import { prisma } from '@zhenyue/db'
+import { setupTestDbHooks } from '@zhenyue/db/test'
 import { aiUsageService } from './ai-usage'
 import { HTTPException } from 'hono/http-exception'
 

@@ -5,12 +5,12 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 
 /** @typedef {{}} Quota_ScopeInputs */
 
-const en_quota_scope = /** @type {(inputs: Quota_ScopeInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Scope`)
-};
-
 const zh_quota_scope = /** @type {(inputs: Quota_ScopeInputs) => LocalizedString} */ () => {
 	return /** @type {LocalizedString} */ (`范围`)
+};
+
+const en_quota_scope = /** @type {(inputs: Quota_ScopeInputs) => LocalizedString} */ () => {
+	return /** @type {LocalizedString} */ (`Scope`)
 };
 
 /**
@@ -19,11 +19,11 @@ const zh_quota_scope = /** @type {(inputs: Quota_ScopeInputs) => LocalizedString
 * | "Scope" |
 *
 * @param {Quota_ScopeInputs} inputs
-* @param {{ locale?: "en" | "zh" }} options
+* @param {{ locale?: "zh" | "en" }} options
 * @returns {LocalizedString}
 */
-export const quota_scope = /** @type {((inputs?: Quota_ScopeInputs, options?: { locale?: "en" | "zh" }) => LocalizedString) & import('../runtime.js').MessageMetadata<Quota_ScopeInputs, { locale?: "en" | "zh" }, {}>} */ ((inputs = {}, options = {}) => {
+export const quota_scope = /** @type {((inputs?: Quota_ScopeInputs, options?: { locale?: "zh" | "en" }) => LocalizedString) & import('../runtime.js').MessageMetadata<Quota_ScopeInputs, { locale?: "zh" | "en" }, {}>} */ ((inputs = {}, options = {}) => {
 	const locale = experimentalStaticLocale ?? options.locale ?? getLocale()
-	if (locale === "en") return en_quota_scope(inputs)
-	return zh_quota_scope(inputs)
+	if (locale === "zh") return zh_quota_scope(inputs)
+	return en_quota_scope(inputs)
 });

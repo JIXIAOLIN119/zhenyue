@@ -5,12 +5,12 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 
 /** @typedef {{}} Hide_ChatbotInputs */
 
-const en_hide_chatbot = /** @type {(inputs: Hide_ChatbotInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Hide Chatbot`)
-};
-
 const zh_hide_chatbot = /** @type {(inputs: Hide_ChatbotInputs) => LocalizedString} */ () => {
 	return /** @type {LocalizedString} */ (`隐藏聊天机器人`)
+};
+
+const en_hide_chatbot = /** @type {(inputs: Hide_ChatbotInputs) => LocalizedString} */ () => {
+	return /** @type {LocalizedString} */ (`Hide Chatbot`)
 };
 
 /**
@@ -19,11 +19,11 @@ const zh_hide_chatbot = /** @type {(inputs: Hide_ChatbotInputs) => LocalizedStri
 * | "Hide Chatbot" |
 *
 * @param {Hide_ChatbotInputs} inputs
-* @param {{ locale?: "en" | "zh" }} options
+* @param {{ locale?: "zh" | "en" }} options
 * @returns {LocalizedString}
 */
-export const hide_chatbot = /** @type {((inputs?: Hide_ChatbotInputs, options?: { locale?: "en" | "zh" }) => LocalizedString) & import('../runtime.js').MessageMetadata<Hide_ChatbotInputs, { locale?: "en" | "zh" }, {}>} */ ((inputs = {}, options = {}) => {
+export const hide_chatbot = /** @type {((inputs?: Hide_ChatbotInputs, options?: { locale?: "zh" | "en" }) => LocalizedString) & import('../runtime.js').MessageMetadata<Hide_ChatbotInputs, { locale?: "zh" | "en" }, {}>} */ ((inputs = {}, options = {}) => {
 	const locale = experimentalStaticLocale ?? options.locale ?? getLocale()
-	if (locale === "en") return en_hide_chatbot(inputs)
-	return zh_hide_chatbot(inputs)
+	if (locale === "zh") return zh_hide_chatbot(inputs)
+	return en_hide_chatbot(inputs)
 });

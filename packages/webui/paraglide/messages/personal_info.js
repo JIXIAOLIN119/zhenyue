@@ -5,12 +5,12 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 
 /** @typedef {{}} Personal_InfoInputs */
 
-const en_personal_info = /** @type {(inputs: Personal_InfoInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Personal Info`)
-};
-
 const zh_personal_info = /** @type {(inputs: Personal_InfoInputs) => LocalizedString} */ () => {
 	return /** @type {LocalizedString} */ (`个人信息`)
+};
+
+const en_personal_info = /** @type {(inputs: Personal_InfoInputs) => LocalizedString} */ () => {
+	return /** @type {LocalizedString} */ (`Personal Info`)
 };
 
 /**
@@ -19,11 +19,11 @@ const zh_personal_info = /** @type {(inputs: Personal_InfoInputs) => LocalizedSt
 * | "Personal Info" |
 *
 * @param {Personal_InfoInputs} inputs
-* @param {{ locale?: "en" | "zh" }} options
+* @param {{ locale?: "zh" | "en" }} options
 * @returns {LocalizedString}
 */
-export const personal_info = /** @type {((inputs?: Personal_InfoInputs, options?: { locale?: "en" | "zh" }) => LocalizedString) & import('../runtime.js').MessageMetadata<Personal_InfoInputs, { locale?: "en" | "zh" }, {}>} */ ((inputs = {}, options = {}) => {
+export const personal_info = /** @type {((inputs?: Personal_InfoInputs, options?: { locale?: "zh" | "en" }) => LocalizedString) & import('../runtime.js').MessageMetadata<Personal_InfoInputs, { locale?: "zh" | "en" }, {}>} */ ((inputs = {}, options = {}) => {
 	const locale = experimentalStaticLocale ?? options.locale ?? getLocale()
-	if (locale === "en") return en_personal_info(inputs)
-	return zh_personal_info(inputs)
+	if (locale === "zh") return zh_personal_info(inputs)
+	return en_personal_info(inputs)
 });

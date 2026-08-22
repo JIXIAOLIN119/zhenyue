@@ -1,15 +1,15 @@
 import { describe, it, expect, beforeEach, afterEach, vi } from 'vitest'
 import { transcodeService, calculatePreviewDimensions } from './transcode'
-import { s3Service } from '@shumai/core/src/s3/s3'
+import { s3Service } from '@zhenyue/core/src/s3/s3'
 import * as path from 'path'
 import * as child_process from 'child_process'
 import { execFile } from 'child_process'
 import * as fs from 'fs'
-import { WorkflowTask } from '@shumai/db'
-import { setupTestDbHooks } from '@shumai/db/test'
+import { WorkflowTask } from '@zhenyue/db'
+import { setupTestDbHooks } from '@zhenyue/db/test'
 import sharp from 'sharp'
 
-vi.mock('@shumai/core/src/s3/s3', () => ({
+vi.mock('@zhenyue/core/src/s3/s3', () => ({
   s3Service: {
     downloadToFile: vi.fn(),
     putObject: vi.fn(),

@@ -1,9 +1,9 @@
 import { describe, it, expect, vi, beforeEach } from 'vitest'
 import { renderPdfPagesWorkflow } from './render-pdf-pages'
-import { WorkflowTask, WorkflowTaskStatus, WorkflowTaskType } from '@shumai/db'
-import * as workflowUtils from '@shumai/workflow-core'
+import { WorkflowTask, WorkflowTaskStatus, WorkflowTaskType } from '@zhenyue/db'
+import * as workflowUtils from '@zhenyue/workflow-core'
 
-vi.mock('@shumai/workflow-core', async (importOriginal) => {
+vi.mock('@zhenyue/workflow-core', async (importOriginal) => {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const actual = (await importOriginal()) as any
   return {

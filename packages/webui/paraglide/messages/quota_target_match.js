@@ -5,12 +5,12 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 
 /** @typedef {{ value: NonNullable<unknown> }} Quota_Target_MatchInputs */
 
-const en_quota_target_match = /** @type {(inputs: Quota_Target_MatchInputs) => LocalizedString} */ (i) => {
-	return /** @type {LocalizedString} */ (`Match: ${i?.value}`)
-};
-
 const zh_quota_target_match = /** @type {(inputs: Quota_Target_MatchInputs) => LocalizedString} */ (i) => {
 	return /** @type {LocalizedString} */ (`匹配：${i?.value}`)
+};
+
+const en_quota_target_match = /** @type {(inputs: Quota_Target_MatchInputs) => LocalizedString} */ (i) => {
+	return /** @type {LocalizedString} */ (`Match: ${i?.value}`)
 };
 
 /**
@@ -19,11 +19,11 @@ const zh_quota_target_match = /** @type {(inputs: Quota_Target_MatchInputs) => L
 * | "Match: {value}" |
 *
 * @param {Quota_Target_MatchInputs} inputs
-* @param {{ locale?: "en" | "zh" }} options
+* @param {{ locale?: "zh" | "en" }} options
 * @returns {LocalizedString}
 */
-export const quota_target_match = /** @type {((inputs: Quota_Target_MatchInputs, options?: { locale?: "en" | "zh" }) => LocalizedString) & import('../runtime.js').MessageMetadata<Quota_Target_MatchInputs, { locale?: "en" | "zh" }, {}>} */ ((inputs, options = {}) => {
+export const quota_target_match = /** @type {((inputs: Quota_Target_MatchInputs, options?: { locale?: "zh" | "en" }) => LocalizedString) & import('../runtime.js').MessageMetadata<Quota_Target_MatchInputs, { locale?: "zh" | "en" }, {}>} */ ((inputs, options = {}) => {
 	const locale = experimentalStaticLocale ?? options.locale ?? getLocale()
-	if (locale === "en") return en_quota_target_match(inputs)
-	return zh_quota_target_match(inputs)
+	if (locale === "zh") return zh_quota_target_match(inputs)
+	return en_quota_target_match(inputs)
 });

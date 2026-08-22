@@ -5,12 +5,12 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 
 /** @typedef {{}} ProcessingInputs */
 
-const en_processing = /** @type {(inputs: ProcessingInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Processing...`)
-};
-
 const zh_processing = /** @type {(inputs: ProcessingInputs) => LocalizedString} */ () => {
 	return /** @type {LocalizedString} */ (`处理中...`)
+};
+
+const en_processing = /** @type {(inputs: ProcessingInputs) => LocalizedString} */ () => {
+	return /** @type {LocalizedString} */ (`Processing...`)
 };
 
 /**
@@ -19,11 +19,11 @@ const zh_processing = /** @type {(inputs: ProcessingInputs) => LocalizedString} 
 * | "Processing..." |
 *
 * @param {ProcessingInputs} inputs
-* @param {{ locale?: "en" | "zh" }} options
+* @param {{ locale?: "zh" | "en" }} options
 * @returns {LocalizedString}
 */
-export const processing = /** @type {((inputs?: ProcessingInputs, options?: { locale?: "en" | "zh" }) => LocalizedString) & import('../runtime.js').MessageMetadata<ProcessingInputs, { locale?: "en" | "zh" }, {}>} */ ((inputs = {}, options = {}) => {
+export const processing = /** @type {((inputs?: ProcessingInputs, options?: { locale?: "zh" | "en" }) => LocalizedString) & import('../runtime.js').MessageMetadata<ProcessingInputs, { locale?: "zh" | "en" }, {}>} */ ((inputs = {}, options = {}) => {
 	const locale = experimentalStaticLocale ?? options.locale ?? getLocale()
-	if (locale === "en") return en_processing(inputs)
-	return zh_processing(inputs)
+	if (locale === "zh") return zh_processing(inputs)
+	return en_processing(inputs)
 });

@@ -5,12 +5,12 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 
 /** @typedef {{}} GeneratingInputs */
 
-const en_generating = /** @type {(inputs: GeneratingInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Generating...`)
-};
-
 const zh_generating = /** @type {(inputs: GeneratingInputs) => LocalizedString} */ () => {
 	return /** @type {LocalizedString} */ (`正在生成...`)
+};
+
+const en_generating = /** @type {(inputs: GeneratingInputs) => LocalizedString} */ () => {
+	return /** @type {LocalizedString} */ (`Generating...`)
 };
 
 /**
@@ -19,11 +19,11 @@ const zh_generating = /** @type {(inputs: GeneratingInputs) => LocalizedString} 
 * | "Generating..." |
 *
 * @param {GeneratingInputs} inputs
-* @param {{ locale?: "en" | "zh" }} options
+* @param {{ locale?: "zh" | "en" }} options
 * @returns {LocalizedString}
 */
-export const generating = /** @type {((inputs?: GeneratingInputs, options?: { locale?: "en" | "zh" }) => LocalizedString) & import('../runtime.js').MessageMetadata<GeneratingInputs, { locale?: "en" | "zh" }, {}>} */ ((inputs = {}, options = {}) => {
+export const generating = /** @type {((inputs?: GeneratingInputs, options?: { locale?: "zh" | "en" }) => LocalizedString) & import('../runtime.js').MessageMetadata<GeneratingInputs, { locale?: "zh" | "en" }, {}>} */ ((inputs = {}, options = {}) => {
 	const locale = experimentalStaticLocale ?? options.locale ?? getLocale()
-	if (locale === "en") return en_generating(inputs)
-	return zh_generating(inputs)
+	if (locale === "zh") return zh_generating(inputs)
+	return en_generating(inputs)
 });

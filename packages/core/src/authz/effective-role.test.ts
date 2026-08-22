@@ -1,8 +1,8 @@
-import { setupTestDbHooks } from '@shumai/db/test'
+import { setupTestDbHooks } from '@zhenyue/db/test'
 import { describe, expect, it } from 'vitest'
 
-import { prisma } from '@shumai/db'
-import { resolveEffectiveRole } from '@shumai/core/src/authz/authz'
+import { prisma } from '@zhenyue/db'
+import { resolveEffectiveRole } from '@zhenyue/core/src/authz/authz'
 
 describe('resolveEffectiveRole', () => {
   setupTestDbHooks()

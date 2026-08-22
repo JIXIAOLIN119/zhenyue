@@ -1,4 +1,4 @@
-import type { AssetInfo } from '@shumai/dtos'
+import type { AssetInfo } from '@zhenyue/dtos'
 import type { Annotation } from '@/ui/types'
 import type { ComparePaneHandle, PaneReportedState } from '@/ui/components/compare/types'
 import type React from 'react'

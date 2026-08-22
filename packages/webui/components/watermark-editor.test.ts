@@ -4,7 +4,7 @@ import {
   watermarkBlockTextSchema,
   watermarkBlockImageSchema,
   WatermarkBlock,
-} from '@shumai/dtos'
+} from '@zhenyue/dtos'
 
 describe('Watermark Config DTO and Logic', () => {
   it('validates a correct text block', () => {

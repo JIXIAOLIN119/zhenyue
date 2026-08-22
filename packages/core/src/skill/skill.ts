@@ -1,10 +1,10 @@
-import { prisma, type TeamMemberRole } from '@shumai/db'
-import { SkillInfo, UpsertSkillRequest } from '@shumai/dtos'
-import { s3Service } from '@shumai/core/src/s3/s3'
+import { prisma, type TeamMemberRole } from '@zhenyue/db'
+import { SkillInfo, UpsertSkillRequest } from '@zhenyue/dtos'
+import { s3Service } from '@zhenyue/core/src/s3/s3'
 import AdmZip from 'adm-zip'
 import * as crypto from 'crypto'
 import { ulid } from 'ulid'
-import { parseFrontmatter } from '@shumai/core/src/utils/frontmatter'
+import { parseFrontmatter } from '@zhenyue/core/src/utils/frontmatter'
 
 interface SkillFrontmatter extends Record<string, unknown> {
   name?: string
@@ -29,7 +29,7 @@ export class SkillService {
       })
       const key = asset?.storageKey?.key
       if (!asset || !key) throw new Error('Asset not found or has no key')
-      const { buffer } = await s3Service.getObject(process.env.S3_BUCKET || 'shumai', key)
+      const { buffer } = await s3Service.getObject(process.env.S3_BUCKET || 'zhenyue', key)
       zipBuffer = buffer
     } else {
       throw new Error('Either assetId or githubUrl must be provided')
@@ -59,7 +59,7 @@ export class SkillService {
     // Upload repacked zip to S3
     const assetKey = `skills/${ulid()}.zip`
     await s3Service.putObject(
-      process.env.S3_BUCKET || 'shumai',
+      process.env.S3_BUCKET || 'zhenyue',
       assetKey,
       repackedZip,
       repackedZip.length,

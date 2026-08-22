@@ -15,7 +15,7 @@ import {
 import { Loader2, Plus, Trash2, Copy, Check } from 'lucide-react'
 import { toast } from 'sonner'
 import { copyToClipboard } from '@/ui/lib/clipboard'
-import type { ApiTokenResponse } from '@shumai/dtos'
+import type { ApiTokenResponse } from '@zhenyue/dtos'
 import { m } from '@/ui/paraglide/messages.js'
 
 export function DeveloperSettings({ teamId }: { teamId: string }) {

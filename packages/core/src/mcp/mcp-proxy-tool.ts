@@ -375,7 +375,7 @@ export function buildProxyTool(ctx: McpProxyToolContext): AgentTool<typeof proxy
           )
         }
         return contentText(
-          `OAuth authentication required for "${server}". An admin must open this URL in a browser and approve access:\n\n${result.authorizationUrl}\n\nAfter approving, the browser redirects back to shumai automatically. Then poll mcp({ action: "status", server: "${server}" }) until it shows connected.`,
+          `OAuth authentication required for "${server}". An admin must open this URL in a browser and approve access:\n\n${result.authorizationUrl}\n\nAfter approving, the browser redirects back to zhenyue automatically. Then poll mcp({ action: "status", server: "${server}" }) until it shows connected.`,
         )
       }
 

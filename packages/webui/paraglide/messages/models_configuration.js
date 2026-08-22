@@ -5,12 +5,12 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 
 /** @typedef {{}} Models_ConfigurationInputs */
 
-const en_models_configuration = /** @type {(inputs: Models_ConfigurationInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Models Configuration`)
-};
-
 const zh_models_configuration = /** @type {(inputs: Models_ConfigurationInputs) => LocalizedString} */ () => {
 	return /** @type {LocalizedString} */ (`模型配置`)
+};
+
+const en_models_configuration = /** @type {(inputs: Models_ConfigurationInputs) => LocalizedString} */ () => {
+	return /** @type {LocalizedString} */ (`Models Configuration`)
 };
 
 /**
@@ -19,11 +19,11 @@ const zh_models_configuration = /** @type {(inputs: Models_ConfigurationInputs) 
 * | "Models Configuration" |
 *
 * @param {Models_ConfigurationInputs} inputs
-* @param {{ locale?: "en" | "zh" }} options
+* @param {{ locale?: "zh" | "en" }} options
 * @returns {LocalizedString}
 */
-export const models_configuration = /** @type {((inputs?: Models_ConfigurationInputs, options?: { locale?: "en" | "zh" }) => LocalizedString) & import('../runtime.js').MessageMetadata<Models_ConfigurationInputs, { locale?: "en" | "zh" }, {}>} */ ((inputs = {}, options = {}) => {
+export const models_configuration = /** @type {((inputs?: Models_ConfigurationInputs, options?: { locale?: "zh" | "en" }) => LocalizedString) & import('../runtime.js').MessageMetadata<Models_ConfigurationInputs, { locale?: "zh" | "en" }, {}>} */ ((inputs = {}, options = {}) => {
 	const locale = experimentalStaticLocale ?? options.locale ?? getLocale()
-	if (locale === "en") return en_models_configuration(inputs)
-	return zh_models_configuration(inputs)
+	if (locale === "zh") return zh_models_configuration(inputs)
+	return en_models_configuration(inputs)
 });

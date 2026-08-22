@@ -1,15 +1,15 @@
 import { describe, it, expect, beforeAll, afterAll, vi } from 'vitest'
-import { prisma, WatermarkFileStatus } from '@shumai/db'
-import { setupTestDbHooks } from '@shumai/db/test'
-import { workflowService, TaskQueueTranscode } from '@shumai/workflow-core'
-import { initTranscodeWorkflows } from '@shumai/transcode'
-import { watermarkService } from '@shumai/core/src/watermark/watermark'
-import { shareService } from '@shumai/core/src/share/share'
-import { s3Service } from '@shumai/core/src/s3/s3'
+import { prisma, WatermarkFileStatus } from '@zhenyue/db'
+import { setupTestDbHooks } from '@zhenyue/db/test'
+import { workflowService, TaskQueueTranscode } from '@zhenyue/workflow-core'
+import { initTranscodeWorkflows } from '@zhenyue/transcode'
+import { watermarkService } from '@zhenyue/core/src/watermark/watermark'
+import { shareService } from '@zhenyue/core/src/share/share'
+import { s3Service } from '@zhenyue/core/src/s3/s3'
 import { fileURLToPath } from 'url'
 import * as path from 'path'
 import * as fs from 'fs'
-import type { WatermarkConfigSpec } from '@shumai/dtos'
+import type { WatermarkConfigSpec } from '@zhenyue/dtos'
 
 const currentDir = path.dirname(fileURLToPath(import.meta.url))
 const transcodeWorkflowsPath = path.resolve(currentDir, '../../../apps/transcode/src/workflows.ts')
@@ -23,7 +23,7 @@ describe.each(['local', 'temporal'] as const)(
     let transcodeWorkerPromise: Promise<void> | null = null
 
     beforeAll(async () => {
-      process.env.S3_BUCKET = 'shumai-e2e-test-bucket-watermark'
+      process.env.S3_BUCKET = 'zhenyue-e2e-test-bucket-watermark'
 
       workflowService.setExecutorType(mode)
       initTranscodeWorkflows()
@@ -49,7 +49,7 @@ describe.each(['local', 'temporal'] as const)(
       workflowService.close()
       vi.restoreAllMocks()
       try {
-        await s3Service.deletePrefix('shumai-e2e-test-bucket-watermark', '')
+        await s3Service.deletePrefix('zhenyue-e2e-test-bucket-watermark', '')
       } catch (err) {
         console.error('Failed to clean up E2E storage folder:', err)
       }
@@ -84,7 +84,7 @@ describe.each(['local', 'temporal'] as const)(
       }
 
       await s3Service.putObject(
-        'shumai-e2e-test-bucket-watermark',
+        'zhenyue-e2e-test-bucket-watermark',
         storageKey.key,
         sampleBuffer,
         sampleBuffer.length,
@@ -210,7 +210,7 @@ describe.each(['local', 'temporal'] as const)(
       const videoPath = path.join(fixturesDir, 'small.mp4')
       const videoBuffer = fs.readFileSync(videoPath)
       await s3Service.putObject(
-        'shumai-e2e-test-bucket-watermark',
+        'zhenyue-e2e-test-bucket-watermark',
         storageKey.key,
         videoBuffer,
         videoBuffer.length,
@@ -340,7 +340,7 @@ describe.each(['local', 'temporal'] as const)(
         const buffer = readSampleImage()
         const storageKey = await prisma.storageKey.create({ data: { key } })
         await s3Service.putObject(
-          'shumai-e2e-test-bucket-watermark',
+          'zhenyue-e2e-test-bucket-watermark',
           key,
           buffer,
           buffer.length,

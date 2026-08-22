@@ -5,12 +5,12 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 
 /** @typedef {{}} Add_Text_BlockInputs */
 
-const en_add_text_block = /** @type {(inputs: Add_Text_BlockInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Add Text Block`)
-};
-
 const zh_add_text_block = /** @type {(inputs: Add_Text_BlockInputs) => LocalizedString} */ () => {
 	return /** @type {LocalizedString} */ (`添加文本块`)
+};
+
+const en_add_text_block = /** @type {(inputs: Add_Text_BlockInputs) => LocalizedString} */ () => {
+	return /** @type {LocalizedString} */ (`Add Text Block`)
 };
 
 /**
@@ -19,11 +19,11 @@ const zh_add_text_block = /** @type {(inputs: Add_Text_BlockInputs) => Localized
 * | "Add Text Block" |
 *
 * @param {Add_Text_BlockInputs} inputs
-* @param {{ locale?: "en" | "zh" }} options
+* @param {{ locale?: "zh" | "en" }} options
 * @returns {LocalizedString}
 */
-export const add_text_block = /** @type {((inputs?: Add_Text_BlockInputs, options?: { locale?: "en" | "zh" }) => LocalizedString) & import('../runtime.js').MessageMetadata<Add_Text_BlockInputs, { locale?: "en" | "zh" }, {}>} */ ((inputs = {}, options = {}) => {
+export const add_text_block = /** @type {((inputs?: Add_Text_BlockInputs, options?: { locale?: "zh" | "en" }) => LocalizedString) & import('../runtime.js').MessageMetadata<Add_Text_BlockInputs, { locale?: "zh" | "en" }, {}>} */ ((inputs = {}, options = {}) => {
 	const locale = experimentalStaticLocale ?? options.locale ?? getLocale()
-	if (locale === "en") return en_add_text_block(inputs)
-	return zh_add_text_block(inputs)
+	if (locale === "zh") return zh_add_text_block(inputs)
+	return en_add_text_block(inputs)
 });

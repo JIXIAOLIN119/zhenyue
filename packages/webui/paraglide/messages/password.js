@@ -5,12 +5,12 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 
 /** @typedef {{}} PasswordInputs */
 
-const en_password = /** @type {(inputs: PasswordInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Password`)
-};
-
 const zh_password = /** @type {(inputs: PasswordInputs) => LocalizedString} */ () => {
 	return /** @type {LocalizedString} */ (`密码`)
+};
+
+const en_password = /** @type {(inputs: PasswordInputs) => LocalizedString} */ () => {
+	return /** @type {LocalizedString} */ (`Password`)
 };
 
 /**
@@ -19,11 +19,11 @@ const zh_password = /** @type {(inputs: PasswordInputs) => LocalizedString} */ (
 * | "Password" |
 *
 * @param {PasswordInputs} inputs
-* @param {{ locale?: "en" | "zh" }} options
+* @param {{ locale?: "zh" | "en" }} options
 * @returns {LocalizedString}
 */
-export const password = /** @type {((inputs?: PasswordInputs, options?: { locale?: "en" | "zh" }) => LocalizedString) & import('../runtime.js').MessageMetadata<PasswordInputs, { locale?: "en" | "zh" }, {}>} */ ((inputs = {}, options = {}) => {
+export const password = /** @type {((inputs?: PasswordInputs, options?: { locale?: "zh" | "en" }) => LocalizedString) & import('../runtime.js').MessageMetadata<PasswordInputs, { locale?: "zh" | "en" }, {}>} */ ((inputs = {}, options = {}) => {
 	const locale = experimentalStaticLocale ?? options.locale ?? getLocale()
-	if (locale === "en") return en_password(inputs)
-	return zh_password(inputs)
+	if (locale === "zh") return zh_password(inputs)
+	return en_password(inputs)
 });

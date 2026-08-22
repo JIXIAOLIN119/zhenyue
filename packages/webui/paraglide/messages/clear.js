@@ -5,12 +5,12 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 
 /** @typedef {{}} ClearInputs */
 
-const en_clear = /** @type {(inputs: ClearInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Clear`)
-};
-
 const zh_clear = /** @type {(inputs: ClearInputs) => LocalizedString} */ () => {
 	return /** @type {LocalizedString} */ (`清空`)
+};
+
+const en_clear = /** @type {(inputs: ClearInputs) => LocalizedString} */ () => {
+	return /** @type {LocalizedString} */ (`Clear`)
 };
 
 /**
@@ -19,11 +19,11 @@ const zh_clear = /** @type {(inputs: ClearInputs) => LocalizedString} */ () => {
 * | "Clear" |
 *
 * @param {ClearInputs} inputs
-* @param {{ locale?: "en" | "zh" }} options
+* @param {{ locale?: "zh" | "en" }} options
 * @returns {LocalizedString}
 */
-export const clear = /** @type {((inputs?: ClearInputs, options?: { locale?: "en" | "zh" }) => LocalizedString) & import('../runtime.js').MessageMetadata<ClearInputs, { locale?: "en" | "zh" }, {}>} */ ((inputs = {}, options = {}) => {
+export const clear = /** @type {((inputs?: ClearInputs, options?: { locale?: "zh" | "en" }) => LocalizedString) & import('../runtime.js').MessageMetadata<ClearInputs, { locale?: "zh" | "en" }, {}>} */ ((inputs = {}, options = {}) => {
 	const locale = experimentalStaticLocale ?? options.locale ?? getLocale()
-	if (locale === "en") return en_clear(inputs)
-	return zh_clear(inputs)
+	if (locale === "zh") return zh_clear(inputs)
+	return en_clear(inputs)
 });

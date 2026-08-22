@@ -5,12 +5,12 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 
 /** @typedef {{}} All_FilesInputs */
 
-const en_all_files = /** @type {(inputs: All_FilesInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`All Files`)
-};
-
 const zh_all_files = /** @type {(inputs: All_FilesInputs) => LocalizedString} */ () => {
 	return /** @type {LocalizedString} */ (`全部文件`)
+};
+
+const en_all_files = /** @type {(inputs: All_FilesInputs) => LocalizedString} */ () => {
+	return /** @type {LocalizedString} */ (`All Files`)
 };
 
 /**
@@ -19,11 +19,11 @@ const zh_all_files = /** @type {(inputs: All_FilesInputs) => LocalizedString} */
 * | "All Files" |
 *
 * @param {All_FilesInputs} inputs
-* @param {{ locale?: "en" | "zh" }} options
+* @param {{ locale?: "zh" | "en" }} options
 * @returns {LocalizedString}
 */
-export const all_files = /** @type {((inputs?: All_FilesInputs, options?: { locale?: "en" | "zh" }) => LocalizedString) & import('../runtime.js').MessageMetadata<All_FilesInputs, { locale?: "en" | "zh" }, {}>} */ ((inputs = {}, options = {}) => {
+export const all_files = /** @type {((inputs?: All_FilesInputs, options?: { locale?: "zh" | "en" }) => LocalizedString) & import('../runtime.js').MessageMetadata<All_FilesInputs, { locale?: "zh" | "en" }, {}>} */ ((inputs = {}, options = {}) => {
 	const locale = experimentalStaticLocale ?? options.locale ?? getLocale()
-	if (locale === "en") return en_all_files(inputs)
-	return zh_all_files(inputs)
+	if (locale === "zh") return zh_all_files(inputs)
+	return en_all_files(inputs)
 });

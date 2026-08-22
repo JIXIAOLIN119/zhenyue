@@ -5,12 +5,12 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 
 /** @typedef {{}} Models_CountInputs */
 
-const en_models_count = /** @type {(inputs: Models_CountInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Models`)
-};
-
 const zh_models_count = /** @type {(inputs: Models_CountInputs) => LocalizedString} */ () => {
 	return /** @type {LocalizedString} */ (`模型`)
+};
+
+const en_models_count = /** @type {(inputs: Models_CountInputs) => LocalizedString} */ () => {
+	return /** @type {LocalizedString} */ (`Models`)
 };
 
 /**
@@ -19,11 +19,11 @@ const zh_models_count = /** @type {(inputs: Models_CountInputs) => LocalizedStri
 * | "Models" |
 *
 * @param {Models_CountInputs} inputs
-* @param {{ locale?: "en" | "zh" }} options
+* @param {{ locale?: "zh" | "en" }} options
 * @returns {LocalizedString}
 */
-export const models_count = /** @type {((inputs?: Models_CountInputs, options?: { locale?: "en" | "zh" }) => LocalizedString) & import('../runtime.js').MessageMetadata<Models_CountInputs, { locale?: "en" | "zh" }, {}>} */ ((inputs = {}, options = {}) => {
+export const models_count = /** @type {((inputs?: Models_CountInputs, options?: { locale?: "zh" | "en" }) => LocalizedString) & import('../runtime.js').MessageMetadata<Models_CountInputs, { locale?: "zh" | "en" }, {}>} */ ((inputs = {}, options = {}) => {
 	const locale = experimentalStaticLocale ?? options.locale ?? getLocale()
-	if (locale === "en") return en_models_count(inputs)
-	return zh_models_count(inputs)
+	if (locale === "zh") return zh_models_count(inputs)
+	return en_models_count(inputs)
 });

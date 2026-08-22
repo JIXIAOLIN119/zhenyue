@@ -5,12 +5,12 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 
 /** @typedef {{}} All_CollectionsInputs */
 
-const en_all_collections = /** @type {(inputs: All_CollectionsInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`All Collections`)
-};
-
 const zh_all_collections = /** @type {(inputs: All_CollectionsInputs) => LocalizedString} */ () => {
 	return /** @type {LocalizedString} */ (`所有媒体合集`)
+};
+
+const en_all_collections = /** @type {(inputs: All_CollectionsInputs) => LocalizedString} */ () => {
+	return /** @type {LocalizedString} */ (`All Collections`)
 };
 
 /**
@@ -19,11 +19,11 @@ const zh_all_collections = /** @type {(inputs: All_CollectionsInputs) => Localiz
 * | "All Collections" |
 *
 * @param {All_CollectionsInputs} inputs
-* @param {{ locale?: "en" | "zh" }} options
+* @param {{ locale?: "zh" | "en" }} options
 * @returns {LocalizedString}
 */
-export const all_collections = /** @type {((inputs?: All_CollectionsInputs, options?: { locale?: "en" | "zh" }) => LocalizedString) & import('../runtime.js').MessageMetadata<All_CollectionsInputs, { locale?: "en" | "zh" }, {}>} */ ((inputs = {}, options = {}) => {
+export const all_collections = /** @type {((inputs?: All_CollectionsInputs, options?: { locale?: "zh" | "en" }) => LocalizedString) & import('../runtime.js').MessageMetadata<All_CollectionsInputs, { locale?: "zh" | "en" }, {}>} */ ((inputs = {}, options = {}) => {
 	const locale = experimentalStaticLocale ?? options.locale ?? getLocale()
-	if (locale === "en") return en_all_collections(inputs)
-	return zh_all_collections(inputs)
+	if (locale === "zh") return zh_all_collections(inputs)
+	return en_all_collections(inputs)
 });

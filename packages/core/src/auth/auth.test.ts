@@ -1,9 +1,9 @@
 import { describe, expect, it, vi, beforeEach, afterEach } from 'vitest'
-import { prisma } from '@shumai/db'
-import { setupTestDbHooks } from '@shumai/db/test'
+import { prisma } from '@zhenyue/db'
+import { setupTestDbHooks } from '@zhenyue/db/test'
 import { auth } from './auth'
 import { userMetadataService } from '../user-metadata/user-metadata'
-import { teamService } from '@shumai/core/src/team/team'
+import { teamService } from '@zhenyue/core/src/team/team'
 
 describe('Auth Signup Locale Hook', () => {
   setupTestDbHooks()

@@ -5,11 +5,11 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 
 /** @typedef {{}} Mcp_Auth_OauthInputs */
 
-const en_mcp_auth_oauth = /** @type {(inputs: Mcp_Auth_OauthInputs) => LocalizedString} */ () => {
+const zh_mcp_auth_oauth = /** @type {(inputs: Mcp_Auth_OauthInputs) => LocalizedString} */ () => {
 	return /** @type {LocalizedString} */ (`OAuth 2.0`)
 };
 
-const zh_mcp_auth_oauth = /** @type {(inputs: Mcp_Auth_OauthInputs) => LocalizedString} */ () => {
+const en_mcp_auth_oauth = /** @type {(inputs: Mcp_Auth_OauthInputs) => LocalizedString} */ () => {
 	return /** @type {LocalizedString} */ (`OAuth 2.0`)
 };
 
@@ -19,11 +19,11 @@ const zh_mcp_auth_oauth = /** @type {(inputs: Mcp_Auth_OauthInputs) => Localized
 * | "OAuth 2.0" |
 *
 * @param {Mcp_Auth_OauthInputs} inputs
-* @param {{ locale?: "en" | "zh" }} options
+* @param {{ locale?: "zh" | "en" }} options
 * @returns {LocalizedString}
 */
-export const mcp_auth_oauth = /** @type {((inputs?: Mcp_Auth_OauthInputs, options?: { locale?: "en" | "zh" }) => LocalizedString) & import('../runtime.js').MessageMetadata<Mcp_Auth_OauthInputs, { locale?: "en" | "zh" }, {}>} */ ((inputs = {}, options = {}) => {
+export const mcp_auth_oauth = /** @type {((inputs?: Mcp_Auth_OauthInputs, options?: { locale?: "zh" | "en" }) => LocalizedString) & import('../runtime.js').MessageMetadata<Mcp_Auth_OauthInputs, { locale?: "zh" | "en" }, {}>} */ ((inputs = {}, options = {}) => {
 	const locale = experimentalStaticLocale ?? options.locale ?? getLocale()
-	if (locale === "en") return en_mcp_auth_oauth(inputs)
-	return zh_mcp_auth_oauth(inputs)
+	if (locale === "zh") return zh_mcp_auth_oauth(inputs)
+	return en_mcp_auth_oauth(inputs)
 });

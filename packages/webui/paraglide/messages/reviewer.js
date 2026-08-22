@@ -5,12 +5,12 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 
 /** @typedef {{}} ReviewerInputs */
 
-const en_reviewer = /** @type {(inputs: ReviewerInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Reviewer`)
-};
-
 const zh_reviewer = /** @type {(inputs: ReviewerInputs) => LocalizedString} */ () => {
 	return /** @type {LocalizedString} */ (`评审员`)
+};
+
+const en_reviewer = /** @type {(inputs: ReviewerInputs) => LocalizedString} */ () => {
+	return /** @type {LocalizedString} */ (`Reviewer`)
 };
 
 /**
@@ -19,11 +19,11 @@ const zh_reviewer = /** @type {(inputs: ReviewerInputs) => LocalizedString} */ (
 * | "Reviewer" |
 *
 * @param {ReviewerInputs} inputs
-* @param {{ locale?: "en" | "zh" }} options
+* @param {{ locale?: "zh" | "en" }} options
 * @returns {LocalizedString}
 */
-export const reviewer = /** @type {((inputs?: ReviewerInputs, options?: { locale?: "en" | "zh" }) => LocalizedString) & import('../runtime.js').MessageMetadata<ReviewerInputs, { locale?: "en" | "zh" }, {}>} */ ((inputs = {}, options = {}) => {
+export const reviewer = /** @type {((inputs?: ReviewerInputs, options?: { locale?: "zh" | "en" }) => LocalizedString) & import('../runtime.js').MessageMetadata<ReviewerInputs, { locale?: "zh" | "en" }, {}>} */ ((inputs = {}, options = {}) => {
 	const locale = experimentalStaticLocale ?? options.locale ?? getLocale()
-	if (locale === "en") return en_reviewer(inputs)
-	return zh_reviewer(inputs)
+	if (locale === "zh") return zh_reviewer(inputs)
+	return en_reviewer(inputs)
 });

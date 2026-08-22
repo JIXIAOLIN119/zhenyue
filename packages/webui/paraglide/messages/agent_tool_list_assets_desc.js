@@ -5,25 +5,25 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 
 /** @typedef {{}} Agent_Tool_List_Assets_DescInputs */
 
-const en_agent_tool_list_assets_desc = /** @type {(inputs: Agent_Tool_List_Assets_DescInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Allows the agent to list folders and browse files in Shumai.`)
+const zh_agent_tool_list_assets_desc = /** @type {(inputs: Agent_Tool_List_Assets_DescInputs) => LocalizedString} */ () => {
+	return /** @type {LocalizedString} */ (`允许智能体列出文件夹并浏览 帧阅 中的文件。`)
 };
 
-const zh_agent_tool_list_assets_desc = /** @type {(inputs: Agent_Tool_List_Assets_DescInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`允许智能体列出文件夹并浏览 Shumai 中的文件。`)
+const en_agent_tool_list_assets_desc = /** @type {(inputs: Agent_Tool_List_Assets_DescInputs) => LocalizedString} */ () => {
+	return /** @type {LocalizedString} */ (`Allows the agent to list folders and browse files in ZhenYue.`)
 };
 
 /**
 * | output |
 * | --- |
-* | "Allows the agent to list folders and browse files in Shumai." |
+* | "Allows the agent to list folders and browse files in ZhenYue." |
 *
 * @param {Agent_Tool_List_Assets_DescInputs} inputs
-* @param {{ locale?: "en" | "zh" }} options
+* @param {{ locale?: "zh" | "en" }} options
 * @returns {LocalizedString}
 */
-export const agent_tool_list_assets_desc = /** @type {((inputs?: Agent_Tool_List_Assets_DescInputs, options?: { locale?: "en" | "zh" }) => LocalizedString) & import('../runtime.js').MessageMetadata<Agent_Tool_List_Assets_DescInputs, { locale?: "en" | "zh" }, {}>} */ ((inputs = {}, options = {}) => {
+export const agent_tool_list_assets_desc = /** @type {((inputs?: Agent_Tool_List_Assets_DescInputs, options?: { locale?: "zh" | "en" }) => LocalizedString) & import('../runtime.js').MessageMetadata<Agent_Tool_List_Assets_DescInputs, { locale?: "zh" | "en" }, {}>} */ ((inputs = {}, options = {}) => {
 	const locale = experimentalStaticLocale ?? options.locale ?? getLocale()
-	if (locale === "en") return en_agent_tool_list_assets_desc(inputs)
-	return zh_agent_tool_list_assets_desc(inputs)
+	if (locale === "zh") return zh_agent_tool_list_assets_desc(inputs)
+	return en_agent_tool_list_assets_desc(inputs)
 });

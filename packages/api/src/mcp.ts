@@ -1,16 +1,16 @@
 import { Hono } from 'hono'
 import { zValidator } from '@hono/zod-validator'
-import { authzService, Permission, ResourceType } from '@shumai/core/src/authz/authz'
-import { mcpService } from '@shumai/core/src/mcp/mcp-service'
+import { authzService, Permission, ResourceType } from '@zhenyue/core/src/authz/authz'
+import { mcpService } from '@zhenyue/core/src/mcp/mcp-service'
 import {
   createMcpServerRequestSchema,
   updateMcpServerRequestSchema,
   updateMcpServerPermissionRequestSchema,
   mcpAuthCompleteRequestSchema,
   AuditAction,
-} from '@shumai/dtos'
-import type { Prisma } from '@shumai/db'
-import { auditLogService } from '@shumai/core/src/auditLog/auditLog'
+} from '@zhenyue/dtos'
+import type { Prisma } from '@zhenyue/db'
+import { auditLogService } from '@zhenyue/core/src/auditLog/auditLog'
 
 type User = Prisma.UserGetPayload<Record<string, never>>
 
@@ -303,7 +303,7 @@ function renderCallbackPage(payload: { ok: boolean; message?: string }): string 
     var payload = ${escaped};
     try {
       if (window.opener) {
-        window.opener.postMessage({ source: 'shumai-mcp-oauth', payload: payload }, '*');
+        window.opener.postMessage({ source: 'zhenyue-mcp-oauth', payload: payload }, '*');
       }
     } catch (e) {
       /* ignore cross-origin postMessage failures */

@@ -5,12 +5,12 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 
 /** @typedef {{}} Size_PrefixInputs */
 
-const en_size_prefix = /** @type {(inputs: Size_PrefixInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Size:`)
-};
-
 const zh_size_prefix = /** @type {(inputs: Size_PrefixInputs) => LocalizedString} */ () => {
 	return /** @type {LocalizedString} */ (`大小：`)
+};
+
+const en_size_prefix = /** @type {(inputs: Size_PrefixInputs) => LocalizedString} */ () => {
+	return /** @type {LocalizedString} */ (`Size:`)
 };
 
 /**
@@ -19,11 +19,11 @@ const zh_size_prefix = /** @type {(inputs: Size_PrefixInputs) => LocalizedString
 * | "Size:" |
 *
 * @param {Size_PrefixInputs} inputs
-* @param {{ locale?: "en" | "zh" }} options
+* @param {{ locale?: "zh" | "en" }} options
 * @returns {LocalizedString}
 */
-export const size_prefix = /** @type {((inputs?: Size_PrefixInputs, options?: { locale?: "en" | "zh" }) => LocalizedString) & import('../runtime.js').MessageMetadata<Size_PrefixInputs, { locale?: "en" | "zh" }, {}>} */ ((inputs = {}, options = {}) => {
+export const size_prefix = /** @type {((inputs?: Size_PrefixInputs, options?: { locale?: "zh" | "en" }) => LocalizedString) & import('../runtime.js').MessageMetadata<Size_PrefixInputs, { locale?: "zh" | "en" }, {}>} */ ((inputs = {}, options = {}) => {
 	const locale = experimentalStaticLocale ?? options.locale ?? getLocale()
-	if (locale === "en") return en_size_prefix(inputs)
-	return zh_size_prefix(inputs)
+	if (locale === "zh") return zh_size_prefix(inputs)
+	return en_size_prefix(inputs)
 });
