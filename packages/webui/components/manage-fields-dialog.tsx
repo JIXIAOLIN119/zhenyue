@@ -1,0 +1,834 @@
+import { client } from '@/ui/api/client'
+import { Popover, PopoverContent, PopoverTrigger } from '@/ui/components/ui/popover'
+import { reorderFieldSubset } from '@/ui/lib/dnd-utils'
+import { m } from '@/ui/paraglide/messages.js'
+import { useFieldStore } from '@/ui/stores/fields'
+import { PointerActivationConstraints } from '@dnd-kit/dom'
+import { DragDropProvider, KeyboardSensor, PointerSensor, type DragEndEvent } from '@dnd-kit/react'
+import { isSortable, useSortable } from '@dnd-kit/react/sortable'
+import {
+  FieldType,
+  AutofillSource,
+  type FieldInfo,
+  type FieldInfo as MetadataFieldInfo,
+  type SelectOption,
+} from '@shumai/dtos'
+import { useMutation, useQueryClient } from '@tanstack/react-query'
+import { InferRequestType, InferResponseType } from 'hono/client'
+import {
+  ChevronDown,
+  FileText,
+  GripVertical,
+  Lock,
+  Plus,
+  Settings,
+  Sparkles,
+  Bot,
+  X,
+} from 'lucide-react'
+import { useEffect, useMemo, useState } from 'react'
+import { toast } from 'sonner'
+import { ulid } from 'ulid'
+import {
+  COLOR_MAP,
+  FIELD_TYPE_ICONS,
+  getRandomUnusedColor,
+  PREDEFINED_COLORS,
+} from './fields-manager'
+
+import { Button } from '@/ui/components/ui/button'
+import { Dialog, DialogContent, DialogTitle } from '@/ui/components/ui/dialog'
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from '@/ui/components/ui/dropdown-menu'
+import { Input } from '@/ui/components/ui/input'
+import { Label } from '@/ui/components/ui/label'
+import { ToggleGroup, ToggleGroupItem } from '@/ui/components/ui/toggle-group'
+import { cn } from '@/ui/lib/utils'
+import { AutofillSourceHelpTrigger } from '@/ui/components/autofill-source-help-dialog'
+
+type ManageFieldsDialogProps = {
+  projectId: string
+  open: boolean
+  onOpenChange: (open: boolean) => void
+}
+
+// Map scopes to UI groups
+// Note: "Essentials" and "File Attributes" are typically system fields.
+// "Custom Fields" are project fields.
+// Since we don't have explicit "Essentials" vs "File Attributes" flag,
+// we'll put all system/team fields in "Essentials" for now or split if possible.
+// User said: "groups are `scope` field... can be system/team/project".
+const SCOPE_GROUPS = {
+  SYSTEM: 'system',
+  TEAM: 'team',
+  PROJECT: 'project',
+}
+
+// Icons for groups
+const GROUP_ICONS: Record<string, React.ElementType> = {
+  [SCOPE_GROUPS.SYSTEM]: FileText, // Placeholder
+  [SCOPE_GROUPS.TEAM]: FileText, // Placeholder
+  [SCOPE_GROUPS.PROJECT]: Settings,
+}
+
+type SortableFieldRowProps = {
+  field: FieldInfo
+  index: number
+  isSelected: boolean
+  onSelect: (field: FieldInfo) => void
+  isSortable: boolean
+}
+
+function SortableFieldRow({
+  field,
+  index,
+  isSelected,
+  onSelect,
+  isSortable,
+}: SortableFieldRowProps) {
+  const { ref, handleRef } = useSortable({
+    id: field.id!,
+    index,
+    disabled: !isSortable,
+  })
+
+  const Icon = field.config?.type ? FIELD_TYPE_ICONS[field.config.type as FieldType] : null
+
+  return (
+    <div
+      ref={ref}
+      className={cn(
+        'flex items-center gap-2 p-2 rounded-md cursor-pointer hover:bg-muted/50',
+        isSelected && 'bg-muted',
+      )}
+      onClick={() => onSelect(field)}
+    >
+      {isSortable && (
+        <div ref={handleRef} className="cursor-grab">
+          <GripVertical className="h-4 w-4 text-muted-foreground" />
+        </div>
+      )}
+      {!isSortable && <div className="w-4" />} {/* Spacer */}
+      {Icon && <Icon className="h-4 w-4 text-muted-foreground shrink-0" />}
+      {field.config?.autofillSource === AutofillSource.CONTENT && (
+        <Sparkles className="h-4 w-4 text-muted-foreground shrink-0" />
+      )}
+      {field.config?.autofillSource === AutofillSource.CREATION_CONTEXT && (
+        <Bot className="h-4 w-4 text-muted-foreground shrink-0" />
+      )}
+      <div className="flex-1 text-sm font-medium truncate">{field.config?.name}</div>
+    </div>
+  )
+}
+
+export function ManageFieldsDialog({ projectId, open, onOpenChange }: ManageFieldsDialogProps) {
+  const { fields, updateFields } = useFieldStore()
+  const [selectedGroup, setSelectedGroup] = useState<string>(SCOPE_GROUPS.PROJECT)
+  const [selectedFieldId, setSelectedFieldId] = useState<string | null>(null)
+  const [isCreating, setIsCreating] = useState(false)
+
+  const queryClient = useQueryClient()
+  useEffect(() => {
+    if (open) {
+      queryClient.invalidateQueries({ queryKey: ['fields', projectId] })
+    }
+  }, [open, projectId, queryClient])
+
+  // Editor State
+  const [editLabel, setEditLabel] = useState('')
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const [editConfig, setEditConfig] = useState<any>({})
+  const [editAutofillSource, setEditAutofillSource] = useState<AutofillSource>(AutofillSource.NONE)
+  const [editDescription, setEditDescription] = useState('')
+
+  // Creator State
+  const [newName, setNewName] = useState('')
+  const [newType, setNewType] = useState<FieldType | ''>('')
+  const [newAutofillSource, setNewAutofillSource] = useState<AutofillSource>(AutofillSource.NONE)
+  const [newDescription, setNewDescription] = useState('')
+  const [newOptions, setNewOptions] = useState<SelectOption[]>([])
+
+  const $patchOrder = client.api.projects[':projectId'].fields.order.$patch
+  const { mutate: updateFieldsOrder } = useMutation<
+    InferResponseType<typeof $patchOrder>,
+    Error,
+    InferRequestType<typeof $patchOrder>
+  >({
+    mutationFn: async (request) => {
+      const res = await $patchOrder(request)
+      if (!res.ok) throw new Error(m.failed_update_fields_order())
+      return null as unknown as InferResponseType<typeof $patchOrder>
+    },
+  })
+  const $post = client.api.projects[':projectId'].fields.$post
+  const { mutate: createField } = useMutation<
+    InferResponseType<typeof $post>,
+    Error,
+    InferRequestType<typeof $post>
+  >({
+    mutationFn: async (request) => {
+      const res = await $post(request)
+      if (!res.ok) throw new Error(m.failed_create_field())
+      return (await res.json()) as MetadataFieldInfo
+    },
+    onSuccess: (data) => {
+      const newField: MetadataFieldInfo = { ...(data as MetadataFieldInfo), visible: true }
+      updateFields([...fields, newField])
+      setIsCreating(false)
+      setSelectedFieldId(data.id!)
+      resetEditor(data)
+      toast.success(m.field_created_successfully())
+    },
+  })
+  const $put = client.api.fields[':fieldId'].$put
+  const { mutate: updateField } = useMutation<
+    InferResponseType<typeof $put>,
+    Error,
+    InferRequestType<typeof $put>
+  >({
+    mutationFn: async (request) => {
+      const res = await $put(request)
+      if (!res.ok) throw new Error(m.failed_update_field())
+      return (await res.json()) as MetadataFieldInfo
+    },
+    onSuccess: (data) => {
+      const newFields = fields.map((f) =>
+        f.id === data.id ? { ...f, ...(data as MetadataFieldInfo) } : f,
+      )
+      updateFields(newFields)
+      toast.success(m.field_updated_successfully())
+    },
+  })
+  const $delete = client.api.fields[':fieldId'].$delete
+  const { mutate: deleteField } = useMutation<
+    InferResponseType<typeof $delete>,
+    Error,
+    InferRequestType<typeof $delete>
+  >({
+    mutationFn: async (request) => {
+      const res = await $delete(request)
+      if (!res.ok) throw new Error(m.failed_delete_field())
+      return null as unknown as InferResponseType<typeof $delete>
+    },
+    onSuccess: (_, variables) => {
+      const newFields = fields.filter((f) => f.id !== variables.param.fieldId)
+      updateFields(newFields)
+      setSelectedFieldId(null)
+      toast.success(m.field_deleted_successfully())
+    },
+  })
+
+  const groups = useMemo(() => {
+    // Normalize scopes to lowercase to match SCOPE_GROUPS definitions
+    const presentScopes = Array.from(
+      new Set(fields.map((f) => (f.scope || SCOPE_GROUPS.PROJECT).toLowerCase())),
+    )
+    // Ensure Project group is always present
+    if (!presentScopes.includes(SCOPE_GROUPS.PROJECT)) {
+      presentScopes.push(SCOPE_GROUPS.PROJECT)
+    }
+
+    return presentScopes.map((scope) => ({
+      id: scope,
+      label:
+        scope === SCOPE_GROUPS.SYSTEM
+          ? m.essentials()
+          : scope === SCOPE_GROUPS.TEAM
+            ? m.team_attributes()
+            : scope === SCOPE_GROUPS.PROJECT
+              ? m.custom_fields()
+              : scope.charAt(0).toUpperCase() + scope.slice(1),
+      icon: GROUP_ICONS[scope] || FileText,
+    }))
+  }, [fields])
+
+  const filteredFields = useMemo(() => {
+    return fields.filter((f) => (f.scope || SCOPE_GROUPS.PROJECT).toLowerCase() === selectedGroup)
+  }, [fields, selectedGroup])
+
+  const selectedField = useMemo(
+    () => fields.find((f) => f.id === selectedFieldId),
+    [fields, selectedFieldId],
+  )
+
+  const resetEditor = (field?: FieldInfo) => {
+    if (field) {
+      setEditLabel(field.config?.name || '') // Using name as label for now if label missing
+      setEditConfig(field.config || {})
+      setEditAutofillSource(field.config?.autofillSource ?? AutofillSource.NONE)
+      setEditDescription(field.description || '')
+    } else {
+      setEditLabel('')
+      setEditConfig({})
+      setEditAutofillSource(AutofillSource.NONE)
+      setEditDescription('')
+    }
+  }
+
+  const handleSelectField = (field: FieldInfo) => {
+    setIsCreating(false)
+    setSelectedFieldId(field.id!)
+    resetEditor(field)
+  }
+
+  const handleCreateClick = () => {
+    setIsCreating(true)
+    setSelectedFieldId(null)
+    setNewName('')
+    setNewType('')
+    setNewAutofillSource(AutofillSource.NONE)
+    setNewDescription('')
+    setNewOptions([])
+  }
+
+  const handleDragEnd = (event: DragEndEvent) => {
+    if (event.canceled) return
+    const { source } = event.operation
+    if (!isSortable(source)) return
+    const { initialIndex, index } = source
+    if (initialIndex === index) return
+
+    // Sortable rows are rendered from the selected group's subset, so indices are
+    // relative to `filteredFields`, not the full `fields` array.
+    const newFields = reorderFieldSubset(fields, filteredFields, initialIndex, index)
+    updateFields(newFields)
+
+    updateFieldsOrder({
+      param: { projectId: projectId },
+      json: newFields.map((f: MetadataFieldInfo) => ({
+        fieldId: f.id!,
+        visible: f.visible || false,
+      })),
+    })
+  }
+
+  const handleSaveCreation = () => {
+    if (!newName || !newType) return
+    const typeConfig =
+      newType === FieldType.select
+        ? { select: { options: newOptions } }
+        : newType === FieldType.selectMulti
+          ? { selectMulti: { options: newOptions } }
+          : {}
+    createField({
+      param: { projectId: projectId },
+      json: {
+        config: {
+          name: newName,
+          type: newType,
+          autofillSource: newAutofillSource,
+          ...typeConfig,
+        },
+        label: newName,
+        scope: selectedGroup === SCOPE_GROUPS.PROJECT ? undefined : selectedGroup,
+        description: newDescription,
+      },
+    })
+  }
+
+  const handleSaveEdit = () => {
+    if (!selectedField) return
+    updateField({
+      param: { fieldId: selectedField.id! },
+      json: {
+        config: {
+          ...selectedField.config,
+          ...editConfig,
+          name: editLabel,
+          autofillSource: editAutofillSource,
+        },
+        description: editDescription,
+      },
+    })
+  }
+
+  const handleDelete = () => {
+    if (!selectedField) return
+    if (confirm(m.confirm_delete_field())) {
+      deleteField({ param: { fieldId: selectedField.id! } })
+    }
+  }
+
+  // --- Render Helpers for Config ---
+
+  const renderConfigEditor = () => {
+    if (isCreating) {
+      return (
+        <div className="space-y-4">
+          <div className="space-y-2">
+            <Label>{m.field_name()}</Label>
+            <Input
+              value={newName}
+              onChange={(e) => setNewName(e.target.value)}
+              placeholder={m.field_name_placeholder()}
+            />
+          </div>
+          <div className="space-y-2">
+            <Label>{m.field_type()}</Label>
+            <DropdownMenu>
+              <DropdownMenuTrigger asChild>
+                <Button variant="outline" className="w-full justify-between">
+                  {newType ? (
+                    <span className="capitalize">{newType.replace(/_/g, ' ')}</span>
+                  ) : (
+                    <span className="text-muted-foreground">{m.select_type()}</span>
+                  )}
+                  <ChevronDown className="h-4 w-4 opacity-50" />
+                </Button>
+              </DropdownMenuTrigger>
+              <DropdownMenuContent className="max-h-60 overflow-y-auto">
+                {Object.values(FieldType).map((type) => (
+                  <DropdownMenuItem
+                    key={type}
+                    onClick={() => {
+                      setNewType(type)
+                      setNewOptions([])
+                    }}
+                    className="capitalize"
+                  >
+                    {type.replace(/_/g, ' ')}
+                  </DropdownMenuItem>
+                ))}
+              </DropdownMenuContent>
+            </DropdownMenu>
+          </div>
+          <div className="space-y-2">
+            <Label>{m.description()}</Label>
+            <Input
+              value={newDescription}
+              onChange={(e) => setNewDescription(e.target.value)}
+              placeholder={m.description_optional_placeholder()}
+            />
+          </div>
+          <div className="space-y-2">
+            <div className="flex items-center gap-1">
+              <Label>{m.autofill_source()}</Label>
+              <AutofillSourceHelpTrigger />
+            </div>
+            <ToggleGroup
+              type="single"
+              value={newAutofillSource}
+              onValueChange={(val: string) => {
+                if (val) setNewAutofillSource(val as AutofillSource)
+              }}
+              className="w-full grid grid-cols-3 border rounded-md p-1 gap-1"
+            >
+              <ToggleGroupItem
+                value={AutofillSource.NONE}
+                className="text-[11px] leading-tight py-1 px-1 h-auto min-h-[32px] w-full text-center justify-center whitespace-normal font-medium"
+              >
+                {m.autofill_source_none()}
+              </ToggleGroupItem>
+              <ToggleGroupItem
+                value={AutofillSource.CONTENT}
+                className="text-[11px] leading-tight py-1 px-1 h-auto min-h-[32px] w-full text-center justify-center whitespace-normal font-medium"
+              >
+                {m.autofill_source_content()}
+              </ToggleGroupItem>
+              <ToggleGroupItem
+                value={AutofillSource.CREATION_CONTEXT}
+                className="text-[11px] leading-tight py-1 px-1 h-auto min-h-[32px] w-full text-center justify-center whitespace-normal font-medium"
+              >
+                {m.autofill_source_creation_context()}
+              </ToggleGroupItem>
+            </ToggleGroup>
+          </div>
+
+          {(newType === FieldType.select || newType === FieldType.selectMulti) && (
+            <div className="space-y-2">
+              <div className="flex items-center justify-between">
+                <Label className="text-sm font-medium">{m.options()}</Label>
+                <Button
+                  variant="ghost"
+                  size="sm"
+                  onClick={() => {
+                    const newOption: SelectOption = {
+                      id: ulid(),
+                      displayName: m.new_option(),
+                      color: getRandomUnusedColor(newOptions),
+                    }
+                    setNewOptions([...newOptions, newOption])
+                  }}
+                >
+                  <Plus className="h-4 w-4 mr-2" /> {m.add_option()}
+                </Button>
+              </div>
+              <div className="space-y-2 max-h-40 overflow-y-auto pr-1">
+                {newOptions.map((opt, idx) => (
+                  <div key={opt.id || idx} className="flex items-center gap-2">
+                    <Input
+                      value={opt.displayName}
+                      onChange={(e) => {
+                        const updated = [...newOptions]
+                        updated[idx] = { ...opt, displayName: e.target.value }
+                        setNewOptions(updated)
+                      }}
+                      placeholder={m.option_name_placeholder()}
+                    />
+                    <Popover>
+                      <PopoverTrigger asChild>
+                        <button
+                          type="button"
+                          className="w-6 h-6 rounded-full border shrink-0 cursor-pointer focus:outline-none hover:scale-105 transition-transform"
+                          style={{
+                            backgroundColor:
+                              COLOR_MAP[opt.color || '']?.hex || opt.color || '#808080',
+                          }}
+                        />
+                      </PopoverTrigger>
+                      <PopoverContent className="p-2 w-auto" align="end">
+                        <div className="flex gap-1">
+                          {PREDEFINED_COLORS.map((color) => (
+                            <button
+                              key={color}
+                              type="button"
+                              className="w-5 h-5 rounded-full border cursor-pointer hover:scale-110 transition-transform"
+                              style={{ backgroundColor: COLOR_MAP[color]?.hex || color }}
+                              onClick={() => {
+                                const updated = [...newOptions]
+                                updated[idx] = { ...opt, color }
+                                setNewOptions(updated)
+                              }}
+                            />
+                          ))}
+                        </div>
+                      </PopoverContent>
+                    </Popover>
+                    <Button
+                      variant="ghost"
+                      size="icon"
+                      onClick={() => {
+                        setNewOptions(newOptions.filter((_, i) => i !== idx))
+                      }}
+                    >
+                      <X className="h-4 w-4" />
+                    </Button>
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
+        </div>
+      )
+    }
+
+    if (!selectedField) {
+      return <div className="text-muted-foreground text-sm">{m.select_field_to_edit()}</div>
+    }
+
+    const isReadOnly = selectedField.readOnly
+
+    return (
+      <div className="space-y-6">
+        <div className="flex items-center justify-between">
+          <Input
+            value={editLabel}
+            onChange={(e) => setEditLabel(e.target.value)}
+            disabled={isReadOnly}
+            className="font-medium"
+          />
+          {isReadOnly && <Lock className="h-4 w-4 text-muted-foreground ml-2" />}
+        </div>
+
+        {/* Type Specific Configs */}
+        {/* For Select / Select Multi, we might want option editing */}
+        {/* For now, just a placeholder or basic json editor if complex? */}
+        {/* User requirement: "implement editing for all field types" */}
+
+        {/* Generic placeholder for options */}
+        <div className="text-sm text-muted-foreground">
+          {m.type_label()}{' '}
+          <span className="capitalize">{selectedField.config?.type?.replace(/_/g, ' ')}</span>
+        </div>
+
+        <div className="space-y-2">
+          <Label>{m.description()}</Label>
+          <Input
+            value={editDescription}
+            onChange={(e) => setEditDescription(e.target.value)}
+            placeholder={m.description_optional_placeholder()}
+            disabled={isReadOnly}
+          />
+        </div>
+
+        <div className="space-y-2">
+          <div className="flex items-center gap-1">
+            <Label>{m.autofill_source()}</Label>
+            <AutofillSourceHelpTrigger />
+          </div>
+          <ToggleGroup
+            type="single"
+            value={isCreating ? newAutofillSource : editAutofillSource}
+            onValueChange={(val) => {
+              if (val) {
+                if (isCreating) setNewAutofillSource(val as AutofillSource)
+                else setEditAutofillSource(val as AutofillSource)
+              }
+            }}
+            disabled={isReadOnly}
+            className="w-full grid grid-cols-3 border rounded-md p-1 gap-1"
+          >
+            <ToggleGroupItem
+              value={AutofillSource.NONE}
+              className="text-[11px] leading-tight py-1 px-1 h-auto min-h-[32px] w-full text-center justify-center whitespace-normal font-medium"
+            >
+              {m.autofill_source_none()}
+            </ToggleGroupItem>
+            <ToggleGroupItem
+              value={AutofillSource.CONTENT}
+              className="text-[11px] leading-tight py-1 px-1 h-auto min-h-[32px] w-full text-center justify-center whitespace-normal font-medium"
+            >
+              {m.autofill_source_content()}
+            </ToggleGroupItem>
+            <ToggleGroupItem
+              value={AutofillSource.CREATION_CONTEXT}
+              className="text-[11px] leading-tight py-1 px-1 h-auto min-h-[32px] w-full text-center justify-center whitespace-normal font-medium"
+            >
+              {m.autofill_source_creation_context()}
+            </ToggleGroupItem>
+          </ToggleGroup>
+        </div>
+
+        {/* TODO: Add specific option editors here */}
+        {/* Example: Add option button for select types */}
+        {(selectedField.config?.type === 'select' ||
+          selectedField.config?.type === 'selectMulti') && (
+          <div className="space-y-2">
+            <div className="flex items-center justify-between">
+              <label className="text-sm font-medium">{m.options()}</label>
+              <Button
+                variant="ghost"
+                size="sm"
+                onClick={() => {
+                  const currentOptions =
+                    (selectedField.config?.type === 'select'
+                      ? editConfig.select?.options
+                      : editConfig.selectMulti?.options) || []
+                  const newOption = {
+                    id: ulid(),
+                    displayName: m.new_option(),
+                    color: getRandomUnusedColor(currentOptions),
+                  }
+                  const newOptions = [...currentOptions, newOption]
+
+                  setEditConfig({
+                    ...editConfig,
+                    [selectedField.config?.type === 'select' ? 'select' : 'selectMulti']: {
+                      options: newOptions,
+                    },
+                  })
+                }}
+              >
+                <Plus className="h-4 w-4 mr-2" /> {m.add_option()}
+              </Button>
+            </div>
+            <div className="space-y-2">
+              {(
+                (selectedField.config?.type === 'select'
+                  ? editConfig.select?.options
+                  : editConfig.selectMulti?.options) || []
+              ).map((opt: SelectOption, idx: number) => (
+                <div key={idx} className="flex items-center gap-2">
+                  <Input
+                    value={opt.displayName}
+                    onChange={(e) => {
+                      const newOpts = [
+                        ...((selectedField.config?.type === 'select'
+                          ? editConfig.select?.options
+                          : editConfig.selectMulti?.options) || []),
+                      ]
+                      newOpts[idx] = { ...opt, displayName: e.target.value }
+                      setEditConfig({
+                        ...editConfig,
+                        [selectedField.config?.type === 'select' ? 'select' : 'selectMulti']: {
+                          options: newOpts,
+                        },
+                      })
+                    }}
+                  />
+                  <Popover>
+                    <PopoverTrigger asChild>
+                      <button
+                        type="button"
+                        className="w-6 h-6 rounded-full border shrink-0 cursor-pointer focus:outline-none hover:scale-105 transition-transform"
+                        style={{
+                          backgroundColor:
+                            COLOR_MAP[opt.color || '']?.hex || opt.color || '#808080',
+                        }}
+                        disabled={isReadOnly}
+                      />
+                    </PopoverTrigger>
+                    {!isReadOnly && (
+                      <PopoverContent className="p-2 w-auto" align="end">
+                        <div className="flex gap-1">
+                          {PREDEFINED_COLORS.map((color) => (
+                            <button
+                              key={color}
+                              type="button"
+                              className="w-5 h-5 rounded-full border cursor-pointer hover:scale-110 transition-transform"
+                              style={{ backgroundColor: COLOR_MAP[color]?.hex || color }}
+                              onClick={() => {
+                                const newOpts = [
+                                  ...((selectedField.config?.type === 'select'
+                                    ? editConfig.select?.options
+                                    : editConfig.selectMulti?.options) || []),
+                                ]
+                                newOpts[idx] = { ...opt, color }
+                                setEditConfig({
+                                  ...editConfig,
+                                  [selectedField.config?.type === 'select'
+                                    ? 'select'
+                                    : 'selectMulti']: {
+                                    options: newOpts,
+                                  },
+                                })
+                              }}
+                            />
+                          ))}
+                        </div>
+                      </PopoverContent>
+                    )}
+                  </Popover>
+                  <Button
+                    variant="ghost"
+                    size="icon"
+                    onClick={() => {
+                      const newOpts = (
+                        (selectedField.config?.type === 'select'
+                          ? editConfig.select?.options
+                          : editConfig.selectMulti?.options) || []
+                      ).filter((_: SelectOption, i: number) => i !== idx)
+                      setEditConfig({
+                        ...editConfig,
+                        [selectedField.config?.type === 'select' ? 'select' : 'selectMulti']: {
+                          options: newOpts,
+                        },
+                      })
+                    }}
+                  >
+                    <X className="h-4 w-4" />
+                  </Button>
+                </div>
+              ))}
+            </div>
+          </div>
+        )}
+
+        {!isReadOnly && selectedField.scope?.toLowerCase() !== 'system' && (
+          <div className="pt-4 flex justify-between">
+            <Button
+              variant="outline"
+              onClick={handleDelete}
+              className="text-destructive hover:bg-destructive/10"
+            >
+              {m.delete_field()}
+            </Button>
+          </div>
+        )}
+      </div>
+    )
+  }
+
+  // --- Main Render ---
+
+  return (
+    <Dialog open={open} onOpenChange={onOpenChange}>
+      <DialogContent className="!max-w-[50rem] h-[70vh] flex flex-col p-0 gap-0">
+        <div className="p-4 border-b flex items-center justify-between">
+          <DialogTitle>{m.manage_fields()}</DialogTitle>
+        </div>
+        <div className="flex overflow-hidden h-full">
+          {/* Left Column: Groups */}
+          <div className="w-60 border-r bg-muted/30 p-4 space-y-1">
+            <div className="font-semibold mb-4 px-2">{m.groups()}</div>
+            {groups.map((group) => (
+              <button
+                key={group.id}
+                onClick={() => {
+                  setSelectedGroup(group.id)
+                  setIsCreating(false)
+                  setSelectedFieldId(null)
+                }}
+                className={cn(
+                  'w-full flex items-center gap-2 px-3 py-2 rounded-md text-sm font-medium transition-colors hover:bg-muted text-left',
+                  selectedGroup === group.id && 'bg-muted text-foreground',
+                )}
+              >
+                <group.icon className="h-4 w-4" />
+                {group.label}
+              </button>
+            ))}
+          </div>
+
+          {/* Middle Column: Field List */}
+          <div className="w-64 border-r flex flex-col">
+            <div className="p-4 border-b flex items-center justify-between bg-background h-[57px]">
+              <span className="font-medium text-sm">
+                {groups.find((g) => g.id === selectedGroup)?.label}
+              </span>
+              {selectedGroup === SCOPE_GROUPS.PROJECT && (
+                <Button size="sm" variant="outline" className="h-8" onClick={handleCreateClick}>
+                  {m.new_label()} <Plus className="ml-1 h-3 w-3" />
+                </Button>
+              )}
+            </div>
+            <div className="flex-1 overflow-y-auto p-2 space-y-1">
+              <DragDropProvider
+                sensors={[
+                  PointerSensor.configure({
+                    activationConstraints: [
+                      new PointerActivationConstraints.Distance({ value: 8 }),
+                    ],
+                  }),
+                  KeyboardSensor,
+                ]}
+                onDragEnd={handleDragEnd}
+              >
+                {filteredFields.map((field, index) => (
+                  <SortableFieldRow
+                    key={field.id}
+                    field={field}
+                    index={index}
+                    isSelected={selectedFieldId === field.id}
+                    onSelect={handleSelectField}
+                    isSortable
+                  />
+                ))}
+              </DragDropProvider>
+              {filteredFields.length === 0 && (
+                <div className="text-center text-muted-foreground text-sm py-8">
+                  {m.no_fields_found()}
+                </div>
+              )}
+            </div>
+          </div>
+
+          {/* Right Column: Config */}
+          <div className="flex-1 bg-background flex flex-col">
+            <div className="flex-1 overflow-y-auto p-6">{renderConfigEditor()}</div>
+            {(isCreating || (selectedField && !selectedField.readOnly)) && (
+              <div className="p-4 border-t flex justify-end gap-2 bg-muted/10">
+                <Button
+                  variant="ghost"
+                  onClick={() => {
+                    setIsCreating(false)
+                    if (selectedFieldId && selectedField) resetEditor(selectedField)
+                  }}
+                >
+                  {m.cancel()}
+                </Button>
+                <Button onClick={isCreating ? handleSaveCreation : handleSaveEdit}>
+                  {m.save()}
+                </Button>
+              </div>
+            )}
+          </div>
+        </div>
+      </DialogContent>
+    </Dialog>
+  )
+}

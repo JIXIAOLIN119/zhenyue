@@ -1,0 +1,10 @@
+node_modules
+dist
+.bun
+src/generated
+packages/db/src/generated
+packages/core/src/generated
+src/ui/components/ui
+packages/webui/paraglide
+*.md
+**/*.md
