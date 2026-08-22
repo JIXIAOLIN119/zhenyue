@@ -6,7 +6,10 @@ import { authMiddleware } from './middleware/auth'
 import { shareService } from '@zhenyue/core/src/share/share'
 import { assetService } from '@zhenyue/core/src/asset/asset'
 import { authzService, Permission, ResourceType } from '@zhenyue/core/src/authz/authz'
-import { ShareLinkPasswordInvalidError, ShareLinkExpiredError } from '@zhenyue/core/src/share/errors'
+import {
+  ShareLinkPasswordInvalidError,
+  ShareLinkExpiredError,
+} from '@zhenyue/core/src/share/errors'
 
 import { auditLogService } from '@zhenyue/core/src/auditLog/auditLog'
 import { watermarkService } from '@zhenyue/core/src/watermark/watermark'

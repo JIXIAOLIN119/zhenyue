@@ -393,7 +393,10 @@ export class DatabaseSessionStorage implements SessionStorage<DatabaseSessionMet
             if (item.type === 'image' && item.data === '__S3_DATA__' && sourceKeys[keyIdx]) {
               const key = sourceKeys[keyIdx]
               try {
-                const { buffer } = await s3Service.getObject(process.env.S3_BUCKET || 'zhenyue', key)
+                const { buffer } = await s3Service.getObject(
+                  process.env.S3_BUCKET || 'zhenyue',
+                  key,
+                )
                 item.data = buffer.toString('base64')
               } catch (err) {
                 console.error(`Failed to re-inject image data for key ${key}:`, err)

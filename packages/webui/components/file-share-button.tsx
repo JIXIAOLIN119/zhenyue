@@ -83,7 +83,10 @@ export function FileShareButton({ projectId, fileId, fileName, className }: File
         type="button"
         size="sm"
         variant="secondary"
-        className={cn('gap-1.5 bg-background/90 backdrop-blur shadow-sm hover:bg-background', className)}
+        className={cn(
+          'gap-1.5 bg-background/90 backdrop-blur shadow-sm hover:bg-background',
+          className,
+        )}
         onClick={() => createShare()}
         disabled={isPending}
       >

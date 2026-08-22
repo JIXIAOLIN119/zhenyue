@@ -102,7 +102,13 @@ export function createCreateFileTool(userId: string, metadataSchema?: TSchema): 
         mimeType = getFileMimeType(null, source.name, 'text/plain')
 
         s3Key = `files/${ulid()}/${name}`
-        await s3Service.putObject(process.env.S3_BUCKET || 'zhenyue', s3Key, content, size, mimeType)
+        await s3Service.putObject(
+          process.env.S3_BUCKET || 'zhenyue',
+          s3Key,
+          content,
+          size,
+          mimeType,
+        )
       }
 
       const result = await executeAgentToolWorkflow({
