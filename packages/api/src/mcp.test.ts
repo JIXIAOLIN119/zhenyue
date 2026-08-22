@@ -1,18 +1,18 @@
 import { describe, expect, test, vi, beforeEach } from 'vitest'
 import { Hono } from 'hono'
 import mcpRoute, { mcpOauthCallbackRoute } from './mcp'
-import { mcpService } from '@shumai/core/src/mcp/mcp-service'
+import { mcpService } from '@zhenyue/core/src/mcp/mcp-service'
 import { authMiddleware } from './middleware/auth'
-import { authzService, ResourceType, Permission } from '@shumai/core/src/authz/authz'
-import { auditLogService } from '@shumai/core/src/auditLog/auditLog'
+import { authzService, ResourceType, Permission } from '@zhenyue/core/src/authz/authz'
+import { auditLogService } from '@zhenyue/core/src/auditLog/auditLog'
 
-vi.mock('@shumai/core/src/auditLog/auditLog', () => ({
+vi.mock('@zhenyue/core/src/auditLog/auditLog', () => ({
   auditLogService: {
     logAction: vi.fn().mockResolvedValue({}),
   },
 }))
 
-vi.mock('@shumai/core/src/mcp/mcp-service', () => ({
+vi.mock('@zhenyue/core/src/mcp/mcp-service', () => ({
   mcpService: {
     listServers: vi.fn(),
     createServer: vi.fn(),
@@ -40,7 +40,7 @@ vi.mock('./middleware/auth', () => ({
   },
 }))
 
-vi.mock('@shumai/core/src/authz/authz', () => ({
+vi.mock('@zhenyue/core/src/authz/authz', () => ({
   authzService: {
     hasPermission: vi.fn().mockResolvedValue(undefined),
   },
@@ -55,7 +55,7 @@ vi.mock('@shumai/core/src/authz/authz', () => ({
   },
 }))
 
-import type { McpServerInfo } from '@shumai/dtos'
+import type { McpServerInfo } from '@zhenyue/dtos'
 
 const serverInfo: McpServerInfo = {
   id: 'server1',

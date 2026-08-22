@@ -5,12 +5,12 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 
 /** @typedef {{}} GeneralInputs */
 
-const en_general = /** @type {(inputs: GeneralInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`General`)
-};
-
 const zh_general = /** @type {(inputs: GeneralInputs) => LocalizedString} */ () => {
 	return /** @type {LocalizedString} */ (`通用`)
+};
+
+const en_general = /** @type {(inputs: GeneralInputs) => LocalizedString} */ () => {
+	return /** @type {LocalizedString} */ (`General`)
 };
 
 /**
@@ -19,11 +19,11 @@ const zh_general = /** @type {(inputs: GeneralInputs) => LocalizedString} */ () 
 * | "General" |
 *
 * @param {GeneralInputs} inputs
-* @param {{ locale?: "en" | "zh" }} options
+* @param {{ locale?: "zh" | "en" }} options
 * @returns {LocalizedString}
 */
-export const general = /** @type {((inputs?: GeneralInputs, options?: { locale?: "en" | "zh" }) => LocalizedString) & import('../runtime.js').MessageMetadata<GeneralInputs, { locale?: "en" | "zh" }, {}>} */ ((inputs = {}, options = {}) => {
+export const general = /** @type {((inputs?: GeneralInputs, options?: { locale?: "zh" | "en" }) => LocalizedString) & import('../runtime.js').MessageMetadata<GeneralInputs, { locale?: "zh" | "en" }, {}>} */ ((inputs = {}, options = {}) => {
 	const locale = experimentalStaticLocale ?? options.locale ?? getLocale()
-	if (locale === "en") return en_general(inputs)
-	return zh_general(inputs)
+	if (locale === "zh") return zh_general(inputs)
+	return en_general(inputs)
 });

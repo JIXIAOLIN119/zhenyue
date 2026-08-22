@@ -8,9 +8,9 @@ import {
 } from './index'
 import { createSandboxedBashTool } from './tools/sandboxed-bash'
 import { SandboxManager, type SandboxAskCallback } from '@anthropic-ai/sandbox-runtime'
-import { quotaService } from '@shumai/core/src/quota/quota-service'
-import { prisma } from '@shumai/db'
-import { setupTestDbHooks } from '@shumai/db/test'
+import { quotaService } from '@zhenyue/core/src/quota/quota-service'
+import { prisma } from '@zhenyue/db'
+import { setupTestDbHooks } from '@zhenyue/db/test'
 import { type TSchema } from 'typebox'
 import { Value } from 'typebox/value'
 import * as path from 'path'
@@ -108,7 +108,7 @@ describe('Sandbox Network isolation integration', () => {
       data: {
         id: 'test-agent',
         name: 'Ai Agent',
-        email: 'test-agent@shumai.ai',
+        email: 'test-agent@zhenyue.ai',
         type: 'agent',
       },
     })
@@ -219,7 +219,7 @@ describe('Sandbox Network isolation integration', () => {
       data: {
         id: 'agent-1',
         name: 'Ai Agent 1',
-        email: 'agent1@shumai.ai',
+        email: 'agent1@zhenyue.ai',
         type: 'agent',
       },
     })
@@ -227,7 +227,7 @@ describe('Sandbox Network isolation integration', () => {
       data: {
         id: 'agent-2',
         name: 'Ai Agent 2',
-        email: 'agent2@shumai.ai',
+        email: 'agent2@zhenyue.ai',
         type: 'agent',
       },
     })
@@ -317,7 +317,7 @@ describe('Sandbox Network isolation integration', () => {
       data: {
         id: 'agent-disabled',
         name: 'Ai Agent Disabled',
-        email: 'disabled@shumai.ai',
+        email: 'disabled@zhenyue.ai',
         type: 'agent',
       },
     })
@@ -486,7 +486,7 @@ describe('Sandbox Network isolation integration', () => {
       data: {
         id: 'test-agent-3',
         name: 'Agent 3',
-        email: 'agent3@shumai.ai',
+        email: 'agent3@zhenyue.ai',
         type: 'agent',
       },
     })
@@ -572,7 +572,7 @@ describe('createAgentSession sandbox options', () => {
       data: {
         id: 'test-agent-env',
         name: 'Ai Agent Env',
-        email: 'test-agent-env@shumai.ai',
+        email: 'test-agent-env@zhenyue.ai',
         type: 'agent',
       },
     })
@@ -668,7 +668,7 @@ describe('createAgentSession bash restriction for non-owner users', () => {
       data: {
         id: 'bash-agent',
         name: 'Ai Agent Bash',
-        email: 'bash-agent@shumai.ai',
+        email: 'bash-agent@zhenyue.ai',
         type: 'agent',
       },
     })
@@ -688,12 +688,12 @@ describe('createAgentSession bash restriction for non-owner users', () => {
     let userId: string | undefined
     if (opts.role === 'non-member') {
       const user = await prisma.user.create({
-        data: { name: 'Non Member', email: 'non-member@shumai.ai' },
+        data: { name: 'Non Member', email: 'non-member@zhenyue.ai' },
       })
       userId = user.id // no teamMember record created
     } else if (opts.role !== 'none') {
       const user = await prisma.user.create({
-        data: { name: 'Bash User', email: 'bash-user@shumai.ai' },
+        data: { name: 'Bash User', email: 'bash-user@zhenyue.ai' },
       })
       await prisma.teamMember.create({
         data: { teamId: team.id, userId: user.id, role: opts.role },
@@ -754,7 +754,7 @@ describe('createAgentSession bash restriction for non-owner users', () => {
   it('should include the bash tool from the start when a skill was already loaded earlier in the session', async () => {
     const team = await prisma.team.create({ data: { name: 'Restore Team' } })
     const user = await prisma.user.create({
-      data: { name: 'Restore User', email: 'restore@shumai.ai' },
+      data: { name: 'Restore User', email: 'restore@zhenyue.ai' },
     })
     await prisma.teamMember.create({
       data: { teamId: team.id, userId: user.id, role: 'reviewer' },
@@ -763,7 +763,7 @@ describe('createAgentSession bash restriction for non-owner users', () => {
       data: {
         id: 'bash-agent-restore',
         name: 'Ai Agent Restore',
-        email: 'bash-agent-restore@shumai.ai',
+        email: 'bash-agent-restore@zhenyue.ai',
         type: 'agent',
       },
     })
@@ -900,7 +900,7 @@ describe('createAgentSession typed metadata schema', () => {
       data: { name: 'Typed Metadata Project', teamId: team.id },
     })
     const user = await prisma.user.create({
-      data: { name: 'Typed Metadata User', email: 'typed-metadata@shumai.ai' },
+      data: { name: 'Typed Metadata User', email: 'typed-metadata@zhenyue.ai' },
     })
     await prisma.teamMember.create({
       data: { teamId: team.id, userId: user.id, role: 'owner' },
@@ -909,7 +909,7 @@ describe('createAgentSession typed metadata schema', () => {
       data: {
         id: 'typed-metadata-agent',
         name: 'Ai Agent Typed Metadata',
-        email: 'typed-metadata-agent@shumai.ai',
+        email: 'typed-metadata-agent@zhenyue.ai',
         type: 'agent',
       },
     })
@@ -1061,7 +1061,7 @@ describe('createAgentSession enabled skill filtering', () => {
       data: {
         id: 'skill-filter-agent',
         name: 'Ai Agent Skill Filter',
-        email: 'skill-filter-agent@shumai.ai',
+        email: 'skill-filter-agent@zhenyue.ai',
         type: 'agent',
       },
     })
@@ -1137,7 +1137,7 @@ describe('createAgentSession enabled skill filtering', () => {
       data: {
         id: 'skill-none-agent',
         name: 'Ai Agent Skill None',
-        email: 'skill-none-agent@shumai.ai',
+        email: 'skill-none-agent@zhenyue.ai',
         type: 'agent',
       },
     })
@@ -1178,7 +1178,7 @@ describe('createAgentSession enabled skill filtering', () => {
   it('enforces agent tool call count quota on tool execution', async () => {
     const team = await prisma.team.create({ data: { name: 'Tool Quota Enforcement Team' } })
     const user = await prisma.user.create({
-      data: { name: 'Member User', email: 'member-tool-quota@shumai.ai', password: 'pw' },
+      data: { name: 'Member User', email: 'member-tool-quota@zhenyue.ai', password: 'pw' },
     })
     await prisma.teamMember.create({
       data: { teamId: team.id, userId: user.id, role: 'editor' },
@@ -1187,7 +1187,7 @@ describe('createAgentSession enabled skill filtering', () => {
       data: {
         id: 'tool-quota-agent',
         name: 'Tool Quota Agent',
-        email: 'tool-quota-agent@shumai.ai',
+        email: 'tool-quota-agent@zhenyue.ai',
         type: 'agent',
       },
     })

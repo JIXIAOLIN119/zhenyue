@@ -4,13 +4,13 @@
 * | "Owner" |
 *
 * @param {OwnerInputs} inputs
-* @param {{ locale?: "en" | "zh" }} options
+* @param {{ locale?: "zh" | "en" }} options
 * @returns {LocalizedString}
 */
 export const owner: ((inputs?: OwnerInputs, options?: {
-    locale?: "en" | "zh";
+    locale?: "zh" | "en";
 }) => LocalizedString) & import("../runtime.js").MessageMetadata<OwnerInputs, {
-    locale?: "en" | "zh";
+    locale?: "zh" | "en";
 }, {}>;
 export type LocalizedString = import("../runtime.js").LocalizedString;
 export type OwnerInputs = {};

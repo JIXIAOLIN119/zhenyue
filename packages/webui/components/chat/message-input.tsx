@@ -1,4 +1,4 @@
-import type { CommentInfo, PostAttachmentRequest, PostAttachmentResponse } from '@shumai/dtos'
+import type { CommentInfo, PostAttachmentRequest, PostAttachmentResponse } from '@zhenyue/dtos'
 import { m } from '@/ui/paraglide/messages.js'
 import { client } from '@/ui/api/client'
 import { useAnnotationStore } from '@/ui/stores/annotation-store'

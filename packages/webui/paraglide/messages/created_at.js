@@ -5,12 +5,12 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 
 /** @typedef {{}} Created_AtInputs */
 
-const en_created_at = /** @type {(inputs: Created_AtInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Created At`)
-};
-
 const zh_created_at = /** @type {(inputs: Created_AtInputs) => LocalizedString} */ () => {
 	return /** @type {LocalizedString} */ (`创建时间`)
+};
+
+const en_created_at = /** @type {(inputs: Created_AtInputs) => LocalizedString} */ () => {
+	return /** @type {LocalizedString} */ (`Created At`)
 };
 
 /**
@@ -19,11 +19,11 @@ const zh_created_at = /** @type {(inputs: Created_AtInputs) => LocalizedString} 
 * | "Created At" |
 *
 * @param {Created_AtInputs} inputs
-* @param {{ locale?: "en" | "zh" }} options
+* @param {{ locale?: "zh" | "en" }} options
 * @returns {LocalizedString}
 */
-export const created_at = /** @type {((inputs?: Created_AtInputs, options?: { locale?: "en" | "zh" }) => LocalizedString) & import('../runtime.js').MessageMetadata<Created_AtInputs, { locale?: "en" | "zh" }, {}>} */ ((inputs = {}, options = {}) => {
+export const created_at = /** @type {((inputs?: Created_AtInputs, options?: { locale?: "zh" | "en" }) => LocalizedString) & import('../runtime.js').MessageMetadata<Created_AtInputs, { locale?: "zh" | "en" }, {}>} */ ((inputs = {}, options = {}) => {
 	const locale = experimentalStaticLocale ?? options.locale ?? getLocale()
-	if (locale === "en") return en_created_at(inputs)
-	return zh_created_at(inputs)
+	if (locale === "zh") return zh_created_at(inputs)
+	return en_created_at(inputs)
 });

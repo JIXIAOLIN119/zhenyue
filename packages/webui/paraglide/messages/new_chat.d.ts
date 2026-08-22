@@ -4,13 +4,13 @@
 * | "New Chat" |
 *
 * @param {New_ChatInputs} inputs
-* @param {{ locale?: "en" | "zh" }} options
+* @param {{ locale?: "zh" | "en" }} options
 * @returns {LocalizedString}
 */
 export const new_chat: ((inputs?: New_ChatInputs, options?: {
-    locale?: "en" | "zh";
+    locale?: "zh" | "en";
 }) => LocalizedString) & import("../runtime.js").MessageMetadata<New_ChatInputs, {
-    locale?: "en" | "zh";
+    locale?: "zh" | "en";
 }, {}>;
 export type LocalizedString = import("../runtime.js").LocalizedString;
 export type New_ChatInputs = {};

@@ -9,7 +9,7 @@ import {
 import { EditableText } from '@/ui/components/ui/editable-text'
 import { cn } from '@/ui/lib/utils'
 import { useDraggable, useDroppable } from '@dnd-kit/react'
-import type { AssetInfo, ChildPreview } from '@shumai/dtos'
+import type { AssetInfo, ChildPreview } from '@zhenyue/dtos'
 import { m } from '@/ui/paraglide/messages.js'
 import { Download, Edit, History, MoreHorizontal, Trash2 } from 'lucide-react'
 import React, { useEffect, useMemo, useRef, useState } from 'react'

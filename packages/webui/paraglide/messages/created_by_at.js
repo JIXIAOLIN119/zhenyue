@@ -5,12 +5,12 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 
 /** @typedef {{ time: NonNullable<unknown>, author: NonNullable<unknown> }} Created_By_AtInputs */
 
-const en_created_by_at = /** @type {(inputs: Created_By_AtInputs) => LocalizedString} */ (i) => {
-	return /** @type {LocalizedString} */ (`${i?.time} by ${i?.author}`)
-};
-
 const zh_created_by_at = /** @type {(inputs: Created_By_AtInputs) => LocalizedString} */ (i) => {
 	return /** @type {LocalizedString} */ (`${i?.time} 由 ${i?.author} 创建`)
+};
+
+const en_created_by_at = /** @type {(inputs: Created_By_AtInputs) => LocalizedString} */ (i) => {
+	return /** @type {LocalizedString} */ (`${i?.time} by ${i?.author}`)
 };
 
 /**
@@ -19,11 +19,11 @@ const zh_created_by_at = /** @type {(inputs: Created_By_AtInputs) => LocalizedSt
 * | "{time} by {author}" |
 *
 * @param {Created_By_AtInputs} inputs
-* @param {{ locale?: "en" | "zh" }} options
+* @param {{ locale?: "zh" | "en" }} options
 * @returns {LocalizedString}
 */
-export const created_by_at = /** @type {((inputs: Created_By_AtInputs, options?: { locale?: "en" | "zh" }) => LocalizedString) & import('../runtime.js').MessageMetadata<Created_By_AtInputs, { locale?: "en" | "zh" }, {}>} */ ((inputs, options = {}) => {
+export const created_by_at = /** @type {((inputs: Created_By_AtInputs, options?: { locale?: "zh" | "en" }) => LocalizedString) & import('../runtime.js').MessageMetadata<Created_By_AtInputs, { locale?: "zh" | "en" }, {}>} */ ((inputs, options = {}) => {
 	const locale = experimentalStaticLocale ?? options.locale ?? getLocale()
-	if (locale === "en") return en_created_by_at(inputs)
-	return zh_created_by_at(inputs)
+	if (locale === "zh") return zh_created_by_at(inputs)
+	return en_created_by_at(inputs)
 });

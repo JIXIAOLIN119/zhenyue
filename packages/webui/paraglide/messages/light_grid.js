@@ -5,12 +5,12 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 
 /** @typedef {{}} Light_GridInputs */
 
-const en_light_grid = /** @type {(inputs: Light_GridInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Light Grid`)
-};
-
 const zh_light_grid = /** @type {(inputs: Light_GridInputs) => LocalizedString} */ () => {
 	return /** @type {LocalizedString} */ (`浅色网格`)
+};
+
+const en_light_grid = /** @type {(inputs: Light_GridInputs) => LocalizedString} */ () => {
+	return /** @type {LocalizedString} */ (`Light Grid`)
 };
 
 /**
@@ -19,11 +19,11 @@ const zh_light_grid = /** @type {(inputs: Light_GridInputs) => LocalizedString} 
 * | "Light Grid" |
 *
 * @param {Light_GridInputs} inputs
-* @param {{ locale?: "en" | "zh" }} options
+* @param {{ locale?: "zh" | "en" }} options
 * @returns {LocalizedString}
 */
-export const light_grid = /** @type {((inputs?: Light_GridInputs, options?: { locale?: "en" | "zh" }) => LocalizedString) & import('../runtime.js').MessageMetadata<Light_GridInputs, { locale?: "en" | "zh" }, {}>} */ ((inputs = {}, options = {}) => {
+export const light_grid = /** @type {((inputs?: Light_GridInputs, options?: { locale?: "zh" | "en" }) => LocalizedString) & import('../runtime.js').MessageMetadata<Light_GridInputs, { locale?: "zh" | "en" }, {}>} */ ((inputs = {}, options = {}) => {
 	const locale = experimentalStaticLocale ?? options.locale ?? getLocale()
-	if (locale === "en") return en_light_grid(inputs)
-	return zh_light_grid(inputs)
+	if (locale === "zh") return zh_light_grid(inputs)
+	return en_light_grid(inputs)
 });

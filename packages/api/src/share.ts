@@ -1,8 +1,8 @@
 import { Hono } from 'hono'
 import { zValidator } from '@hono/zod-validator'
-import { authzService, Permission, ResourceType } from '@shumai/core/src/authz/authz'
-import { shareService } from '@shumai/core/src/share/share'
-import { projectService } from '@shumai/core/src/project/project'
+import { authzService, Permission, ResourceType } from '@zhenyue/core/src/authz/authz'
+import { shareService } from '@zhenyue/core/src/share/share'
+import { projectService } from '@zhenyue/core/src/project/project'
 import {
   createShareLinkRequestSchema,
   updateShareLinkRequestSchema,
@@ -10,14 +10,14 @@ import {
   addAssetToShareRequestSchema,
   updateShareLinkWatermarkRequestSchema,
   AuditAction,
-} from '@shumai/dtos'
-import type { Prisma } from '@shumai/db'
-import { auditLogService } from '@shumai/core/src/auditLog/auditLog'
-import { watermarkService } from '@shumai/core/src/watermark/watermark'
+} from '@zhenyue/dtos'
+import type { Prisma } from '@zhenyue/db'
+import { auditLogService } from '@zhenyue/core/src/auditLog/auditLog'
+import { watermarkService } from '@zhenyue/core/src/watermark/watermark'
 import {
   ShareLinkNotFoundError,
   ShareLinkWatermarkProcessingError,
-} from '@shumai/core/src/share/errors'
+} from '@zhenyue/core/src/share/errors'
 
 type User = Prisma.UserGetPayload<Record<string, never>>
 

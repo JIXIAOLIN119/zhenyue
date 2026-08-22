@@ -2,12 +2,12 @@ import { client } from '@/ui/api/client'
 import { AuthLayout } from '@/ui/components/auth-layout'
 import { Button } from '@/ui/components/ui/button'
 import { Card, CardDescription, CardFooter, CardHeader, CardTitle } from '@/ui/components/ui/card'
-import { ShumaiLogo } from '@/ui/components/ui/icons'
+import { ZhenYueLogo } from '@/ui/components/ui/icons'
 import { Input } from '@/ui/components/ui/input'
 import { Label } from '@/ui/components/ui/label'
 import { signUp } from '@/ui/lib/auth-client'
 import { m } from '@/ui/paraglide/messages.js'
-import { getLocale, setLocale } from '@/ui/paraglide/runtime.js'
+import { setLocale } from '@/ui/paraglide/runtime.js'
 import { useAuthStore } from '@/ui/stores/auth'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useQuery } from '@tanstack/react-query'
@@ -31,10 +31,7 @@ function SignupPage() {
   const inviteCode = (search as { inviteCode?: string }).inviteCode
   const [error, setError] = useState<string | null>(null)
   const [loading, setLoading] = useState(false)
-  const [locale, setLocaleState] = useState<'en' | 'zh'>(() => {
-    const activeLocale = getLocale()
-    return activeLocale === 'zh' ? 'zh' : 'en'
-  })
+  const [locale, setLocaleState] = useState<'en' | 'zh'>('zh')
 
   const handleLocaleChange = (newLocale: 'en' | 'zh') => {
     setLocaleState(newLocale)
@@ -99,10 +96,10 @@ function SignupPage() {
 
   if (isSignupInfoLoading) {
     return (
-      <div className="flex items-center justify-center min-h-screen bg-zinc-100/80 dark:bg-black">
+      <div className="flex items-center justify-center min-h-screen bg-background">
         <div className="relative flex flex-col items-center">
-          <ShumaiLogo className="h-16 w-16 animate-pulse mb-4 text-rose-500 shadow-xl rounded-2xl" />
-          <Loader2 className="h-6 w-6 animate-spin text-rose-500/70" />
+          <ZhenYueLogo className="h-16 w-16 animate-pulse mb-4 text-primary shadow-xl rounded-2xl" />
+          <Loader2 className="h-6 w-6 animate-spin text-primary/70" />
         </div>
       </div>
     )
@@ -113,29 +110,29 @@ function SignupPage() {
 
   if (isPublicSignupDisabled) {
     return (
-      <div className="min-h-screen w-full flex items-center justify-center p-4 md:p-8 bg-zinc-100/80 dark:bg-black font-sans overflow-hidden relative">
+      <div className="min-h-screen w-full flex items-center justify-center p-4 md:p-8 bg-background font-sans overflow-hidden relative">
         {/* Background Mesh Blobs */}
-        <div className="bg-rose-500/10 dark:bg-rose-600/5 w-[500px] h-[500px] rounded-full blur-[120px] absolute top-[-10%] left-[-10%] animate-drift-slow" />
-        <div className="bg-orange-500/10 dark:bg-orange-600/5 w-[500px] h-[500px] rounded-full blur-[120px] absolute bottom-[-10%] right-[-10%] animate-drift-medium" />
+        <div className="bg-chart-1/10 dark:bg-chart-1/5 w-[500px] h-[500px] rounded-full blur-[120px] absolute top-[-10%] left-[-10%] animate-drift-slow" />
+        <div className="bg-chart-3/10 dark:bg-chart-3/5 w-[500px] h-[500px] rounded-full blur-[120px] absolute bottom-[-10%] right-[-10%] animate-drift-medium" />
 
-        <Card className="w-full max-w-md relative z-10 border border-zinc-200 dark:border-zinc-850 shadow-2xl bg-white dark:bg-zinc-900 rounded-3xl overflow-hidden">
+        <Card className="w-full max-w-md relative z-10 border border-border shadow-2xl bg-card rounded-3xl overflow-hidden">
           <CardHeader className="text-center pt-8 pb-4">
             <div className="flex justify-center mb-4">
-              <ShumaiLogo className="h-16 w-16 shadow-lg shadow-rose-500/10 rounded-2xl" />
+              <ZhenYueLogo className="h-16 w-16 shadow-lg shadow-primary/10 rounded-2xl" />
             </div>
-            <CardTitle className="text-2xl font-bold tracking-tight bg-gradient-to-r from-rose-500 to-orange-500 bg-clip-text text-transparent">
+            <CardTitle className="text-2xl font-bold tracking-tight bg-gradient-to-r from-chart-1 to-chart-2 bg-clip-text text-transparent">
               {m.registration_disabled()}
             </CardTitle>
-            <CardDescription className="mt-2 text-zinc-600 dark:text-zinc-400">
+            <CardDescription className="mt-2 text-muted-foreground">
               {m.registration_disabled_description()}
             </CardDescription>
           </CardHeader>
-          <CardFooter className="flex flex-col gap-4 pb-8 text-center text-sm border-t border-zinc-200/30 dark:border-zinc-800/30 pt-6">
-            <p className="text-zinc-500 dark:text-zinc-400">
+          <CardFooter className="flex flex-col gap-4 pb-8 text-center text-sm border-t border-border/50 pt-6">
+            <p className="text-muted-foreground">
               {m.already_have_account()}{' '}
               <a
                 href="/login"
-                className="font-semibold text-rose-500 hover:text-rose-600 dark:text-rose-400 dark:hover:text-rose-300 transition-colors hover:underline inline-flex items-center gap-1"
+                className="font-semibold text-primary hover:text-primary/80 transition-colors hover:underline inline-flex items-center gap-1"
               >
                 {m.login_here()} <ArrowRight className="w-3.5 h-3.5" />
               </a>
@@ -149,20 +146,18 @@ function SignupPage() {
   return (
     <AuthLayout>
       <div className="mb-8">
-        <h1 className="text-2xl font-bold tracking-tight text-zinc-900 dark:text-zinc-50">
-          {m.create_account()}
-        </h1>
-        <p className="text-zinc-500 dark:text-zinc-400 text-sm mt-1 mb-4">{m.signup_subtitle()}</p>
+        <h1 className="text-2xl font-bold tracking-tight text-foreground">{m.create_account()}</h1>
+        <p className="text-muted-foreground text-sm mt-1 mb-4">{m.signup_subtitle()}</p>
 
         {/* Context Banners (First User / Invite Info) */}
         {isFirstUser && (
-          <div className="flex items-start gap-3 p-3 bg-amber-500/10 border border-amber-500/20 text-amber-800 dark:text-amber-300 rounded-2xl text-xs leading-relaxed font-medium">
+          <div className="flex items-start gap-3 p-3 bg-primary/10 border border-primary/20 text-primary rounded-2xl text-xs leading-relaxed font-medium">
             <span>🎉</span>
             <span>{m.first_user_notice()}</span>
           </div>
         )}
         {inviteInfo && !('error' in inviteInfo) && (
-          <div className="flex items-start gap-3 p-3 bg-rose-500/10 border border-rose-500/20 text-rose-800 dark:text-rose-300 rounded-2xl text-xs leading-relaxed font-medium mt-3">
+          <div className="flex items-start gap-3 p-3 bg-primary/10 border border-primary/20 text-primary rounded-2xl text-xs leading-relaxed font-medium mt-3">
             <span>👋</span>
             <span>
               {m.invite_join_message({
@@ -185,18 +180,18 @@ function SignupPage() {
         <div className="space-y-2">
           <Label
             htmlFor="email"
-            className="text-xs font-semibold text-zinc-600 dark:text-zinc-400 tracking-wide uppercase"
+            className="text-xs font-semibold text-muted-foreground tracking-wide uppercase"
           >
             {m.email_address()}
           </Label>
           <div className="relative group">
-            <Mail className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-zinc-400 dark:text-zinc-600 transition-colors group-focus-within:text-rose-500" />
+            <Mail className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground transition-colors group-focus-within:text-primary" />
             <Input
               id="email"
               {...form.register('email')}
               placeholder="you@example.com"
               type="email"
-              className="pl-10.5 h-11 border-zinc-200 dark:border-zinc-800 focus-visible:ring-rose-500/50 focus-visible:border-rose-500 rounded-xl transition-all shadow-sm"
+              className="pl-10.5 h-11 rounded-xl transition-all shadow-sm"
             />
           </div>
           {form.formState.errors.email && (
@@ -209,18 +204,18 @@ function SignupPage() {
         <div className="space-y-2">
           <Label
             htmlFor="password"
-            className="text-xs font-semibold text-zinc-600 dark:text-zinc-400 tracking-wide uppercase"
+            className="text-xs font-semibold text-muted-foreground tracking-wide uppercase"
           >
             {m.password()}
           </Label>
           <div className="relative group">
-            <Lock className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-zinc-400 dark:text-zinc-600 transition-colors group-focus-within:text-rose-500" />
+            <Lock className="absolute left-3.5 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground transition-colors group-focus-within:text-primary" />
             <Input
               id="password"
               type="password"
               {...form.register('password')}
               placeholder={m.password_min_placeholder()}
-              className="pl-10.5 h-11 border-zinc-200 dark:border-zinc-800 focus-visible:ring-rose-500/50 focus-visible:border-rose-500 rounded-xl transition-all shadow-sm"
+              className="pl-10.5 h-11 rounded-xl transition-all shadow-sm"
             />
           </div>
           {form.formState.errors.password && (
@@ -232,7 +227,7 @@ function SignupPage() {
 
         <Button
           type="submit"
-          className="w-full h-11 bg-gradient-to-r from-rose-500 to-orange-500 hover:from-rose-600 hover:to-orange-600 text-white font-semibold rounded-xl shadow-md shadow-rose-500/10 hover:shadow-rose-500/20 active:scale-[0.98] transition-all flex items-center justify-center gap-2 border-0"
+          className="w-full h-11 bg-gradient-to-r from-chart-1 to-chart-2 hover:from-chart-2 hover:to-chart-3 text-white font-semibold rounded-xl shadow-md shadow-primary/10 hover:shadow-primary/20 active:scale-[0.98] transition-all flex items-center justify-center gap-2 border-0"
           disabled={loading}
         >
           {loading ? (
@@ -249,33 +244,33 @@ function SignupPage() {
         </Button>
       </form>
 
-      <div className="mt-12 pt-10 border-t border-zinc-200/30 dark:border-zinc-800/30 text-center text-sm flex flex justify-between gap-4">
+      <div className="mt-12 pt-10 border-t border-border/50 text-center text-sm flex flex justify-between gap-4">
         <div>
-          <span className="text-zinc-500 dark:text-zinc-400">{m.already_have_account()} </span>
+          <span className="text-muted-foreground">{m.already_have_account()} </span>
           <a
             href="/login"
-            className="font-semibold text-rose-500 hover:text-rose-600 dark:text-rose-400 dark:hover:text-rose-300 transition-colors hover:underline inline-flex items-center gap-0.5"
+            className="font-semibold text-primary hover:text-primary/80 transition-colors hover:underline inline-flex items-center gap-0.5"
           >
             {m.login()} <ArrowRight className="w-3.5 h-3.5" />
           </a>
         </div>
 
-        <div className="flex items-center gap-2 text-xs text-zinc-400 dark:text-zinc-500">
+        <div className="flex items-center gap-2 text-xs text-muted-foreground">
           <button
             type="button"
             onClick={() => handleLocaleChange('en')}
-            className={`cursor-pointer hover:text-zinc-800 dark:hover:text-zinc-200 transition-colors ${
-              locale === 'en' ? 'font-bold text-rose-500 dark:text-rose-400' : ''
+            className={`cursor-pointer hover:text-foreground transition-colors ${
+              locale === 'en' ? 'font-bold text-primary' : ''
             }`}
           >
             English
           </button>
-          <span className="text-zinc-300 dark:text-zinc-850">/</span>
+          <span className="text-muted-foreground/60">/</span>
           <button
             type="button"
             onClick={() => handleLocaleChange('zh')}
-            className={`cursor-pointer hover:text-zinc-800 dark:hover:text-zinc-200 transition-colors ${
-              locale === 'zh' ? 'font-bold text-rose-500 dark:text-rose-400' : ''
+            className={`cursor-pointer hover:text-foreground transition-colors ${
+              locale === 'zh' ? 'font-bold text-primary' : ''
             }`}
           >
             中文

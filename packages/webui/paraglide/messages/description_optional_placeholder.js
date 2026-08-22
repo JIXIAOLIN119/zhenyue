@@ -5,12 +5,12 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 
 /** @typedef {{}} Description_Optional_PlaceholderInputs */
 
-const en_description_optional_placeholder = /** @type {(inputs: Description_Optional_PlaceholderInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Optional, used for AI autofill`)
-};
-
 const zh_description_optional_placeholder = /** @type {(inputs: Description_Optional_PlaceholderInputs) => LocalizedString} */ () => {
 	return /** @type {LocalizedString} */ (`可选，用于 AI 自动填充`)
+};
+
+const en_description_optional_placeholder = /** @type {(inputs: Description_Optional_PlaceholderInputs) => LocalizedString} */ () => {
+	return /** @type {LocalizedString} */ (`Optional, used for AI autofill`)
 };
 
 /**
@@ -19,11 +19,11 @@ const zh_description_optional_placeholder = /** @type {(inputs: Description_Opti
 * | "Optional, used for AI autofill" |
 *
 * @param {Description_Optional_PlaceholderInputs} inputs
-* @param {{ locale?: "en" | "zh" }} options
+* @param {{ locale?: "zh" | "en" }} options
 * @returns {LocalizedString}
 */
-export const description_optional_placeholder = /** @type {((inputs?: Description_Optional_PlaceholderInputs, options?: { locale?: "en" | "zh" }) => LocalizedString) & import('../runtime.js').MessageMetadata<Description_Optional_PlaceholderInputs, { locale?: "en" | "zh" }, {}>} */ ((inputs = {}, options = {}) => {
+export const description_optional_placeholder = /** @type {((inputs?: Description_Optional_PlaceholderInputs, options?: { locale?: "zh" | "en" }) => LocalizedString) & import('../runtime.js').MessageMetadata<Description_Optional_PlaceholderInputs, { locale?: "zh" | "en" }, {}>} */ ((inputs = {}, options = {}) => {
 	const locale = experimentalStaticLocale ?? options.locale ?? getLocale()
-	if (locale === "en") return en_description_optional_placeholder(inputs)
-	return zh_description_optional_placeholder(inputs)
+	if (locale === "zh") return zh_description_optional_placeholder(inputs)
+	return en_description_optional_placeholder(inputs)
 });

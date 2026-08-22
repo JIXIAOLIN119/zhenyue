@@ -296,8 +296,8 @@ export function ToolbarPlugin({ rightContent }: { rightContent?: React.ReactNode
   }
 
   return (
-    <div className="shumai-editor-toolbar flex items-center justify-between">
-      <div className="shumai-editor-toolbar-left flex items-center flex-wrap gap-1">
+    <div className="zhenyue-editor-toolbar flex items-center justify-between">
+      <div className="zhenyue-editor-toolbar-left flex items-center flex-wrap gap-1">
         {/* Undo / Redo */}
         <button
           type="button"

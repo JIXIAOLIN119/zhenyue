@@ -1,5 +1,5 @@
-import { prisma } from '@shumai/db'
-import { InviteRole, ProjectMemberRole, TeamMemberRole } from '@shumai/db'
+import { prisma } from '@zhenyue/db'
+import { InviteRole, ProjectMemberRole, TeamMemberRole } from '@zhenyue/db'
 import { ulid } from 'ulid'
 
 export interface CreateTeamInviteRequest {

@@ -1,28 +1,28 @@
 import { Hono } from 'hono'
 import type { Context } from 'hono'
 import { zValidator } from '@hono/zod-validator'
-import { shareService } from '@shumai/core/src/share/share'
-import { assetService } from '@shumai/core/src/asset/asset'
-import { watermarkService } from '@shumai/core/src/watermark/watermark'
-import { paginationParamsSchema } from '@shumai/dtos'
+import { shareService } from '@zhenyue/core/src/share/share'
+import { assetService } from '@zhenyue/core/src/asset/asset'
+import { watermarkService } from '@zhenyue/core/src/watermark/watermark'
+import { paginationParamsSchema } from '@zhenyue/dtos'
 import { z } from 'zod'
-import { metadataService } from '@shumai/core/src/metadata/metadata'
-import { FieldInfo } from '@shumai/dtos'
-import type { Prisma as PrismaType } from '@shumai/db'
-import { projectService } from '@shumai/core/src/project/project'
-import { userService } from '@shumai/core/src/user/user'
-import { auth } from '@shumai/core/src/auth/auth'
-import { createCommentRequestSchema } from '@shumai/dtos'
-import { notificationService } from '@shumai/core/src/notification/notification'
+import { metadataService } from '@zhenyue/core/src/metadata/metadata'
+import { FieldInfo } from '@zhenyue/dtos'
+import type { Prisma as PrismaType } from '@zhenyue/db'
+import { projectService } from '@zhenyue/core/src/project/project'
+import { userService } from '@zhenyue/core/src/user/user'
+import { auth } from '@zhenyue/core/src/auth/auth'
+import { createCommentRequestSchema } from '@zhenyue/dtos'
+import { notificationService } from '@zhenyue/core/src/notification/notification'
 import {
   ShareLinkNotFoundError,
   ShareLinkDisabledError,
   ShareLinkExpiredError,
   ShareLinkPasswordInvalidError,
   ShareLinkDownloadDisabledError,
-} from '@shumai/core/src/share/errors'
-import { s3Service } from '@shumai/core/src/s3/s3'
-import type { AssetInfo } from '@shumai/dtos'
+} from '@zhenyue/core/src/share/errors'
+import { s3Service } from '@zhenyue/core/src/s3/s3'
+import type { AssetInfo } from '@zhenyue/dtos'
 
 /**
  * Replaces the served media entries with the watermarked proxy entries produced
@@ -43,7 +43,7 @@ async function applyWatermarkToAssetMedia(
   if (asset.proxyType !== 'video' && asset.proxyType !== 'image') return asset
 
   const updatedMedia = { ...asset.media }
-  const bucket = process.env.S3_BUCKET || 'shumai'
+  const bucket = process.env.S3_BUCKET || 'zhenyue'
 
   updatedMedia.videoTranscodes =
     watermarkMedia?.videoTranscodes && watermarkMedia.videoTranscodes.length > 0

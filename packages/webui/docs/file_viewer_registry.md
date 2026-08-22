@@ -1,6 +1,6 @@
 # File Viewer Registry System
 
-The **File Viewer Registry** is a modular, type-safe system that makes it easy for developers to add support for new file types (e.g., audio, markdown, pdf, images, and videos) in Shumai's WebUI.
+The **File Viewer Registry** is a modular, type-safe system that makes it easy for developers to add support for new file types (e.g., audio, markdown, pdf, images, and videos) in ZhenYue's WebUI.
 
 By registering a file type, the detail pages (`FileViewer`), split-screen comparison interfaces (`CompareViewer`), and sidebars automatically adapt to the content, control schemes, and comment features of that file type.
 

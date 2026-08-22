@@ -5,12 +5,12 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 
 /** @typedef {{}} Position_YInputs */
 
-const en_position_y = /** @type {(inputs: Position_YInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Position Y (%)`)
-};
-
 const zh_position_y = /** @type {(inputs: Position_YInputs) => LocalizedString} */ () => {
 	return /** @type {LocalizedString} */ (`垂直位置 (%)`)
+};
+
+const en_position_y = /** @type {(inputs: Position_YInputs) => LocalizedString} */ () => {
+	return /** @type {LocalizedString} */ (`Position Y (%)`)
 };
 
 /**
@@ -19,11 +19,11 @@ const zh_position_y = /** @type {(inputs: Position_YInputs) => LocalizedString} 
 * | "Position Y (%)" |
 *
 * @param {Position_YInputs} inputs
-* @param {{ locale?: "en" | "zh" }} options
+* @param {{ locale?: "zh" | "en" }} options
 * @returns {LocalizedString}
 */
-export const position_y = /** @type {((inputs?: Position_YInputs, options?: { locale?: "en" | "zh" }) => LocalizedString) & import('../runtime.js').MessageMetadata<Position_YInputs, { locale?: "en" | "zh" }, {}>} */ ((inputs = {}, options = {}) => {
+export const position_y = /** @type {((inputs?: Position_YInputs, options?: { locale?: "zh" | "en" }) => LocalizedString) & import('../runtime.js').MessageMetadata<Position_YInputs, { locale?: "zh" | "en" }, {}>} */ ((inputs = {}, options = {}) => {
 	const locale = experimentalStaticLocale ?? options.locale ?? getLocale()
-	if (locale === "en") return en_position_y(inputs)
-	return zh_position_y(inputs)
+	if (locale === "zh") return zh_position_y(inputs)
+	return en_position_y(inputs)
 });

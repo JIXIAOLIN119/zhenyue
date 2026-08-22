@@ -5,12 +5,12 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 
 /** @typedef {{}} Base_Url_OptionalInputs */
 
-const en_base_url_optional = /** @type {(inputs: Base_Url_OptionalInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Base URL (Optional)`)
-};
-
 const zh_base_url_optional = /** @type {(inputs: Base_Url_OptionalInputs) => LocalizedString} */ () => {
 	return /** @type {LocalizedString} */ (`基础 URL（可选）`)
+};
+
+const en_base_url_optional = /** @type {(inputs: Base_Url_OptionalInputs) => LocalizedString} */ () => {
+	return /** @type {LocalizedString} */ (`Base URL (Optional)`)
 };
 
 /**
@@ -19,11 +19,11 @@ const zh_base_url_optional = /** @type {(inputs: Base_Url_OptionalInputs) => Loc
 * | "Base URL (Optional)" |
 *
 * @param {Base_Url_OptionalInputs} inputs
-* @param {{ locale?: "en" | "zh" }} options
+* @param {{ locale?: "zh" | "en" }} options
 * @returns {LocalizedString}
 */
-export const base_url_optional = /** @type {((inputs?: Base_Url_OptionalInputs, options?: { locale?: "en" | "zh" }) => LocalizedString) & import('../runtime.js').MessageMetadata<Base_Url_OptionalInputs, { locale?: "en" | "zh" }, {}>} */ ((inputs = {}, options = {}) => {
+export const base_url_optional = /** @type {((inputs?: Base_Url_OptionalInputs, options?: { locale?: "zh" | "en" }) => LocalizedString) & import('../runtime.js').MessageMetadata<Base_Url_OptionalInputs, { locale?: "zh" | "en" }, {}>} */ ((inputs = {}, options = {}) => {
 	const locale = experimentalStaticLocale ?? options.locale ?? getLocale()
-	if (locale === "en") return en_base_url_optional(inputs)
-	return zh_base_url_optional(inputs)
+	if (locale === "zh") return zh_base_url_optional(inputs)
+	return en_base_url_optional(inputs)
 });

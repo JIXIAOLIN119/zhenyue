@@ -4,13 +4,13 @@
 * | "Copy to" |
 *
 * @param {Copy_ToInputs} inputs
-* @param {{ locale?: "en" | "zh" }} options
+* @param {{ locale?: "zh" | "en" }} options
 * @returns {LocalizedString}
 */
 export const copy_to: ((inputs?: Copy_ToInputs, options?: {
-    locale?: "en" | "zh";
+    locale?: "zh" | "en";
 }) => LocalizedString) & import("../runtime.js").MessageMetadata<Copy_ToInputs, {
-    locale?: "en" | "zh";
+    locale?: "zh" | "en";
 }, {}>;
 export type LocalizedString = import("../runtime.js").LocalizedString;
 export type Copy_ToInputs = {};

@@ -5,12 +5,12 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 
 /** @typedef {{}} Auth_Community_CtaInputs */
 
-const en_auth_community_cta = /** @type {(inputs: Auth_Community_CtaInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Join our community of developers and designers.`)
-};
-
 const zh_auth_community_cta = /** @type {(inputs: Auth_Community_CtaInputs) => LocalizedString} */ () => {
 	return /** @type {LocalizedString} */ (`加入我们的开发者和设计师社区。`)
+};
+
+const en_auth_community_cta = /** @type {(inputs: Auth_Community_CtaInputs) => LocalizedString} */ () => {
+	return /** @type {LocalizedString} */ (`Join our community of developers and designers.`)
 };
 
 /**
@@ -19,11 +19,11 @@ const zh_auth_community_cta = /** @type {(inputs: Auth_Community_CtaInputs) => L
 * | "Join our community of developers and designers." |
 *
 * @param {Auth_Community_CtaInputs} inputs
-* @param {{ locale?: "en" | "zh" }} options
+* @param {{ locale?: "zh" | "en" }} options
 * @returns {LocalizedString}
 */
-export const auth_community_cta = /** @type {((inputs?: Auth_Community_CtaInputs, options?: { locale?: "en" | "zh" }) => LocalizedString) & import('../runtime.js').MessageMetadata<Auth_Community_CtaInputs, { locale?: "en" | "zh" }, {}>} */ ((inputs = {}, options = {}) => {
+export const auth_community_cta = /** @type {((inputs?: Auth_Community_CtaInputs, options?: { locale?: "zh" | "en" }) => LocalizedString) & import('../runtime.js').MessageMetadata<Auth_Community_CtaInputs, { locale?: "zh" | "en" }, {}>} */ ((inputs = {}, options = {}) => {
 	const locale = experimentalStaticLocale ?? options.locale ?? getLocale()
-	if (locale === "en") return en_auth_community_cta(inputs)
-	return zh_auth_community_cta(inputs)
+	if (locale === "zh") return zh_auth_community_cta(inputs)
+	return en_auth_community_cta(inputs)
 });

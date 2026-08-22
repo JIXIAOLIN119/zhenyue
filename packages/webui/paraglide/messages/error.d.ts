@@ -4,13 +4,13 @@
 * | "Error" |
 *
 * @param {ErrorInputs} inputs
-* @param {{ locale?: "en" | "zh" }} options
+* @param {{ locale?: "zh" | "en" }} options
 * @returns {LocalizedString}
 */
 export const error: ((inputs?: ErrorInputs, options?: {
-    locale?: "en" | "zh";
+    locale?: "zh" | "en";
 }) => LocalizedString) & import("../runtime.js").MessageMetadata<ErrorInputs, {
-    locale?: "en" | "zh";
+    locale?: "zh" | "en";
 }, {}>;
 export type LocalizedString = import("../runtime.js").LocalizedString;
 export type ErrorInputs = {};

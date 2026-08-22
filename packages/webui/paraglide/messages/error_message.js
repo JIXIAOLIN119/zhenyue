@@ -5,12 +5,12 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 
 /** @typedef {{ message: NonNullable<unknown> }} Error_MessageInputs */
 
-const en_error_message = /** @type {(inputs: Error_MessageInputs) => LocalizedString} */ (i) => {
-	return /** @type {LocalizedString} */ (`Error: ${i?.message}`)
-};
-
 const zh_error_message = /** @type {(inputs: Error_MessageInputs) => LocalizedString} */ (i) => {
 	return /** @type {LocalizedString} */ (`错误：${i?.message}`)
+};
+
+const en_error_message = /** @type {(inputs: Error_MessageInputs) => LocalizedString} */ (i) => {
+	return /** @type {LocalizedString} */ (`Error: ${i?.message}`)
 };
 
 /**
@@ -19,11 +19,11 @@ const zh_error_message = /** @type {(inputs: Error_MessageInputs) => LocalizedSt
 * | "Error: {message}" |
 *
 * @param {Error_MessageInputs} inputs
-* @param {{ locale?: "en" | "zh" }} options
+* @param {{ locale?: "zh" | "en" }} options
 * @returns {LocalizedString}
 */
-export const error_message = /** @type {((inputs: Error_MessageInputs, options?: { locale?: "en" | "zh" }) => LocalizedString) & import('../runtime.js').MessageMetadata<Error_MessageInputs, { locale?: "en" | "zh" }, {}>} */ ((inputs, options = {}) => {
+export const error_message = /** @type {((inputs: Error_MessageInputs, options?: { locale?: "zh" | "en" }) => LocalizedString) & import('../runtime.js').MessageMetadata<Error_MessageInputs, { locale?: "zh" | "en" }, {}>} */ ((inputs, options = {}) => {
 	const locale = experimentalStaticLocale ?? options.locale ?? getLocale()
-	if (locale === "en") return en_error_message(inputs)
-	return zh_error_message(inputs)
+	if (locale === "zh") return zh_error_message(inputs)
+	return en_error_message(inputs)
 });

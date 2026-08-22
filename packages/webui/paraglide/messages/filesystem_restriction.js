@@ -5,12 +5,12 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 
 /** @typedef {{}} Filesystem_RestrictionInputs */
 
-const en_filesystem_restriction = /** @type {(inputs: Filesystem_RestrictionInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Filesystem Restriction`)
-};
-
 const zh_filesystem_restriction = /** @type {(inputs: Filesystem_RestrictionInputs) => LocalizedString} */ () => {
 	return /** @type {LocalizedString} */ (`文件系统限制`)
+};
+
+const en_filesystem_restriction = /** @type {(inputs: Filesystem_RestrictionInputs) => LocalizedString} */ () => {
+	return /** @type {LocalizedString} */ (`Filesystem Restriction`)
 };
 
 /**
@@ -19,11 +19,11 @@ const zh_filesystem_restriction = /** @type {(inputs: Filesystem_RestrictionInpu
 * | "Filesystem Restriction" |
 *
 * @param {Filesystem_RestrictionInputs} inputs
-* @param {{ locale?: "en" | "zh" }} options
+* @param {{ locale?: "zh" | "en" }} options
 * @returns {LocalizedString}
 */
-export const filesystem_restriction = /** @type {((inputs?: Filesystem_RestrictionInputs, options?: { locale?: "en" | "zh" }) => LocalizedString) & import('../runtime.js').MessageMetadata<Filesystem_RestrictionInputs, { locale?: "en" | "zh" }, {}>} */ ((inputs = {}, options = {}) => {
+export const filesystem_restriction = /** @type {((inputs?: Filesystem_RestrictionInputs, options?: { locale?: "zh" | "en" }) => LocalizedString) & import('../runtime.js').MessageMetadata<Filesystem_RestrictionInputs, { locale?: "zh" | "en" }, {}>} */ ((inputs = {}, options = {}) => {
 	const locale = experimentalStaticLocale ?? options.locale ?? getLocale()
-	if (locale === "en") return en_filesystem_restriction(inputs)
-	return zh_filesystem_restriction(inputs)
+	if (locale === "zh") return zh_filesystem_restriction(inputs)
+	return en_filesystem_restriction(inputs)
 });

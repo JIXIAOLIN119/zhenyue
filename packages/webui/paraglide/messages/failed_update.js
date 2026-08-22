@@ -5,12 +5,12 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 
 /** @typedef {{}} Failed_UpdateInputs */
 
-const en_failed_update = /** @type {(inputs: Failed_UpdateInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Failed to update`)
-};
-
 const zh_failed_update = /** @type {(inputs: Failed_UpdateInputs) => LocalizedString} */ () => {
 	return /** @type {LocalizedString} */ (`更新失败`)
+};
+
+const en_failed_update = /** @type {(inputs: Failed_UpdateInputs) => LocalizedString} */ () => {
+	return /** @type {LocalizedString} */ (`Failed to update`)
 };
 
 /**
@@ -19,11 +19,11 @@ const zh_failed_update = /** @type {(inputs: Failed_UpdateInputs) => LocalizedSt
 * | "Failed to update" |
 *
 * @param {Failed_UpdateInputs} inputs
-* @param {{ locale?: "en" | "zh" }} options
+* @param {{ locale?: "zh" | "en" }} options
 * @returns {LocalizedString}
 */
-export const failed_update = /** @type {((inputs?: Failed_UpdateInputs, options?: { locale?: "en" | "zh" }) => LocalizedString) & import('../runtime.js').MessageMetadata<Failed_UpdateInputs, { locale?: "en" | "zh" }, {}>} */ ((inputs = {}, options = {}) => {
+export const failed_update = /** @type {((inputs?: Failed_UpdateInputs, options?: { locale?: "zh" | "en" }) => LocalizedString) & import('../runtime.js').MessageMetadata<Failed_UpdateInputs, { locale?: "zh" | "en" }, {}>} */ ((inputs = {}, options = {}) => {
 	const locale = experimentalStaticLocale ?? options.locale ?? getLocale()
-	if (locale === "en") return en_failed_update(inputs)
-	return zh_failed_update(inputs)
+	if (locale === "zh") return zh_failed_update(inputs)
+	return en_failed_update(inputs)
 });

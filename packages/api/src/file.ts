@@ -1,11 +1,11 @@
 import { zValidator } from '@hono/zod-validator'
-import { assetService } from '@shumai/core/src/asset/asset'
-import { authzService, Permission, ResourceType } from '@shumai/core/src/authz/authz'
-import { metadataService } from '@shumai/core/src/metadata/metadata'
-import { notificationService } from '@shumai/core/src/notification/notification'
-import { s3Service } from '@shumai/core/src/s3/s3'
-import type { Prisma } from '@shumai/db'
-import { auditLogService } from '@shumai/core/src/auditLog/auditLog'
+import { assetService } from '@zhenyue/core/src/asset/asset'
+import { authzService, Permission, ResourceType } from '@zhenyue/core/src/authz/authz'
+import { metadataService } from '@zhenyue/core/src/metadata/metadata'
+import { notificationService } from '@zhenyue/core/src/notification/notification'
+import { s3Service } from '@zhenyue/core/src/s3/s3'
+import type { Prisma } from '@zhenyue/db'
+import { auditLogService } from '@zhenyue/core/src/auditLog/auditLog'
 import {
   createCommentRequestSchema,
   deleteFilesRequestSchema,
@@ -18,8 +18,8 @@ import {
   getDownloadLinksRequestSchema,
   completeCommentRequestSchema,
   AuditAction,
-} from '@shumai/dtos'
-import { transcodeService } from '@shumai/core'
+} from '@zhenyue/dtos'
+import { transcodeService } from '@zhenyue/core'
 import fs from 'fs'
 import { Hono } from 'hono'
 import os from 'os'
@@ -344,14 +344,14 @@ const route = new Hono<{ Variables: { user: User } }>()
     }
 
     await s3Service.putObject(
-      process.env.S3_BUCKET || 'shumai',
+      process.env.S3_BUCKET || 'zhenyue',
       key,
       buffer,
       buffer.length,
       contentType,
     )
 
-    const url = await s3Service.presign(process.env.S3_BUCKET || 'shumai', key, 'GET')
+    const url = await s3Service.presign(process.env.S3_BUCKET || 'zhenyue', key, 'GET')
     return c.json({ key, url })
   })
   .post('/files/download-links', zValidator('json', getDownloadLinksRequestSchema), async (c) => {

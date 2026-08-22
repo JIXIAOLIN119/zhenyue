@@ -1,14 +1,14 @@
 import { Hono } from 'hono'
 import { zValidator } from '@hono/zod-validator'
-import { authzService, Permission, ResourceType } from '@shumai/core/src/authz/authz'
-import { teamService } from '@shumai/core/src/team/team'
-import { watermarkService } from '@shumai/core/src/watermark/watermark'
+import { authzService, Permission, ResourceType } from '@zhenyue/core/src/authz/authz'
+import { teamService } from '@zhenyue/core/src/team/team'
+import { watermarkService } from '@zhenyue/core/src/watermark/watermark'
 import {
   createWatermarkTemplateRequestSchema,
   updateWatermarkTemplateRequestSchema,
-} from '@shumai/dtos'
+} from '@zhenyue/dtos'
 import { z } from 'zod'
-import type { Prisma } from '@shumai/db'
+import type { Prisma } from '@zhenyue/db'
 
 type User = Prisma.UserGetPayload<Record<string, never>>
 

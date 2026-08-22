@@ -5,12 +5,12 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 
 /** @typedef {{}} Image_SizeInputs */
 
-const en_image_size = /** @type {(inputs: Image_SizeInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Image Size`)
-};
-
 const zh_image_size = /** @type {(inputs: Image_SizeInputs) => LocalizedString} */ () => {
 	return /** @type {LocalizedString} */ (`图片大小`)
+};
+
+const en_image_size = /** @type {(inputs: Image_SizeInputs) => LocalizedString} */ () => {
+	return /** @type {LocalizedString} */ (`Image Size`)
 };
 
 /**
@@ -19,11 +19,11 @@ const zh_image_size = /** @type {(inputs: Image_SizeInputs) => LocalizedString} 
 * | "Image Size" |
 *
 * @param {Image_SizeInputs} inputs
-* @param {{ locale?: "en" | "zh" }} options
+* @param {{ locale?: "zh" | "en" }} options
 * @returns {LocalizedString}
 */
-export const image_size = /** @type {((inputs?: Image_SizeInputs, options?: { locale?: "en" | "zh" }) => LocalizedString) & import('../runtime.js').MessageMetadata<Image_SizeInputs, { locale?: "en" | "zh" }, {}>} */ ((inputs = {}, options = {}) => {
+export const image_size = /** @type {((inputs?: Image_SizeInputs, options?: { locale?: "zh" | "en" }) => LocalizedString) & import('../runtime.js').MessageMetadata<Image_SizeInputs, { locale?: "zh" | "en" }, {}>} */ ((inputs = {}, options = {}) => {
 	const locale = experimentalStaticLocale ?? options.locale ?? getLocale()
-	if (locale === "en") return en_image_size(inputs)
-	return zh_image_size(inputs)
+	if (locale === "zh") return zh_image_size(inputs)
+	return en_image_size(inputs)
 });

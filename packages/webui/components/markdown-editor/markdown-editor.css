@@ -1,4 +1,4 @@
-.shumai-editor-wrapper {
+.zhenyue-editor-wrapper {
   display: flex;
   flex-direction: column;
   height: 100%;
@@ -14,7 +14,7 @@
   font-family: inherit;
 }
 
-.shumai-editor-toolbar {
+.zhenyue-editor-toolbar {
   display: flex;
   align-items: center;
   flex-wrap: wrap;
@@ -25,7 +25,7 @@
   user-select: none;
 }
 
-.shumai-editor-toolbar-left button {
+.zhenyue-editor-toolbar-left button {
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -40,22 +40,22 @@
   padding: 0;
 }
 
-.shumai-editor-toolbar-left button:hover:not(:disabled) {
+.zhenyue-editor-toolbar-left button:hover:not(:disabled) {
   background-color: var(--accent, #e2e8f0);
   color: var(--accent-foreground, #0f172a);
 }
 
-.shumai-editor-toolbar-left button:disabled {
+.zhenyue-editor-toolbar-left button:disabled {
   opacity: 0.35;
   cursor: not-allowed;
 }
 
-.shumai-editor-toolbar-left button.active {
+.zhenyue-editor-toolbar-left button.active {
   background-color: var(--primary, #0f172a);
   color: var(--primary-foreground, #ffffff);
 }
 
-.shumai-editor-toolbar select {
+.zhenyue-editor-toolbar select {
   height: 30px;
   padding: 0 8px;
   border-radius: 6px;
@@ -67,14 +67,14 @@
   outline: none;
 }
 
-.shumai-editor-toolbar .toolbar-divider {
+.zhenyue-editor-toolbar .toolbar-divider {
   width: 1px;
   height: 20px;
   background-color: var(--border, #e2e8f0);
   margin: 0 4px;
 }
 
-.shumai-editor-content-area {
+.zhenyue-editor-content-area {
   position: relative;
   min-height: 0;
   flex: 1;

@@ -1,7 +1,7 @@
 import { Hono } from 'hono'
 import { zValidator } from '@hono/zod-validator'
-import { agentService } from '@shumai/core/src/agent/agent'
-import { authzService, Permission, ResourceType } from '@shumai/core/src/authz/authz'
+import { agentService } from '@zhenyue/core/src/agent/agent'
+import { authzService, Permission, ResourceType } from '@zhenyue/core/src/authz/authz'
 import {
   createAgentRequestSchema,
   updateAgentRequestSchema,
@@ -9,10 +9,10 @@ import {
   paginationParamsSchema,
   AgentInfo,
   AuditAction,
-} from '@shumai/dtos'
+} from '@zhenyue/dtos'
 
-import type { Prisma } from '@shumai/db'
-import { auditLogService } from '@shumai/core/src/auditLog/auditLog'
+import type { Prisma } from '@zhenyue/db'
+import { auditLogService } from '@zhenyue/core/src/auditLog/auditLog'
 
 type User = Prisma.UserGetPayload<Record<string, never>>
 

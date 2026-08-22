@@ -5,12 +5,12 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 
 /** @typedef {{}} Failed_Rename_Share_LinkInputs */
 
-const en_failed_rename_share_link = /** @type {(inputs: Failed_Rename_Share_LinkInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Failed to rename share link`)
-};
-
 const zh_failed_rename_share_link = /** @type {(inputs: Failed_Rename_Share_LinkInputs) => LocalizedString} */ () => {
 	return /** @type {LocalizedString} */ (`重命名分享链接失败`)
+};
+
+const en_failed_rename_share_link = /** @type {(inputs: Failed_Rename_Share_LinkInputs) => LocalizedString} */ () => {
+	return /** @type {LocalizedString} */ (`Failed to rename share link`)
 };
 
 /**
@@ -19,11 +19,11 @@ const zh_failed_rename_share_link = /** @type {(inputs: Failed_Rename_Share_Link
 * | "Failed to rename share link" |
 *
 * @param {Failed_Rename_Share_LinkInputs} inputs
-* @param {{ locale?: "en" | "zh" }} options
+* @param {{ locale?: "zh" | "en" }} options
 * @returns {LocalizedString}
 */
-export const failed_rename_share_link = /** @type {((inputs?: Failed_Rename_Share_LinkInputs, options?: { locale?: "en" | "zh" }) => LocalizedString) & import('../runtime.js').MessageMetadata<Failed_Rename_Share_LinkInputs, { locale?: "en" | "zh" }, {}>} */ ((inputs = {}, options = {}) => {
+export const failed_rename_share_link = /** @type {((inputs?: Failed_Rename_Share_LinkInputs, options?: { locale?: "zh" | "en" }) => LocalizedString) & import('../runtime.js').MessageMetadata<Failed_Rename_Share_LinkInputs, { locale?: "zh" | "en" }, {}>} */ ((inputs = {}, options = {}) => {
 	const locale = experimentalStaticLocale ?? options.locale ?? getLocale()
-	if (locale === "en") return en_failed_rename_share_link(inputs)
-	return zh_failed_rename_share_link(inputs)
+	if (locale === "zh") return zh_failed_rename_share_link(inputs)
+	return en_failed_rename_share_link(inputs)
 });

@@ -4,13 +4,13 @@
 * | "Variable Name" |
 *
 * @param {Variable_NameInputs} inputs
-* @param {{ locale?: "en" | "zh" }} options
+* @param {{ locale?: "zh" | "en" }} options
 * @returns {LocalizedString}
 */
 export const variable_name: ((inputs?: Variable_NameInputs, options?: {
-    locale?: "en" | "zh";
+    locale?: "zh" | "en";
 }) => LocalizedString) & import("../runtime.js").MessageMetadata<Variable_NameInputs, {
-    locale?: "en" | "zh";
+    locale?: "zh" | "en";
 }, {}>;
 export type LocalizedString = import("../runtime.js").LocalizedString;
 export type Variable_NameInputs = {};

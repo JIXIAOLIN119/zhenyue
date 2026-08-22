@@ -1,19 +1,19 @@
-import { prisma, WatermarkFileStatus } from '@shumai/db'
-import '@shumai/db/src/prisma-json-types'
-import { s3Service } from '@shumai/core/src/s3/s3'
-import { transcodeService } from '@shumai/core/src/transcode/transcode'
+import { prisma, WatermarkFileStatus } from '@zhenyue/db'
+import '@zhenyue/db/src/prisma-json-types'
+import { s3Service } from '@zhenyue/core/src/s3/s3'
+import { transcodeService } from '@zhenyue/core/src/transcode/transcode'
 import {
   generateWatermarkSvg,
   RenderBlockImageData,
-} from '@shumai/core/src/watermark/watermark-svg'
-import { watermarkService } from '@shumai/core/src/watermark/watermark'
-import { logger } from '@shumai/core/src/logger'
-import { stemFromKey } from '@shumai/core/src/utils/filename'
+} from '@zhenyue/core/src/watermark/watermark-svg'
+import { watermarkService } from '@zhenyue/core/src/watermark/watermark'
+import { logger } from '@zhenyue/core/src/logger'
+import { stemFromKey } from '@zhenyue/core/src/utils/filename'
 import { ApplicationFailure } from '@temporalio/activity'
 import * as path from 'path'
 import * as fs from 'fs'
 import { ulid } from 'ulid'
-import type { WatermarkConfigSpec, WatermarkBlockImage } from '@shumai/dtos'
+import type { WatermarkConfigSpec, WatermarkBlockImage } from '@zhenyue/dtos'
 
 // Max dimension for watermark block images embedded into the SVG overlay.
 // Bounding this keeps the SVG (and its base64 payload) small for large logos.
@@ -119,7 +119,7 @@ export interface TranscodeWatermarkMediaParams {
 export async function transcodeWatermarkMediaActivity(
   params: TranscodeWatermarkMediaParams,
 ): Promise<PrismaJson.MediaInfo> {
-  const bucket = process.env.S3_BUCKET || 'shumai'
+  const bucket = process.env.S3_BUCKET || 'zhenyue'
 
   const watermarkConfigRecord = await prisma.watermarkConfig.findUnique({
     where: { id: params.watermarkConfigId },

@@ -1,5 +1,5 @@
 import { z } from 'zod'
-import { QuotaScopeMode, QuotaPeriod, QuotaResourceType } from '@shumai/db/enums'
+import { QuotaScopeMode, QuotaPeriod, QuotaResourceType } from '@zhenyue/db/enums'
 
 export { QuotaScopeMode, QuotaPeriod, QuotaResourceType }
 

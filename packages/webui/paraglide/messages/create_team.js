@@ -5,12 +5,12 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 
 /** @typedef {{}} Create_TeamInputs */
 
-const en_create_team = /** @type {(inputs: Create_TeamInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Create Team`)
-};
-
 const zh_create_team = /** @type {(inputs: Create_TeamInputs) => LocalizedString} */ () => {
 	return /** @type {LocalizedString} */ (`创建团队`)
+};
+
+const en_create_team = /** @type {(inputs: Create_TeamInputs) => LocalizedString} */ () => {
+	return /** @type {LocalizedString} */ (`Create Team`)
 };
 
 /**
@@ -19,11 +19,11 @@ const zh_create_team = /** @type {(inputs: Create_TeamInputs) => LocalizedString
 * | "Create Team" |
 *
 * @param {Create_TeamInputs} inputs
-* @param {{ locale?: "en" | "zh" }} options
+* @param {{ locale?: "zh" | "en" }} options
 * @returns {LocalizedString}
 */
-export const create_team = /** @type {((inputs?: Create_TeamInputs, options?: { locale?: "en" | "zh" }) => LocalizedString) & import('../runtime.js').MessageMetadata<Create_TeamInputs, { locale?: "en" | "zh" }, {}>} */ ((inputs = {}, options = {}) => {
+export const create_team = /** @type {((inputs?: Create_TeamInputs, options?: { locale?: "zh" | "en" }) => LocalizedString) & import('../runtime.js').MessageMetadata<Create_TeamInputs, { locale?: "zh" | "en" }, {}>} */ ((inputs = {}, options = {}) => {
 	const locale = experimentalStaticLocale ?? options.locale ?? getLocale()
-	if (locale === "en") return en_create_team(inputs)
-	return zh_create_team(inputs)
+	if (locale === "zh") return zh_create_team(inputs)
+	return en_create_team(inputs)
 });

@@ -1,4 +1,4 @@
-import type { TeamMemberRole } from '@shumai/db'
+import type { TeamMemberRole } from '@zhenyue/db'
 
 /**
  * Numeric levels for the team role hierarchy used by agent permissions.

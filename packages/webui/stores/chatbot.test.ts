@@ -1,7 +1,7 @@
 import { describe, it, expect, vi, beforeEach } from 'vitest'
 import { useChatbotStore, AGENT_PREFERENCE_STORAGE_KEY } from './chatbot'
 import { client } from '@/ui/api/client'
-import type { ChatMessage } from '@shumai/dtos'
+import type { ChatMessage } from '@zhenyue/dtos'
 
 const localStorageMock = (() => {
   let store: Record<string, string> = {}

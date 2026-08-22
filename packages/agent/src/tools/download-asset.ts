@@ -1,9 +1,9 @@
 import { Type } from 'typebox'
 import { type AgentTool } from '@earendil-works/pi-agent-core'
-import { prisma, type User } from '@shumai/db'
-import { s3Service } from '@shumai/core/src/s3/s3'
-import { authzService, Permission, ResourceType } from '@shumai/core/src/authz/authz'
-import { sanitizeFilename } from '@shumai/core/src/utils/filename'
+import { prisma, type User } from '@zhenyue/db'
+import { s3Service } from '@zhenyue/core/src/s3/s3'
+import { authzService, Permission, ResourceType } from '@zhenyue/core/src/authz/authz'
+import { sanitizeFilename } from '@zhenyue/core/src/utils/filename'
 import * as fs from 'fs'
 import * as path from 'path'
 
@@ -95,7 +95,7 @@ export function createDownloadAssetTool(userId: string): AgentTool<typeof downlo
       const targetFilePath = path.join(piDir, filename)
       const relativePath = path.join('.pi', filename)
 
-      const bucket = process.env.S3_BUCKET || 'shumai'
+      const bucket = process.env.S3_BUCKET || 'zhenyue'
       const { buffer, contentType } = await s3Service.getObject(bucket, mediaKey)
 
       fs.writeFileSync(targetFilePath, buffer)

@@ -5,12 +5,12 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 
 /** @typedef {{}} Skills_ManagementInputs */
 
-const en_skills_management = /** @type {(inputs: Skills_ManagementInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Skills Management`)
-};
-
 const zh_skills_management = /** @type {(inputs: Skills_ManagementInputs) => LocalizedString} */ () => {
 	return /** @type {LocalizedString} */ (`技能管理`)
+};
+
+const en_skills_management = /** @type {(inputs: Skills_ManagementInputs) => LocalizedString} */ () => {
+	return /** @type {LocalizedString} */ (`Skills Management`)
 };
 
 /**
@@ -19,11 +19,11 @@ const zh_skills_management = /** @type {(inputs: Skills_ManagementInputs) => Loc
 * | "Skills Management" |
 *
 * @param {Skills_ManagementInputs} inputs
-* @param {{ locale?: "en" | "zh" }} options
+* @param {{ locale?: "zh" | "en" }} options
 * @returns {LocalizedString}
 */
-export const skills_management = /** @type {((inputs?: Skills_ManagementInputs, options?: { locale?: "en" | "zh" }) => LocalizedString) & import('../runtime.js').MessageMetadata<Skills_ManagementInputs, { locale?: "en" | "zh" }, {}>} */ ((inputs = {}, options = {}) => {
+export const skills_management = /** @type {((inputs?: Skills_ManagementInputs, options?: { locale?: "zh" | "en" }) => LocalizedString) & import('../runtime.js').MessageMetadata<Skills_ManagementInputs, { locale?: "zh" | "en" }, {}>} */ ((inputs = {}, options = {}) => {
 	const locale = experimentalStaticLocale ?? options.locale ?? getLocale()
-	if (locale === "en") return en_skills_management(inputs)
-	return zh_skills_management(inputs)
+	if (locale === "zh") return zh_skills_management(inputs)
+	return en_skills_management(inputs)
 });

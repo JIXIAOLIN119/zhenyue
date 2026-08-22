@@ -5,12 +5,12 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 
 /** @typedef {{}} Select_RoleInputs */
 
-const en_select_role = /** @type {(inputs: Select_RoleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Select Role`)
-};
-
 const zh_select_role = /** @type {(inputs: Select_RoleInputs) => LocalizedString} */ () => {
 	return /** @type {LocalizedString} */ (`选择角色`)
+};
+
+const en_select_role = /** @type {(inputs: Select_RoleInputs) => LocalizedString} */ () => {
+	return /** @type {LocalizedString} */ (`Select Role`)
 };
 
 /**
@@ -19,11 +19,11 @@ const zh_select_role = /** @type {(inputs: Select_RoleInputs) => LocalizedString
 * | "Select Role" |
 *
 * @param {Select_RoleInputs} inputs
-* @param {{ locale?: "en" | "zh" }} options
+* @param {{ locale?: "zh" | "en" }} options
 * @returns {LocalizedString}
 */
-export const select_role = /** @type {((inputs?: Select_RoleInputs, options?: { locale?: "en" | "zh" }) => LocalizedString) & import('../runtime.js').MessageMetadata<Select_RoleInputs, { locale?: "en" | "zh" }, {}>} */ ((inputs = {}, options = {}) => {
+export const select_role = /** @type {((inputs?: Select_RoleInputs, options?: { locale?: "zh" | "en" }) => LocalizedString) & import('../runtime.js').MessageMetadata<Select_RoleInputs, { locale?: "zh" | "en" }, {}>} */ ((inputs = {}, options = {}) => {
 	const locale = experimentalStaticLocale ?? options.locale ?? getLocale()
-	if (locale === "en") return en_select_role(inputs)
-	return zh_select_role(inputs)
+	if (locale === "zh") return zh_select_role(inputs)
+	return en_select_role(inputs)
 });

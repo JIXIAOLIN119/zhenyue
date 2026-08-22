@@ -5,12 +5,12 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 
 /** @typedef {{}} Mcp_TransportInputs */
 
-const en_mcp_transport = /** @type {(inputs: Mcp_TransportInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Transport Protocol`)
-};
-
 const zh_mcp_transport = /** @type {(inputs: Mcp_TransportInputs) => LocalizedString} */ () => {
 	return /** @type {LocalizedString} */ (`传输协议`)
+};
+
+const en_mcp_transport = /** @type {(inputs: Mcp_TransportInputs) => LocalizedString} */ () => {
+	return /** @type {LocalizedString} */ (`Transport Protocol`)
 };
 
 /**
@@ -19,11 +19,11 @@ const zh_mcp_transport = /** @type {(inputs: Mcp_TransportInputs) => LocalizedSt
 * | "Transport Protocol" |
 *
 * @param {Mcp_TransportInputs} inputs
-* @param {{ locale?: "en" | "zh" }} options
+* @param {{ locale?: "zh" | "en" }} options
 * @returns {LocalizedString}
 */
-export const mcp_transport = /** @type {((inputs?: Mcp_TransportInputs, options?: { locale?: "en" | "zh" }) => LocalizedString) & import('../runtime.js').MessageMetadata<Mcp_TransportInputs, { locale?: "en" | "zh" }, {}>} */ ((inputs = {}, options = {}) => {
+export const mcp_transport = /** @type {((inputs?: Mcp_TransportInputs, options?: { locale?: "zh" | "en" }) => LocalizedString) & import('../runtime.js').MessageMetadata<Mcp_TransportInputs, { locale?: "zh" | "en" }, {}>} */ ((inputs = {}, options = {}) => {
 	const locale = experimentalStaticLocale ?? options.locale ?? getLocale()
-	if (locale === "en") return en_mcp_transport(inputs)
-	return zh_mcp_transport(inputs)
+	if (locale === "zh") return zh_mcp_transport(inputs)
+	return en_mcp_transport(inputs)
 });

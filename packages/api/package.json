@@ -1,14 +1,14 @@
 {
-  "name": "@shumai/api",
+  "name": "@zhenyue/api",
   "version": "0.3.9",
   "private": true,
   "type": "module",
   "main": "./src/index.ts",
   "types": "./src/index.ts",
   "dependencies": {
-    "@shumai/core": "workspace:*",
-    "@shumai/db": "workspace:*",
-    "@shumai/dtos": "workspace:*",
+    "@zhenyue/core": "workspace:*",
+    "@zhenyue/db": "workspace:*",
+    "@zhenyue/dtos": "workspace:*",
     "hono": "4.12.23",
     "@hono/zod-validator": "0.7.6",
     "zod": "4.4.3",

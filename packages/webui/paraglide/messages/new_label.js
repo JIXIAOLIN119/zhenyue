@@ -5,12 +5,12 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 
 /** @typedef {{}} New_LabelInputs */
 
-const en_new_label = /** @type {(inputs: New_LabelInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`New`)
-};
-
 const zh_new_label = /** @type {(inputs: New_LabelInputs) => LocalizedString} */ () => {
 	return /** @type {LocalizedString} */ (`新建`)
+};
+
+const en_new_label = /** @type {(inputs: New_LabelInputs) => LocalizedString} */ () => {
+	return /** @type {LocalizedString} */ (`New`)
 };
 
 /**
@@ -19,11 +19,11 @@ const zh_new_label = /** @type {(inputs: New_LabelInputs) => LocalizedString} */
 * | "New" |
 *
 * @param {New_LabelInputs} inputs
-* @param {{ locale?: "en" | "zh" }} options
+* @param {{ locale?: "zh" | "en" }} options
 * @returns {LocalizedString}
 */
-export const new_label = /** @type {((inputs?: New_LabelInputs, options?: { locale?: "en" | "zh" }) => LocalizedString) & import('../runtime.js').MessageMetadata<New_LabelInputs, { locale?: "en" | "zh" }, {}>} */ ((inputs = {}, options = {}) => {
+export const new_label = /** @type {((inputs?: New_LabelInputs, options?: { locale?: "zh" | "en" }) => LocalizedString) & import('../runtime.js').MessageMetadata<New_LabelInputs, { locale?: "zh" | "en" }, {}>} */ ((inputs = {}, options = {}) => {
 	const locale = experimentalStaticLocale ?? options.locale ?? getLocale()
-	if (locale === "en") return en_new_label(inputs)
-	return zh_new_label(inputs)
+	if (locale === "zh") return zh_new_label(inputs)
+	return en_new_label(inputs)
 });

@@ -4,13 +4,13 @@
 * | "Profile updated successfully" |
 *
 * @param {Profile_UpdatedInputs} inputs
-* @param {{ locale?: "en" | "zh" }} options
+* @param {{ locale?: "zh" | "en" }} options
 * @returns {LocalizedString}
 */
 export const profile_updated: ((inputs?: Profile_UpdatedInputs, options?: {
-    locale?: "en" | "zh";
+    locale?: "zh" | "en";
 }) => LocalizedString) & import("../runtime.js").MessageMetadata<Profile_UpdatedInputs, {
-    locale?: "en" | "zh";
+    locale?: "zh" | "en";
 }, {}>;
 export type LocalizedString = import("../runtime.js").LocalizedString;
 export type Profile_UpdatedInputs = {};

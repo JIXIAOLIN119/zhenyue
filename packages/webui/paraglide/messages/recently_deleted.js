@@ -5,12 +5,12 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 
 /** @typedef {{}} Recently_DeletedInputs */
 
-const en_recently_deleted = /** @type {(inputs: Recently_DeletedInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Recently Deleted`)
-};
-
 const zh_recently_deleted = /** @type {(inputs: Recently_DeletedInputs) => LocalizedString} */ () => {
 	return /** @type {LocalizedString} */ (`最近删除`)
+};
+
+const en_recently_deleted = /** @type {(inputs: Recently_DeletedInputs) => LocalizedString} */ () => {
+	return /** @type {LocalizedString} */ (`Recently Deleted`)
 };
 
 /**
@@ -19,11 +19,11 @@ const zh_recently_deleted = /** @type {(inputs: Recently_DeletedInputs) => Local
 * | "Recently Deleted" |
 *
 * @param {Recently_DeletedInputs} inputs
-* @param {{ locale?: "en" | "zh" }} options
+* @param {{ locale?: "zh" | "en" }} options
 * @returns {LocalizedString}
 */
-export const recently_deleted = /** @type {((inputs?: Recently_DeletedInputs, options?: { locale?: "en" | "zh" }) => LocalizedString) & import('../runtime.js').MessageMetadata<Recently_DeletedInputs, { locale?: "en" | "zh" }, {}>} */ ((inputs = {}, options = {}) => {
+export const recently_deleted = /** @type {((inputs?: Recently_DeletedInputs, options?: { locale?: "zh" | "en" }) => LocalizedString) & import('../runtime.js').MessageMetadata<Recently_DeletedInputs, { locale?: "zh" | "en" }, {}>} */ ((inputs = {}, options = {}) => {
 	const locale = experimentalStaticLocale ?? options.locale ?? getLocale()
-	if (locale === "en") return en_recently_deleted(inputs)
-	return zh_recently_deleted(inputs)
+	if (locale === "zh") return zh_recently_deleted(inputs)
+	return en_recently_deleted(inputs)
 });

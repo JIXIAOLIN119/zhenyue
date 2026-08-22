@@ -1,4 +1,4 @@
-import { newTablePrinter } from '@shumai/tableprinter'
+import { newTablePrinter } from '@zhenyue/tableprinter'
 import { getClient } from '../client'
 
 export async function projectLs() {

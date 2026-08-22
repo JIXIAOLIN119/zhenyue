@@ -1,8 +1,8 @@
-import { prisma, WatermarkFileStatus } from '@shumai/db'
-import '@shumai/db/src/prisma-json-types'
-import { setupTestDbHooks } from '@shumai/db/test'
-import { s3Service } from '@shumai/core/src/s3/s3'
-import { transcodeService } from '@shumai/core/src/transcode/transcode'
+import { prisma, WatermarkFileStatus } from '@zhenyue/db'
+import '@zhenyue/db/src/prisma-json-types'
+import { setupTestDbHooks } from '@zhenyue/db/test'
+import { s3Service } from '@zhenyue/core/src/s3/s3'
+import { transcodeService } from '@zhenyue/core/src/transcode/transcode'
 import {
   initWatermarkFileActivity,
   waitForWatermarkFileActivity,
@@ -29,7 +29,7 @@ vi.mock('child_process', () => ({
   ),
 }))
 
-vi.mock('@shumai/core/src/s3/s3', () => ({
+vi.mock('@zhenyue/core/src/s3/s3', () => ({
   s3Service: {
     getObject: vi.fn(),
     putObject: vi.fn(),
@@ -45,7 +45,7 @@ vi.mock('@shumai/core/src/s3/s3', () => ({
   },
 }))
 
-vi.mock('@shumai/core/src/transcode/transcode', () => ({
+vi.mock('@zhenyue/core/src/transcode/transcode', () => ({
   transcodeService: {
     getVideoInfo: vi.fn(),
     getImageInfo: vi.fn(),
@@ -180,7 +180,7 @@ describe('Watermark Activities', () => {
   })
 
   describe('transcodeWatermarkMediaActivity', () => {
-    const bucket = process.env.S3_BUCKET || 'shumai'
+    const bucket = process.env.S3_BUCKET || 'zhenyue'
 
     async function seedAsset(name: string, mediaType: string, key: string, proxyType: string) {
       const storageKey = await prisma.storageKey.create({ data: { key } })

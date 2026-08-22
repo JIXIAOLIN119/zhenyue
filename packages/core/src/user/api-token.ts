@@ -1,4 +1,4 @@
-import { prisma } from '@shumai/db'
+import { prisma } from '@zhenyue/db'
 
 export class ApiTokenService {
   async listTokens(userId: string) {

@@ -1,14 +1,14 @@
 import { describe, it, expect, vi, beforeEach } from 'vitest'
-import { collectionService } from '@shumai/core/src/collection/collection'
-import { authzService, Permission, ResourceType } from '@shumai/core/src/authz/authz'
+import { collectionService } from '@zhenyue/core/src/collection/collection'
+import { authzService, Permission, ResourceType } from '@zhenyue/core/src/authz/authz'
 import { Hono, Context, Next } from 'hono'
 import collectionRoute from './collection'
-import { s3Service } from '@shumai/core/src/s3/s3'
-import type { Prisma } from '@shumai/db'
+import { s3Service } from '@zhenyue/core/src/s3/s3'
+import type { Prisma } from '@zhenyue/db'
 
 type User = Prisma.UserGetPayload<Record<string, never>>
 
-vi.mock('@shumai/core/src/s3/s3', () => ({
+vi.mock('@zhenyue/core/src/s3/s3', () => ({
   s3Service: {
     presign: vi.fn(),
   },
@@ -21,7 +21,7 @@ vi.mock('./middleware/auth', () => ({
   },
 }))
 
-vi.mock('@shumai/core/src/authz/authz', () => ({
+vi.mock('@zhenyue/core/src/authz/authz', () => ({
   authzService: {
     hasPermission: vi.fn().mockResolvedValue(undefined),
   },

@@ -1,14 +1,14 @@
 {
-  "name": "@shumai/transcode-app",
+  "name": "@zhenyue/transcode-app",
   "version": "0.3.9",
   "private": true,
   "type": "module",
   "bin": {
-    "shumai-transcode": "./src/index.ts"
+    "zhenyue-transcode": "./src/index.ts"
   },
   "dependencies": {
-    "@shumai/transcode": "workspace:*",
-    "@shumai/core": "workspace:*",
-    "@shumai/workflow-core": "workspace:*"
+    "@zhenyue/transcode": "workspace:*",
+    "@zhenyue/core": "workspace:*",
+    "@zhenyue/workflow-core": "workspace:*"
   }
 }

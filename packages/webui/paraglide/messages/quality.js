@@ -5,12 +5,12 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 
 /** @typedef {{}} QualityInputs */
 
-const en_quality = /** @type {(inputs: QualityInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Quality`)
-};
-
 const zh_quality = /** @type {(inputs: QualityInputs) => LocalizedString} */ () => {
 	return /** @type {LocalizedString} */ (`画质`)
+};
+
+const en_quality = /** @type {(inputs: QualityInputs) => LocalizedString} */ () => {
+	return /** @type {LocalizedString} */ (`Quality`)
 };
 
 /**
@@ -19,11 +19,11 @@ const zh_quality = /** @type {(inputs: QualityInputs) => LocalizedString} */ () 
 * | "Quality" |
 *
 * @param {QualityInputs} inputs
-* @param {{ locale?: "en" | "zh" }} options
+* @param {{ locale?: "zh" | "en" }} options
 * @returns {LocalizedString}
 */
-export const quality = /** @type {((inputs?: QualityInputs, options?: { locale?: "en" | "zh" }) => LocalizedString) & import('../runtime.js').MessageMetadata<QualityInputs, { locale?: "en" | "zh" }, {}>} */ ((inputs = {}, options = {}) => {
+export const quality = /** @type {((inputs?: QualityInputs, options?: { locale?: "zh" | "en" }) => LocalizedString) & import('../runtime.js').MessageMetadata<QualityInputs, { locale?: "zh" | "en" }, {}>} */ ((inputs = {}, options = {}) => {
 	const locale = experimentalStaticLocale ?? options.locale ?? getLocale()
-	if (locale === "en") return en_quality(inputs)
-	return zh_quality(inputs)
+	if (locale === "zh") return zh_quality(inputs)
+	return en_quality(inputs)
 });

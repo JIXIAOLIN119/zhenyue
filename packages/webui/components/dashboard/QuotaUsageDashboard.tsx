@@ -32,7 +32,7 @@ import {
   User,
   UserCheck,
 } from 'lucide-react'
-import type { QuotaRecordResponse, QuotaRuleResponse } from '@shumai/dtos'
+import type { QuotaRecordResponse, QuotaRuleResponse } from '@zhenyue/dtos'
 import { toast } from 'sonner'
 import {
   QUOTA_RESOURCE_META,

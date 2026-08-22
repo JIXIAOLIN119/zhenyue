@@ -1,5 +1,5 @@
 import { createLazyFileRoute } from '@tanstack/react-router'
-import type { ProjectInfo } from '@shumai/dtos'
+import type { ProjectInfo } from '@zhenyue/dtos'
 import { usePermissions } from '@/ui/hooks/use-permissions'
 import { client } from '@/ui/api/client'
 import { MembersDialog } from '@/ui/components/members-dialog'

@@ -1,14 +1,14 @@
 import { describe, expect, it, vi, beforeEach, afterEach } from 'vitest'
 import { Hono } from 'hono'
-import { AuditAction } from '@shumai/dtos'
+import { AuditAction } from '@zhenyue/dtos'
 import teamRoute from './team'
 import { authMiddleware } from './middleware/auth'
-import { teamService } from '@shumai/core/src/team/team'
-import { userMetadataService } from '@shumai/core/src/user-metadata/user-metadata'
-import { notificationService } from '@shumai/core/src/notification/notification'
-import { authzService, ResourceType, Permission } from '@shumai/core/src/authz/authz'
+import { teamService } from '@zhenyue/core/src/team/team'
+import { userMetadataService } from '@zhenyue/core/src/user-metadata/user-metadata'
+import { notificationService } from '@zhenyue/core/src/notification/notification'
+import { authzService, ResourceType, Permission } from '@zhenyue/core/src/authz/authz'
 
-vi.mock('@shumai/core/src/authz/authz', () => ({
+vi.mock('@zhenyue/core/src/authz/authz', () => ({
   authzService: {
     hasPermission: vi.fn().mockResolvedValue(undefined),
   },
@@ -30,7 +30,7 @@ vi.mock('./middleware/auth', () => ({
   },
 }))
 
-vi.mock('@shumai/core/src/user/api-token', () => ({
+vi.mock('@zhenyue/core/src/user/api-token', () => ({
   apiTokenService: {
     listTokens: vi.fn(),
     createToken: vi.fn(),
@@ -38,14 +38,14 @@ vi.mock('@shumai/core/src/user/api-token', () => ({
   },
 }))
 
-vi.mock('@shumai/core/src/ai-usage/ai-usage', () => ({
+vi.mock('@zhenyue/core/src/ai-usage/ai-usage', () => ({
   aiUsageService: {
     recordUsage: vi.fn(),
     getTeamUsageStats: vi.fn(),
   },
 }))
 
-vi.mock('@shumai/core/src/auditLog/auditLog', () => ({
+vi.mock('@zhenyue/core/src/auditLog/auditLog', () => ({
   auditLogService: {
     logAction: vi.fn(),
     listAuditLogs: vi.fn(),
@@ -352,7 +352,7 @@ describe('team api', () => {
 
   describe('API Tokens', () => {
     it('GET /teams/:teamId/api-tokens', async () => {
-      const { apiTokenService } = await import('@shumai/core/src/user/api-token')
+      const { apiTokenService } = await import('@zhenyue/core/src/user/api-token')
       const mockDate = new Date('2026-06-21T00:00:00.000Z')
       vi.mocked(apiTokenService.listTokens).mockResolvedValue([
         {
@@ -382,7 +382,7 @@ describe('team api', () => {
     })
 
     it('POST /teams/:teamId/api-tokens', async () => {
-      const { apiTokenService } = await import('@shumai/core/src/user/api-token')
+      const { apiTokenService } = await import('@zhenyue/core/src/user/api-token')
       const mockDate = new Date('2026-06-21T00:00:00.000Z')
       vi.mocked(apiTokenService.createToken).mockResolvedValue({
         id: 'token1',
@@ -413,7 +413,7 @@ describe('team api', () => {
     })
 
     it('DELETE /teams/:teamId/api-tokens/:tokenId', async () => {
-      const { apiTokenService } = await import('@shumai/core/src/user/api-token')
+      const { apiTokenService } = await import('@zhenyue/core/src/user/api-token')
       // Mocking return value of deleteToken is simpler with any casting
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
       vi.mocked(apiTokenService.deleteToken).mockResolvedValue({} as any)
@@ -429,7 +429,7 @@ describe('team api', () => {
     })
 
     it('GET /teams/:teamId/ai-usage returns team usage stats for owner', async () => {
-      const { aiUsageService } = await import('@shumai/core/src/ai-usage/ai-usage')
+      const { aiUsageService } = await import('@zhenyue/core/src/ai-usage/ai-usage')
       vi.mocked(aiUsageService.getTeamUsageStats).mockResolvedValue({
         timeframe: '30d',
         team: {
@@ -461,7 +461,7 @@ describe('team api', () => {
     })
 
     it('GET /teams/:teamId/ai-usage?userId=user1 returns specific member usage stats', async () => {
-      const { aiUsageService } = await import('@shumai/core/src/ai-usage/ai-usage')
+      const { aiUsageService } = await import('@zhenyue/core/src/ai-usage/ai-usage')
       vi.mocked(aiUsageService.getTeamUsageStats).mockResolvedValue({
         timeframe: '7d',
         member: {
@@ -490,7 +490,7 @@ describe('team api', () => {
     })
 
     it('GET /teams/:teamId/audit-logs returns list of audit logs for team owner', async () => {
-      const { auditLogService } = await import('@shumai/core/src/auditLog/auditLog')
+      const { auditLogService } = await import('@zhenyue/core/src/auditLog/auditLog')
       vi.mocked(auditLogService.listAuditLogs).mockResolvedValue({
         nodes: [
           {

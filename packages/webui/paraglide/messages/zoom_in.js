@@ -5,12 +5,12 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 
 /** @typedef {{}} Zoom_InInputs */
 
-const en_zoom_in = /** @type {(inputs: Zoom_InInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Zoom In`)
-};
-
 const zh_zoom_in = /** @type {(inputs: Zoom_InInputs) => LocalizedString} */ () => {
 	return /** @type {LocalizedString} */ (`放大`)
+};
+
+const en_zoom_in = /** @type {(inputs: Zoom_InInputs) => LocalizedString} */ () => {
+	return /** @type {LocalizedString} */ (`Zoom In`)
 };
 
 /**
@@ -19,11 +19,11 @@ const zh_zoom_in = /** @type {(inputs: Zoom_InInputs) => LocalizedString} */ () 
 * | "Zoom In" |
 *
 * @param {Zoom_InInputs} inputs
-* @param {{ locale?: "en" | "zh" }} options
+* @param {{ locale?: "zh" | "en" }} options
 * @returns {LocalizedString}
 */
-export const zoom_in = /** @type {((inputs?: Zoom_InInputs, options?: { locale?: "en" | "zh" }) => LocalizedString) & import('../runtime.js').MessageMetadata<Zoom_InInputs, { locale?: "en" | "zh" }, {}>} */ ((inputs = {}, options = {}) => {
+export const zoom_in = /** @type {((inputs?: Zoom_InInputs, options?: { locale?: "zh" | "en" }) => LocalizedString) & import('../runtime.js').MessageMetadata<Zoom_InInputs, { locale?: "zh" | "en" }, {}>} */ ((inputs = {}, options = {}) => {
 	const locale = experimentalStaticLocale ?? options.locale ?? getLocale()
-	if (locale === "en") return en_zoom_in(inputs)
-	return zh_zoom_in(inputs)
+	if (locale === "zh") return zh_zoom_in(inputs)
+	return en_zoom_in(inputs)
 });

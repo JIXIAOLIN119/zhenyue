@@ -5,12 +5,12 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 
 /** @typedef {{}} LightInputs */
 
-const en_light = /** @type {(inputs: LightInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Light`)
-};
-
 const zh_light = /** @type {(inputs: LightInputs) => LocalizedString} */ () => {
 	return /** @type {LocalizedString} */ (`浅色`)
+};
+
+const en_light = /** @type {(inputs: LightInputs) => LocalizedString} */ () => {
+	return /** @type {LocalizedString} */ (`Light`)
 };
 
 /**
@@ -19,11 +19,11 @@ const zh_light = /** @type {(inputs: LightInputs) => LocalizedString} */ () => {
 * | "Light" |
 *
 * @param {LightInputs} inputs
-* @param {{ locale?: "en" | "zh" }} options
+* @param {{ locale?: "zh" | "en" }} options
 * @returns {LocalizedString}
 */
-export const light = /** @type {((inputs?: LightInputs, options?: { locale?: "en" | "zh" }) => LocalizedString) & import('../runtime.js').MessageMetadata<LightInputs, { locale?: "en" | "zh" }, {}>} */ ((inputs = {}, options = {}) => {
+export const light = /** @type {((inputs?: LightInputs, options?: { locale?: "zh" | "en" }) => LocalizedString) & import('../runtime.js').MessageMetadata<LightInputs, { locale?: "zh" | "en" }, {}>} */ ((inputs = {}, options = {}) => {
 	const locale = experimentalStaticLocale ?? options.locale ?? getLocale()
-	if (locale === "en") return en_light(inputs)
-	return zh_light(inputs)
+	if (locale === "zh") return zh_light(inputs)
+	return en_light(inputs)
 });

@@ -5,12 +5,12 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 
 /** @typedef {{}} Add_ModelInputs */
 
-const en_add_model = /** @type {(inputs: Add_ModelInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Add Model`)
-};
-
 const zh_add_model = /** @type {(inputs: Add_ModelInputs) => LocalizedString} */ () => {
 	return /** @type {LocalizedString} */ (`添加模型`)
+};
+
+const en_add_model = /** @type {(inputs: Add_ModelInputs) => LocalizedString} */ () => {
+	return /** @type {LocalizedString} */ (`Add Model`)
 };
 
 /**
@@ -19,11 +19,11 @@ const zh_add_model = /** @type {(inputs: Add_ModelInputs) => LocalizedString} */
 * | "Add Model" |
 *
 * @param {Add_ModelInputs} inputs
-* @param {{ locale?: "en" | "zh" }} options
+* @param {{ locale?: "zh" | "en" }} options
 * @returns {LocalizedString}
 */
-export const add_model = /** @type {((inputs?: Add_ModelInputs, options?: { locale?: "en" | "zh" }) => LocalizedString) & import('../runtime.js').MessageMetadata<Add_ModelInputs, { locale?: "en" | "zh" }, {}>} */ ((inputs = {}, options = {}) => {
+export const add_model = /** @type {((inputs?: Add_ModelInputs, options?: { locale?: "zh" | "en" }) => LocalizedString) & import('../runtime.js').MessageMetadata<Add_ModelInputs, { locale?: "zh" | "en" }, {}>} */ ((inputs = {}, options = {}) => {
 	const locale = experimentalStaticLocale ?? options.locale ?? getLocale()
-	if (locale === "en") return en_add_model(inputs)
-	return zh_add_model(inputs)
+	if (locale === "zh") return zh_add_model(inputs)
+	return en_add_model(inputs)
 });

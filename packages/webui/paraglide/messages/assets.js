@@ -5,12 +5,12 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 
 /** @typedef {{}} AssetsInputs */
 
-const en_assets = /** @type {(inputs: AssetsInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Assets`)
-};
-
 const zh_assets = /** @type {(inputs: AssetsInputs) => LocalizedString} */ () => {
 	return /** @type {LocalizedString} */ (`资源`)
+};
+
+const en_assets = /** @type {(inputs: AssetsInputs) => LocalizedString} */ () => {
+	return /** @type {LocalizedString} */ (`Assets`)
 };
 
 /**
@@ -19,11 +19,11 @@ const zh_assets = /** @type {(inputs: AssetsInputs) => LocalizedString} */ () =>
 * | "Assets" |
 *
 * @param {AssetsInputs} inputs
-* @param {{ locale?: "en" | "zh" }} options
+* @param {{ locale?: "zh" | "en" }} options
 * @returns {LocalizedString}
 */
-export const assets = /** @type {((inputs?: AssetsInputs, options?: { locale?: "en" | "zh" }) => LocalizedString) & import('../runtime.js').MessageMetadata<AssetsInputs, { locale?: "en" | "zh" }, {}>} */ ((inputs = {}, options = {}) => {
+export const assets = /** @type {((inputs?: AssetsInputs, options?: { locale?: "zh" | "en" }) => LocalizedString) & import('../runtime.js').MessageMetadata<AssetsInputs, { locale?: "zh" | "en" }, {}>} */ ((inputs = {}, options = {}) => {
 	const locale = experimentalStaticLocale ?? options.locale ?? getLocale()
-	if (locale === "en") return en_assets(inputs)
-	return zh_assets(inputs)
+	if (locale === "zh") return zh_assets(inputs)
+	return en_assets(inputs)
 });

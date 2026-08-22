@@ -5,12 +5,12 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 
 /** @typedef {{}} HistoryInputs */
 
-const en_history = /** @type {(inputs: HistoryInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`History`)
-};
-
 const zh_history = /** @type {(inputs: HistoryInputs) => LocalizedString} */ () => {
 	return /** @type {LocalizedString} */ (`历史记录`)
+};
+
+const en_history = /** @type {(inputs: HistoryInputs) => LocalizedString} */ () => {
+	return /** @type {LocalizedString} */ (`History`)
 };
 
 /**
@@ -19,11 +19,11 @@ const zh_history = /** @type {(inputs: HistoryInputs) => LocalizedString} */ () 
 * | "History" |
 *
 * @param {HistoryInputs} inputs
-* @param {{ locale?: "en" | "zh" }} options
+* @param {{ locale?: "zh" | "en" }} options
 * @returns {LocalizedString}
 */
-export const history = /** @type {((inputs?: HistoryInputs, options?: { locale?: "en" | "zh" }) => LocalizedString) & import('../runtime.js').MessageMetadata<HistoryInputs, { locale?: "en" | "zh" }, {}>} */ ((inputs = {}, options = {}) => {
+export const history = /** @type {((inputs?: HistoryInputs, options?: { locale?: "zh" | "en" }) => LocalizedString) & import('../runtime.js').MessageMetadata<HistoryInputs, { locale?: "zh" | "en" }, {}>} */ ((inputs = {}, options = {}) => {
 	const locale = experimentalStaticLocale ?? options.locale ?? getLocale()
-	if (locale === "en") return en_history(inputs)
-	return zh_history(inputs)
+	if (locale === "zh") return zh_history(inputs)
+	return en_history(inputs)
 });

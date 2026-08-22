@@ -1,4 +1,4 @@
-import type { ImageTranscode, VideoTranscode } from '@shumai/dtos'
+import type { ImageTranscode, VideoTranscode } from '@zhenyue/dtos'
 
 type Transcode = ImageTranscode | VideoTranscode
 

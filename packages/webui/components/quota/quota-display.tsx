@@ -1,6 +1,6 @@
 import type { ElementType } from 'react'
-import type { QuotaResourceTypeEnum } from '@shumai/dtos'
-import { formatQuotaPeriod } from '@shumai/dtos'
+import type { QuotaResourceTypeEnum } from '@zhenyue/dtos'
+import { formatQuotaPeriod } from '@zhenyue/dtos'
 import { m } from '@/ui/paraglide/messages.js'
 import { Cpu, DollarSign, Server, Terminal, Wrench } from 'lucide-react'
 

@@ -5,12 +5,12 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 
 /** @typedef {{ time: NonNullable<unknown> }} Today_With_TimeInputs */
 
-const en_today_with_time = /** @type {(inputs: Today_With_TimeInputs) => LocalizedString} */ (i) => {
-	return /** @type {LocalizedString} */ (`Today ${i?.time}`)
-};
-
 const zh_today_with_time = /** @type {(inputs: Today_With_TimeInputs) => LocalizedString} */ (i) => {
 	return /** @type {LocalizedString} */ (`今天 ${i?.time}`)
+};
+
+const en_today_with_time = /** @type {(inputs: Today_With_TimeInputs) => LocalizedString} */ (i) => {
+	return /** @type {LocalizedString} */ (`Today ${i?.time}`)
 };
 
 /**
@@ -19,11 +19,11 @@ const zh_today_with_time = /** @type {(inputs: Today_With_TimeInputs) => Localiz
 * | "Today {time}" |
 *
 * @param {Today_With_TimeInputs} inputs
-* @param {{ locale?: "en" | "zh" }} options
+* @param {{ locale?: "zh" | "en" }} options
 * @returns {LocalizedString}
 */
-export const today_with_time = /** @type {((inputs: Today_With_TimeInputs, options?: { locale?: "en" | "zh" }) => LocalizedString) & import('../runtime.js').MessageMetadata<Today_With_TimeInputs, { locale?: "en" | "zh" }, {}>} */ ((inputs, options = {}) => {
+export const today_with_time = /** @type {((inputs: Today_With_TimeInputs, options?: { locale?: "zh" | "en" }) => LocalizedString) & import('../runtime.js').MessageMetadata<Today_With_TimeInputs, { locale?: "zh" | "en" }, {}>} */ ((inputs, options = {}) => {
 	const locale = experimentalStaticLocale ?? options.locale ?? getLocale()
-	if (locale === "en") return en_today_with_time(inputs)
-	return zh_today_with_time(inputs)
+	if (locale === "zh") return zh_today_with_time(inputs)
+	return en_today_with_time(inputs)
 });

@@ -1,5 +1,5 @@
-import type { AssetInfo, AttachmentInfo, CommentInfo, FieldValueInfo } from '@shumai/dtos'
-import { type FieldInfo as MetadataFieldInfo } from '@shumai/dtos'
+import type { AssetInfo, AttachmentInfo, CommentInfo, FieldValueInfo } from '@zhenyue/dtos'
+import { type FieldInfo as MetadataFieldInfo } from '@zhenyue/dtos'
 import type { MemberInfo } from '@/ui/stores/members'
 import { client } from '@/ui/api/client'
 import { usePermissions } from '@/ui/hooks/use-permissions'

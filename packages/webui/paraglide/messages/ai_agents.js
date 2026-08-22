@@ -5,12 +5,12 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 
 /** @typedef {{}} Ai_AgentsInputs */
 
-const en_ai_agents = /** @type {(inputs: Ai_AgentsInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`AI Agents`)
-};
-
 const zh_ai_agents = /** @type {(inputs: Ai_AgentsInputs) => LocalizedString} */ () => {
 	return /** @type {LocalizedString} */ (`AI 智能体`)
+};
+
+const en_ai_agents = /** @type {(inputs: Ai_AgentsInputs) => LocalizedString} */ () => {
+	return /** @type {LocalizedString} */ (`AI Agents`)
 };
 
 /**
@@ -19,11 +19,11 @@ const zh_ai_agents = /** @type {(inputs: Ai_AgentsInputs) => LocalizedString} */
 * | "AI Agents" |
 *
 * @param {Ai_AgentsInputs} inputs
-* @param {{ locale?: "en" | "zh" }} options
+* @param {{ locale?: "zh" | "en" }} options
 * @returns {LocalizedString}
 */
-export const ai_agents = /** @type {((inputs?: Ai_AgentsInputs, options?: { locale?: "en" | "zh" }) => LocalizedString) & import('../runtime.js').MessageMetadata<Ai_AgentsInputs, { locale?: "en" | "zh" }, {}>} */ ((inputs = {}, options = {}) => {
+export const ai_agents = /** @type {((inputs?: Ai_AgentsInputs, options?: { locale?: "zh" | "en" }) => LocalizedString) & import('../runtime.js').MessageMetadata<Ai_AgentsInputs, { locale?: "zh" | "en" }, {}>} */ ((inputs = {}, options = {}) => {
 	const locale = experimentalStaticLocale ?? options.locale ?? getLocale()
-	if (locale === "en") return en_ai_agents(inputs)
-	return zh_ai_agents(inputs)
+	if (locale === "zh") return zh_ai_agents(inputs)
+	return en_ai_agents(inputs)
 });

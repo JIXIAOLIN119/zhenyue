@@ -5,12 +5,12 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 
 /** @typedef {{ count: NonNullable<unknown> }} N_Folders_SelectedInputs */
 
-const en_n_folders_selected = /** @type {(inputs: N_Folders_SelectedInputs) => LocalizedString} */ (i) => {
-	return /** @type {LocalizedString} */ (`${i?.count} folder(s) selected`)
-};
-
 const zh_n_folders_selected = /** @type {(inputs: N_Folders_SelectedInputs) => LocalizedString} */ (i) => {
 	return /** @type {LocalizedString} */ (`已选择 ${i?.count} 个文件夹`)
+};
+
+const en_n_folders_selected = /** @type {(inputs: N_Folders_SelectedInputs) => LocalizedString} */ (i) => {
+	return /** @type {LocalizedString} */ (`${i?.count} folder(s) selected`)
 };
 
 /**
@@ -19,11 +19,11 @@ const zh_n_folders_selected = /** @type {(inputs: N_Folders_SelectedInputs) => L
 * | "{count} folder(s) selected" |
 *
 * @param {N_Folders_SelectedInputs} inputs
-* @param {{ locale?: "en" | "zh" }} options
+* @param {{ locale?: "zh" | "en" }} options
 * @returns {LocalizedString}
 */
-export const n_folders_selected = /** @type {((inputs: N_Folders_SelectedInputs, options?: { locale?: "en" | "zh" }) => LocalizedString) & import('../runtime.js').MessageMetadata<N_Folders_SelectedInputs, { locale?: "en" | "zh" }, {}>} */ ((inputs, options = {}) => {
+export const n_folders_selected = /** @type {((inputs: N_Folders_SelectedInputs, options?: { locale?: "zh" | "en" }) => LocalizedString) & import('../runtime.js').MessageMetadata<N_Folders_SelectedInputs, { locale?: "zh" | "en" }, {}>} */ ((inputs, options = {}) => {
 	const locale = experimentalStaticLocale ?? options.locale ?? getLocale()
-	if (locale === "en") return en_n_folders_selected(inputs)
-	return zh_n_folders_selected(inputs)
+	if (locale === "zh") return zh_n_folders_selected(inputs)
+	return en_n_folders_selected(inputs)
 });

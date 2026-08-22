@@ -5,12 +5,12 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 
 /** @typedef {{}} Failed_Update_ProfileInputs */
 
-const en_failed_update_profile = /** @type {(inputs: Failed_Update_ProfileInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Failed to update profile`)
-};
-
 const zh_failed_update_profile = /** @type {(inputs: Failed_Update_ProfileInputs) => LocalizedString} */ () => {
 	return /** @type {LocalizedString} */ (`更新个人资料失败`)
+};
+
+const en_failed_update_profile = /** @type {(inputs: Failed_Update_ProfileInputs) => LocalizedString} */ () => {
+	return /** @type {LocalizedString} */ (`Failed to update profile`)
 };
 
 /**
@@ -19,11 +19,11 @@ const zh_failed_update_profile = /** @type {(inputs: Failed_Update_ProfileInputs
 * | "Failed to update profile" |
 *
 * @param {Failed_Update_ProfileInputs} inputs
-* @param {{ locale?: "en" | "zh" }} options
+* @param {{ locale?: "zh" | "en" }} options
 * @returns {LocalizedString}
 */
-export const failed_update_profile = /** @type {((inputs?: Failed_Update_ProfileInputs, options?: { locale?: "en" | "zh" }) => LocalizedString) & import('../runtime.js').MessageMetadata<Failed_Update_ProfileInputs, { locale?: "en" | "zh" }, {}>} */ ((inputs = {}, options = {}) => {
+export const failed_update_profile = /** @type {((inputs?: Failed_Update_ProfileInputs, options?: { locale?: "zh" | "en" }) => LocalizedString) & import('../runtime.js').MessageMetadata<Failed_Update_ProfileInputs, { locale?: "zh" | "en" }, {}>} */ ((inputs = {}, options = {}) => {
 	const locale = experimentalStaticLocale ?? options.locale ?? getLocale()
-	if (locale === "en") return en_failed_update_profile(inputs)
-	return zh_failed_update_profile(inputs)
+	if (locale === "zh") return zh_failed_update_profile(inputs)
+	return en_failed_update_profile(inputs)
 });

@@ -57,8 +57,8 @@ import type {
   QuotaResourceTypeEnum,
   QuotaPeriodEnum,
   QuotaRole,
-} from '@shumai/dtos'
-import { formatQuotaPeriod } from '@shumai/dtos'
+} from '@zhenyue/dtos'
+import { formatQuotaPeriod } from '@zhenyue/dtos'
 
 interface QuotaRuleDialogProps {
   open: boolean

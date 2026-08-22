@@ -2,7 +2,7 @@
 
 import { client } from '@/ui/api/client'
 import type { InferRequestType, InferResponseType } from 'hono/client'
-import type { AssetInfo, AssetInfoPaginatedList, SearchSort } from '@shumai/dtos'
+import type { AssetInfo, AssetInfoPaginatedList, SearchSort } from '@zhenyue/dtos'
 import { useMutation, useQueryClient } from '@tanstack/react-query'
 import type { InfiniteData } from '@tanstack/react-query'
 import { useState } from 'react'

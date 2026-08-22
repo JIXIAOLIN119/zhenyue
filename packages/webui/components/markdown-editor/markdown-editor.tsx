@@ -106,7 +106,7 @@ export function MarkdownEditor({
   rightToolbarContent,
 }: MarkdownEditorProps) {
   const initialConfig: InitialConfigType = {
-    namespace: 'ShumaiWysiwygMarkdownEditor',
+    namespace: 'ZhenYueWysiwygMarkdownEditor',
     theme: editorTheme,
     editable: !readOnly,
     onError: (error: Error) => {
@@ -127,16 +127,16 @@ export function MarkdownEditor({
   }
 
   return (
-    <div className={`shumai-editor-wrapper ${readOnly ? 'read-only' : ''} ${className}`}>
+    <div className={`zhenyue-editor-wrapper ${readOnly ? 'read-only' : ''} ${className}`}>
       <LexicalComposer initialConfig={initialConfig}>
         {!readOnly && !hideToolbar ? (
           <ToolbarPlugin rightContent={rightToolbarContent} />
         ) : rightToolbarContent ? (
-          <div className="shumai-editor-toolbar flex items-center justify-between px-3 py-1.5 border-b">
+          <div className="zhenyue-editor-toolbar flex items-center justify-between px-3 py-1.5 border-b">
             {rightToolbarContent}
           </div>
         ) : null}
-        <ScrollArea className="shumai-editor-content-area flex-1 min-h-0 w-full">
+        <ScrollArea className="zhenyue-editor-content-area flex-1 min-h-0 w-full">
           <div className="relative min-h-full">
             <RichTextPlugin
               contentEditable={<ContentEditable className="editor-input" />}

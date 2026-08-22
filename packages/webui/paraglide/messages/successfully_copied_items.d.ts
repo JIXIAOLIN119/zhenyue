@@ -4,13 +4,13 @@
 * | "Successfully copied {count} item(s)" |
 *
 * @param {Successfully_Copied_ItemsInputs} inputs
-* @param {{ locale?: "en" | "zh" }} options
+* @param {{ locale?: "zh" | "en" }} options
 * @returns {LocalizedString}
 */
 export const successfully_copied_items: ((inputs: Successfully_Copied_ItemsInputs, options?: {
-    locale?: "en" | "zh";
+    locale?: "zh" | "en";
 }) => LocalizedString) & import("../runtime.js").MessageMetadata<Successfully_Copied_ItemsInputs, {
-    locale?: "en" | "zh";
+    locale?: "zh" | "en";
 }, {}>;
 export type LocalizedString = import("../runtime.js").LocalizedString;
 export type Successfully_Copied_ItemsInputs = {

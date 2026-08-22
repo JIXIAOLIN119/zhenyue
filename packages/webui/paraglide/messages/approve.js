@@ -5,12 +5,12 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 
 /** @typedef {{}} ApproveInputs */
 
-const en_approve = /** @type {(inputs: ApproveInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Approve`)
-};
-
 const zh_approve = /** @type {(inputs: ApproveInputs) => LocalizedString} */ () => {
 	return /** @type {LocalizedString} */ (`批准`)
+};
+
+const en_approve = /** @type {(inputs: ApproveInputs) => LocalizedString} */ () => {
+	return /** @type {LocalizedString} */ (`Approve`)
 };
 
 /**
@@ -19,11 +19,11 @@ const zh_approve = /** @type {(inputs: ApproveInputs) => LocalizedString} */ () 
 * | "Approve" |
 *
 * @param {ApproveInputs} inputs
-* @param {{ locale?: "en" | "zh" }} options
+* @param {{ locale?: "zh" | "en" }} options
 * @returns {LocalizedString}
 */
-export const approve = /** @type {((inputs?: ApproveInputs, options?: { locale?: "en" | "zh" }) => LocalizedString) & import('../runtime.js').MessageMetadata<ApproveInputs, { locale?: "en" | "zh" }, {}>} */ ((inputs = {}, options = {}) => {
+export const approve = /** @type {((inputs?: ApproveInputs, options?: { locale?: "zh" | "en" }) => LocalizedString) & import('../runtime.js').MessageMetadata<ApproveInputs, { locale?: "zh" | "en" }, {}>} */ ((inputs = {}, options = {}) => {
 	const locale = experimentalStaticLocale ?? options.locale ?? getLocale()
-	if (locale === "en") return en_approve(inputs)
-	return zh_approve(inputs)
+	if (locale === "zh") return zh_approve(inputs)
+	return en_approve(inputs)
 });

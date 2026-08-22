@@ -32,7 +32,7 @@ import {
   AlertDialogHeader,
   AlertDialogTitle,
 } from '@/ui/components/ui/alert-dialog'
-import { SkillInfo } from '@shumai/dtos'
+import { SkillInfo } from '@zhenyue/dtos'
 import { m } from '@/ui/paraglide/messages.js'
 import { usePermissions } from '@/ui/hooks/use-permissions'
 import {

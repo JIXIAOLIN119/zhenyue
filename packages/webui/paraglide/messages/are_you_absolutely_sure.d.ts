@@ -4,13 +4,13 @@
 * | "Are you absolutely sure?" |
 *
 * @param {Are_You_Absolutely_SureInputs} inputs
-* @param {{ locale?: "en" | "zh" }} options
+* @param {{ locale?: "zh" | "en" }} options
 * @returns {LocalizedString}
 */
 export const are_you_absolutely_sure: ((inputs?: Are_You_Absolutely_SureInputs, options?: {
-    locale?: "en" | "zh";
+    locale?: "zh" | "en";
 }) => LocalizedString) & import("../runtime.js").MessageMetadata<Are_You_Absolutely_SureInputs, {
-    locale?: "en" | "zh";
+    locale?: "zh" | "en";
 }, {}>;
 export type LocalizedString = import("../runtime.js").LocalizedString;
 export type Are_You_Absolutely_SureInputs = {};

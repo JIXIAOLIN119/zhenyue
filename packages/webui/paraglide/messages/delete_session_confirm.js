@@ -5,12 +5,12 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 
 /** @typedef {{}} Delete_Session_ConfirmInputs */
 
-const en_delete_session_confirm = /** @type {(inputs: Delete_Session_ConfirmInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Are you sure you want to delete this chat session?`)
-};
-
 const zh_delete_session_confirm = /** @type {(inputs: Delete_Session_ConfirmInputs) => LocalizedString} */ () => {
 	return /** @type {LocalizedString} */ (`您确定要删除此会话记录吗？`)
+};
+
+const en_delete_session_confirm = /** @type {(inputs: Delete_Session_ConfirmInputs) => LocalizedString} */ () => {
+	return /** @type {LocalizedString} */ (`Are you sure you want to delete this chat session?`)
 };
 
 /**
@@ -19,11 +19,11 @@ const zh_delete_session_confirm = /** @type {(inputs: Delete_Session_ConfirmInpu
 * | "Are you sure you want to delete this chat session?" |
 *
 * @param {Delete_Session_ConfirmInputs} inputs
-* @param {{ locale?: "en" | "zh" }} options
+* @param {{ locale?: "zh" | "en" }} options
 * @returns {LocalizedString}
 */
-export const delete_session_confirm = /** @type {((inputs?: Delete_Session_ConfirmInputs, options?: { locale?: "en" | "zh" }) => LocalizedString) & import('../runtime.js').MessageMetadata<Delete_Session_ConfirmInputs, { locale?: "en" | "zh" }, {}>} */ ((inputs = {}, options = {}) => {
+export const delete_session_confirm = /** @type {((inputs?: Delete_Session_ConfirmInputs, options?: { locale?: "zh" | "en" }) => LocalizedString) & import('../runtime.js').MessageMetadata<Delete_Session_ConfirmInputs, { locale?: "zh" | "en" }, {}>} */ ((inputs = {}, options = {}) => {
 	const locale = experimentalStaticLocale ?? options.locale ?? getLocale()
-	if (locale === "en") return en_delete_session_confirm(inputs)
-	return zh_delete_session_confirm(inputs)
+	if (locale === "zh") return zh_delete_session_confirm(inputs)
+	return en_delete_session_confirm(inputs)
 });

@@ -5,12 +5,12 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 
 /** @typedef {{}} Create_Quota_RuleInputs */
 
-const en_create_quota_rule = /** @type {(inputs: Create_Quota_RuleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Create Quota Rule`)
-};
-
 const zh_create_quota_rule = /** @type {(inputs: Create_Quota_RuleInputs) => LocalizedString} */ () => {
 	return /** @type {LocalizedString} */ (`创建配额规则`)
+};
+
+const en_create_quota_rule = /** @type {(inputs: Create_Quota_RuleInputs) => LocalizedString} */ () => {
+	return /** @type {LocalizedString} */ (`Create Quota Rule`)
 };
 
 /**
@@ -19,11 +19,11 @@ const zh_create_quota_rule = /** @type {(inputs: Create_Quota_RuleInputs) => Loc
 * | "Create Quota Rule" |
 *
 * @param {Create_Quota_RuleInputs} inputs
-* @param {{ locale?: "en" | "zh" }} options
+* @param {{ locale?: "zh" | "en" }} options
 * @returns {LocalizedString}
 */
-export const create_quota_rule = /** @type {((inputs?: Create_Quota_RuleInputs, options?: { locale?: "en" | "zh" }) => LocalizedString) & import('../runtime.js').MessageMetadata<Create_Quota_RuleInputs, { locale?: "en" | "zh" }, {}>} */ ((inputs = {}, options = {}) => {
+export const create_quota_rule = /** @type {((inputs?: Create_Quota_RuleInputs, options?: { locale?: "zh" | "en" }) => LocalizedString) & import('../runtime.js').MessageMetadata<Create_Quota_RuleInputs, { locale?: "zh" | "en" }, {}>} */ ((inputs = {}, options = {}) => {
 	const locale = experimentalStaticLocale ?? options.locale ?? getLocale()
-	if (locale === "en") return en_create_quota_rule(inputs)
-	return zh_create_quota_rule(inputs)
+	if (locale === "zh") return zh_create_quota_rule(inputs)
+	return en_create_quota_rule(inputs)
 });

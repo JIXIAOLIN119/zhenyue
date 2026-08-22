@@ -1,4 +1,4 @@
-import { ObjectInfo } from '@shumai/dtos'
+import { ObjectInfo } from '@zhenyue/dtos'
 import { S3Client } from 'bun'
 import * as crypto from 'crypto'
 import * as fs from 'fs'
@@ -8,7 +8,7 @@ import { LruTtlCache } from '../cache/lru-ttl-cache'
 import { detectSupportedMimeType } from '../utils/mime'
 
 export function signLocalUrl(bucket: string, key: string): string {
-  const secret = process.env.BETTER_AUTH_SECRET || 'shumai-local-storage-secret'
+  const secret = process.env.BETTER_AUTH_SECRET || 'zhenyue-local-storage-secret'
   const hmac = crypto.createHmac('sha256', secret)
   hmac.update(`${bucket}/${key}`)
   const signature = hmac.digest('hex')
@@ -16,7 +16,7 @@ export function signLocalUrl(bucket: string, key: string): string {
 }
 
 export function verifyLocalUrlSignature(bucket: string, key: string, signature: string): boolean {
-  const secret = process.env.BETTER_AUTH_SECRET || 'shumai-local-storage-secret'
+  const secret = process.env.BETTER_AUTH_SECRET || 'zhenyue-local-storage-secret'
   const hmac = crypto.createHmac('sha256', secret)
   hmac.update(`${bucket}/${key}`)
   const expected = hmac.digest('hex')
@@ -495,7 +495,7 @@ export class LocalStorageService implements S3Service {
   ): Promise<void> {
     // using a default bucket for direct upload, or the user has to supply it
     // S3StorageService uses this.bucket
-    const bucket = process.env.S3_BUCKET || 'shumai'
+    const bucket = process.env.S3_BUCKET || 'zhenyue'
     const destPath = this.getFilePath(bucket, key)
     const dir = path.dirname(destPath)
     if (!fs.existsSync(dir)) {
@@ -530,7 +530,7 @@ export class LocalStorageService implements S3Service {
 }
 
 const storageBackend = process.env.STORAGE_BACKEND || 'local'
-const port = process.env.SHUMAI_SERVER_PORT || '3000'
+const port = process.env.ZHENYUE_SERVER_PORT || '3000'
 const s3Endpoint = process.env.AWS_ENDPOINT_URL_S3 || `http://localhost:${port}`
 
 export const s3Service: S3Service =
@@ -539,7 +539,7 @@ export const s3Service: S3Service =
         s3Endpoint,
         process.env.S3_ACCESS_KEY_ID || 'minioadmin',
         process.env.S3_SECRET_ACCESS_KEY || 'minioadmin',
-        process.env.S3_BUCKET || 'shumai',
+        process.env.S3_BUCKET || 'zhenyue',
         process.env.S3_REGION || 'auto',
       )
     : new LocalStorageService(s3Endpoint)

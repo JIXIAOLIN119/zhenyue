@@ -5,12 +5,12 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 
 /** @typedef {{}} Reasoning_SupportInputs */
 
-const en_reasoning_support = /** @type {(inputs: Reasoning_SupportInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Reasoning Support`)
-};
-
 const zh_reasoning_support = /** @type {(inputs: Reasoning_SupportInputs) => LocalizedString} */ () => {
 	return /** @type {LocalizedString} */ (`推理支持`)
+};
+
+const en_reasoning_support = /** @type {(inputs: Reasoning_SupportInputs) => LocalizedString} */ () => {
+	return /** @type {LocalizedString} */ (`Reasoning Support`)
 };
 
 /**
@@ -19,11 +19,11 @@ const zh_reasoning_support = /** @type {(inputs: Reasoning_SupportInputs) => Loc
 * | "Reasoning Support" |
 *
 * @param {Reasoning_SupportInputs} inputs
-* @param {{ locale?: "en" | "zh" }} options
+* @param {{ locale?: "zh" | "en" }} options
 * @returns {LocalizedString}
 */
-export const reasoning_support = /** @type {((inputs?: Reasoning_SupportInputs, options?: { locale?: "en" | "zh" }) => LocalizedString) & import('../runtime.js').MessageMetadata<Reasoning_SupportInputs, { locale?: "en" | "zh" }, {}>} */ ((inputs = {}, options = {}) => {
+export const reasoning_support = /** @type {((inputs?: Reasoning_SupportInputs, options?: { locale?: "zh" | "en" }) => LocalizedString) & import('../runtime.js').MessageMetadata<Reasoning_SupportInputs, { locale?: "zh" | "en" }, {}>} */ ((inputs = {}, options = {}) => {
 	const locale = experimentalStaticLocale ?? options.locale ?? getLocale()
-	if (locale === "en") return en_reasoning_support(inputs)
-	return zh_reasoning_support(inputs)
+	if (locale === "zh") return zh_reasoning_support(inputs)
+	return en_reasoning_support(inputs)
 });

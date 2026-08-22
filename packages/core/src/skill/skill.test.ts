@@ -1,7 +1,7 @@
-import { prisma } from '@shumai/db'
-import { setupTestDbHooks } from '@shumai/db/test'
-import { s3Service } from '@shumai/core/src/s3/s3'
-import { skillService } from '@shumai/core/src/skill/skill'
+import { prisma } from '@zhenyue/db'
+import { setupTestDbHooks } from '@zhenyue/db/test'
+import { s3Service } from '@zhenyue/core/src/s3/s3'
+import { skillService } from '@zhenyue/core/src/skill/skill'
 import AdmZip from 'adm-zip'
 import { describe, expect, it, vi } from 'vitest'
 

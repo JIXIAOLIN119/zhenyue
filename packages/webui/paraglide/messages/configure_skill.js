@@ -5,12 +5,12 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 
 /** @typedef {{ name: NonNullable<unknown> }} Configure_SkillInputs */
 
-const en_configure_skill = /** @type {(inputs: Configure_SkillInputs) => LocalizedString} */ (i) => {
-	return /** @type {LocalizedString} */ (`Configure Skill: ${i?.name}`)
-};
-
 const zh_configure_skill = /** @type {(inputs: Configure_SkillInputs) => LocalizedString} */ (i) => {
 	return /** @type {LocalizedString} */ (`配置技能：${i?.name}`)
+};
+
+const en_configure_skill = /** @type {(inputs: Configure_SkillInputs) => LocalizedString} */ (i) => {
+	return /** @type {LocalizedString} */ (`Configure Skill: ${i?.name}`)
 };
 
 /**
@@ -19,11 +19,11 @@ const zh_configure_skill = /** @type {(inputs: Configure_SkillInputs) => Localiz
 * | "Configure Skill: {name}" |
 *
 * @param {Configure_SkillInputs} inputs
-* @param {{ locale?: "en" | "zh" }} options
+* @param {{ locale?: "zh" | "en" }} options
 * @returns {LocalizedString}
 */
-export const configure_skill = /** @type {((inputs: Configure_SkillInputs, options?: { locale?: "en" | "zh" }) => LocalizedString) & import('../runtime.js').MessageMetadata<Configure_SkillInputs, { locale?: "en" | "zh" }, {}>} */ ((inputs, options = {}) => {
+export const configure_skill = /** @type {((inputs: Configure_SkillInputs, options?: { locale?: "zh" | "en" }) => LocalizedString) & import('../runtime.js').MessageMetadata<Configure_SkillInputs, { locale?: "zh" | "en" }, {}>} */ ((inputs, options = {}) => {
 	const locale = experimentalStaticLocale ?? options.locale ?? getLocale()
-	if (locale === "en") return en_configure_skill(inputs)
-	return zh_configure_skill(inputs)
+	if (locale === "zh") return zh_configure_skill(inputs)
+	return en_configure_skill(inputs)
 });

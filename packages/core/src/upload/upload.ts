@@ -1,7 +1,7 @@
-import { assetService } from '@shumai/core/src/asset/asset'
-import { PaginatedData, PaginationParams, paginateQuery } from '@shumai/core/src/pagination'
-import { s3Service } from '@shumai/core/src/s3/s3'
-import { AssetStatus, AssetType, Prisma, TaskStatus, prisma } from '@shumai/db'
+import { assetService } from '@zhenyue/core/src/asset/asset'
+import { PaginatedData, PaginationParams, paginateQuery } from '@zhenyue/core/src/pagination'
+import { s3Service } from '@zhenyue/core/src/s3/s3'
+import { AssetStatus, AssetType, Prisma, TaskStatus, prisma } from '@zhenyue/db'
 import {
   ConfirmFileUploadRequest,
   CreateUploadTaskRequest,
@@ -9,13 +9,13 @@ import {
   FileNode,
   PresignedUrl,
   TaskInfo,
-} from '@shumai/dtos'
-import { ImageTranscoder, PdfTranscoder, VideoTranscoder } from '@shumai/transcode'
+} from '@zhenyue/dtos'
+import { ImageTranscoder, PdfTranscoder, VideoTranscoder } from '@zhenyue/transcode'
 import { generateKeyBetween } from 'jittered-fractional-indexing'
 import { ulid } from 'ulid'
-import { gotenbergService } from '@shumai/core/src/gotenberg/gotenberg'
-import { sanitizeFilename } from '@shumai/core/src/utils/filename'
-import { getProxyType, isHtmlDocument, isOfficeDocument } from '@shumai/core/src/utils/mime'
+import { gotenbergService } from '@zhenyue/core/src/gotenberg/gotenberg'
+import { sanitizeFilename } from '@zhenyue/core/src/utils/filename'
+import { getProxyType, isHtmlDocument, isOfficeDocument } from '@zhenyue/core/src/utils/mime'
 
 export class UploadService {
   constructor(private readonly prismaClient: typeof prisma = prisma) {}
@@ -173,7 +173,7 @@ export class UploadService {
           createdAssets,
         )
       } else if (assetType === AssetType.file && key) {
-        const url = await s3Service.presign(process.env.S3_BUCKET || 'shumai', key, 'PUT')
+        const url = await s3Service.presign(process.env.S3_BUCKET || 'zhenyue', key, 'PUT')
         presignedUrls.push({
           id: file.id,
           fileId: newAsset.id,
@@ -219,7 +219,7 @@ export class UploadService {
       return
     }
 
-    const size = await s3Service.getObjectSize(process.env.S3_BUCKET || 'shumai', key)
+    const size = await s3Service.getObjectSize(process.env.S3_BUCKET || 'zhenyue', key)
 
     const project = asset.project
 

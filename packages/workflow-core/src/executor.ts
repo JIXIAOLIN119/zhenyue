@@ -1,4 +1,4 @@
-import { WorkflowTask } from '@shumai/db'
+import { WorkflowTask } from '@zhenyue/db'
 
 export interface Executor {
   submit(task: WorkflowTask): Promise<string>

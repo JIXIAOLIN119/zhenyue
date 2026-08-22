@@ -5,12 +5,12 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 
 /** @typedef {{}} ThumbnailInputs */
 
-const en_thumbnail = /** @type {(inputs: ThumbnailInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Thumbnail`)
-};
-
 const zh_thumbnail = /** @type {(inputs: ThumbnailInputs) => LocalizedString} */ () => {
 	return /** @type {LocalizedString} */ (`缩略图`)
+};
+
+const en_thumbnail = /** @type {(inputs: ThumbnailInputs) => LocalizedString} */ () => {
+	return /** @type {LocalizedString} */ (`Thumbnail`)
 };
 
 /**
@@ -19,11 +19,11 @@ const zh_thumbnail = /** @type {(inputs: ThumbnailInputs) => LocalizedString} */
 * | "Thumbnail" |
 *
 * @param {ThumbnailInputs} inputs
-* @param {{ locale?: "en" | "zh" }} options
+* @param {{ locale?: "zh" | "en" }} options
 * @returns {LocalizedString}
 */
-export const thumbnail = /** @type {((inputs?: ThumbnailInputs, options?: { locale?: "en" | "zh" }) => LocalizedString) & import('../runtime.js').MessageMetadata<ThumbnailInputs, { locale?: "en" | "zh" }, {}>} */ ((inputs = {}, options = {}) => {
+export const thumbnail = /** @type {((inputs?: ThumbnailInputs, options?: { locale?: "zh" | "en" }) => LocalizedString) & import('../runtime.js').MessageMetadata<ThumbnailInputs, { locale?: "zh" | "en" }, {}>} */ ((inputs = {}, options = {}) => {
 	const locale = experimentalStaticLocale ?? options.locale ?? getLocale()
-	if (locale === "en") return en_thumbnail(inputs)
-	return zh_thumbnail(inputs)
+	if (locale === "zh") return zh_thumbnail(inputs)
+	return en_thumbnail(inputs)
 });

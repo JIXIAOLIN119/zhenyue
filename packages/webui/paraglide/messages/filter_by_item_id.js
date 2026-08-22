@@ -5,12 +5,12 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 
 /** @typedef {{}} Filter_By_Item_IdInputs */
 
-const en_filter_by_item_id = /** @type {(inputs: Filter_By_Item_IdInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Filter by Item ID`)
-};
-
 const zh_filter_by_item_id = /** @type {(inputs: Filter_By_Item_IdInputs) => LocalizedString} */ () => {
 	return /** @type {LocalizedString} */ (`按项目/条目 ID 筛选`)
+};
+
+const en_filter_by_item_id = /** @type {(inputs: Filter_By_Item_IdInputs) => LocalizedString} */ () => {
+	return /** @type {LocalizedString} */ (`Filter by Item ID`)
 };
 
 /**
@@ -19,11 +19,11 @@ const zh_filter_by_item_id = /** @type {(inputs: Filter_By_Item_IdInputs) => Loc
 * | "Filter by Item ID" |
 *
 * @param {Filter_By_Item_IdInputs} inputs
-* @param {{ locale?: "en" | "zh" }} options
+* @param {{ locale?: "zh" | "en" }} options
 * @returns {LocalizedString}
 */
-export const filter_by_item_id = /** @type {((inputs?: Filter_By_Item_IdInputs, options?: { locale?: "en" | "zh" }) => LocalizedString) & import('../runtime.js').MessageMetadata<Filter_By_Item_IdInputs, { locale?: "en" | "zh" }, {}>} */ ((inputs = {}, options = {}) => {
+export const filter_by_item_id = /** @type {((inputs?: Filter_By_Item_IdInputs, options?: { locale?: "zh" | "en" }) => LocalizedString) & import('../runtime.js').MessageMetadata<Filter_By_Item_IdInputs, { locale?: "zh" | "en" }, {}>} */ ((inputs = {}, options = {}) => {
 	const locale = experimentalStaticLocale ?? options.locale ?? getLocale()
-	if (locale === "en") return en_filter_by_item_id(inputs)
-	return zh_filter_by_item_id(inputs)
+	if (locale === "zh") return zh_filter_by_item_id(inputs)
+	return en_filter_by_item_id(inputs)
 });

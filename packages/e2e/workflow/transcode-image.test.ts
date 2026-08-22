@@ -1,9 +1,9 @@
 import { describe, it, expect, beforeAll, afterAll, vi } from 'vitest'
-import { prisma, AssetStatus } from '@shumai/db'
-import { setupTestDbHooks } from '@shumai/db/test'
-import { workflowService, TaskQueueTranscode } from '@shumai/workflow-core'
-import { initTranscodeWorkflows } from '@shumai/transcode'
-import { s3Service } from '@shumai/core/src/s3/s3'
+import { prisma, AssetStatus } from '@zhenyue/db'
+import { setupTestDbHooks } from '@zhenyue/db/test'
+import { workflowService, TaskQueueTranscode } from '@zhenyue/workflow-core'
+import { initTranscodeWorkflows } from '@zhenyue/transcode'
+import { s3Service } from '@zhenyue/core/src/s3/s3'
 import { fileURLToPath } from 'url'
 import * as path from 'path'
 import * as fs from 'fs'
@@ -20,7 +20,7 @@ describe.each(['local', 'temporal'] as const)(
     let transcodeWorkerPromise: Promise<void> | null = null
 
     beforeAll(async () => {
-      process.env.S3_BUCKET = 'shumai-e2e-test-bucket-transcode'
+      process.env.S3_BUCKET = 'zhenyue-e2e-test-bucket-transcode'
 
       workflowService.setExecutorType(mode)
       initTranscodeWorkflows()
@@ -47,7 +47,7 @@ describe.each(['local', 'temporal'] as const)(
       vi.restoreAllMocks()
       try {
         console.log('Cleaning up local E2E storage files...')
-        await s3Service.deletePrefix('shumai-e2e-test-bucket-transcode', '')
+        await s3Service.deletePrefix('zhenyue-e2e-test-bucket-transcode', '')
       } catch (err) {
         console.error('Failed to clean up E2E storage folder:', err)
       }
@@ -84,7 +84,7 @@ describe.each(['local', 'temporal'] as const)(
       const pngPath = path.join(fixturesDir, 'small.png')
       const pngBuffer = fs.readFileSync(pngPath)
       await s3Service.putObject(
-        'shumai-e2e-test-bucket-transcode',
+        'zhenyue-e2e-test-bucket-transcode',
         'projects/e2e/image-trans.png',
         pngBuffer,
         pngBuffer.length,
@@ -165,7 +165,7 @@ describe.each(['local', 'temporal'] as const)(
       const psdPath = path.join(fixturesDir, 'test.psd')
       const psdBuffer = fs.readFileSync(psdPath)
       await s3Service.putObject(
-        'shumai-e2e-test-bucket-transcode',
+        'zhenyue-e2e-test-bucket-transcode',
         'projects/e2e/test.psd',
         psdBuffer,
         psdBuffer.length,

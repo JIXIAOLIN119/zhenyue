@@ -1,4 +1,4 @@
-import { logger } from '@shumai/core/src/logger'
+import { logger } from '@zhenyue/core/src/logger'
 import { SandboxManager } from '@anthropic-ai/sandbox-runtime'
 import { type AgentTool, type AgentToolResult } from '@earendil-works/pi-agent-core'
 import { Type } from 'typebox'
@@ -10,8 +10,8 @@ import {
   formatSize,
   type TruncationResult,
 } from '../utils/truncate'
-import { quotaService } from '@shumai/core/src/quota/quota-service'
-import type { TeamMemberRole } from '@shumai/db'
+import { quotaService } from '@zhenyue/core/src/quota/quota-service'
+import type { TeamMemberRole } from '@zhenyue/db'
 
 const BashSource = Type.String({
   enum: ['user', 'skill'],
@@ -86,7 +86,7 @@ export const createSandboxedBashTool = (
       options?.clearBlockedHost?.()
       const wrappedCommand = await SandboxManager.wrapWithSandbox(command)
 
-      const output = new OutputAccumulator({ tempFilePrefix: 'shumai-bash' })
+      const output = new OutputAccumulator({ tempFilePrefix: 'zhenyue-bash' })
       let acceptingOutput = true
       let updateTimer: NodeJS.Timeout | undefined
       let updateDirty = false

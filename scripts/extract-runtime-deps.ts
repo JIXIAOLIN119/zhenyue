@@ -61,7 +61,7 @@ if (Object.keys(deps).length === 0) {
 }
 
 const runnerPkg = {
-  name: 'shumai-runner',
+  name: 'zhenyue-runner',
   version: '1.0.0',
   private: true,
   dependencies: deps,

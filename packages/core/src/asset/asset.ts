@@ -1,4 +1,4 @@
-import { prisma } from '@shumai/db'
+import { prisma } from '@zhenyue/db'
 import {
   AncestorFolder,
   AssetInfo,
@@ -16,18 +16,18 @@ import {
   UpdateAssetNameRequest,
   UpdateAssetOrderRequest,
   AssetUserInfo,
-} from '@shumai/dtos'
-import { type Asset, AssetStatus, AssetType, Prisma, type StorageKey } from '@shumai/db'
+} from '@zhenyue/dtos'
+import { type Asset, AssetStatus, AssetType, Prisma, type StorageKey } from '@zhenyue/db'
 import { HTTPException } from 'hono/http-exception'
-import { logger } from '@shumai/core/src/logger'
-import { PaginatedData, paginateQuery, PaginationParams } from '@shumai/core/src/pagination'
-import { s3Service } from '@shumai/core/src/s3/s3'
+import { logger } from '@zhenyue/core/src/logger'
+import { PaginatedData, paginateQuery, PaginationParams } from '@zhenyue/core/src/pagination'
+import { s3Service } from '@zhenyue/core/src/s3/s3'
 import { dedupeSymlinksToTarget } from './symlink'
-import { watermarkService } from '@shumai/core/src/watermark/watermark'
+import { watermarkService } from '@zhenyue/core/src/watermark/watermark'
 import { generateKeyBetween } from 'jittered-fractional-indexing'
-import { getAvatarUrl } from '@shumai/core/src/user/avatar'
-import { getAgentRequiredLevel, getRoleLevel } from '@shumai/core/src/agent/permissions'
-import { resolveEffectiveRole } from '@shumai/core/src/authz/authz'
+import { getAvatarUrl } from '@zhenyue/core/src/user/avatar'
+import { getAgentRequiredLevel, getRoleLevel } from '@zhenyue/core/src/agent/permissions'
+import { resolveEffectiveRole } from '@zhenyue/core/src/authz/authz'
 
 type AssetWithIncludes = Prisma.AssetGetPayload<{
   include: {
@@ -870,12 +870,12 @@ export class AssetService {
     if (info.media) {
       if (info.media.imageTranscodes) {
         for (const t of info.media.imageTranscodes) {
-          t.url = await s3Service.presign(process.env.S3_BUCKET || 'shumai', t.key, 'GET')
+          t.url = await s3Service.presign(process.env.S3_BUCKET || 'zhenyue', t.key, 'GET')
         }
       }
       if (info.media.videoTranscodes) {
         for (const t of info.media.videoTranscodes) {
-          t.url = await s3Service.presign(process.env.S3_BUCKET || 'shumai', t.key, 'GET')
+          t.url = await s3Service.presign(process.env.S3_BUCKET || 'zhenyue', t.key, 'GET')
         }
       }
     }
@@ -1221,7 +1221,7 @@ export class AssetService {
    * that have no associated logical assets.
    */
   private async purgeUnreferencedStorageKeys() {
-    const bucket = process.env.S3_BUCKET || 'shumai'
+    const bucket = process.env.S3_BUCKET || 'zhenyue'
 
     // 1. Find storage keys with no associated assets and older than 24 hours
     // using FOR UPDATE SKIP LOCKED to ensure multiple servers don't pick up the same keys.
@@ -1554,7 +1554,7 @@ export class AssetService {
     }
 
     // Clean up attachment files from S3/storage and delete their DB records
-    const bucket = process.env.S3_BUCKET || 'shumai'
+    const bucket = process.env.S3_BUCKET || 'zhenyue'
     for (const att of comment.attachments) {
       const asset = att.asset
       if (asset.storageKey) {
@@ -1789,14 +1789,14 @@ export class AssetService {
       let media = latestVersion.media as PrismaJson.MediaInfo | null
       if (media && media.videoPreview?.key) {
         media.videoPreview.url = await s3Service.presign(
-          process.env.S3_BUCKET || 'shumai',
+          process.env.S3_BUCKET || 'zhenyue',
           media.videoPreview.key,
           'GET',
         )
       }
       if (media && media.pdfTranscode?.key) {
         media.pdfTranscode.url = await s3Service.presign(
-          process.env.S3_BUCKET || 'shumai',
+          process.env.S3_BUCKET || 'zhenyue',
           media.pdfTranscode.key,
           'GET',
         )
@@ -2061,7 +2061,7 @@ export class AssetService {
         if (!key) return null
 
         const url = await s3Service.presign(
-          process.env.S3_BUCKET || 'shumai',
+          process.env.S3_BUCKET || 'zhenyue',
           key,
           'GET',
           true,
@@ -2123,7 +2123,7 @@ export class AssetService {
     }
 
     return s3Service.presign(
-      process.env.S3_BUCKET || 'shumai',
+      process.env.S3_BUCKET || 'zhenyue',
       key,
       'GET',
       true,
@@ -2139,13 +2139,13 @@ export class AssetService {
     let thumbnailUrl = undefined
     if (proxyType === 'image' && asset.media.thumbnail?.key) {
       thumbnailUrl = await s3Service.presign(
-        process.env.S3_BUCKET || 'shumai',
+        process.env.S3_BUCKET || 'zhenyue',
         asset.media.thumbnail.key,
         'GET',
       )
     } else if (asset.media.poster?.key) {
       thumbnailUrl = await s3Service.presign(
-        process.env.S3_BUCKET || 'shumai',
+        process.env.S3_BUCKET || 'zhenyue',
         asset.media.poster.key,
         'GET',
       )
@@ -2154,7 +2154,7 @@ export class AssetService {
     let spriteUrl = undefined
     if (asset.media.sprite?.key) {
       spriteUrl = await s3Service.presign(
-        process.env.S3_BUCKET || 'shumai',
+        process.env.S3_BUCKET || 'zhenyue',
         asset.media.sprite.key,
         'GET',
       )
@@ -2186,7 +2186,7 @@ export class AssetService {
       for (const a of c.attachments) {
         if (a.asset?.storageKey?.key) {
           const url = await s3Service.presign(
-            process.env.S3_BUCKET || 'shumai',
+            process.env.S3_BUCKET || 'zhenyue',
             a.asset.storageKey.key,
             'GET',
           )

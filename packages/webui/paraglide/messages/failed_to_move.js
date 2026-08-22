@@ -5,12 +5,12 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 
 /** @typedef {{}} Failed_To_MoveInputs */
 
-const en_failed_to_move = /** @type {(inputs: Failed_To_MoveInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Failed to move`)
-};
-
 const zh_failed_to_move = /** @type {(inputs: Failed_To_MoveInputs) => LocalizedString} */ () => {
 	return /** @type {LocalizedString} */ (`移动失败`)
+};
+
+const en_failed_to_move = /** @type {(inputs: Failed_To_MoveInputs) => LocalizedString} */ () => {
+	return /** @type {LocalizedString} */ (`Failed to move`)
 };
 
 /**
@@ -19,11 +19,11 @@ const zh_failed_to_move = /** @type {(inputs: Failed_To_MoveInputs) => Localized
 * | "Failed to move" |
 *
 * @param {Failed_To_MoveInputs} inputs
-* @param {{ locale?: "en" | "zh" }} options
+* @param {{ locale?: "zh" | "en" }} options
 * @returns {LocalizedString}
 */
-export const failed_to_move = /** @type {((inputs?: Failed_To_MoveInputs, options?: { locale?: "en" | "zh" }) => LocalizedString) & import('../runtime.js').MessageMetadata<Failed_To_MoveInputs, { locale?: "en" | "zh" }, {}>} */ ((inputs = {}, options = {}) => {
+export const failed_to_move = /** @type {((inputs?: Failed_To_MoveInputs, options?: { locale?: "zh" | "en" }) => LocalizedString) & import('../runtime.js').MessageMetadata<Failed_To_MoveInputs, { locale?: "zh" | "en" }, {}>} */ ((inputs = {}, options = {}) => {
 	const locale = experimentalStaticLocale ?? options.locale ?? getLocale()
-	if (locale === "en") return en_failed_to_move(inputs)
-	return zh_failed_to_move(inputs)
+	if (locale === "zh") return zh_failed_to_move(inputs)
+	return en_failed_to_move(inputs)
 });

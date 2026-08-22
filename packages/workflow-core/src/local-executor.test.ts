@@ -1,9 +1,9 @@
 import { describe, it, expect, beforeEach, afterEach, vi } from 'vitest'
-import { prisma } from '@shumai/db'
-import { setupTestDbHooks } from '@shumai/db/test'
+import { prisma } from '@zhenyue/db'
+import { setupTestDbHooks } from '@zhenyue/db/test'
 import { workflowService } from './workflow'
 import { LocalExecutor, ConcurrencyLimiter, registerWorkflow } from './local-executor'
-import { WorkflowTaskStatus, WorkflowTaskType } from '@shumai/db'
+import { WorkflowTaskStatus, WorkflowTaskType } from '@zhenyue/db'
 
 // Mock the individual workflows
 const mocks = {

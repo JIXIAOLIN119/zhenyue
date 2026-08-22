@@ -1,17 +1,17 @@
 {
-  "name": "@shumai/e2e",
+  "name": "@zhenyue/e2e",
   "version": "0.3.9",
   "private": true,
   "type": "module",
   "dependencies": {
     "@earendil-works/pi-agent-core": "0.82.1",
     "@google/genai": "1.52.0",
-    "@shumai/agent": "workspace:*",
-    "@shumai/core": "workspace:*",
-    "@shumai/db": "workspace:*",
-    "@shumai/dtos": "workspace:*",
-    "@shumai/transcode": "workspace:*",
-    "@shumai/workflow-core": "workspace:*",
+    "@zhenyue/agent": "workspace:*",
+    "@zhenyue/core": "workspace:*",
+    "@zhenyue/db": "workspace:*",
+    "@zhenyue/dtos": "workspace:*",
+    "@zhenyue/transcode": "workspace:*",
+    "@zhenyue/workflow-core": "workspace:*",
     "sharp": "0.34.5"
   }
 }

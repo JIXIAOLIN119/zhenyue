@@ -2,15 +2,15 @@ import { describe, expect, it, vi, beforeEach } from 'vitest'
 import { Hono } from 'hono'
 import uploadRoute from './upload'
 import { authMiddleware } from './middleware/auth'
-import { uploadService } from '@shumai/core/src/upload/upload'
-import type { CreateUploadTaskResponse, TaskInfo } from '@shumai/dtos'
-import type { PaginatedData } from '@shumai/core/src/pagination'
-import { authzService, ResourceType, Permission } from '@shumai/core/src/authz/authz'
+import { uploadService } from '@zhenyue/core/src/upload/upload'
+import type { CreateUploadTaskResponse, TaskInfo } from '@zhenyue/dtos'
+import type { PaginatedData } from '@zhenyue/core/src/pagination'
+import { authzService, ResourceType, Permission } from '@zhenyue/core/src/authz/authz'
 
-import { auditLogService } from '@shumai/core/src/auditLog/auditLog'
-import { assetService } from '@shumai/core/src/asset/asset'
+import { auditLogService } from '@zhenyue/core/src/auditLog/auditLog'
+import { assetService } from '@zhenyue/core/src/asset/asset'
 
-vi.mock('@shumai/core/src/auditLog/auditLog', () => ({
+vi.mock('@zhenyue/core/src/auditLog/auditLog', () => ({
   auditLogService: {
     logAction: vi.fn().mockResolvedValue({}),
   },
@@ -27,7 +27,7 @@ vi.mock('./middleware/auth', () => ({
   },
 }))
 
-vi.mock('@shumai/core/src/authz/authz', () => ({
+vi.mock('@zhenyue/core/src/authz/authz', () => ({
   authzService: {
     hasPermission: vi.fn().mockResolvedValue(undefined),
   },
@@ -42,7 +42,7 @@ vi.mock('@shumai/core/src/authz/authz', () => ({
   },
 }))
 
-vi.mock('@shumai/core/src/notification/notification', () => ({
+vi.mock('@zhenyue/core/src/notification/notification', () => ({
   notificationService: {
     create: vi.fn().mockResolvedValue(undefined),
   },

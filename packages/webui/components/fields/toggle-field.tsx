@@ -1,5 +1,5 @@
 import { Switch } from '@/ui/components/ui/switch'
-import type { FieldInfo as MetadataFieldInfo } from '@shumai/dtos'
+import type { FieldInfo as MetadataFieldInfo } from '@zhenyue/dtos'
 import React from 'react'
 
 interface FieldProps {

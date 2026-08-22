@@ -1,7 +1,7 @@
 import { describe, expect, it } from 'vitest'
-import { prisma } from '@shumai/db'
-import { setupTestDbHooks } from '@shumai/db/test'
-import { userService } from '@shumai/core/src/user/user'
+import { prisma } from '@zhenyue/db'
+import { setupTestDbHooks } from '@zhenyue/db/test'
+import { userService } from '@zhenyue/core/src/user/user'
 
 describe('UserService', () => {
   setupTestDbHooks()

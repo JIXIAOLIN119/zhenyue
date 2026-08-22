@@ -1,20 +1,20 @@
 import { describe, expect, it, vi, beforeEach, afterEach } from 'vitest'
 import { Hono } from 'hono'
 import folderRoute from './folder'
-import { assetService } from '@shumai/core/src/asset/asset'
-import { searchService } from '@shumai/core/src/search/search'
-import { authzService, ResourceType, Permission } from '@shumai/core/src/authz/authz'
+import { assetService } from '@zhenyue/core/src/asset/asset'
+import { searchService } from '@zhenyue/core/src/search/search'
+import { authzService, ResourceType, Permission } from '@zhenyue/core/src/authz/authz'
 import { authMiddleware } from './middleware/auth'
 
-import { auditLogService } from '@shumai/core/src/auditLog/auditLog'
+import { auditLogService } from '@zhenyue/core/src/auditLog/auditLog'
 
-vi.mock('@shumai/core/src/auditLog/auditLog', () => ({
+vi.mock('@zhenyue/core/src/auditLog/auditLog', () => ({
   auditLogService: {
     logAction: vi.fn().mockResolvedValue({}),
   },
 }))
 
-vi.mock('@shumai/core/src/authz/authz', () => ({
+vi.mock('@zhenyue/core/src/authz/authz', () => ({
   authzService: {
     hasPermission: vi.fn().mockResolvedValue(undefined),
   },

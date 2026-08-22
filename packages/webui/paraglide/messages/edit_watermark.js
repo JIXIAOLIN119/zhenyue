@@ -5,12 +5,12 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 
 /** @typedef {{}} Edit_WatermarkInputs */
 
-const en_edit_watermark = /** @type {(inputs: Edit_WatermarkInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Edit Watermark`)
-};
-
 const zh_edit_watermark = /** @type {(inputs: Edit_WatermarkInputs) => LocalizedString} */ () => {
 	return /** @type {LocalizedString} */ (`编辑水印`)
+};
+
+const en_edit_watermark = /** @type {(inputs: Edit_WatermarkInputs) => LocalizedString} */ () => {
+	return /** @type {LocalizedString} */ (`Edit Watermark`)
 };
 
 /**
@@ -19,11 +19,11 @@ const zh_edit_watermark = /** @type {(inputs: Edit_WatermarkInputs) => Localized
 * | "Edit Watermark" |
 *
 * @param {Edit_WatermarkInputs} inputs
-* @param {{ locale?: "en" | "zh" }} options
+* @param {{ locale?: "zh" | "en" }} options
 * @returns {LocalizedString}
 */
-export const edit_watermark = /** @type {((inputs?: Edit_WatermarkInputs, options?: { locale?: "en" | "zh" }) => LocalizedString) & import('../runtime.js').MessageMetadata<Edit_WatermarkInputs, { locale?: "en" | "zh" }, {}>} */ ((inputs = {}, options = {}) => {
+export const edit_watermark = /** @type {((inputs?: Edit_WatermarkInputs, options?: { locale?: "zh" | "en" }) => LocalizedString) & import('../runtime.js').MessageMetadata<Edit_WatermarkInputs, { locale?: "zh" | "en" }, {}>} */ ((inputs = {}, options = {}) => {
 	const locale = experimentalStaticLocale ?? options.locale ?? getLocale()
-	if (locale === "en") return en_edit_watermark(inputs)
-	return zh_edit_watermark(inputs)
+	if (locale === "zh") return zh_edit_watermark(inputs)
+	return en_edit_watermark(inputs)
 });

@@ -1,9 +1,9 @@
 'use client'
 
-import type { AssetInfo } from '@shumai/dtos'
-import type { FieldInfo } from '@shumai/dtos'
-import type { SearchSort } from '@shumai/dtos'
-import { FieldType } from '@shumai/dtos'
+import type { AssetInfo } from '@zhenyue/dtos'
+import type { FieldInfo } from '@zhenyue/dtos'
+import type { SearchSort } from '@zhenyue/dtos'
+import { FieldType } from '@zhenyue/dtos'
 import { FIELD_TYPE_ICONS } from '../fields-manager'
 import { useDroppable } from '@dnd-kit/react'
 import { flexRender, getCoreRowModel, useReactTable, type ColumnDef } from '@tanstack/react-table'

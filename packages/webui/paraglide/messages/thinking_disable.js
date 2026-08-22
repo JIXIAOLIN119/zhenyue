@@ -5,12 +5,12 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 
 /** @typedef {{}} Thinking_DisableInputs */
 
-const en_thinking_disable = /** @type {(inputs: Thinking_DisableInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Disable`)
-};
-
 const zh_thinking_disable = /** @type {(inputs: Thinking_DisableInputs) => LocalizedString} */ () => {
 	return /** @type {LocalizedString} */ (`禁用`)
+};
+
+const en_thinking_disable = /** @type {(inputs: Thinking_DisableInputs) => LocalizedString} */ () => {
+	return /** @type {LocalizedString} */ (`Disable`)
 };
 
 /**
@@ -19,11 +19,11 @@ const zh_thinking_disable = /** @type {(inputs: Thinking_DisableInputs) => Local
 * | "Disable" |
 *
 * @param {Thinking_DisableInputs} inputs
-* @param {{ locale?: "en" | "zh" }} options
+* @param {{ locale?: "zh" | "en" }} options
 * @returns {LocalizedString}
 */
-export const thinking_disable = /** @type {((inputs?: Thinking_DisableInputs, options?: { locale?: "en" | "zh" }) => LocalizedString) & import('../runtime.js').MessageMetadata<Thinking_DisableInputs, { locale?: "en" | "zh" }, {}>} */ ((inputs = {}, options = {}) => {
+export const thinking_disable = /** @type {((inputs?: Thinking_DisableInputs, options?: { locale?: "zh" | "en" }) => LocalizedString) & import('../runtime.js').MessageMetadata<Thinking_DisableInputs, { locale?: "zh" | "en" }, {}>} */ ((inputs = {}, options = {}) => {
 	const locale = experimentalStaticLocale ?? options.locale ?? getLocale()
-	if (locale === "en") return en_thinking_disable(inputs)
-	return zh_thinking_disable(inputs)
+	if (locale === "zh") return zh_thinking_disable(inputs)
+	return en_thinking_disable(inputs)
 });

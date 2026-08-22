@@ -1,11 +1,11 @@
 import { describe, expect, it, vi, beforeEach } from 'vitest'
 import { Hono } from 'hono'
 import attachmentRoute from './attachment'
-import { assetService } from '@shumai/core/src/asset/asset'
-import { AssetType } from '@shumai/db'
+import { assetService } from '@zhenyue/core/src/asset/asset'
+import { AssetType } from '@zhenyue/db'
 import { authMiddleware } from './middleware/auth'
-import { authzService, Permission, ResourceType } from '@shumai/core/src/authz/authz'
-import { auditLogService } from '@shumai/core/src/auditLog/auditLog'
+import { authzService, Permission, ResourceType } from '@zhenyue/core/src/authz/authz'
+import { auditLogService } from '@zhenyue/core/src/auditLog/auditLog'
 
 vi.mock('./middleware/auth', () => ({
   // any is used here because Hono's Context and Next types are complex to mock in vitest.mock
@@ -17,20 +17,20 @@ vi.mock('./middleware/auth', () => ({
   },
 }))
 
-vi.mock('@shumai/core/src/authz/authz')
-vi.mock('@shumai/core/src/asset/asset')
-vi.mock('@shumai/core/src/project/project', () => ({
+vi.mock('@zhenyue/core/src/authz/authz')
+vi.mock('@zhenyue/core/src/asset/asset')
+vi.mock('@zhenyue/core/src/project/project', () => ({
   projectService: {
     getProjectTeam: vi.fn().mockResolvedValue('t1'),
   },
 }))
-vi.mock('@shumai/core/src/auditLog/auditLog', () => ({
+vi.mock('@zhenyue/core/src/auditLog/auditLog', () => ({
   auditLogService: {
     logAction: vi.fn().mockResolvedValue({}),
   },
 }))
 
-vi.mock('@shumai/core/src/s3/s3', () => ({
+vi.mock('@zhenyue/core/src/s3/s3', () => ({
   s3Service: {
     presign: vi.fn().mockResolvedValue('http://mock-s3-url'),
   },

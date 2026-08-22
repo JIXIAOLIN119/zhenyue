@@ -4,13 +4,13 @@
 * | "{creator} uploaded {asset} to {project}" |
 *
 * @param {Notification_UploadedInputs} inputs
-* @param {{ locale?: "en" | "zh" }} options
+* @param {{ locale?: "zh" | "en" }} options
 * @returns {LocalizedString}
 */
 export const notification_uploaded: ((inputs: Notification_UploadedInputs, options?: {
-    locale?: "en" | "zh";
+    locale?: "zh" | "en";
 }) => LocalizedString) & import("../runtime.js").MessageMetadata<Notification_UploadedInputs, {
-    locale?: "en" | "zh";
+    locale?: "zh" | "en";
 }, {}>;
 export type LocalizedString = import("../runtime.js").LocalizedString;
 export type Notification_UploadedInputs = {

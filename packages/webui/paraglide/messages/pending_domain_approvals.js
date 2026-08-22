@@ -5,12 +5,12 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 
 /** @typedef {{}} Pending_Domain_ApprovalsInputs */
 
-const en_pending_domain_approvals = /** @type {(inputs: Pending_Domain_ApprovalsInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Pending Domain Approvals`)
-};
-
 const zh_pending_domain_approvals = /** @type {(inputs: Pending_Domain_ApprovalsInputs) => LocalizedString} */ () => {
 	return /** @type {LocalizedString} */ (`待审核域名`)
+};
+
+const en_pending_domain_approvals = /** @type {(inputs: Pending_Domain_ApprovalsInputs) => LocalizedString} */ () => {
+	return /** @type {LocalizedString} */ (`Pending Domain Approvals`)
 };
 
 /**
@@ -19,11 +19,11 @@ const zh_pending_domain_approvals = /** @type {(inputs: Pending_Domain_Approvals
 * | "Pending Domain Approvals" |
 *
 * @param {Pending_Domain_ApprovalsInputs} inputs
-* @param {{ locale?: "en" | "zh" }} options
+* @param {{ locale?: "zh" | "en" }} options
 * @returns {LocalizedString}
 */
-export const pending_domain_approvals = /** @type {((inputs?: Pending_Domain_ApprovalsInputs, options?: { locale?: "en" | "zh" }) => LocalizedString) & import('../runtime.js').MessageMetadata<Pending_Domain_ApprovalsInputs, { locale?: "en" | "zh" }, {}>} */ ((inputs = {}, options = {}) => {
+export const pending_domain_approvals = /** @type {((inputs?: Pending_Domain_ApprovalsInputs, options?: { locale?: "zh" | "en" }) => LocalizedString) & import('../runtime.js').MessageMetadata<Pending_Domain_ApprovalsInputs, { locale?: "zh" | "en" }, {}>} */ ((inputs = {}, options = {}) => {
 	const locale = experimentalStaticLocale ?? options.locale ?? getLocale()
-	if (locale === "en") return en_pending_domain_approvals(inputs)
-	return zh_pending_domain_approvals(inputs)
+	if (locale === "zh") return zh_pending_domain_approvals(inputs)
+	return en_pending_domain_approvals(inputs)
 });

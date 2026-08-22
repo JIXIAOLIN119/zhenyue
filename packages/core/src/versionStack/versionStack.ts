@@ -1,11 +1,11 @@
 import { generateKeyBetween } from 'jittered-fractional-indexing'
-import { prisma } from '@shumai/db'
-import { type Asset, AssetType } from '@shumai/db'
+import { prisma } from '@zhenyue/db'
+import { type Asset, AssetType } from '@zhenyue/db'
 import {
   ChangeStackFileVersionParams,
   CreateVersionStackParams,
   RemoveStackVersionParams,
-} from '@shumai/dtos'
+} from '@zhenyue/dtos'
 import { dedupeSymlinksToTarget } from '../asset/symlink'
 
 function generateSortIndex(previous?: string | null): string {

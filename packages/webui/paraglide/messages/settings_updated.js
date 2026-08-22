@@ -5,12 +5,12 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 
 /** @typedef {{}} Settings_UpdatedInputs */
 
-const en_settings_updated = /** @type {(inputs: Settings_UpdatedInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Settings updated`)
-};
-
 const zh_settings_updated = /** @type {(inputs: Settings_UpdatedInputs) => LocalizedString} */ () => {
 	return /** @type {LocalizedString} */ (`设置已更新`)
+};
+
+const en_settings_updated = /** @type {(inputs: Settings_UpdatedInputs) => LocalizedString} */ () => {
+	return /** @type {LocalizedString} */ (`Settings updated`)
 };
 
 /**
@@ -19,11 +19,11 @@ const zh_settings_updated = /** @type {(inputs: Settings_UpdatedInputs) => Local
 * | "Settings updated" |
 *
 * @param {Settings_UpdatedInputs} inputs
-* @param {{ locale?: "en" | "zh" }} options
+* @param {{ locale?: "zh" | "en" }} options
 * @returns {LocalizedString}
 */
-export const settings_updated = /** @type {((inputs?: Settings_UpdatedInputs, options?: { locale?: "en" | "zh" }) => LocalizedString) & import('../runtime.js').MessageMetadata<Settings_UpdatedInputs, { locale?: "en" | "zh" }, {}>} */ ((inputs = {}, options = {}) => {
+export const settings_updated = /** @type {((inputs?: Settings_UpdatedInputs, options?: { locale?: "zh" | "en" }) => LocalizedString) & import('../runtime.js').MessageMetadata<Settings_UpdatedInputs, { locale?: "zh" | "en" }, {}>} */ ((inputs = {}, options = {}) => {
 	const locale = experimentalStaticLocale ?? options.locale ?? getLocale()
-	if (locale === "en") return en_settings_updated(inputs)
-	return zh_settings_updated(inputs)
+	if (locale === "zh") return zh_settings_updated(inputs)
+	return en_settings_updated(inputs)
 });

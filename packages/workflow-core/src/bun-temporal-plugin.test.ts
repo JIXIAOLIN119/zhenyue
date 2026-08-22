@@ -46,7 +46,7 @@ describe('temporalWorkflow plugin', () => {
     const updatedConfig = callArgs.webpackConfigHook(config)
 
     // Check that aliases are set
-    expect(updatedConfig.resolve.alias['@shumai/workflow-core']).toBeDefined()
+    expect(updatedConfig.resolve.alias['@zhenyue/workflow-core']).toBeDefined()
     expect(updatedConfig.resolve.alias['@temporalio/workflow']).toBeDefined()
   })
 })

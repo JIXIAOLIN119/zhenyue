@@ -1,12 +1,12 @@
 import { describe, expect, it, vi, beforeEach } from 'vitest'
-import { prisma } from '@shumai/db'
-import { setupTestDbHooks } from '@shumai/db/test'
+import { prisma } from '@zhenyue/db'
+import { setupTestDbHooks } from '@zhenyue/db/test'
 import { uploadService } from './upload'
-import { gotenbergService } from '@shumai/core/src/gotenberg/gotenberg'
-import { s3Service } from '@shumai/core/src/s3/s3'
-import { AssetStatus, AssetType, WorkflowTaskType } from '@shumai/db'
+import { gotenbergService } from '@zhenyue/core/src/gotenberg/gotenberg'
+import { s3Service } from '@zhenyue/core/src/s3/s3'
+import { AssetStatus, AssetType, WorkflowTaskType } from '@zhenyue/db'
 
-vi.mock('@shumai/core/src/s3/s3', () => ({
+vi.mock('@zhenyue/core/src/s3/s3', () => ({
   s3Service: {
     presign: vi.fn().mockResolvedValue('http://presigned-url.com'),
     getObjectSize: vi.fn().mockResolvedValue(100),

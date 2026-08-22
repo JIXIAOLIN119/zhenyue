@@ -5,12 +5,12 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 
 /** @typedef {{}} Operator_Is_ExactlyInputs */
 
-const en_operator_is_exactly = /** @type {(inputs: Operator_Is_ExactlyInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`is exactly`)
-};
-
 const zh_operator_is_exactly = /** @type {(inputs: Operator_Is_ExactlyInputs) => LocalizedString} */ () => {
 	return /** @type {LocalizedString} */ (`完全匹配`)
+};
+
+const en_operator_is_exactly = /** @type {(inputs: Operator_Is_ExactlyInputs) => LocalizedString} */ () => {
+	return /** @type {LocalizedString} */ (`is exactly`)
 };
 
 /**
@@ -19,11 +19,11 @@ const zh_operator_is_exactly = /** @type {(inputs: Operator_Is_ExactlyInputs) =>
 * | "is exactly" |
 *
 * @param {Operator_Is_ExactlyInputs} inputs
-* @param {{ locale?: "en" | "zh" }} options
+* @param {{ locale?: "zh" | "en" }} options
 * @returns {LocalizedString}
 */
-export const operator_is_exactly = /** @type {((inputs?: Operator_Is_ExactlyInputs, options?: { locale?: "en" | "zh" }) => LocalizedString) & import('../runtime.js').MessageMetadata<Operator_Is_ExactlyInputs, { locale?: "en" | "zh" }, {}>} */ ((inputs = {}, options = {}) => {
+export const operator_is_exactly = /** @type {((inputs?: Operator_Is_ExactlyInputs, options?: { locale?: "zh" | "en" }) => LocalizedString) & import('../runtime.js').MessageMetadata<Operator_Is_ExactlyInputs, { locale?: "zh" | "en" }, {}>} */ ((inputs = {}, options = {}) => {
 	const locale = experimentalStaticLocale ?? options.locale ?? getLocale()
-	if (locale === "en") return en_operator_is_exactly(inputs)
-	return zh_operator_is_exactly(inputs)
+	if (locale === "zh") return zh_operator_is_exactly(inputs)
+	return en_operator_is_exactly(inputs)
 });

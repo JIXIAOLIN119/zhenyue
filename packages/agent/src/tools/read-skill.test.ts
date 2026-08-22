@@ -1,13 +1,13 @@
 import { vi } from 'vitest'
 
-vi.mock('@shumai/core/src/s3/s3')
+vi.mock('@zhenyue/core/src/s3/s3')
 vi.mock('fs')
 
 import { describe, it, expect, beforeEach, afterEach } from 'vitest'
-import { prisma } from '@shumai/db'
-import { setupTestDbHooks } from '@shumai/db/test'
+import { prisma } from '@zhenyue/db'
+import { setupTestDbHooks } from '@zhenyue/db/test'
 import { createReadSkillTool } from './read-skill'
-import { s3Service } from '@shumai/core/src/s3/s3'
+import { s3Service } from '@zhenyue/core/src/s3/s3'
 import AdmZip from 'adm-zip'
 import * as fs from 'fs'
 

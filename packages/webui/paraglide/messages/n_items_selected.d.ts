@@ -4,13 +4,13 @@
 * | "{count} Item(s) selected" |
 *
 * @param {N_Items_SelectedInputs} inputs
-* @param {{ locale?: "en" | "zh" }} options
+* @param {{ locale?: "zh" | "en" }} options
 * @returns {LocalizedString}
 */
 export const n_items_selected: ((inputs: N_Items_SelectedInputs, options?: {
-    locale?: "en" | "zh";
+    locale?: "zh" | "en";
 }) => LocalizedString) & import("../runtime.js").MessageMetadata<N_Items_SelectedInputs, {
-    locale?: "en" | "zh";
+    locale?: "zh" | "en";
 }, {}>;
 export type LocalizedString = import("../runtime.js").LocalizedString;
 export type N_Items_SelectedInputs = {

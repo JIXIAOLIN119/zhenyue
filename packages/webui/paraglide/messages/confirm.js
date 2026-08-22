@@ -5,12 +5,12 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 
 /** @typedef {{}} ConfirmInputs */
 
-const en_confirm = /** @type {(inputs: ConfirmInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Confirm`)
-};
-
 const zh_confirm = /** @type {(inputs: ConfirmInputs) => LocalizedString} */ () => {
 	return /** @type {LocalizedString} */ (`确认`)
+};
+
+const en_confirm = /** @type {(inputs: ConfirmInputs) => LocalizedString} */ () => {
+	return /** @type {LocalizedString} */ (`Confirm`)
 };
 
 /**
@@ -19,11 +19,11 @@ const zh_confirm = /** @type {(inputs: ConfirmInputs) => LocalizedString} */ () 
 * | "Confirm" |
 *
 * @param {ConfirmInputs} inputs
-* @param {{ locale?: "en" | "zh" }} options
+* @param {{ locale?: "zh" | "en" }} options
 * @returns {LocalizedString}
 */
-export const confirm = /** @type {((inputs?: ConfirmInputs, options?: { locale?: "en" | "zh" }) => LocalizedString) & import('../runtime.js').MessageMetadata<ConfirmInputs, { locale?: "en" | "zh" }, {}>} */ ((inputs = {}, options = {}) => {
+export const confirm = /** @type {((inputs?: ConfirmInputs, options?: { locale?: "zh" | "en" }) => LocalizedString) & import('../runtime.js').MessageMetadata<ConfirmInputs, { locale?: "zh" | "en" }, {}>} */ ((inputs = {}, options = {}) => {
 	const locale = experimentalStaticLocale ?? options.locale ?? getLocale()
-	if (locale === "en") return en_confirm(inputs)
-	return zh_confirm(inputs)
+	if (locale === "zh") return zh_confirm(inputs)
+	return en_confirm(inputs)
 });

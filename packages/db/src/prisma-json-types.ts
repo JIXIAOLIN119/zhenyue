@@ -50,7 +50,7 @@ declare global {
     // ----------------------------------------------------------------------
     // Collection Filter
     // ----------------------------------------------------------------------
-    export type CollectionFilter = import('@shumai/dtos').CollectionFilter
+    export type CollectionFilter = import('@zhenyue/dtos').CollectionFilter
 
     export interface TranscodeSettings {
       videoStrategy: VideoTranscodeStrategy
@@ -242,9 +242,9 @@ declare global {
     // Provider Config
     // ----------------------------------------------------------------------
     export type ModelConfig = import('zod').z.infer<
-      typeof import('@shumai/dtos').providerModelConfigSchema
+      typeof import('@zhenyue/dtos').providerModelConfigSchema
     >
-    export type ProviderConfig = import('@shumai/dtos').ProviderConfigSerializable
+    export type ProviderConfig = import('@zhenyue/dtos').ProviderConfigSerializable
 
     export interface ScreenshotSpec {
       start: number
@@ -320,8 +320,8 @@ declare global {
     // ----------------------------------------------------------------------
     // Skill Config
     // ----------------------------------------------------------------------
-    export type SkillEnvironmentVariable = import('@shumai/dtos').SkillEnvironmentVariable
-    export type SkillConfig = import('@shumai/dtos').SkillConfig
+    export type SkillEnvironmentVariable = import('@zhenyue/dtos').SkillEnvironmentVariable
+    export type SkillConfig = import('@zhenyue/dtos').SkillConfig
 
     // ----------------------------------------------------------------------
     // Watermark Config

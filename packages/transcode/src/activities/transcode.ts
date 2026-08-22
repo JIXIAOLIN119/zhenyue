@@ -1,17 +1,17 @@
-import { prisma, WorkflowTaskType, WorkflowTaskStatus } from '@shumai/db'
-import { s3Service } from '@shumai/core/src/s3/s3'
-import { transcodeService } from '@shumai/core/src/transcode/transcode'
-import { metadataService } from '@shumai/core/src/metadata/metadata'
-import { stemFromKey } from '@shumai/core/src/utils/filename'
-import { gotenbergService } from '@shumai/core/src/gotenberg/gotenberg'
-import { parseCsvContent } from '@shumai/core/src/transcode/transcode'
+import { prisma, WorkflowTaskType, WorkflowTaskStatus } from '@zhenyue/db'
+import { s3Service } from '@zhenyue/core/src/s3/s3'
+import { transcodeService } from '@zhenyue/core/src/transcode/transcode'
+import { metadataService } from '@zhenyue/core/src/metadata/metadata'
+import { stemFromKey } from '@zhenyue/core/src/utils/filename'
+import { gotenbergService } from '@zhenyue/core/src/gotenberg/gotenberg'
+import { parseCsvContent } from '@zhenyue/core/src/transcode/transcode'
 import {
   getProxyType,
   isCsvDocument,
   isHtmlDocument,
   isMarkdownDocument,
   isOfficeDocument,
-} from '@shumai/core/src/utils/mime'
+} from '@zhenyue/core/src/utils/mime'
 import { ApplicationFailure } from '@temporalio/activity'
 import * as path from 'path'
 import * as fs from 'fs'
@@ -225,7 +225,7 @@ export interface VideoActivityParams {
 export async function transcodeVideoActivity(
   params: VideoActivityParams,
 ): Promise<PrismaJson.VideoTranscode> {
-  const bucket = process.env.S3_BUCKET || 'shumai'
+  const bucket = process.env.S3_BUCKET || 'zhenyue'
   const stem = stemFromKey(params.assetKey)
   const res = params.videoSpec.resolution || `${params.videoSpec.height}p`
   const key = path.posix.join(path.posix.dirname(params.assetKey), `${stem}-${res}.mp4`)
@@ -302,7 +302,7 @@ export interface AudioActivityParams {
 export async function transcodeAudioActivity(
   params: AudioActivityParams,
 ): Promise<PrismaJson.VideoTranscode> {
-  const bucket = process.env.S3_BUCKET || 'shumai'
+  const bucket = process.env.S3_BUCKET || 'zhenyue'
   const stem = stemFromKey(params.assetKey)
   const key = path.posix.join(path.posix.dirname(params.assetKey), `${stem}-audio-proxy.mp4`)
 
@@ -362,7 +362,7 @@ export interface ImageActivityParams {
 export async function transcodeImageActivity(
   params: ImageActivityParams,
 ): Promise<PrismaJson.ImageTranscode> {
-  const bucket = process.env.S3_BUCKET || 'shumai'
+  const bucket = process.env.S3_BUCKET || 'zhenyue'
   const stem = stemFromKey(params.assetKey)
   const key = path.posix.join(
     path.posix.dirname(params.assetKey),
@@ -429,7 +429,7 @@ export interface GenerateSpriteActivityParams {
 }
 
 export async function generateSpriteActivity(params: GenerateSpriteActivityParams) {
-  const bucket = process.env.S3_BUCKET || 'shumai'
+  const bucket = process.env.S3_BUCKET || 'zhenyue'
   try {
     await s3Service.headObject(bucket, params.spriteSpec.key)
     await s3Service.headObject(bucket, params.posterSpec.key)
@@ -529,7 +529,7 @@ export async function generatePdfProxyActivity(
     return { pdfProxyKey: params.assetKey, pdfFilePath: params.filePath }
   }
 
-  const bucket = process.env.S3_BUCKET || 'shumai'
+  const bucket = process.env.S3_BUCKET || 'zhenyue'
   const pdfProxyKey = `files/${params.assetId}/proxy.pdf`
   const tmpDir = path.dirname(params.filePath)
   const pdfFilePath = path.join(tmpDir, 'proxy.pdf')
@@ -616,7 +616,7 @@ export async function generatePdfProxyActivity(
 export async function downloadMediaToTmpActivity(params: {
   assetKey: string
 }): Promise<{ filePath: string; tmpDir: string }> {
-  const bucket = process.env.S3_BUCKET || 'shumai'
+  const bucket = process.env.S3_BUCKET || 'zhenyue'
   const tmpDir = transcodeService.createTempDir('transcode-')
   const filePath = path.join(tmpDir, path.basename(params.assetKey))
 
@@ -652,7 +652,7 @@ export interface UpdateAssetMediaActivityParams {
 }
 
 export async function updateAssetMediaActivity(params: UpdateAssetMediaActivityParams) {
-  const bucket = process.env.S3_BUCKET || 'shumai'
+  const bucket = process.env.S3_BUCKET || 'zhenyue'
   const asset = await prisma.asset.findUnique({
     where: { id: params.assetId },
     include: { storageKey: true },
@@ -951,7 +951,7 @@ export async function transcodeVideoChunkActivity(
     const chunkData = fs.readFileSync(chunkTmp)
 
     // Upload to S3
-    const bucket = process.env.S3_BUCKET || 'shumai'
+    const bucket = process.env.S3_BUCKET || 'zhenyue'
     const key = `files/${params.assetId}/tmp-embedding-chunks/chunk-${params.startTime}-${params.endTime}-${ulid()}.mp4`
 
     await s3Service.putObject(bucket, key, chunkData, chunkData.length, 'video/mp4')
@@ -974,6 +974,6 @@ export async function transcodeVideoChunkActivity(
 }
 
 export async function deleteS3ObjectActivity(params: { key: string }): Promise<void> {
-  const bucket = process.env.S3_BUCKET || 'shumai'
+  const bucket = process.env.S3_BUCKET || 'zhenyue'
   await s3Service.deleteObject(bucket, params.key)
 }

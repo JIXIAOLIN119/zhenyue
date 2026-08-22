@@ -5,12 +5,12 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 
 /** @typedef {{}} TimestampInputs */
 
-const en_timestamp = /** @type {(inputs: TimestampInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Timestamp`)
-};
-
 const zh_timestamp = /** @type {(inputs: TimestampInputs) => LocalizedString} */ () => {
 	return /** @type {LocalizedString} */ (`时间戳`)
+};
+
+const en_timestamp = /** @type {(inputs: TimestampInputs) => LocalizedString} */ () => {
+	return /** @type {LocalizedString} */ (`Timestamp`)
 };
 
 /**
@@ -19,11 +19,11 @@ const zh_timestamp = /** @type {(inputs: TimestampInputs) => LocalizedString} */
 * | "Timestamp" |
 *
 * @param {TimestampInputs} inputs
-* @param {{ locale?: "en" | "zh" }} options
+* @param {{ locale?: "zh" | "en" }} options
 * @returns {LocalizedString}
 */
-export const timestamp = /** @type {((inputs?: TimestampInputs, options?: { locale?: "en" | "zh" }) => LocalizedString) & import('../runtime.js').MessageMetadata<TimestampInputs, { locale?: "en" | "zh" }, {}>} */ ((inputs = {}, options = {}) => {
+export const timestamp = /** @type {((inputs?: TimestampInputs, options?: { locale?: "zh" | "en" }) => LocalizedString) & import('../runtime.js').MessageMetadata<TimestampInputs, { locale?: "zh" | "en" }, {}>} */ ((inputs = {}, options = {}) => {
 	const locale = experimentalStaticLocale ?? options.locale ?? getLocale()
-	if (locale === "en") return en_timestamp(inputs)
-	return zh_timestamp(inputs)
+	if (locale === "zh") return zh_timestamp(inputs)
+	return en_timestamp(inputs)
 });

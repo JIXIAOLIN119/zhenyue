@@ -102,7 +102,7 @@ describe('S3 API', () => {
   })
 
   it('PUT /files/:bucket/:key calls s3Service.putObject', async () => {
-    const { s3Service: service } = await import('@shumai/core/src/s3/s3')
+    const { s3Service: service } = await import('@zhenyue/core/src/s3/s3')
     const mockPut = vi.spyOn(service, 'putObject').mockResolvedValue(undefined)
 
     const { default: route } = await import('./s3')

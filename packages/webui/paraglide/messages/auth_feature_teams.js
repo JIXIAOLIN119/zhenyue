@@ -5,12 +5,12 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 
 /** @typedef {{}} Auth_Feature_TeamsInputs */
 
-const en_auth_feature_teams = /** @type {(inputs: Auth_Feature_TeamsInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Frictionless team workspaces & secure sharing`)
-};
-
 const zh_auth_feature_teams = /** @type {(inputs: Auth_Feature_TeamsInputs) => LocalizedString} */ () => {
 	return /** @type {LocalizedString} */ (`无缝团队工作区 & 安全分享`)
+};
+
+const en_auth_feature_teams = /** @type {(inputs: Auth_Feature_TeamsInputs) => LocalizedString} */ () => {
+	return /** @type {LocalizedString} */ (`Frictionless team workspaces & secure sharing`)
 };
 
 /**
@@ -19,11 +19,11 @@ const zh_auth_feature_teams = /** @type {(inputs: Auth_Feature_TeamsInputs) => L
 * | "Frictionless team workspaces & secure sharing" |
 *
 * @param {Auth_Feature_TeamsInputs} inputs
-* @param {{ locale?: "en" | "zh" }} options
+* @param {{ locale?: "zh" | "en" }} options
 * @returns {LocalizedString}
 */
-export const auth_feature_teams = /** @type {((inputs?: Auth_Feature_TeamsInputs, options?: { locale?: "en" | "zh" }) => LocalizedString) & import('../runtime.js').MessageMetadata<Auth_Feature_TeamsInputs, { locale?: "en" | "zh" }, {}>} */ ((inputs = {}, options = {}) => {
+export const auth_feature_teams = /** @type {((inputs?: Auth_Feature_TeamsInputs, options?: { locale?: "zh" | "en" }) => LocalizedString) & import('../runtime.js').MessageMetadata<Auth_Feature_TeamsInputs, { locale?: "zh" | "en" }, {}>} */ ((inputs = {}, options = {}) => {
 	const locale = experimentalStaticLocale ?? options.locale ?? getLocale()
-	if (locale === "en") return en_auth_feature_teams(inputs)
-	return zh_auth_feature_teams(inputs)
+	if (locale === "zh") return zh_auth_feature_teams(inputs)
+	return en_auth_feature_teams(inputs)
 });

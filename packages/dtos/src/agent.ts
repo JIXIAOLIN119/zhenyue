@@ -1,5 +1,5 @@
 import { z } from 'zod'
-import { AgentType } from '@shumai/db/enums'
+import { AgentType } from '@zhenyue/db/enums'
 
 export { AgentType }
 export const agentTypeSchema = z.nativeEnum(AgentType)

@@ -1,7 +1,7 @@
-import { s3Service } from '@shumai/core/src/s3/s3'
-import { stemFromKey } from '@shumai/core/src/utils/filename'
-import { prisma, WorkflowTaskStatus, WorkflowTaskType } from '@shumai/db'
-import '@shumai/db/src/prisma-json-types'
+import { s3Service } from '@zhenyue/core/src/s3/s3'
+import { stemFromKey } from '@zhenyue/core/src/utils/filename'
+import { prisma, WorkflowTaskStatus, WorkflowTaskType } from '@zhenyue/db'
+import '@zhenyue/db/src/prisma-json-types'
 import { execFile } from 'child_process'
 import { parse } from 'csv-parse/sync'
 import * as fs from 'fs'
@@ -984,7 +984,7 @@ export class TranscodeService {
     commentTimestamp?: number | null
     annotations?: PrismaJson.AnnotationList | null
   }): Promise<Array<{ key: string; timestamp: number }>> {
-    const bucket = process.env.S3_BUCKET || 'shumai'
+    const bucket = process.env.S3_BUCKET || 'zhenyue'
     const tmpDir = this.createTempDir('screenshot-')
     const videoPath = path.join(tmpDir, path.basename(params.assetKey))
 
@@ -1079,7 +1079,7 @@ export class TranscodeService {
     commentTimestamp?: number | null
     annotations?: PrismaJson.AnnotationList | null
   }): Promise<Array<{ key: string; page: number }>> {
-    const bucket = process.env.S3_BUCKET || 'shumai'
+    const bucket = process.env.S3_BUCKET || 'zhenyue'
     const tmpDir = this.createTempDir('pdf-pages-')
     const pdfPath = path.join(tmpDir, path.basename(params.assetKey))
 
@@ -1195,7 +1195,7 @@ export class TranscodeService {
     assetId: string
     annotations: PrismaJson.AnnotationList
   }): Promise<string> {
-    const bucket = process.env.S3_BUCKET || 'shumai'
+    const bucket = process.env.S3_BUCKET || 'zhenyue'
     const outName = `annotation-${ulid()}.webp`
     const tmpDir = this.createTempDir('annotation-')
     const imgPath = path.join(tmpDir, path.basename(params.assetKey))

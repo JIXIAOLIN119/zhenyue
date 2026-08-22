@@ -1,4 +1,4 @@
-import { prisma, type Prisma, type TeamMemberRole } from '@shumai/db'
+import { prisma, type Prisma, type TeamMemberRole } from '@zhenyue/db'
 import {
   CreateAgentParams,
   DeleteAgentParams,
@@ -7,16 +7,16 @@ import {
   AgentSessionInfo,
   AgentInfo,
   AgentType,
-} from '@shumai/dtos'
+} from '@zhenyue/dtos'
 import {
   paginateQuery,
   type PaginatedData,
   type PaginationParams,
-} from '@shumai/core/src/pagination'
-import '@shumai/db/src/prisma-json-types'
-import { s3Service } from '@shumai/core/src/s3/s3'
-import { getAvatarUrl } from '@shumai/core/src/user/avatar'
-import { resolveEffectiveRole } from '@shumai/core/src/authz/authz'
+} from '@zhenyue/core/src/pagination'
+import '@zhenyue/db/src/prisma-json-types'
+import { s3Service } from '@zhenyue/core/src/s3/s3'
+import { getAvatarUrl } from '@zhenyue/core/src/user/avatar'
+import { resolveEffectiveRole } from '@zhenyue/core/src/authz/authz'
 import { getAllowedAgentRoles } from './permissions'
 import AdmZip from 'adm-zip'
 import * as fs from 'fs'
@@ -90,7 +90,7 @@ export class AgentService {
       }
 
       const { buffer: zipBuffer } = await s3Service.getObject(
-        process.env.S3_BUCKET || 'shumai',
+        process.env.S3_BUCKET || 'zhenyue',
         asset.storageKey.key,
       )
 
@@ -195,7 +195,7 @@ export class AgentService {
       const user = await tx.user.create({
         data: {
           name,
-          email: `agent-${Date.now()}-${Math.random().toString(36).substring(7)}@shumai.ai`,
+          email: `agent-${Date.now()}-${Math.random().toString(36).substring(7)}@zhenyue.ai`,
           type: 'agent',
           image: extractS3Key(avatar),
         },

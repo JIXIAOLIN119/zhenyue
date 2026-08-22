@@ -5,12 +5,12 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 
 /** @typedef {{}} Exit_CompareInputs */
 
-const en_exit_compare = /** @type {(inputs: Exit_CompareInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Exit compare`)
-};
-
 const zh_exit_compare = /** @type {(inputs: Exit_CompareInputs) => LocalizedString} */ () => {
 	return /** @type {LocalizedString} */ (`退出对比`)
+};
+
+const en_exit_compare = /** @type {(inputs: Exit_CompareInputs) => LocalizedString} */ () => {
+	return /** @type {LocalizedString} */ (`Exit compare`)
 };
 
 /**
@@ -19,11 +19,11 @@ const zh_exit_compare = /** @type {(inputs: Exit_CompareInputs) => LocalizedStri
 * | "Exit compare" |
 *
 * @param {Exit_CompareInputs} inputs
-* @param {{ locale?: "en" | "zh" }} options
+* @param {{ locale?: "zh" | "en" }} options
 * @returns {LocalizedString}
 */
-export const exit_compare = /** @type {((inputs?: Exit_CompareInputs, options?: { locale?: "en" | "zh" }) => LocalizedString) & import('../runtime.js').MessageMetadata<Exit_CompareInputs, { locale?: "en" | "zh" }, {}>} */ ((inputs = {}, options = {}) => {
+export const exit_compare = /** @type {((inputs?: Exit_CompareInputs, options?: { locale?: "zh" | "en" }) => LocalizedString) & import('../runtime.js').MessageMetadata<Exit_CompareInputs, { locale?: "zh" | "en" }, {}>} */ ((inputs = {}, options = {}) => {
 	const locale = experimentalStaticLocale ?? options.locale ?? getLocale()
-	if (locale === "en") return en_exit_compare(inputs)
-	return zh_exit_compare(inputs)
+	if (locale === "zh") return zh_exit_compare(inputs)
+	return en_exit_compare(inputs)
 });

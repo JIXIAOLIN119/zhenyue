@@ -1,4 +1,4 @@
-import type { Prisma } from '@shumai/db'
+import type { Prisma } from '@zhenyue/db'
 import { Hono } from 'hono'
 import agentRoute from './agent'
 import chatRoute from './chat'

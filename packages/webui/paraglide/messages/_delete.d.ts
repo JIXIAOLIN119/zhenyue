@@ -6,12 +6,12 @@ export type _DeleteInputs = {};
 * | "Delete" |
 *
 * @param {_DeleteInputs} inputs
-* @param {{ locale?: "en" | "zh" }} options
+* @param {{ locale?: "zh" | "en" }} options
 * @returns {LocalizedString}
 */
 declare const _delete: ((inputs?: _DeleteInputs, options?: {
-    locale?: "en" | "zh";
+    locale?: "zh" | "en";
 }) => LocalizedString) & import("../runtime.js").MessageMetadata<_DeleteInputs, {
-    locale?: "en" | "zh";
+    locale?: "zh" | "en";
 }, {}>;
 export { _delete as "delete" };

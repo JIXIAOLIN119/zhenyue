@@ -5,12 +5,12 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 
 /** @typedef {{}} Add_DomainInputs */
 
-const en_add_domain = /** @type {(inputs: Add_DomainInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Add Domain`)
-};
-
 const zh_add_domain = /** @type {(inputs: Add_DomainInputs) => LocalizedString} */ () => {
 	return /** @type {LocalizedString} */ (`添加域名`)
+};
+
+const en_add_domain = /** @type {(inputs: Add_DomainInputs) => LocalizedString} */ () => {
+	return /** @type {LocalizedString} */ (`Add Domain`)
 };
 
 /**
@@ -19,11 +19,11 @@ const zh_add_domain = /** @type {(inputs: Add_DomainInputs) => LocalizedString} 
 * | "Add Domain" |
 *
 * @param {Add_DomainInputs} inputs
-* @param {{ locale?: "en" | "zh" }} options
+* @param {{ locale?: "zh" | "en" }} options
 * @returns {LocalizedString}
 */
-export const add_domain = /** @type {((inputs?: Add_DomainInputs, options?: { locale?: "en" | "zh" }) => LocalizedString) & import('../runtime.js').MessageMetadata<Add_DomainInputs, { locale?: "en" | "zh" }, {}>} */ ((inputs = {}, options = {}) => {
+export const add_domain = /** @type {((inputs?: Add_DomainInputs, options?: { locale?: "zh" | "en" }) => LocalizedString) & import('../runtime.js').MessageMetadata<Add_DomainInputs, { locale?: "zh" | "en" }, {}>} */ ((inputs = {}, options = {}) => {
 	const locale = experimentalStaticLocale ?? options.locale ?? getLocale()
-	if (locale === "en") return en_add_domain(inputs)
-	return zh_add_domain(inputs)
+	if (locale === "zh") return zh_add_domain(inputs)
+	return en_add_domain(inputs)
 });

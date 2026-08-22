@@ -5,12 +5,12 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 
 /** @typedef {{}} Expiration_DateInputs */
 
-const en_expiration_date = /** @type {(inputs: Expiration_DateInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Expiration Date`)
-};
-
 const zh_expiration_date = /** @type {(inputs: Expiration_DateInputs) => LocalizedString} */ () => {
 	return /** @type {LocalizedString} */ (`过期日期`)
+};
+
+const en_expiration_date = /** @type {(inputs: Expiration_DateInputs) => LocalizedString} */ () => {
+	return /** @type {LocalizedString} */ (`Expiration Date`)
 };
 
 /**
@@ -19,11 +19,11 @@ const zh_expiration_date = /** @type {(inputs: Expiration_DateInputs) => Localiz
 * | "Expiration Date" |
 *
 * @param {Expiration_DateInputs} inputs
-* @param {{ locale?: "en" | "zh" }} options
+* @param {{ locale?: "zh" | "en" }} options
 * @returns {LocalizedString}
 */
-export const expiration_date = /** @type {((inputs?: Expiration_DateInputs, options?: { locale?: "en" | "zh" }) => LocalizedString) & import('../runtime.js').MessageMetadata<Expiration_DateInputs, { locale?: "en" | "zh" }, {}>} */ ((inputs = {}, options = {}) => {
+export const expiration_date = /** @type {((inputs?: Expiration_DateInputs, options?: { locale?: "zh" | "en" }) => LocalizedString) & import('../runtime.js').MessageMetadata<Expiration_DateInputs, { locale?: "zh" | "en" }, {}>} */ ((inputs = {}, options = {}) => {
 	const locale = experimentalStaticLocale ?? options.locale ?? getLocale()
-	if (locale === "en") return en_expiration_date(inputs)
-	return zh_expiration_date(inputs)
+	if (locale === "zh") return zh_expiration_date(inputs)
+	return en_expiration_date(inputs)
 });

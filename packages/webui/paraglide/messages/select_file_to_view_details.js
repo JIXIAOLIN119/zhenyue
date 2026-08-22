@@ -5,12 +5,12 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 
 /** @typedef {{}} Select_File_To_View_DetailsInputs */
 
-const en_select_file_to_view_details = /** @type {(inputs: Select_File_To_View_DetailsInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Select a file to view its details and comments.`)
-};
-
 const zh_select_file_to_view_details = /** @type {(inputs: Select_File_To_View_DetailsInputs) => LocalizedString} */ () => {
 	return /** @type {LocalizedString} */ (`选择一个文件以查看其详情和评论。`)
+};
+
+const en_select_file_to_view_details = /** @type {(inputs: Select_File_To_View_DetailsInputs) => LocalizedString} */ () => {
+	return /** @type {LocalizedString} */ (`Select a file to view its details and comments.`)
 };
 
 /**
@@ -19,11 +19,11 @@ const zh_select_file_to_view_details = /** @type {(inputs: Select_File_To_View_D
 * | "Select a file to view its details and comments." |
 *
 * @param {Select_File_To_View_DetailsInputs} inputs
-* @param {{ locale?: "en" | "zh" }} options
+* @param {{ locale?: "zh" | "en" }} options
 * @returns {LocalizedString}
 */
-export const select_file_to_view_details = /** @type {((inputs?: Select_File_To_View_DetailsInputs, options?: { locale?: "en" | "zh" }) => LocalizedString) & import('../runtime.js').MessageMetadata<Select_File_To_View_DetailsInputs, { locale?: "en" | "zh" }, {}>} */ ((inputs = {}, options = {}) => {
+export const select_file_to_view_details = /** @type {((inputs?: Select_File_To_View_DetailsInputs, options?: { locale?: "zh" | "en" }) => LocalizedString) & import('../runtime.js').MessageMetadata<Select_File_To_View_DetailsInputs, { locale?: "zh" | "en" }, {}>} */ ((inputs = {}, options = {}) => {
 	const locale = experimentalStaticLocale ?? options.locale ?? getLocale()
-	if (locale === "en") return en_select_file_to_view_details(inputs)
-	return zh_select_file_to_view_details(inputs)
+	if (locale === "zh") return zh_select_file_to_view_details(inputs)
+	return en_select_file_to_view_details(inputs)
 });

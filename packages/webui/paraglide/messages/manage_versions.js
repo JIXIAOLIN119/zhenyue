@@ -5,12 +5,12 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 
 /** @typedef {{}} Manage_VersionsInputs */
 
-const en_manage_versions = /** @type {(inputs: Manage_VersionsInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Manage versions`)
-};
-
 const zh_manage_versions = /** @type {(inputs: Manage_VersionsInputs) => LocalizedString} */ () => {
 	return /** @type {LocalizedString} */ (`管理版本`)
+};
+
+const en_manage_versions = /** @type {(inputs: Manage_VersionsInputs) => LocalizedString} */ () => {
+	return /** @type {LocalizedString} */ (`Manage versions`)
 };
 
 /**
@@ -19,11 +19,11 @@ const zh_manage_versions = /** @type {(inputs: Manage_VersionsInputs) => Localiz
 * | "Manage versions" |
 *
 * @param {Manage_VersionsInputs} inputs
-* @param {{ locale?: "en" | "zh" }} options
+* @param {{ locale?: "zh" | "en" }} options
 * @returns {LocalizedString}
 */
-export const manage_versions = /** @type {((inputs?: Manage_VersionsInputs, options?: { locale?: "en" | "zh" }) => LocalizedString) & import('../runtime.js').MessageMetadata<Manage_VersionsInputs, { locale?: "en" | "zh" }, {}>} */ ((inputs = {}, options = {}) => {
+export const manage_versions = /** @type {((inputs?: Manage_VersionsInputs, options?: { locale?: "zh" | "en" }) => LocalizedString) & import('../runtime.js').MessageMetadata<Manage_VersionsInputs, { locale?: "zh" | "en" }, {}>} */ ((inputs = {}, options = {}) => {
 	const locale = experimentalStaticLocale ?? options.locale ?? getLocale()
-	if (locale === "en") return en_manage_versions(inputs)
-	return zh_manage_versions(inputs)
+	if (locale === "zh") return zh_manage_versions(inputs)
+	return en_manage_versions(inputs)
 });

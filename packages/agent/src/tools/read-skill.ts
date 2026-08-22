@@ -1,8 +1,8 @@
-import { prisma } from '@shumai/db'
+import { prisma } from '@zhenyue/db'
 import { Type } from 'typebox'
 import { type AgentTool } from '@earendil-works/pi-agent-core'
-import { agentService } from '@shumai/core/src/agent/agent'
-import { resolveEffectiveRole } from '@shumai/core/src/authz/authz'
+import { agentService } from '@zhenyue/core/src/agent/agent'
+import { resolveEffectiveRole } from '@zhenyue/core/src/authz/authz'
 
 const readSkillSchema = Type.Object({
   skillId: Type.String({ description: 'The ID of the skill to read' }),

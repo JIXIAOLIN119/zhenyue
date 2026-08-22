@@ -5,12 +5,12 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 
 /** @typedef {{}} Provider_Is_RequiredInputs */
 
-const en_provider_is_required = /** @type {(inputs: Provider_Is_RequiredInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Provider is required`)
-};
-
 const zh_provider_is_required = /** @type {(inputs: Provider_Is_RequiredInputs) => LocalizedString} */ () => {
 	return /** @type {LocalizedString} */ (`提供商为必填项`)
+};
+
+const en_provider_is_required = /** @type {(inputs: Provider_Is_RequiredInputs) => LocalizedString} */ () => {
+	return /** @type {LocalizedString} */ (`Provider is required`)
 };
 
 /**
@@ -19,11 +19,11 @@ const zh_provider_is_required = /** @type {(inputs: Provider_Is_RequiredInputs) 
 * | "Provider is required" |
 *
 * @param {Provider_Is_RequiredInputs} inputs
-* @param {{ locale?: "en" | "zh" }} options
+* @param {{ locale?: "zh" | "en" }} options
 * @returns {LocalizedString}
 */
-export const provider_is_required = /** @type {((inputs?: Provider_Is_RequiredInputs, options?: { locale?: "en" | "zh" }) => LocalizedString) & import('../runtime.js').MessageMetadata<Provider_Is_RequiredInputs, { locale?: "en" | "zh" }, {}>} */ ((inputs = {}, options = {}) => {
+export const provider_is_required = /** @type {((inputs?: Provider_Is_RequiredInputs, options?: { locale?: "zh" | "en" }) => LocalizedString) & import('../runtime.js').MessageMetadata<Provider_Is_RequiredInputs, { locale?: "zh" | "en" }, {}>} */ ((inputs = {}, options = {}) => {
 	const locale = experimentalStaticLocale ?? options.locale ?? getLocale()
-	if (locale === "en") return en_provider_is_required(inputs)
-	return zh_provider_is_required(inputs)
+	if (locale === "zh") return zh_provider_is_required(inputs)
+	return en_provider_is_required(inputs)
 });

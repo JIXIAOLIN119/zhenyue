@@ -5,12 +5,12 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 
 /** @typedef {{}} UnknownInputs */
 
-const en_unknown = /** @type {(inputs: UnknownInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Unknown`)
-};
-
 const zh_unknown = /** @type {(inputs: UnknownInputs) => LocalizedString} */ () => {
 	return /** @type {LocalizedString} */ (`未知`)
+};
+
+const en_unknown = /** @type {(inputs: UnknownInputs) => LocalizedString} */ () => {
+	return /** @type {LocalizedString} */ (`Unknown`)
 };
 
 /**
@@ -19,11 +19,11 @@ const zh_unknown = /** @type {(inputs: UnknownInputs) => LocalizedString} */ () 
 * | "Unknown" |
 *
 * @param {UnknownInputs} inputs
-* @param {{ locale?: "en" | "zh" }} options
+* @param {{ locale?: "zh" | "en" }} options
 * @returns {LocalizedString}
 */
-export const unknown = /** @type {((inputs?: UnknownInputs, options?: { locale?: "en" | "zh" }) => LocalizedString) & import('../runtime.js').MessageMetadata<UnknownInputs, { locale?: "en" | "zh" }, {}>} */ ((inputs = {}, options = {}) => {
+export const unknown = /** @type {((inputs?: UnknownInputs, options?: { locale?: "zh" | "en" }) => LocalizedString) & import('../runtime.js').MessageMetadata<UnknownInputs, { locale?: "zh" | "en" }, {}>} */ ((inputs = {}, options = {}) => {
 	const locale = experimentalStaticLocale ?? options.locale ?? getLocale()
-	if (locale === "en") return en_unknown(inputs)
-	return zh_unknown(inputs)
+	if (locale === "zh") return zh_unknown(inputs)
+	return en_unknown(inputs)
 });

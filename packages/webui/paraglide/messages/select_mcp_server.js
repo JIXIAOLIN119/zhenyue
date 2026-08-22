@@ -5,12 +5,12 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 
 /** @typedef {{}} Select_Mcp_ServerInputs */
 
-const en_select_mcp_server = /** @type {(inputs: Select_Mcp_ServerInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Select MCP Server`)
-};
-
 const zh_select_mcp_server = /** @type {(inputs: Select_Mcp_ServerInputs) => LocalizedString} */ () => {
 	return /** @type {LocalizedString} */ (`选择 MCP 服务`)
+};
+
+const en_select_mcp_server = /** @type {(inputs: Select_Mcp_ServerInputs) => LocalizedString} */ () => {
+	return /** @type {LocalizedString} */ (`Select MCP Server`)
 };
 
 /**
@@ -19,11 +19,11 @@ const zh_select_mcp_server = /** @type {(inputs: Select_Mcp_ServerInputs) => Loc
 * | "Select MCP Server" |
 *
 * @param {Select_Mcp_ServerInputs} inputs
-* @param {{ locale?: "en" | "zh" }} options
+* @param {{ locale?: "zh" | "en" }} options
 * @returns {LocalizedString}
 */
-export const select_mcp_server = /** @type {((inputs?: Select_Mcp_ServerInputs, options?: { locale?: "en" | "zh" }) => LocalizedString) & import('../runtime.js').MessageMetadata<Select_Mcp_ServerInputs, { locale?: "en" | "zh" }, {}>} */ ((inputs = {}, options = {}) => {
+export const select_mcp_server = /** @type {((inputs?: Select_Mcp_ServerInputs, options?: { locale?: "zh" | "en" }) => LocalizedString) & import('../runtime.js').MessageMetadata<Select_Mcp_ServerInputs, { locale?: "zh" | "en" }, {}>} */ ((inputs = {}, options = {}) => {
 	const locale = experimentalStaticLocale ?? options.locale ?? getLocale()
-	if (locale === "en") return en_select_mcp_server(inputs)
-	return zh_select_mcp_server(inputs)
+	if (locale === "zh") return zh_select_mcp_server(inputs)
+	return en_select_mcp_server(inputs)
 });

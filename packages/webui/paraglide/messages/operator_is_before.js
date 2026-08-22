@@ -5,12 +5,12 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 
 /** @typedef {{}} Operator_Is_BeforeInputs */
 
-const en_operator_is_before = /** @type {(inputs: Operator_Is_BeforeInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`is before`)
-};
-
 const zh_operator_is_before = /** @type {(inputs: Operator_Is_BeforeInputs) => LocalizedString} */ () => {
 	return /** @type {LocalizedString} */ (`在之前`)
+};
+
+const en_operator_is_before = /** @type {(inputs: Operator_Is_BeforeInputs) => LocalizedString} */ () => {
+	return /** @type {LocalizedString} */ (`is before`)
 };
 
 /**
@@ -19,11 +19,11 @@ const zh_operator_is_before = /** @type {(inputs: Operator_Is_BeforeInputs) => L
 * | "is before" |
 *
 * @param {Operator_Is_BeforeInputs} inputs
-* @param {{ locale?: "en" | "zh" }} options
+* @param {{ locale?: "zh" | "en" }} options
 * @returns {LocalizedString}
 */
-export const operator_is_before = /** @type {((inputs?: Operator_Is_BeforeInputs, options?: { locale?: "en" | "zh" }) => LocalizedString) & import('../runtime.js').MessageMetadata<Operator_Is_BeforeInputs, { locale?: "en" | "zh" }, {}>} */ ((inputs = {}, options = {}) => {
+export const operator_is_before = /** @type {((inputs?: Operator_Is_BeforeInputs, options?: { locale?: "zh" | "en" }) => LocalizedString) & import('../runtime.js').MessageMetadata<Operator_Is_BeforeInputs, { locale?: "zh" | "en" }, {}>} */ ((inputs = {}, options = {}) => {
 	const locale = experimentalStaticLocale ?? options.locale ?? getLocale()
-	if (locale === "en") return en_operator_is_before(inputs)
-	return zh_operator_is_before(inputs)
+	if (locale === "zh") return zh_operator_is_before(inputs)
+	return en_operator_is_before(inputs)
 });

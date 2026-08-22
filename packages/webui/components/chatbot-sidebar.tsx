@@ -12,7 +12,7 @@ import { m } from '@/ui/paraglide/messages.js'
 import { useChatbotStore } from '@/ui/stores/chatbot'
 import { useTeamContextStore } from '@/ui/stores/team-context'
 import { useDroppable } from '@dnd-kit/react'
-import type { ChatMessage } from '@shumai/dtos'
+import type { ChatMessage } from '@zhenyue/dtos'
 import { useQuery, useQueryClient } from '@tanstack/react-query'
 import {
   ArrowLeft,
@@ -476,7 +476,7 @@ export function ChatbotSidebar({ projectId, contextAssetId }: ChatbotSidebarProp
         ) : (
           <>
             <div className="flex items-center gap-2 font-semibold">
-              <span>{m.shumai_agent()}</span>
+              <span>{m.zhenyue_agent()}</span>
             </div>
             <div className="flex items-center gap-1">
               <button

@@ -1,6 +1,6 @@
 import { client } from '@/ui/api/client'
 import { cn } from '@/ui/lib/utils'
-import type { AssetInfo, AssetInfoPaginatedList } from '@shumai/dtos'
+import type { AssetInfo, AssetInfoPaginatedList } from '@zhenyue/dtos'
 import { Link } from '@tanstack/react-router'
 import { File, Loader2, AudioLines } from 'lucide-react'
 import type { FC } from 'react'

@@ -1,4 +1,4 @@
-import type { FieldInfo, SelectOption } from '@shumai/dtos'
+import type { FieldInfo, SelectOption } from '@zhenyue/dtos'
 import { ChevronDown, Plus, Search, X } from 'lucide-react'
 import React, { useState } from 'react'
 import { toast } from 'sonner'

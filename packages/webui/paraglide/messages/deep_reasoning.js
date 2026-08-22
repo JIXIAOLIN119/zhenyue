@@ -5,12 +5,12 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 
 /** @typedef {{}} Deep_ReasoningInputs */
 
-const en_deep_reasoning = /** @type {(inputs: Deep_ReasoningInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Deep reasoning`)
-};
-
 const zh_deep_reasoning = /** @type {(inputs: Deep_ReasoningInputs) => LocalizedString} */ () => {
 	return /** @type {LocalizedString} */ (`深度推理`)
+};
+
+const en_deep_reasoning = /** @type {(inputs: Deep_ReasoningInputs) => LocalizedString} */ () => {
+	return /** @type {LocalizedString} */ (`Deep reasoning`)
 };
 
 /**
@@ -19,11 +19,11 @@ const zh_deep_reasoning = /** @type {(inputs: Deep_ReasoningInputs) => Localized
 * | "Deep reasoning" |
 *
 * @param {Deep_ReasoningInputs} inputs
-* @param {{ locale?: "en" | "zh" }} options
+* @param {{ locale?: "zh" | "en" }} options
 * @returns {LocalizedString}
 */
-export const deep_reasoning = /** @type {((inputs?: Deep_ReasoningInputs, options?: { locale?: "en" | "zh" }) => LocalizedString) & import('../runtime.js').MessageMetadata<Deep_ReasoningInputs, { locale?: "en" | "zh" }, {}>} */ ((inputs = {}, options = {}) => {
+export const deep_reasoning = /** @type {((inputs?: Deep_ReasoningInputs, options?: { locale?: "zh" | "en" }) => LocalizedString) & import('../runtime.js').MessageMetadata<Deep_ReasoningInputs, { locale?: "zh" | "en" }, {}>} */ ((inputs = {}, options = {}) => {
 	const locale = experimentalStaticLocale ?? options.locale ?? getLocale()
-	if (locale === "en") return en_deep_reasoning(inputs)
-	return zh_deep_reasoning(inputs)
+	if (locale === "zh") return zh_deep_reasoning(inputs)
+	return en_deep_reasoning(inputs)
 });

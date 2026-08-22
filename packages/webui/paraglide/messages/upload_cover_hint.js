@@ -5,12 +5,12 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 
 /** @typedef {{}} Upload_Cover_HintInputs */
 
-const en_upload_cover_hint = /** @type {(inputs: Upload_Cover_HintInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Drag and drop, or browse. Recommended 1:1 (400×400px).`)
-};
-
 const zh_upload_cover_hint = /** @type {(inputs: Upload_Cover_HintInputs) => LocalizedString} */ () => {
 	return /** @type {LocalizedString} */ (`拖放或浏览文件。推荐比例 1:1（400×400像素）。`)
+};
+
+const en_upload_cover_hint = /** @type {(inputs: Upload_Cover_HintInputs) => LocalizedString} */ () => {
+	return /** @type {LocalizedString} */ (`Drag and drop, or browse. Recommended 1:1 (400×400px).`)
 };
 
 /**
@@ -19,11 +19,11 @@ const zh_upload_cover_hint = /** @type {(inputs: Upload_Cover_HintInputs) => Loc
 * | "Drag and drop, or browse. Recommended 1:1 (400×400px)." |
 *
 * @param {Upload_Cover_HintInputs} inputs
-* @param {{ locale?: "en" | "zh" }} options
+* @param {{ locale?: "zh" | "en" }} options
 * @returns {LocalizedString}
 */
-export const upload_cover_hint = /** @type {((inputs?: Upload_Cover_HintInputs, options?: { locale?: "en" | "zh" }) => LocalizedString) & import('../runtime.js').MessageMetadata<Upload_Cover_HintInputs, { locale?: "en" | "zh" }, {}>} */ ((inputs = {}, options = {}) => {
+export const upload_cover_hint = /** @type {((inputs?: Upload_Cover_HintInputs, options?: { locale?: "zh" | "en" }) => LocalizedString) & import('../runtime.js').MessageMetadata<Upload_Cover_HintInputs, { locale?: "zh" | "en" }, {}>} */ ((inputs = {}, options = {}) => {
 	const locale = experimentalStaticLocale ?? options.locale ?? getLocale()
-	if (locale === "en") return en_upload_cover_hint(inputs)
-	return zh_upload_cover_hint(inputs)
+	if (locale === "zh") return zh_upload_cover_hint(inputs)
+	return en_upload_cover_hint(inputs)
 });

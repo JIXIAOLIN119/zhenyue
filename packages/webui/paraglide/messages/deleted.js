@@ -5,12 +5,12 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 
 /** @typedef {{}} DeletedInputs */
 
-const en_deleted = /** @type {(inputs: DeletedInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Deleted`)
-};
-
 const zh_deleted = /** @type {(inputs: DeletedInputs) => LocalizedString} */ () => {
 	return /** @type {LocalizedString} */ (`已删除`)
+};
+
+const en_deleted = /** @type {(inputs: DeletedInputs) => LocalizedString} */ () => {
+	return /** @type {LocalizedString} */ (`Deleted`)
 };
 
 /**
@@ -19,11 +19,11 @@ const zh_deleted = /** @type {(inputs: DeletedInputs) => LocalizedString} */ () 
 * | "Deleted" |
 *
 * @param {DeletedInputs} inputs
-* @param {{ locale?: "en" | "zh" }} options
+* @param {{ locale?: "zh" | "en" }} options
 * @returns {LocalizedString}
 */
-export const deleted = /** @type {((inputs?: DeletedInputs, options?: { locale?: "en" | "zh" }) => LocalizedString) & import('../runtime.js').MessageMetadata<DeletedInputs, { locale?: "en" | "zh" }, {}>} */ ((inputs = {}, options = {}) => {
+export const deleted = /** @type {((inputs?: DeletedInputs, options?: { locale?: "zh" | "en" }) => LocalizedString) & import('../runtime.js').MessageMetadata<DeletedInputs, { locale?: "zh" | "en" }, {}>} */ ((inputs = {}, options = {}) => {
 	const locale = experimentalStaticLocale ?? options.locale ?? getLocale()
-	if (locale === "en") return en_deleted(inputs)
-	return zh_deleted(inputs)
+	if (locale === "zh") return zh_deleted(inputs)
+	return en_deleted(inputs)
 });

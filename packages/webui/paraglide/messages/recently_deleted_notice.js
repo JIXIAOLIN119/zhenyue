@@ -5,12 +5,12 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 
 /** @typedef {{}} Recently_Deleted_NoticeInputs */
 
-const en_recently_deleted_notice = /** @type {(inputs: Recently_Deleted_NoticeInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Items are automatically deleted after 30 days.`)
-};
-
 const zh_recently_deleted_notice = /** @type {(inputs: Recently_Deleted_NoticeInputs) => LocalizedString} */ () => {
 	return /** @type {LocalizedString} */ (`项目将在 30 天后自动删除。`)
+};
+
+const en_recently_deleted_notice = /** @type {(inputs: Recently_Deleted_NoticeInputs) => LocalizedString} */ () => {
+	return /** @type {LocalizedString} */ (`Items are automatically deleted after 30 days.`)
 };
 
 /**
@@ -19,11 +19,11 @@ const zh_recently_deleted_notice = /** @type {(inputs: Recently_Deleted_NoticeIn
 * | "Items are automatically deleted after 30 days." |
 *
 * @param {Recently_Deleted_NoticeInputs} inputs
-* @param {{ locale?: "en" | "zh" }} options
+* @param {{ locale?: "zh" | "en" }} options
 * @returns {LocalizedString}
 */
-export const recently_deleted_notice = /** @type {((inputs?: Recently_Deleted_NoticeInputs, options?: { locale?: "en" | "zh" }) => LocalizedString) & import('../runtime.js').MessageMetadata<Recently_Deleted_NoticeInputs, { locale?: "en" | "zh" }, {}>} */ ((inputs = {}, options = {}) => {
+export const recently_deleted_notice = /** @type {((inputs?: Recently_Deleted_NoticeInputs, options?: { locale?: "zh" | "en" }) => LocalizedString) & import('../runtime.js').MessageMetadata<Recently_Deleted_NoticeInputs, { locale?: "zh" | "en" }, {}>} */ ((inputs = {}, options = {}) => {
 	const locale = experimentalStaticLocale ?? options.locale ?? getLocale()
-	if (locale === "en") return en_recently_deleted_notice(inputs)
-	return zh_recently_deleted_notice(inputs)
+	if (locale === "zh") return zh_recently_deleted_notice(inputs)
+	return en_recently_deleted_notice(inputs)
 });

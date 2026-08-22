@@ -7,10 +7,10 @@ import {
   generateImageEmbeddingActivity,
   generateVideoChunkEmbeddingActivity,
 } from './ai'
-import { s3Service } from '@shumai/core/src/s3/s3'
-import { transcodeService } from '@shumai/core'
-import { prisma, AssetType, AssetStatus } from '@shumai/db'
-import { setupTestDbHooks } from '@shumai/db/test'
+import { s3Service } from '@zhenyue/core/src/s3/s3'
+import { transcodeService } from '@zhenyue/core'
+import { prisma, AssetType, AssetStatus } from '@zhenyue/db'
+import { setupTestDbHooks } from '@zhenyue/db/test'
 
 vi.mock('fs', async (importOriginal) => {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any -- importOriginal returns the raw fs module, typed dynamically as any here
@@ -29,7 +29,7 @@ vi.mock('fs', async (importOriginal) => {
   }
 })
 
-vi.mock('@shumai/core/src/s3/s3', () => ({
+vi.mock('@zhenyue/core/src/s3/s3', () => ({
   s3Service: {
     getObject: vi.fn(),
     putObject: vi.fn(),
@@ -38,7 +38,7 @@ vi.mock('@shumai/core/src/s3/s3', () => ({
   },
 }))
 
-vi.mock('@shumai/core/src/transcode/transcode', () => ({
+vi.mock('@zhenyue/core/src/transcode/transcode', () => ({
   transcodeService: {
     extractVideoFrames: vi.fn(),
   },
@@ -100,7 +100,7 @@ describe('AI Activities Unit Tests', () => {
     })
 
     expect(res.embedding).toEqual([0.1, 0.2, 0.3])
-    expect(s3Service.getObject).toHaveBeenCalledWith('shumai', 'test.png')
+    expect(s3Service.getObject).toHaveBeenCalledWith('zhenyue', 'test.png')
   })
 
   it('should generate video embedding in chunks', async () => {
@@ -116,7 +116,7 @@ describe('AI Activities Unit Tests', () => {
 
     expect(res.embedding).toEqual([0.1, 0.2, 0.3])
     expect(s3Service.getObject).toHaveBeenCalledWith(
-      'shumai',
+      'zhenyue',
       'files/a1/tmp-embedding-chunks/chunk-0-60.mp4',
     )
   })
@@ -157,7 +157,7 @@ describe('AI Activities Unit Tests', () => {
       })
 
       expect(res).toEqual(['project/ai_metadata/1.webp', 'project/ai_metadata/2.webp'])
-      expect(s3Service.headObject).toHaveBeenCalledWith('shumai', 'project/ai_metadata/1.webp')
+      expect(s3Service.headObject).toHaveBeenCalledWith('zhenyue', 'project/ai_metadata/1.webp')
       expect(transcodeService.extractVideoFrames).not.toHaveBeenCalled()
     })
 
@@ -183,7 +183,7 @@ describe('AI Activities Unit Tests', () => {
         isImage: false,
       })
       expect(s3Service.putObject).toHaveBeenCalledWith(
-        'shumai',
+        'zhenyue',
         'project/ai_metadata/out1.webp',
         expect.any(Buffer),
         expect.any(Number),
@@ -215,7 +215,7 @@ describe('AI Database Activities Integration', () => {
     user = await prisma.user.create({
       data: {
         name: 'AI Agent User',
-        email: 'aiagent@shumai.ai',
+        email: 'aiagent@zhenyue.ai',
         type: 'agent',
       },
     })

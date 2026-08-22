@@ -13,7 +13,7 @@ import {
   Bell,
 } from 'lucide-react'
 import { toast } from 'sonner'
-import type { NotificationSettings as Settings } from '@shumai/dtos'
+import type { NotificationSettings as Settings } from '@zhenyue/dtos'
 import { m } from '@/ui/paraglide/messages.js'
 
 export function NotificationSettings({ teamId }: { teamId: string }) {

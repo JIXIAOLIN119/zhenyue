@@ -1,19 +1,19 @@
 import { Hono } from 'hono'
 import { zValidator } from '@hono/zod-validator'
-import { uploadService } from '@shumai/core/src/upload/upload'
+import { uploadService } from '@zhenyue/core/src/upload/upload'
 import {
   confirmFileUploadRequestSchema,
   createUploadTaskRequestSchema,
   localUploadQuerySchema,
-} from '@shumai/dtos'
-import { paginationParamsSchema, AuditAction } from '@shumai/dtos'
-import { authzService, Permission, ResourceType } from '@shumai/core/src/authz/authz'
-import { notificationService } from '@shumai/core/src/notification/notification'
-import { auditLogService } from '@shumai/core/src/auditLog/auditLog'
-import { assetService } from '@shumai/core/src/asset/asset'
-import { NotificationType } from '@shumai/db'
-import { s3Service, verifyLocalUrlSignature } from '@shumai/core/src/s3/s3'
-import type { Prisma } from '@shumai/db'
+} from '@zhenyue/dtos'
+import { paginationParamsSchema, AuditAction } from '@zhenyue/dtos'
+import { authzService, Permission, ResourceType } from '@zhenyue/core/src/authz/authz'
+import { notificationService } from '@zhenyue/core/src/notification/notification'
+import { auditLogService } from '@zhenyue/core/src/auditLog/auditLog'
+import { assetService } from '@zhenyue/core/src/asset/asset'
+import { NotificationType } from '@zhenyue/db'
+import { s3Service, verifyLocalUrlSignature } from '@zhenyue/core/src/s3/s3'
+import type { Prisma } from '@zhenyue/db'
 
 type User = Prisma.UserGetPayload<Record<string, never>>
 

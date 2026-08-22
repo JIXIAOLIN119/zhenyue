@@ -5,12 +5,12 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 
 /** @typedef {{}} Hide_Left_SidebarInputs */
 
-const en_hide_left_sidebar = /** @type {(inputs: Hide_Left_SidebarInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Hide Left Sidebar`)
-};
-
 const zh_hide_left_sidebar = /** @type {(inputs: Hide_Left_SidebarInputs) => LocalizedString} */ () => {
 	return /** @type {LocalizedString} */ (`隐藏左侧边栏`)
+};
+
+const en_hide_left_sidebar = /** @type {(inputs: Hide_Left_SidebarInputs) => LocalizedString} */ () => {
+	return /** @type {LocalizedString} */ (`Hide Left Sidebar`)
 };
 
 /**
@@ -19,11 +19,11 @@ const zh_hide_left_sidebar = /** @type {(inputs: Hide_Left_SidebarInputs) => Loc
 * | "Hide Left Sidebar" |
 *
 * @param {Hide_Left_SidebarInputs} inputs
-* @param {{ locale?: "en" | "zh" }} options
+* @param {{ locale?: "zh" | "en" }} options
 * @returns {LocalizedString}
 */
-export const hide_left_sidebar = /** @type {((inputs?: Hide_Left_SidebarInputs, options?: { locale?: "en" | "zh" }) => LocalizedString) & import('../runtime.js').MessageMetadata<Hide_Left_SidebarInputs, { locale?: "en" | "zh" }, {}>} */ ((inputs = {}, options = {}) => {
+export const hide_left_sidebar = /** @type {((inputs?: Hide_Left_SidebarInputs, options?: { locale?: "zh" | "en" }) => LocalizedString) & import('../runtime.js').MessageMetadata<Hide_Left_SidebarInputs, { locale?: "zh" | "en" }, {}>} */ ((inputs = {}, options = {}) => {
 	const locale = experimentalStaticLocale ?? options.locale ?? getLocale()
-	if (locale === "en") return en_hide_left_sidebar(inputs)
-	return zh_hide_left_sidebar(inputs)
+	if (locale === "zh") return zh_hide_left_sidebar(inputs)
+	return en_hide_left_sidebar(inputs)
 });

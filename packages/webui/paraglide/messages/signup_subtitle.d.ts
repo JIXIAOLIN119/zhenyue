@@ -4,13 +4,13 @@
 * | "Start building and organizing your space." |
 *
 * @param {Signup_SubtitleInputs} inputs
-* @param {{ locale?: "en" | "zh" }} options
+* @param {{ locale?: "zh" | "en" }} options
 * @returns {LocalizedString}
 */
 export const signup_subtitle: ((inputs?: Signup_SubtitleInputs, options?: {
-    locale?: "en" | "zh";
+    locale?: "zh" | "en";
 }) => LocalizedString) & import("../runtime.js").MessageMetadata<Signup_SubtitleInputs, {
-    locale?: "en" | "zh";
+    locale?: "zh" | "en";
 }, {}>;
 export type LocalizedString = import("../runtime.js").LocalizedString;
 export type Signup_SubtitleInputs = {};

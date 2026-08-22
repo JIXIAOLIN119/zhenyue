@@ -1,4 +1,4 @@
-import { s3Service } from '@shumai/core/src/s3/s3'
+import { s3Service } from '@zhenyue/core/src/s3/s3'
 
 /**
  * Returns the signed avatar URL if the image is an S3 key,
@@ -16,7 +16,7 @@ export async function getAvatarUrl(
     return imageKeyOrUrl
   }
   try {
-    const bucket = process.env.S3_BUCKET || 'shumai'
+    const bucket = process.env.S3_BUCKET || 'zhenyue'
     return await s3Service.presign(bucket, imageKeyOrUrl, 'GET')
   } catch (e) {
     console.error(`Failed to presign avatar URL for key ${imageKeyOrUrl}:`, e)

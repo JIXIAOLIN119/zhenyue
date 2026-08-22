@@ -1,5 +1,5 @@
-import type { WorkflowTask } from '@shumai/db'
-import { executeActivity, getActivities } from '@shumai/workflow-core'
+import type { WorkflowTask } from '@zhenyue/db'
+import { executeActivity, getActivities } from '@zhenyue/workflow-core'
 import { ApplicationFailure } from '@temporalio/workflow'
 import { getWorkerQueueAndStartTask, fetchAssetWithKey, completeTask, failTask } from './common'
 

@@ -5,12 +5,12 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 
 /** @typedef {{}} Project_UpdatedInputs */
 
-const en_project_updated = /** @type {(inputs: Project_UpdatedInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Project updated`)
-};
-
 const zh_project_updated = /** @type {(inputs: Project_UpdatedInputs) => LocalizedString} */ () => {
 	return /** @type {LocalizedString} */ (`项目已更新`)
+};
+
+const en_project_updated = /** @type {(inputs: Project_UpdatedInputs) => LocalizedString} */ () => {
+	return /** @type {LocalizedString} */ (`Project updated`)
 };
 
 /**
@@ -19,11 +19,11 @@ const zh_project_updated = /** @type {(inputs: Project_UpdatedInputs) => Localiz
 * | "Project updated" |
 *
 * @param {Project_UpdatedInputs} inputs
-* @param {{ locale?: "en" | "zh" }} options
+* @param {{ locale?: "zh" | "en" }} options
 * @returns {LocalizedString}
 */
-export const project_updated = /** @type {((inputs?: Project_UpdatedInputs, options?: { locale?: "en" | "zh" }) => LocalizedString) & import('../runtime.js').MessageMetadata<Project_UpdatedInputs, { locale?: "en" | "zh" }, {}>} */ ((inputs = {}, options = {}) => {
+export const project_updated = /** @type {((inputs?: Project_UpdatedInputs, options?: { locale?: "zh" | "en" }) => LocalizedString) & import('../runtime.js').MessageMetadata<Project_UpdatedInputs, { locale?: "zh" | "en" }, {}>} */ ((inputs = {}, options = {}) => {
 	const locale = experimentalStaticLocale ?? options.locale ?? getLocale()
-	if (locale === "en") return en_project_updated(inputs)
-	return zh_project_updated(inputs)
+	if (locale === "zh") return zh_project_updated(inputs)
+	return en_project_updated(inputs)
 });

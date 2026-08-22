@@ -1,9 +1,9 @@
 import { describe, it, expect, beforeAll, afterAll, vi } from 'vitest'
-import { prisma } from '@shumai/db'
-import { setupTestDbHooks } from '@shumai/db/test'
-import { workflowService, TaskQueueAgent } from '@shumai/workflow-core'
-import { initAgentWorkflows } from '@shumai/agent'
-import { s3Service } from '@shumai/core/src/s3/s3'
+import { prisma } from '@zhenyue/db'
+import { setupTestDbHooks } from '@zhenyue/db/test'
+import { workflowService, TaskQueueAgent } from '@zhenyue/workflow-core'
+import { initAgentWorkflows } from '@zhenyue/agent'
+import { s3Service } from '@zhenyue/core/src/s3/s3'
 const mockEmbedContent = vi.fn().mockResolvedValue({
   embeddings: [
     {
@@ -37,7 +37,7 @@ describe.each(['local', 'temporal'] as const)(
     let agentWorkerPromise: Promise<void> | null = null
 
     beforeAll(async () => {
-      process.env.S3_BUCKET = 'shumai-e2e-test-bucket-query'
+      process.env.S3_BUCKET = 'zhenyue-e2e-test-bucket-query'
       process.env.GEMINI_API_KEY = 'dummy-key'
 
       workflowService.setExecutorType(mode)
@@ -65,7 +65,7 @@ describe.each(['local', 'temporal'] as const)(
       vi.restoreAllMocks()
       try {
         console.log('Cleaning up local E2E storage files...')
-        await s3Service.deletePrefix('shumai-e2e-test-bucket-query', '')
+        await s3Service.deletePrefix('zhenyue-e2e-test-bucket-query', '')
       } catch (err) {
         console.error('Failed to clean up E2E storage folder:', err)
       }

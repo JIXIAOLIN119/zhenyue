@@ -1,5 +1,5 @@
 import { z } from 'zod'
-import { UserType, TeamMemberScope } from '@shumai/db/enums'
+import { UserType, TeamMemberScope } from '@zhenyue/db/enums'
 import { paginationPageInfoSchema, paginationParamsSchema } from './pagination'
 
 export { UserType, TeamMemberScope }

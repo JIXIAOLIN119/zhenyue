@@ -5,12 +5,12 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 
 /** @typedef {{}} Agent_Soul_PlaceholderInputs */
 
-const en_agent_soul_placeholder = /** @type {(inputs: Agent_Soul_PlaceholderInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Describe the agent's personality, tone, and behavior...`)
-};
-
 const zh_agent_soul_placeholder = /** @type {(inputs: Agent_Soul_PlaceholderInputs) => LocalizedString} */ () => {
 	return /** @type {LocalizedString} */ (`描述智能体的个性、语调和行为...`)
+};
+
+const en_agent_soul_placeholder = /** @type {(inputs: Agent_Soul_PlaceholderInputs) => LocalizedString} */ () => {
+	return /** @type {LocalizedString} */ (`Describe the agent's personality, tone, and behavior...`)
 };
 
 /**
@@ -19,11 +19,11 @@ const zh_agent_soul_placeholder = /** @type {(inputs: Agent_Soul_PlaceholderInpu
 * | "Describe the agent's personality, tone, and behavior..." |
 *
 * @param {Agent_Soul_PlaceholderInputs} inputs
-* @param {{ locale?: "en" | "zh" }} options
+* @param {{ locale?: "zh" | "en" }} options
 * @returns {LocalizedString}
 */
-export const agent_soul_placeholder = /** @type {((inputs?: Agent_Soul_PlaceholderInputs, options?: { locale?: "en" | "zh" }) => LocalizedString) & import('../runtime.js').MessageMetadata<Agent_Soul_PlaceholderInputs, { locale?: "en" | "zh" }, {}>} */ ((inputs = {}, options = {}) => {
+export const agent_soul_placeholder = /** @type {((inputs?: Agent_Soul_PlaceholderInputs, options?: { locale?: "zh" | "en" }) => LocalizedString) & import('../runtime.js').MessageMetadata<Agent_Soul_PlaceholderInputs, { locale?: "zh" | "en" }, {}>} */ ((inputs = {}, options = {}) => {
 	const locale = experimentalStaticLocale ?? options.locale ?? getLocale()
-	if (locale === "en") return en_agent_soul_placeholder(inputs)
-	return zh_agent_soul_placeholder(inputs)
+	if (locale === "zh") return zh_agent_soul_placeholder(inputs)
+	return en_agent_soul_placeholder(inputs)
 });

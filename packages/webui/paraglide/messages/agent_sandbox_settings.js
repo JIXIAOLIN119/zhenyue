@@ -5,12 +5,12 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 
 /** @typedef {{}} Agent_Sandbox_SettingsInputs */
 
-const en_agent_sandbox_settings = /** @type {(inputs: Agent_Sandbox_SettingsInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Agent Sandbox Settings`)
-};
-
 const zh_agent_sandbox_settings = /** @type {(inputs: Agent_Sandbox_SettingsInputs) => LocalizedString} */ () => {
 	return /** @type {LocalizedString} */ (`智能体沙箱设置`)
+};
+
+const en_agent_sandbox_settings = /** @type {(inputs: Agent_Sandbox_SettingsInputs) => LocalizedString} */ () => {
+	return /** @type {LocalizedString} */ (`Agent Sandbox Settings`)
 };
 
 /**
@@ -19,11 +19,11 @@ const zh_agent_sandbox_settings = /** @type {(inputs: Agent_Sandbox_SettingsInpu
 * | "Agent Sandbox Settings" |
 *
 * @param {Agent_Sandbox_SettingsInputs} inputs
-* @param {{ locale?: "en" | "zh" }} options
+* @param {{ locale?: "zh" | "en" }} options
 * @returns {LocalizedString}
 */
-export const agent_sandbox_settings = /** @type {((inputs?: Agent_Sandbox_SettingsInputs, options?: { locale?: "en" | "zh" }) => LocalizedString) & import('../runtime.js').MessageMetadata<Agent_Sandbox_SettingsInputs, { locale?: "en" | "zh" }, {}>} */ ((inputs = {}, options = {}) => {
+export const agent_sandbox_settings = /** @type {((inputs?: Agent_Sandbox_SettingsInputs, options?: { locale?: "zh" | "en" }) => LocalizedString) & import('../runtime.js').MessageMetadata<Agent_Sandbox_SettingsInputs, { locale?: "zh" | "en" }, {}>} */ ((inputs = {}, options = {}) => {
 	const locale = experimentalStaticLocale ?? options.locale ?? getLocale()
-	if (locale === "en") return en_agent_sandbox_settings(inputs)
-	return zh_agent_sandbox_settings(inputs)
+	if (locale === "zh") return zh_agent_sandbox_settings(inputs)
+	return en_agent_sandbox_settings(inputs)
 });

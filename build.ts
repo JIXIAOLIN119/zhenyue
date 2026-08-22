@@ -37,7 +37,7 @@ await Bun.build({
     'pdfkit',
   ],
   // compile: {
-  //   outfile: 'Shumai',
+  //   outfile: 'ZhenYue',
   //   autoloadBunfig: true,
   //   autoloadDotenv: true,
   //   autoloadTsconfig: true,

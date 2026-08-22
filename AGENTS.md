@@ -122,9 +122,9 @@ The project is a monorepo managed by **Bun Workspaces**. It follows a strictly d
 - **Database (`packages/db`)**: Prisma client, schema, and migrations.
 - **DTOs (`packages/dtos`)**: Shared type definitions and Zod schemas used by both API and WebUI.
 - **Workers**: Specialized packages for background task execution:
-  - `@shumai/workflow-core`: Common workflow engine logic.
-  - `@shumai/agent`: AI agent workflows and activities.
-  - `@shumai/transcode`: Media processing workflows and activities.
+  - `@zhenyue/workflow-core`: Common workflow engine logic.
+  - `@zhenyue/agent`: AI agent workflows and activities.
+  - `@zhenyue/transcode`: Media processing workflows and activities.
 
 ### Layered Communication Rules
 
@@ -151,8 +151,8 @@ We use a root-level `tsconfig.json` to manage path mappings for the entire works
 1.  **Path Mappings**: All workspace packages MUST have an entry in the `paths` object in the root `tsconfig.json`.
     ```json
     "paths": {
-      "@shumai/core": ["packages/core/src/index.ts"],
-      "@shumai/core/src/*": ["packages/core/src/*"]
+      "@zhenyue/core": ["packages/core/src/index.ts"],
+      "@zhenyue/core/src/*": ["packages/core/src/*"]
     }
     ```
 2.  **Package tsconfig**: Each package should have its own `tsconfig.json` that extends the root configuration and defines its specific `include`/`exclude` rules.
@@ -170,7 +170,7 @@ We use a root-level `tsconfig.json` to manage path mappings for the entire works
   ```
 - **Usage**: Import and use the exported instance.
   ```typescript
-  import { myService } from '@shumai/core/src/services/myService'
+  import { myService } from '@zhenyue/core/src/services/myService'
   await myService.doSomething()
   ```
 
@@ -226,13 +226,13 @@ We use **Vitest** for testing (via `bun run test`). **Do not use `bun test`** as
 
 - Located in `packages/core/src/**/*.test.ts`.
 - For comprehensive testing against a real database instance, we use `Testcontainers` alongside a `PrismaTestingHelper` which wraps each test within an automatic PostgreSQL transaction rollback boundary.
-- All service tests must use `setupTestDbHooks()` from `@shumai/db` to initialize the database boundaries for each test suite inside the `describe` block. This automatically registers `beforeEach` and `afterEach` hooks to manage transaction state.
-- Import `prisma` from `@shumai/db` directly to interact with the database in tests. The testing helper automatically proxies it.
+- All service tests must use `setupTestDbHooks()` from `@zhenyue/db` to initialize the database boundaries for each test suite inside the `describe` block. This automatically registers `beforeEach` and `afterEach` hooks to manage transaction state.
+- Import `prisma` from `@zhenyue/db` directly to interact with the database in tests. The testing helper automatically proxies it.
 
 ```typescript
 import { describe, it, expect } from 'vitest'
-import { prisma, setupTestDbHooks } from '@shumai/db'
-import { teamService } from '@shumai/core/src/team/team'
+import { prisma, setupTestDbHooks } from '@zhenyue/db'
+import { teamService } from '@zhenyue/core/src/team/team'
 
 describe('TeamService', () => {
   setupTestDbHooks()
@@ -253,12 +253,12 @@ The `bunfig.toml` is configured to run `setup-tests.ts` automatically as a prelo
 ### API Tests
 
 - Located in `packages/api/src/**/*.test.ts`.
-- Mock the Service layer using `vi.spyOn(service, 'method')` or `vi.mock('@shumai/core/src/team/team')`.
+- Mock the Service layer using `vi.spyOn(service, 'method')` or `vi.mock('@zhenyue/core/src/team/team')`.
 - Verify that the API calls the Service methods correctly.
 
 ```typescript
 import { describe, it, expect, vi } from 'vitest'
-import { teamService } from '@shumai/core/src/team/team'
+import { teamService } from '@zhenyue/core/src/team/team'
 import app from './team'
 
 describe('Team API', () => {
@@ -362,12 +362,12 @@ We use a custom workflow engine that supports both **Local** (polling-based) and
 
 ### Architecture
 
-1.  **Workflows**: Orchestrate multiple activities. They must be deterministic and compatible with Temporal's V8 isolate. Defined in worker packages (e.g., `@shumai/agent/src/workflows`, `@shumai/transcode/src/workflows`).
-2.  **Activities**: Perform the actual work (DB updates, API calls, media processing). Grouped by domain in worker packages (e.g., `@shumai/agent/src/activities`, `@shumai/transcode/src/activities`).
+1.  **Workflows**: Orchestrate multiple activities. They must be deterministic and compatible with Temporal's V8 isolate. Defined in worker packages (e.g., `@zhenyue/agent/src/workflows`, `@zhenyue/transcode/src/workflows`).
+2.  **Activities**: Perform the actual work (DB updates, API calls, media processing). Grouped by domain in worker packages (e.g., `@zhenyue/agent/src/activities`, `@zhenyue/transcode/src/activities`).
 3.  **Executors**:
-    - `LocalExecutor` (in `@shumai/workflow-core`): Polls the database for `pending` tasks and executes them directly.
-    - `TemporalExecutor` (in `@shumai/workflow-core`): Submits tasks to a Temporal cluster.
-4.  **Automatic Submission**: New `WorkflowTask` records are automatically submitted to the `WorkflowService` via a Prisma Client Extension defined in `@shumai/db`.
+    - `LocalExecutor` (in `@zhenyue/workflow-core`): Polls the database for `pending` tasks and executes them directly.
+    - `TemporalExecutor` (in `@zhenyue/workflow-core`): Submits tasks to a Temporal cluster.
+4.  **Automatic Submission**: New `WorkflowTask` records are automatically submitted to the `WorkflowService` via a Prisma Client Extension defined in `@zhenyue/db`.
 
 ### Dynamic Registration
 
@@ -403,7 +403,7 @@ To prevent Temporal from indefinitely retrying fatal, expected business validati
     await activityB({ ... })
   }
   ```
-- **Environment Compatibility**: Always use `getActivities()` from `@shumai/workflow-core` to ensure the code works in both Local and Temporal environments.
+- **Environment Compatibility**: Always use `getActivities()` from `@zhenyue/workflow-core` to ensure the code works in both Local and Temporal environments.
 - **Activity Access**: Activities should be accessed via `getActivities()` within a workflow. Do not call services directly inside a workflow function to maintain Temporal compatibility.
 - **Queue Redirection**: Production Temporal workers use worker-specific unique queues for data locality (e.g., local disk access) and consistent state.
   - Every workflow MUST first call `getAgentWorkerQueueActivity` or `getTranscodeWorkerQueueActivity` via the shared domain queue (e.g., `TaskQueueAgent` or `TaskQueueTranscode`) to obtain the specific queue name for that worker instance.
@@ -416,7 +416,7 @@ To prevent Temporal from indefinitely retrying fatal, expected business validati
 
 ## Import conventions
 
-- When importing across workspace packages, always use absolute workspace imports (e.g. `import { prisma } from '@shumai/db'`, `import { teamService } from '@shumai/core/src/team/team'`).
+- When importing across workspace packages, always use absolute workspace imports (e.g. `import { prisma } from '@zhenyue/db'`, `import { teamService } from '@zhenyue/core/src/team/team'`).
 - **DTO Naming**: Do not append the `Dto` suffix to types or interfaces (e.g. use `JoinRequest` instead of `JoinRequestDto`).
 
 ## Radix UI / Shadcn UI Patterns
@@ -428,7 +428,7 @@ To prevent Temporal from indefinitely retrying fatal, expected business validati
 
 We use **pino** for logging. Always use **structured logging** to ensure logs are easily searchable and machine-readable.
 
-- **Import**: `import { logger } from '@shumai/core/src/logger'`
+- **Import**: `import { logger } from '@zhenyue/core/src/logger'`
 - **Usage**: Pass an object as the first argument containing the metadata, and a string as the second argument for the descriptive message.
   ```typescript
   logger.info({ userId: user.id, projectId }, 'Project deleted successfully')

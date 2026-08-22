@@ -4,17 +4,17 @@
 
 import { auth } from '@modelcontextprotocol/client'
 import type { AgentTool, AgentToolResult } from '@earendil-works/pi-agent-core'
-import { prisma, type TeamMemberRole } from '@shumai/db'
-import '@shumai/db/src/prisma-json-types'
+import { prisma, type TeamMemberRole } from '@zhenyue/db'
+import '@zhenyue/db/src/prisma-json-types'
 import type {
   CreateMcpServerRequest,
   McpAuthStatus,
   McpServerInfo,
   UpdateMcpServerRequest,
-} from '@shumai/dtos'
-import { logger } from '@shumai/core/src/logger'
-import { resolveEffectiveRole } from '@shumai/core/src/authz/authz'
-import { quotaService } from '@shumai/core/src/quota/quota-service'
+} from '@zhenyue/dtos'
+import { logger } from '@zhenyue/core/src/logger'
+import { resolveEffectiveRole } from '@zhenyue/core/src/authz/authz'
+import { quotaService } from '@zhenyue/core/src/quota/quota-service'
 import { mcpDbStore, type PendingAuth } from './mcp-db-store'
 import { buildDirectTools, isDirectTool } from './mcp-direct-tools'
 import { McpOauthProvider, type McpOauthConfig } from './mcp-oauth-provider'

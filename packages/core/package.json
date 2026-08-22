@@ -1,5 +1,5 @@
 {
-  "name": "@shumai/core",
+  "name": "@zhenyue/core",
   "version": "0.3.9",
   "private": true,
   "type": "module",
@@ -9,8 +9,8 @@
     "@earendil-works/pi-agent-core": "0.82.1",
     "@earendil-works/pi-ai": "0.82.1",
     "@modelcontextprotocol/client": "2.0.0",
-    "@shumai/db": "workspace:*",
-    "@shumai/dtos": "workspace:*",
+    "@zhenyue/db": "workspace:*",
+    "@zhenyue/dtos": "workspace:*",
     "@sinclair/typebox": "0.34.49",
     "adm-zip": "0.5.17",
     "better-auth": "1.6.11",

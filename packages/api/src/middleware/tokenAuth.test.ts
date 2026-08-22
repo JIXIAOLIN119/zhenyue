@@ -1,10 +1,10 @@
 import { describe, expect, it, vi, beforeEach } from 'vitest'
 import { Hono } from 'hono'
 import { tokenAuthMiddleware } from './tokenAuth'
-import { apiTokenService } from '@shumai/core/src/user/api-token'
-import type { Prisma } from '@shumai/db'
+import { apiTokenService } from '@zhenyue/core/src/user/api-token'
+import type { Prisma } from '@zhenyue/db'
 
-vi.mock('@shumai/core/src/user/api-token', () => ({
+vi.mock('@zhenyue/core/src/user/api-token', () => ({
   apiTokenService: {
     validateToken: vi.fn(),
   },

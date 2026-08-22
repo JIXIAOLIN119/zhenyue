@@ -5,12 +5,12 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 
 /** @typedef {{}} Thinking_LowInputs */
 
-const en_thinking_low = /** @type {(inputs: Thinking_LowInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Low`)
-};
-
 const zh_thinking_low = /** @type {(inputs: Thinking_LowInputs) => LocalizedString} */ () => {
 	return /** @type {LocalizedString} */ (`低`)
+};
+
+const en_thinking_low = /** @type {(inputs: Thinking_LowInputs) => LocalizedString} */ () => {
+	return /** @type {LocalizedString} */ (`Low`)
 };
 
 /**
@@ -19,11 +19,11 @@ const zh_thinking_low = /** @type {(inputs: Thinking_LowInputs) => LocalizedStri
 * | "Low" |
 *
 * @param {Thinking_LowInputs} inputs
-* @param {{ locale?: "en" | "zh" }} options
+* @param {{ locale?: "zh" | "en" }} options
 * @returns {LocalizedString}
 */
-export const thinking_low = /** @type {((inputs?: Thinking_LowInputs, options?: { locale?: "en" | "zh" }) => LocalizedString) & import('../runtime.js').MessageMetadata<Thinking_LowInputs, { locale?: "en" | "zh" }, {}>} */ ((inputs = {}, options = {}) => {
+export const thinking_low = /** @type {((inputs?: Thinking_LowInputs, options?: { locale?: "zh" | "en" }) => LocalizedString) & import('../runtime.js').MessageMetadata<Thinking_LowInputs, { locale?: "zh" | "en" }, {}>} */ ((inputs = {}, options = {}) => {
 	const locale = experimentalStaticLocale ?? options.locale ?? getLocale()
-	if (locale === "en") return en_thinking_low(inputs)
-	return zh_thinking_low(inputs)
+	if (locale === "zh") return zh_thinking_low(inputs)
+	return en_thinking_low(inputs)
 });

@@ -5,12 +5,12 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 
 /** @typedef {{}} Add_New_SkillInputs */
 
-const en_add_new_skill = /** @type {(inputs: Add_New_SkillInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Add New Skill`)
-};
-
 const zh_add_new_skill = /** @type {(inputs: Add_New_SkillInputs) => LocalizedString} */ () => {
 	return /** @type {LocalizedString} */ (`添加新技能`)
+};
+
+const en_add_new_skill = /** @type {(inputs: Add_New_SkillInputs) => LocalizedString} */ () => {
+	return /** @type {LocalizedString} */ (`Add New Skill`)
 };
 
 /**
@@ -19,11 +19,11 @@ const zh_add_new_skill = /** @type {(inputs: Add_New_SkillInputs) => LocalizedSt
 * | "Add New Skill" |
 *
 * @param {Add_New_SkillInputs} inputs
-* @param {{ locale?: "en" | "zh" }} options
+* @param {{ locale?: "zh" | "en" }} options
 * @returns {LocalizedString}
 */
-export const add_new_skill = /** @type {((inputs?: Add_New_SkillInputs, options?: { locale?: "en" | "zh" }) => LocalizedString) & import('../runtime.js').MessageMetadata<Add_New_SkillInputs, { locale?: "en" | "zh" }, {}>} */ ((inputs = {}, options = {}) => {
+export const add_new_skill = /** @type {((inputs?: Add_New_SkillInputs, options?: { locale?: "zh" | "en" }) => LocalizedString) & import('../runtime.js').MessageMetadata<Add_New_SkillInputs, { locale?: "zh" | "en" }, {}>} */ ((inputs = {}, options = {}) => {
 	const locale = experimentalStaticLocale ?? options.locale ?? getLocale()
-	if (locale === "en") return en_add_new_skill(inputs)
-	return zh_add_new_skill(inputs)
+	if (locale === "zh") return zh_add_new_skill(inputs)
+	return en_add_new_skill(inputs)
 });

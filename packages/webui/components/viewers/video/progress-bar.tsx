@@ -1,5 +1,5 @@
 import { cn } from '@/ui/lib/utils'
-import type { MediaMetadata } from '@shumai/dtos'
+import type { MediaMetadata } from '@zhenyue/dtos'
 import React, { useCallback, useEffect, useRef, useState } from 'react'
 
 const formatTime = (seconds: number): string => {

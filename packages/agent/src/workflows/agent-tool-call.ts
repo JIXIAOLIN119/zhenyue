@@ -1,6 +1,6 @@
 import { ApplicationFailure } from '@temporalio/workflow'
-import type { WorkflowTask } from '@shumai/db'
-import { getActivities, executeActivity, TaskQueueAgent } from '@shumai/workflow-core'
+import type { WorkflowTask } from '@zhenyue/db'
+import { getActivities, executeActivity, TaskQueueAgent } from '@zhenyue/workflow-core'
 
 export async function agentToolCall(task: WorkflowTask): Promise<void> {
   const { updateTaskStatusActivity, executeAgentToolActivity, getAgentWorkerQueueActivity } =

@@ -5,12 +5,12 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 
 /** @typedef {{}} Toggle_AnnotationInputs */
 
-const en_toggle_annotation = /** @type {(inputs: Toggle_AnnotationInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Toggle Annotation`)
-};
-
 const zh_toggle_annotation = /** @type {(inputs: Toggle_AnnotationInputs) => LocalizedString} */ () => {
 	return /** @type {LocalizedString} */ (`切换标注`)
+};
+
+const en_toggle_annotation = /** @type {(inputs: Toggle_AnnotationInputs) => LocalizedString} */ () => {
+	return /** @type {LocalizedString} */ (`Toggle Annotation`)
 };
 
 /**
@@ -19,11 +19,11 @@ const zh_toggle_annotation = /** @type {(inputs: Toggle_AnnotationInputs) => Loc
 * | "Toggle Annotation" |
 *
 * @param {Toggle_AnnotationInputs} inputs
-* @param {{ locale?: "en" | "zh" }} options
+* @param {{ locale?: "zh" | "en" }} options
 * @returns {LocalizedString}
 */
-export const toggle_annotation = /** @type {((inputs?: Toggle_AnnotationInputs, options?: { locale?: "en" | "zh" }) => LocalizedString) & import('../runtime.js').MessageMetadata<Toggle_AnnotationInputs, { locale?: "en" | "zh" }, {}>} */ ((inputs = {}, options = {}) => {
+export const toggle_annotation = /** @type {((inputs?: Toggle_AnnotationInputs, options?: { locale?: "zh" | "en" }) => LocalizedString) & import('../runtime.js').MessageMetadata<Toggle_AnnotationInputs, { locale?: "zh" | "en" }, {}>} */ ((inputs = {}, options = {}) => {
 	const locale = experimentalStaticLocale ?? options.locale ?? getLocale()
-	if (locale === "en") return en_toggle_annotation(inputs)
-	return zh_toggle_annotation(inputs)
+	if (locale === "zh") return zh_toggle_annotation(inputs)
+	return en_toggle_annotation(inputs)
 });

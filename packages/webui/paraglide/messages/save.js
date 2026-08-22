@@ -5,12 +5,12 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 
 /** @typedef {{}} SaveInputs */
 
-const en_save = /** @type {(inputs: SaveInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Save`)
-};
-
 const zh_save = /** @type {(inputs: SaveInputs) => LocalizedString} */ () => {
 	return /** @type {LocalizedString} */ (`保存`)
+};
+
+const en_save = /** @type {(inputs: SaveInputs) => LocalizedString} */ () => {
+	return /** @type {LocalizedString} */ (`Save`)
 };
 
 /**
@@ -19,11 +19,11 @@ const zh_save = /** @type {(inputs: SaveInputs) => LocalizedString} */ () => {
 * | "Save" |
 *
 * @param {SaveInputs} inputs
-* @param {{ locale?: "en" | "zh" }} options
+* @param {{ locale?: "zh" | "en" }} options
 * @returns {LocalizedString}
 */
-export const save = /** @type {((inputs?: SaveInputs, options?: { locale?: "en" | "zh" }) => LocalizedString) & import('../runtime.js').MessageMetadata<SaveInputs, { locale?: "en" | "zh" }, {}>} */ ((inputs = {}, options = {}) => {
+export const save = /** @type {((inputs?: SaveInputs, options?: { locale?: "zh" | "en" }) => LocalizedString) & import('../runtime.js').MessageMetadata<SaveInputs, { locale?: "zh" | "en" }, {}>} */ ((inputs = {}, options = {}) => {
 	const locale = experimentalStaticLocale ?? options.locale ?? getLocale()
-	if (locale === "en") return en_save(inputs)
-	return zh_save(inputs)
+	if (locale === "zh") return zh_save(inputs)
+	return en_save(inputs)
 });

@@ -1,10 +1,10 @@
 import { Hono } from 'hono'
 import { zValidator } from '@hono/zod-validator'
 import { streamSSE } from 'hono/streaming'
-import { chatService } from '@shumai/core/src/chat/chat'
-import { authzService, Permission, ResourceType } from '@shumai/core/src/authz/authz'
-import { chatRequestSchema, paginationParamsSchema } from '@shumai/dtos'
-import type { Prisma } from '@shumai/db'
+import { chatService } from '@zhenyue/core/src/chat/chat'
+import { authzService, Permission, ResourceType } from '@zhenyue/core/src/authz/authz'
+import { chatRequestSchema, paginationParamsSchema } from '@zhenyue/dtos'
+import type { Prisma } from '@zhenyue/db'
 
 type User = Prisma.UserGetPayload<Record<string, never>>
 

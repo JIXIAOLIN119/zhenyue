@@ -5,12 +5,12 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 
 /** @typedef {{}} Autofill_Source_Creation_ContextInputs */
 
-const en_autofill_source_creation_context = /** @type {(inputs: Autofill_Source_Creation_ContextInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Creation Context`)
-};
-
 const zh_autofill_source_creation_context = /** @type {(inputs: Autofill_Source_Creation_ContextInputs) => LocalizedString} */ () => {
 	return /** @type {LocalizedString} */ (`创建上下文`)
+};
+
+const en_autofill_source_creation_context = /** @type {(inputs: Autofill_Source_Creation_ContextInputs) => LocalizedString} */ () => {
+	return /** @type {LocalizedString} */ (`Creation Context`)
 };
 
 /**
@@ -19,11 +19,11 @@ const zh_autofill_source_creation_context = /** @type {(inputs: Autofill_Source_
 * | "Creation Context" |
 *
 * @param {Autofill_Source_Creation_ContextInputs} inputs
-* @param {{ locale?: "en" | "zh" }} options
+* @param {{ locale?: "zh" | "en" }} options
 * @returns {LocalizedString}
 */
-export const autofill_source_creation_context = /** @type {((inputs?: Autofill_Source_Creation_ContextInputs, options?: { locale?: "en" | "zh" }) => LocalizedString) & import('../runtime.js').MessageMetadata<Autofill_Source_Creation_ContextInputs, { locale?: "en" | "zh" }, {}>} */ ((inputs = {}, options = {}) => {
+export const autofill_source_creation_context = /** @type {((inputs?: Autofill_Source_Creation_ContextInputs, options?: { locale?: "zh" | "en" }) => LocalizedString) & import('../runtime.js').MessageMetadata<Autofill_Source_Creation_ContextInputs, { locale?: "zh" | "en" }, {}>} */ ((inputs = {}, options = {}) => {
 	const locale = experimentalStaticLocale ?? options.locale ?? getLocale()
-	if (locale === "en") return en_autofill_source_creation_context(inputs)
-	return zh_autofill_source_creation_context(inputs)
+	if (locale === "zh") return zh_autofill_source_creation_context(inputs)
+	return en_autofill_source_creation_context(inputs)
 });

@@ -5,12 +5,12 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 
 /** @typedef {{}} Upload_FolderInputs */
 
-const en_upload_folder = /** @type {(inputs: Upload_FolderInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Upload Folder`)
-};
-
 const zh_upload_folder = /** @type {(inputs: Upload_FolderInputs) => LocalizedString} */ () => {
 	return /** @type {LocalizedString} */ (`上传文件夹`)
+};
+
+const en_upload_folder = /** @type {(inputs: Upload_FolderInputs) => LocalizedString} */ () => {
+	return /** @type {LocalizedString} */ (`Upload Folder`)
 };
 
 /**
@@ -19,11 +19,11 @@ const zh_upload_folder = /** @type {(inputs: Upload_FolderInputs) => LocalizedSt
 * | "Upload Folder" |
 *
 * @param {Upload_FolderInputs} inputs
-* @param {{ locale?: "en" | "zh" }} options
+* @param {{ locale?: "zh" | "en" }} options
 * @returns {LocalizedString}
 */
-export const upload_folder = /** @type {((inputs?: Upload_FolderInputs, options?: { locale?: "en" | "zh" }) => LocalizedString) & import('../runtime.js').MessageMetadata<Upload_FolderInputs, { locale?: "en" | "zh" }, {}>} */ ((inputs = {}, options = {}) => {
+export const upload_folder = /** @type {((inputs?: Upload_FolderInputs, options?: { locale?: "zh" | "en" }) => LocalizedString) & import('../runtime.js').MessageMetadata<Upload_FolderInputs, { locale?: "zh" | "en" }, {}>} */ ((inputs = {}, options = {}) => {
 	const locale = experimentalStaticLocale ?? options.locale ?? getLocale()
-	if (locale === "en") return en_upload_folder(inputs)
-	return zh_upload_folder(inputs)
+	if (locale === "zh") return zh_upload_folder(inputs)
+	return en_upload_folder(inputs)
 });

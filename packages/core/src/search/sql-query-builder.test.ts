@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest'
 import { SqlQueryBuilder } from './sql-query-builder'
-import { Prisma } from '@shumai/db'
+import { Prisma } from '@zhenyue/db'
 
 describe('SqlQueryBuilder', () => {
   it('correctly constructs a basic SQL query', () => {

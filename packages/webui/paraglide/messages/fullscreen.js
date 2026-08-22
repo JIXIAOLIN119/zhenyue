@@ -5,12 +5,12 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 
 /** @typedef {{}} FullscreenInputs */
 
-const en_fullscreen = /** @type {(inputs: FullscreenInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Fullscreen`)
-};
-
 const zh_fullscreen = /** @type {(inputs: FullscreenInputs) => LocalizedString} */ () => {
 	return /** @type {LocalizedString} */ (`全屏`)
+};
+
+const en_fullscreen = /** @type {(inputs: FullscreenInputs) => LocalizedString} */ () => {
+	return /** @type {LocalizedString} */ (`Fullscreen`)
 };
 
 /**
@@ -19,11 +19,11 @@ const zh_fullscreen = /** @type {(inputs: FullscreenInputs) => LocalizedString} 
 * | "Fullscreen" |
 *
 * @param {FullscreenInputs} inputs
-* @param {{ locale?: "en" | "zh" }} options
+* @param {{ locale?: "zh" | "en" }} options
 * @returns {LocalizedString}
 */
-export const fullscreen = /** @type {((inputs?: FullscreenInputs, options?: { locale?: "en" | "zh" }) => LocalizedString) & import('../runtime.js').MessageMetadata<FullscreenInputs, { locale?: "en" | "zh" }, {}>} */ ((inputs = {}, options = {}) => {
+export const fullscreen = /** @type {((inputs?: FullscreenInputs, options?: { locale?: "zh" | "en" }) => LocalizedString) & import('../runtime.js').MessageMetadata<FullscreenInputs, { locale?: "zh" | "en" }, {}>} */ ((inputs = {}, options = {}) => {
 	const locale = experimentalStaticLocale ?? options.locale ?? getLocale()
-	if (locale === "en") return en_fullscreen(inputs)
-	return zh_fullscreen(inputs)
+	if (locale === "zh") return zh_fullscreen(inputs)
+	return en_fullscreen(inputs)
 });
