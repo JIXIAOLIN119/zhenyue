@@ -1,0 +1,44 @@
+diff --git a/lib/workflow/threaded-vm.js b/lib/workflow/threaded-vm.js
+index 079d2956715456daee42a938994868fda905c6e6..4486f300c8c54a59426c4b08f9ca1e10ece17298 100644
+--- a/lib/workflow/threaded-vm.js
++++ b/lib/workflow/threaded-vm.js
+@@ -118,7 +118,7 @@ class WorkerThreadClient {
+         this.shutDownRequested = true;
+         await this.send({ type: 'destroy' });
+         const exitCode = await (bun_1.isBun ? this.terminateWithBunWorkaround() : this.workerThread.terminate());
+-        if (exitCode !== null && exitCode !== exports.TERMINATED_EXIT_CODE) {
++        if (exitCode !== null && exitCode !== exports.TERMINATED_EXIT_CODE && !(bun_1.isBun && exitCode === 1)) {
+             throw new errors_1.UnexpectedError(`Failed to terminate Worker thread, exit code: ${exitCode}`);
+         }
+     }
+@@ -132,6 +132,8 @@ class WorkerThreadClient {
+         let result = null;
+         while (!this.workerExited) {
+             result = await Promise.race([terminatePromise, (0, promises_1.setTimeout)(pollIntervalMs, null)]);
++            // Let Bun deliver the pending exit event after termination resolves.
++            if (result !== null) break;
+         }
+         return result;
+     }
+diff --git a/src/workflow/threaded-vm.ts b/src/workflow/threaded-vm.ts
+index 091c58dcbc206bec4b80a3b4ce46963390b65a7b..d04cddd990bd95385f1c406b92743f412b90c889 100644
+--- a/src/workflow/threaded-vm.ts
++++ b/src/workflow/threaded-vm.ts
+@@ -141,7 +141,7 @@ export class WorkerThreadClient {
+     await this.send({ type: 'destroy' });
+ 
+     const exitCode = await (isBun ? this.terminateWithBunWorkaround() : this.workerThread.terminate());
+-    if (exitCode !== null && exitCode !== TERMINATED_EXIT_CODE) {
++    if (exitCode !== null && exitCode !== TERMINATED_EXIT_CODE && !(isBun && exitCode === 1)) {
+       throw new UnexpectedError(`Failed to terminate Worker thread, exit code: ${exitCode}`);
+     }
+   }
+@@ -158,6 +158,8 @@ export class WorkerThreadClient {
+     let result = null;
+     while (!this.workerExited) {
+       result = await Promise.race([terminatePromise, setTimeout(pollIntervalMs, null)]);
++      // A resolved termination promise must not starve the pending exit event on Bun.
++      if (result !== null) break;
+     }
+ 
+     return result;

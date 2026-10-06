@@ -1,4 +1,4 @@
-import type { NotificationInfo } from '@shumai/dtos'
+import type { NotificationInfo } from '@zhenyue/dtos'
 import { formatTimeAgo } from '@/ui/lib/time'
 import { cn } from '@/ui/lib/utils'
 import { SpriteScrubber } from './sprite-scrubber'

@@ -1,7 +1,7 @@
 import { describe, it, expect } from 'vitest'
-import { prisma } from '@shumai/db'
-import { setupTestDbHooks } from '@shumai/db/test'
-import { AssetType } from '@shumai/db'
+import { prisma } from '@zhenyue/db'
+import { setupTestDbHooks } from '@zhenyue/db/test'
+import { AssetType } from '@zhenyue/db'
 import { dedupeSymlinksToTarget } from './symlink'
 
 async function setupShareFolder(projectId: string, fileCount: number) {

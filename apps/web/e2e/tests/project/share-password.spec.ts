@@ -1,3 +1,4 @@
+import { E2E_STORAGE_STATE } from '../../helpers/auth'
 import { expect, test } from '../../fixtures'
 import { apiAddAssetsToShare, apiCreateShare, fileCard } from '../../helpers/files'
 
@@ -30,7 +31,7 @@ test('owner protects a share with a password and guests must enter it to view', 
   expect(saved?.password).toBe('secret123')
 
   // A guest visiting the public link hits the password gate
-  const guestContext = await browser.newContext()
+  const guestContext = await browser.newContext({ storageState: E2E_STORAGE_STATE })
   const guestPage = await guestContext.newPage()
   try {
     await guestPage.goto(`/share/${share.id}`)

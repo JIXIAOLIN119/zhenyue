@@ -1,5 +1,5 @@
 import { createLazyFileRoute } from '@tanstack/react-router'
-import { VideoTranscodeStrategy, UpdateTeamSettingsRequest } from '@shumai/dtos'
+import { VideoTranscodeStrategy, UpdateTeamSettingsRequest } from '@zhenyue/dtos'
 import { client } from '@/ui/api/client'
 import { AgentsSettings } from '@/ui/components/settings/AgentsSettings'
 import { ProvidersSettings } from '@/ui/components/settings/ProvidersSettings'

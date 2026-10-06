@@ -5,12 +5,12 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 
 /** @typedef {{}} One_WeekInputs */
 
-const en_one_week = /** @type {(inputs: One_WeekInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`1 Week`)
-};
-
 const zh_one_week = /** @type {(inputs: One_WeekInputs) => LocalizedString} */ () => {
 	return /** @type {LocalizedString} */ (`1 周`)
+};
+
+const en_one_week = /** @type {(inputs: One_WeekInputs) => LocalizedString} */ () => {
+	return /** @type {LocalizedString} */ (`1 Week`)
 };
 
 /**
@@ -19,11 +19,11 @@ const zh_one_week = /** @type {(inputs: One_WeekInputs) => LocalizedString} */ (
 * | "1 Week" |
 *
 * @param {One_WeekInputs} inputs
-* @param {{ locale?: "en" | "zh" }} options
+* @param {{ locale?: "zh" | "en" }} options
 * @returns {LocalizedString}
 */
-export const one_week = /** @type {((inputs?: One_WeekInputs, options?: { locale?: "en" | "zh" }) => LocalizedString) & import('../runtime.js').MessageMetadata<One_WeekInputs, { locale?: "en" | "zh" }, {}>} */ ((inputs = {}, options = {}) => {
+export const one_week = /** @type {((inputs?: One_WeekInputs, options?: { locale?: "zh" | "en" }) => LocalizedString) & import('../runtime.js').MessageMetadata<One_WeekInputs, { locale?: "zh" | "en" }, {}>} */ ((inputs = {}, options = {}) => {
 	const locale = experimentalStaticLocale ?? options.locale ?? getLocale()
-	if (locale === "en") return en_one_week(inputs)
-	return zh_one_week(inputs)
+	if (locale === "zh") return zh_one_week(inputs)
+	return en_one_week(inputs)
 });

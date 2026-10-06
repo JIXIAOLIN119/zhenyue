@@ -1,10 +1,10 @@
 import { describe, it, expect, beforeAll, afterAll, vi } from 'vitest'
-import { prisma, WorkflowTaskStatus } from '@shumai/db'
-import { setupTestDbHooks } from '@shumai/db/test'
-import { workflowService, TaskQueueAgent, TaskQueueTranscode } from '@shumai/workflow-core'
-import { initAgentWorkflows } from '@shumai/agent'
-import { initTranscodeWorkflows } from '@shumai/transcode'
-import { s3Service } from '@shumai/core/src/s3/s3'
+import { prisma, WorkflowTaskStatus } from '@zhenyue/db'
+import { setupTestDbHooks } from '@zhenyue/db/test'
+import { workflowService, TaskQueueAgent, TaskQueueTranscode } from '@zhenyue/workflow-core'
+import { initAgentWorkflows } from '@zhenyue/agent'
+import { initTranscodeWorkflows } from '@zhenyue/transcode'
+import { s3Service } from '@zhenyue/core/src/s3/s3'
 import { fileURLToPath } from 'url'
 import * as path from 'path'
 import * as fs from 'fs'
@@ -43,7 +43,7 @@ describe.each(['local', 'temporal'] as const)(
 
     beforeAll(async () => {
       // Set bucket environment
-      process.env.S3_BUCKET = 'shumai-e2e-test-bucket-embedding'
+      process.env.S3_BUCKET = 'zhenyue-e2e-test-bucket-embedding'
       process.env.GEMINI_API_KEY = 'dummy-key'
 
       // Configure the workflow service executor dynamically
@@ -85,7 +85,7 @@ describe.each(['local', 'temporal'] as const)(
       // Clean up E2E files in local filesystem storage
       try {
         console.log('Cleaning up local E2E storage files...')
-        await s3Service.deletePrefix('shumai-e2e-test-bucket-embedding', '')
+        await s3Service.deletePrefix('zhenyue-e2e-test-bucket-embedding', '')
       } catch (err) {
         console.error('Failed to clean up E2E storage folder:', err)
       }
@@ -104,7 +104,7 @@ describe.each(['local', 'temporal'] as const)(
       const agentUser = await prisma.user.create({
         data: {
           name: 'E2E Image Embedding Agent User',
-          email: 'e2e-img-emb-agent@shumai.ai',
+          email: 'e2e-img-emb-agent@zhenyue.ai',
           type: 'agent',
         },
       })
@@ -176,7 +176,7 @@ describe.each(['local', 'temporal'] as const)(
       const pngPath = path.join(fixturesDir, 'small.png')
       const pngBuffer = fs.readFileSync(pngPath)
       await s3Service.putObject(
-        'shumai-e2e-test-bucket-embedding',
+        'zhenyue-e2e-test-bucket-embedding',
         'projects/e2e/test-image.png',
         pngBuffer,
         pngBuffer.length,
@@ -240,7 +240,7 @@ describe.each(['local', 'temporal'] as const)(
       const agentUser = await prisma.user.create({
         data: {
           name: 'E2E Video Embedding Agent User',
-          email: 'e2e-vid-emb-agent@shumai.ai',
+          email: 'e2e-vid-emb-agent@zhenyue.ai',
           type: 'agent',
         },
       })
@@ -313,7 +313,7 @@ describe.each(['local', 'temporal'] as const)(
       const mp4Path = path.join(fixturesDir, 'small.mp4')
       const mp4Buffer = fs.readFileSync(mp4Path)
       await s3Service.putObject(
-        'shumai-e2e-test-bucket-embedding',
+        'zhenyue-e2e-test-bucket-embedding',
         'projects/e2e/test-video.mp4',
         mp4Buffer,
         mp4Buffer.length,
@@ -369,7 +369,7 @@ describe.each(['local', 'temporal'] as const)(
       const agentUser = await prisma.user.create({
         data: {
           name: 'E2E Audio Embedding Agent User',
-          email: 'e2e-aud-emb-agent@shumai.ai',
+          email: 'e2e-aud-emb-agent@zhenyue.ai',
           type: 'agent',
         },
       })
@@ -441,7 +441,7 @@ describe.each(['local', 'temporal'] as const)(
       const wavPath = path.join(fixturesDir, 'small.wav')
       const wavBuffer = fs.readFileSync(wavPath)
       await s3Service.putObject(
-        'shumai-e2e-test-bucket-embedding',
+        'zhenyue-e2e-test-bucket-embedding',
         'projects/e2e/test-audio.wav',
         wavBuffer,
         wavBuffer.length,

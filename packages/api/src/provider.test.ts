@@ -1,10 +1,10 @@
 import { describe, expect, it, vi, beforeEach } from 'vitest'
 import { Hono, type Context, type Next } from 'hono'
 import providerRoute from './provider'
-import { providerService } from '@shumai/core/src/provider/provider'
-import { authzService, Permission, ResourceType } from '@shumai/core/src/authz/authz'
+import { providerService } from '@zhenyue/core/src/provider/provider'
+import { authzService, Permission, ResourceType } from '@zhenyue/core/src/authz/authz'
 
-import { auditLogService } from '@shumai/core/src/auditLog/auditLog'
+import { auditLogService } from '@zhenyue/core/src/auditLog/auditLog'
 
 vi.mock('./middleware/auth', () => ({
   authMiddleware: async (
@@ -16,9 +16,9 @@ vi.mock('./middleware/auth', () => ({
   },
 }))
 
-vi.mock('@shumai/core/src/authz/authz')
-vi.mock('@shumai/core/src/provider/provider')
-vi.mock('@shumai/core/src/auditLog/auditLog', () => ({
+vi.mock('@zhenyue/core/src/authz/authz')
+vi.mock('@zhenyue/core/src/provider/provider')
+vi.mock('@zhenyue/core/src/auditLog/auditLog', () => ({
   auditLogService: {
     logAction: vi.fn().mockResolvedValue({}),
   },

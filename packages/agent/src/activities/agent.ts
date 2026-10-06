@@ -4,23 +4,23 @@ import {
   type SessionTreeEntry,
 } from '@earendil-works/pi-agent-core'
 import { type ImageContent } from '@earendil-works/pi-ai'
-import { assetService } from '@shumai/core/src/asset/asset'
+import { assetService } from '@zhenyue/core/src/asset/asset'
 import {
   authzService,
   Permission,
   ResourceType,
   resolveEffectiveRole,
-} from '@shumai/core/src/authz/authz'
-import { logger } from '@shumai/core/src/logger'
-import { mcpService } from '@shumai/core/src/mcp/mcp-service'
-import { metadataService } from '@shumai/core/src/metadata/metadata'
-import { encodeCursor, paginateQuery } from '@shumai/core/src/pagination'
-import { s3Service } from '@shumai/core/src/s3/s3'
-import { uploadService } from '@shumai/core/src/upload/upload'
-import { VersionStackService } from '@shumai/core/src/versionStack/versionStack'
-import { getAgentRequiredLevel, getRoleLevel } from '@shumai/core/src/agent/permissions'
-import { AssetType, prisma, Prisma, type Skill } from '@shumai/db'
-import { registerLocalCancelHandler, unregisterLocalCancelHandler } from '@shumai/workflow-core'
+} from '@zhenyue/core/src/authz/authz'
+import { logger } from '@zhenyue/core/src/logger'
+import { mcpService } from '@zhenyue/core/src/mcp/mcp-service'
+import { metadataService } from '@zhenyue/core/src/metadata/metadata'
+import { encodeCursor, paginateQuery } from '@zhenyue/core/src/pagination'
+import { s3Service } from '@zhenyue/core/src/s3/s3'
+import { uploadService } from '@zhenyue/core/src/upload/upload'
+import { VersionStackService } from '@zhenyue/core/src/versionStack/versionStack'
+import { getAgentRequiredLevel, getRoleLevel } from '@zhenyue/core/src/agent/permissions'
+import { AssetType, prisma, Prisma, type Skill } from '@zhenyue/db'
+import { registerLocalCancelHandler, unregisterLocalCancelHandler } from '@zhenyue/workflow-core'
 import { ApplicationFailure, Context } from '@temporalio/activity'
 import { generateKeyBetween } from 'jittered-fractional-indexing'
 import { ulid } from 'ulid'
@@ -32,9 +32,9 @@ import {
   type DbProviderInfo,
 } from '../index'
 
-import { aiUsageService } from '@shumai/core/src/ai-usage/ai-usage'
-import { quotaService, QuotaExceededError } from '@shumai/core/src/quota/quota-service'
-import { UpdateAssetMetadataRequest } from '@shumai/dtos'
+import { aiUsageService } from '@zhenyue/core/src/ai-usage/ai-usage'
+import { quotaService, QuotaExceededError } from '@zhenyue/core/src/quota/quota-service'
+import { UpdateAssetMetadataRequest } from '@zhenyue/dtos'
 
 export interface Usage {
   inputTokens: number
@@ -118,10 +118,10 @@ async function executeAgentPrompt(params: {
   const providerName = agent.provider.name
   const modelId = agent.modelRef.modelId
 
-  let systemPrompt = `You are the AI assistant for shumai.
-shumai is a professional creative collaboration platform similar to frame.io, where users can upload creative files, manage projects, assign tasks, get precise feedback, and share their work. As the agent, your role is to help users use and manage this platform.
+  let systemPrompt = `You are the AI assistant for zhenyue.
+zhenyue is a professional creative collaboration platform similar to frame.io, where users can upload creative files, manage projects, assign tasks, get precise feedback, and share their work. As the agent, your role is to help users use and manage this platform.
 
-shumai has its own cloud file system. If a user asks you to perform file system operations (for example: creating a folder, creating a file, stacking a version, or listing assets), you MUST use the corresponding agent system tools (e.g., 'create_folder', 'create_file', 'create_version', 'list_assets'). Before calling 'create_folder', first check if the folder exists using 'list_assets'. Do NOT use local bash commands or the local bash tool to perform these operations locally on the host environment; all operations must be executed through the platform's cloud file system tools so they are correctly registered and visible within the platform.
+zhenyue has its own cloud file system. If a user asks you to perform file system operations (for example: creating a folder, creating a file, stacking a version, or listing assets), you MUST use the corresponding agent system tools (e.g., 'create_folder', 'create_file', 'create_version', 'list_assets'). Before calling 'create_folder', first check if the folder exists using 'list_assets'. Do NOT use local bash commands or the local bash tool to perform these operations locally on the host environment; all operations must be executed through the platform's cloud file system tools so they are correctly registered and visible within the platform.
 
 If you need to create files in the local filesystem (for example, a temporary file for uploading), only the '.pi' folder in the current directory has write permissions. Do NOT attempt to create files in any other directories.
 
@@ -223,7 +223,7 @@ When creating a file or version, you may attach metadata (for example, the AI mo
   if (params.images && params.images.length > 0) {
     for (const key of params.images) {
       const { buffer, contentType } = await s3Service.getObject(
-        process.env.S3_BUCKET || 'shumai',
+        process.env.S3_BUCKET || 'zhenyue',
         key,
       )
       imagesToPass.push({
@@ -628,7 +628,7 @@ export async function initializeAgentSessionActivity(params: {
       data: {
         id: agentId,
         name: 'Ai Agent',
-        email: `${agentId}@shumai.ai`,
+        email: `${agentId}@zhenyue.ai`,
         type: 'agent',
       },
     })
@@ -914,7 +914,7 @@ export async function createCommentActivity(params: {
         data: {
           id: agentId,
           name: 'Ai Agent',
-          email: `${agentId}@shumai.ai`,
+          email: `${agentId}@zhenyue.ai`,
           type: 'agent',
         },
       })

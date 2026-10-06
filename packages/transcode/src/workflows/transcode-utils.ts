@@ -1,4 +1,4 @@
-import '@shumai/db/src/prisma-json-types'
+import '@zhenyue/db/src/prisma-json-types'
 
 export function isMimePsd(mimeType: string): boolean {
   switch (mimeType) {

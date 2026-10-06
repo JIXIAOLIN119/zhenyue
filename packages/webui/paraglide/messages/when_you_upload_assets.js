@@ -5,12 +5,12 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 
 /** @typedef {{}} When_You_Upload_AssetsInputs */
 
-const en_when_you_upload_assets = /** @type {(inputs: When_You_Upload_AssetsInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`When you upload assets`)
-};
-
 const zh_when_you_upload_assets = /** @type {(inputs: When_You_Upload_AssetsInputs) => LocalizedString} */ () => {
 	return /** @type {LocalizedString} */ (`当你上传素材时`)
+};
+
+const en_when_you_upload_assets = /** @type {(inputs: When_You_Upload_AssetsInputs) => LocalizedString} */ () => {
+	return /** @type {LocalizedString} */ (`When you upload assets`)
 };
 
 /**
@@ -19,11 +19,11 @@ const zh_when_you_upload_assets = /** @type {(inputs: When_You_Upload_AssetsInpu
 * | "When you upload assets" |
 *
 * @param {When_You_Upload_AssetsInputs} inputs
-* @param {{ locale?: "en" | "zh" }} options
+* @param {{ locale?: "zh" | "en" }} options
 * @returns {LocalizedString}
 */
-export const when_you_upload_assets = /** @type {((inputs?: When_You_Upload_AssetsInputs, options?: { locale?: "en" | "zh" }) => LocalizedString) & import('../runtime.js').MessageMetadata<When_You_Upload_AssetsInputs, { locale?: "en" | "zh" }, {}>} */ ((inputs = {}, options = {}) => {
+export const when_you_upload_assets = /** @type {((inputs?: When_You_Upload_AssetsInputs, options?: { locale?: "zh" | "en" }) => LocalizedString) & import('../runtime.js').MessageMetadata<When_You_Upload_AssetsInputs, { locale?: "zh" | "en" }, {}>} */ ((inputs = {}, options = {}) => {
 	const locale = experimentalStaticLocale ?? options.locale ?? getLocale()
-	if (locale === "en") return en_when_you_upload_assets(inputs)
-	return zh_when_you_upload_assets(inputs)
+	if (locale === "zh") return zh_when_you_upload_assets(inputs)
+	return en_when_you_upload_assets(inputs)
 });

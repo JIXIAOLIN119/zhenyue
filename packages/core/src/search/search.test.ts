@@ -1,13 +1,13 @@
 import { describe, expect, it, beforeEach, vi } from 'vitest'
-import { prisma } from '@shumai/db'
-import { setupTestDbHooks } from '@shumai/db/test'
+import { prisma } from '@zhenyue/db'
+import { setupTestDbHooks } from '@zhenyue/db/test'
 import { SearchService } from './search'
-import { SearchConditionOperator } from '@shumai/dtos'
-import { metadataService } from '@shumai/core/src/metadata/metadata'
-import { workflowService } from '@shumai/workflow-core'
+import { SearchConditionOperator } from '@zhenyue/dtos'
+import { metadataService } from '@zhenyue/core/src/metadata/metadata'
+import { workflowService } from '@zhenyue/workflow-core'
 
-import { AssetType } from '@shumai/db'
-import { assetService } from '@shumai/core/src/asset/asset'
+import { AssetType } from '@zhenyue/db'
+import { assetService } from '@zhenyue/core/src/asset/asset'
 
 describe('SearchService', () => {
   setupTestDbHooks()

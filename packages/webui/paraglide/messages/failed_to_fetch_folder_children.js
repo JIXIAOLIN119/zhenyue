@@ -5,12 +5,12 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 
 /** @typedef {{}} Failed_To_Fetch_Folder_ChildrenInputs */
 
-const en_failed_to_fetch_folder_children = /** @type {(inputs: Failed_To_Fetch_Folder_ChildrenInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Failed to fetch folder children`)
-};
-
 const zh_failed_to_fetch_folder_children = /** @type {(inputs: Failed_To_Fetch_Folder_ChildrenInputs) => LocalizedString} */ () => {
 	return /** @type {LocalizedString} */ (`获取子文件夹失败`)
+};
+
+const en_failed_to_fetch_folder_children = /** @type {(inputs: Failed_To_Fetch_Folder_ChildrenInputs) => LocalizedString} */ () => {
+	return /** @type {LocalizedString} */ (`Failed to fetch folder children`)
 };
 
 /**
@@ -19,11 +19,11 @@ const zh_failed_to_fetch_folder_children = /** @type {(inputs: Failed_To_Fetch_F
 * | "Failed to fetch folder children" |
 *
 * @param {Failed_To_Fetch_Folder_ChildrenInputs} inputs
-* @param {{ locale?: "en" | "zh" }} options
+* @param {{ locale?: "zh" | "en" }} options
 * @returns {LocalizedString}
 */
-export const failed_to_fetch_folder_children = /** @type {((inputs?: Failed_To_Fetch_Folder_ChildrenInputs, options?: { locale?: "en" | "zh" }) => LocalizedString) & import('../runtime.js').MessageMetadata<Failed_To_Fetch_Folder_ChildrenInputs, { locale?: "en" | "zh" }, {}>} */ ((inputs = {}, options = {}) => {
+export const failed_to_fetch_folder_children = /** @type {((inputs?: Failed_To_Fetch_Folder_ChildrenInputs, options?: { locale?: "zh" | "en" }) => LocalizedString) & import('../runtime.js').MessageMetadata<Failed_To_Fetch_Folder_ChildrenInputs, { locale?: "zh" | "en" }, {}>} */ ((inputs = {}, options = {}) => {
 	const locale = experimentalStaticLocale ?? options.locale ?? getLocale()
-	if (locale === "en") return en_failed_to_fetch_folder_children(inputs)
-	return zh_failed_to_fetch_folder_children(inputs)
+	if (locale === "zh") return zh_failed_to_fetch_folder_children(inputs)
+	return en_failed_to_fetch_folder_children(inputs)
 });

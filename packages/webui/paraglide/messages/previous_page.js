@@ -5,12 +5,12 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 
 /** @typedef {{}} Previous_PageInputs */
 
-const en_previous_page = /** @type {(inputs: Previous_PageInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Previous Page`)
-};
-
 const zh_previous_page = /** @type {(inputs: Previous_PageInputs) => LocalizedString} */ () => {
 	return /** @type {LocalizedString} */ (`上一页`)
+};
+
+const en_previous_page = /** @type {(inputs: Previous_PageInputs) => LocalizedString} */ () => {
+	return /** @type {LocalizedString} */ (`Previous Page`)
 };
 
 /**
@@ -19,11 +19,11 @@ const zh_previous_page = /** @type {(inputs: Previous_PageInputs) => LocalizedSt
 * | "Previous Page" |
 *
 * @param {Previous_PageInputs} inputs
-* @param {{ locale?: "en" | "zh" }} options
+* @param {{ locale?: "zh" | "en" }} options
 * @returns {LocalizedString}
 */
-export const previous_page = /** @type {((inputs?: Previous_PageInputs, options?: { locale?: "en" | "zh" }) => LocalizedString) & import('../runtime.js').MessageMetadata<Previous_PageInputs, { locale?: "en" | "zh" }, {}>} */ ((inputs = {}, options = {}) => {
+export const previous_page = /** @type {((inputs?: Previous_PageInputs, options?: { locale?: "zh" | "en" }) => LocalizedString) & import('../runtime.js').MessageMetadata<Previous_PageInputs, { locale?: "zh" | "en" }, {}>} */ ((inputs = {}, options = {}) => {
 	const locale = experimentalStaticLocale ?? options.locale ?? getLocale()
-	if (locale === "en") return en_previous_page(inputs)
-	return zh_previous_page(inputs)
+	if (locale === "zh") return zh_previous_page(inputs)
+	return en_previous_page(inputs)
 });

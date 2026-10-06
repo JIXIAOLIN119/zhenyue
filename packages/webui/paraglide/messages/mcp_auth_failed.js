@@ -5,12 +5,12 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 
 /** @typedef {{}} Mcp_Auth_FailedInputs */
 
-const en_mcp_auth_failed = /** @type {(inputs: Mcp_Auth_FailedInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Failed to authenticate MCP server`)
-};
-
 const zh_mcp_auth_failed = /** @type {(inputs: Mcp_Auth_FailedInputs) => LocalizedString} */ () => {
 	return /** @type {LocalizedString} */ (`MCP 服务身份验证失败`)
+};
+
+const en_mcp_auth_failed = /** @type {(inputs: Mcp_Auth_FailedInputs) => LocalizedString} */ () => {
+	return /** @type {LocalizedString} */ (`Failed to authenticate MCP server`)
 };
 
 /**
@@ -19,11 +19,11 @@ const zh_mcp_auth_failed = /** @type {(inputs: Mcp_Auth_FailedInputs) => Localiz
 * | "Failed to authenticate MCP server" |
 *
 * @param {Mcp_Auth_FailedInputs} inputs
-* @param {{ locale?: "en" | "zh" }} options
+* @param {{ locale?: "zh" | "en" }} options
 * @returns {LocalizedString}
 */
-export const mcp_auth_failed = /** @type {((inputs?: Mcp_Auth_FailedInputs, options?: { locale?: "en" | "zh" }) => LocalizedString) & import('../runtime.js').MessageMetadata<Mcp_Auth_FailedInputs, { locale?: "en" | "zh" }, {}>} */ ((inputs = {}, options = {}) => {
+export const mcp_auth_failed = /** @type {((inputs?: Mcp_Auth_FailedInputs, options?: { locale?: "zh" | "en" }) => LocalizedString) & import('../runtime.js').MessageMetadata<Mcp_Auth_FailedInputs, { locale?: "zh" | "en" }, {}>} */ ((inputs = {}, options = {}) => {
 	const locale = experimentalStaticLocale ?? options.locale ?? getLocale()
-	if (locale === "en") return en_mcp_auth_failed(inputs)
-	return zh_mcp_auth_failed(inputs)
+	if (locale === "zh") return zh_mcp_auth_failed(inputs)
+	return en_mcp_auth_failed(inputs)
 });

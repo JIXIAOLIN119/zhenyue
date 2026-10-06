@@ -5,12 +5,12 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 
 /** @typedef {{}} No_Providers_ConfiguredInputs */
 
-const en_no_providers_configured = /** @type {(inputs: No_Providers_ConfiguredInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`No Providers Configured`)
-};
-
 const zh_no_providers_configured = /** @type {(inputs: No_Providers_ConfiguredInputs) => LocalizedString} */ () => {
 	return /** @type {LocalizedString} */ (`暂无已配置的提供商`)
+};
+
+const en_no_providers_configured = /** @type {(inputs: No_Providers_ConfiguredInputs) => LocalizedString} */ () => {
+	return /** @type {LocalizedString} */ (`No Providers Configured`)
 };
 
 /**
@@ -19,11 +19,11 @@ const zh_no_providers_configured = /** @type {(inputs: No_Providers_ConfiguredIn
 * | "No Providers Configured" |
 *
 * @param {No_Providers_ConfiguredInputs} inputs
-* @param {{ locale?: "en" | "zh" }} options
+* @param {{ locale?: "zh" | "en" }} options
 * @returns {LocalizedString}
 */
-export const no_providers_configured = /** @type {((inputs?: No_Providers_ConfiguredInputs, options?: { locale?: "en" | "zh" }) => LocalizedString) & import('../runtime.js').MessageMetadata<No_Providers_ConfiguredInputs, { locale?: "en" | "zh" }, {}>} */ ((inputs = {}, options = {}) => {
+export const no_providers_configured = /** @type {((inputs?: No_Providers_ConfiguredInputs, options?: { locale?: "zh" | "en" }) => LocalizedString) & import('../runtime.js').MessageMetadata<No_Providers_ConfiguredInputs, { locale?: "zh" | "en" }, {}>} */ ((inputs = {}, options = {}) => {
 	const locale = experimentalStaticLocale ?? options.locale ?? getLocale()
-	if (locale === "en") return en_no_providers_configured(inputs)
-	return zh_no_providers_configured(inputs)
+	if (locale === "zh") return zh_no_providers_configured(inputs)
+	return en_no_providers_configured(inputs)
 });

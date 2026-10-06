@@ -5,12 +5,12 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 
 /** @typedef {{}} Field_Updated_AtInputs */
 
-const en_field_updated_at = /** @type {(inputs: Field_Updated_AtInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Updated At`)
-};
-
 const zh_field_updated_at = /** @type {(inputs: Field_Updated_AtInputs) => LocalizedString} */ () => {
 	return /** @type {LocalizedString} */ (`更新时间`)
+};
+
+const en_field_updated_at = /** @type {(inputs: Field_Updated_AtInputs) => LocalizedString} */ () => {
+	return /** @type {LocalizedString} */ (`Updated At`)
 };
 
 /**
@@ -19,11 +19,11 @@ const zh_field_updated_at = /** @type {(inputs: Field_Updated_AtInputs) => Local
 * | "Updated At" |
 *
 * @param {Field_Updated_AtInputs} inputs
-* @param {{ locale?: "en" | "zh" }} options
+* @param {{ locale?: "zh" | "en" }} options
 * @returns {LocalizedString}
 */
-export const field_updated_at = /** @type {((inputs?: Field_Updated_AtInputs, options?: { locale?: "en" | "zh" }) => LocalizedString) & import('../runtime.js').MessageMetadata<Field_Updated_AtInputs, { locale?: "en" | "zh" }, {}>} */ ((inputs = {}, options = {}) => {
+export const field_updated_at = /** @type {((inputs?: Field_Updated_AtInputs, options?: { locale?: "zh" | "en" }) => LocalizedString) & import('../runtime.js').MessageMetadata<Field_Updated_AtInputs, { locale?: "zh" | "en" }, {}>} */ ((inputs = {}, options = {}) => {
 	const locale = experimentalStaticLocale ?? options.locale ?? getLocale()
-	if (locale === "en") return en_field_updated_at(inputs)
-	return zh_field_updated_at(inputs)
+	if (locale === "zh") return zh_field_updated_at(inputs)
+	return en_field_updated_at(inputs)
 });

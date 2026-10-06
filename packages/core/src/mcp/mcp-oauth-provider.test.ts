@@ -1,6 +1,6 @@
 import { describe, it, expect, beforeAll } from 'vitest'
-import { prisma } from '@shumai/db'
-import { setupTestDbHooks } from '@shumai/db/test'
+import { prisma } from '@zhenyue/db'
+import { setupTestDbHooks } from '@zhenyue/db/test'
 import { McpDbStore } from './mcp-db-store'
 import { McpOauthProvider } from './mcp-oauth-provider'
 
@@ -23,7 +23,7 @@ describe('McpOauthProvider SEP-2352 issuer stamping', () => {
     new McpOauthProvider(
       serverId,
       SERVER_URL,
-      { redirectUri: 'https://shumai.ai/api/mcp/oauth/callback' },
+      { redirectUri: 'https://zhenyue.ai/api/mcp/oauth/callback' },
       { onRedirect: async () => {} },
       store,
     )

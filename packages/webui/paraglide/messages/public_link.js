@@ -5,12 +5,12 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 
 /** @typedef {{}} Public_LinkInputs */
 
-const en_public_link = /** @type {(inputs: Public_LinkInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Public Link`)
-};
-
 const zh_public_link = /** @type {(inputs: Public_LinkInputs) => LocalizedString} */ () => {
 	return /** @type {LocalizedString} */ (`公开链接`)
+};
+
+const en_public_link = /** @type {(inputs: Public_LinkInputs) => LocalizedString} */ () => {
+	return /** @type {LocalizedString} */ (`Public Link`)
 };
 
 /**
@@ -19,11 +19,11 @@ const zh_public_link = /** @type {(inputs: Public_LinkInputs) => LocalizedString
 * | "Public Link" |
 *
 * @param {Public_LinkInputs} inputs
-* @param {{ locale?: "en" | "zh" }} options
+* @param {{ locale?: "zh" | "en" }} options
 * @returns {LocalizedString}
 */
-export const public_link = /** @type {((inputs?: Public_LinkInputs, options?: { locale?: "en" | "zh" }) => LocalizedString) & import('../runtime.js').MessageMetadata<Public_LinkInputs, { locale?: "en" | "zh" }, {}>} */ ((inputs = {}, options = {}) => {
+export const public_link = /** @type {((inputs?: Public_LinkInputs, options?: { locale?: "zh" | "en" }) => LocalizedString) & import('../runtime.js').MessageMetadata<Public_LinkInputs, { locale?: "zh" | "en" }, {}>} */ ((inputs = {}, options = {}) => {
 	const locale = experimentalStaticLocale ?? options.locale ?? getLocale()
-	if (locale === "en") return en_public_link(inputs)
-	return zh_public_link(inputs)
+	if (locale === "zh") return zh_public_link(inputs)
+	return en_public_link(inputs)
 });

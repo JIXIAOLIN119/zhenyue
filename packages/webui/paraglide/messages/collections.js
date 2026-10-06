@@ -5,12 +5,12 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 
 /** @typedef {{}} CollectionsInputs */
 
-const en_collections = /** @type {(inputs: CollectionsInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Collections`)
-};
-
 const zh_collections = /** @type {(inputs: CollectionsInputs) => LocalizedString} */ () => {
 	return /** @type {LocalizedString} */ (`媒体合集`)
+};
+
+const en_collections = /** @type {(inputs: CollectionsInputs) => LocalizedString} */ () => {
+	return /** @type {LocalizedString} */ (`Collections`)
 };
 
 /**
@@ -19,11 +19,11 @@ const zh_collections = /** @type {(inputs: CollectionsInputs) => LocalizedString
 * | "Collections" |
 *
 * @param {CollectionsInputs} inputs
-* @param {{ locale?: "en" | "zh" }} options
+* @param {{ locale?: "zh" | "en" }} options
 * @returns {LocalizedString}
 */
-export const collections = /** @type {((inputs?: CollectionsInputs, options?: { locale?: "en" | "zh" }) => LocalizedString) & import('../runtime.js').MessageMetadata<CollectionsInputs, { locale?: "en" | "zh" }, {}>} */ ((inputs = {}, options = {}) => {
+export const collections = /** @type {((inputs?: CollectionsInputs, options?: { locale?: "zh" | "en" }) => LocalizedString) & import('../runtime.js').MessageMetadata<CollectionsInputs, { locale?: "zh" | "en" }, {}>} */ ((inputs = {}, options = {}) => {
 	const locale = experimentalStaticLocale ?? options.locale ?? getLocale()
-	if (locale === "en") return en_collections(inputs)
-	return zh_collections(inputs)
+	if (locale === "zh") return zh_collections(inputs)
+	return en_collections(inputs)
 });

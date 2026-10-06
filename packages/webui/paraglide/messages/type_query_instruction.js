@@ -5,12 +5,12 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 
 /** @typedef {{}} Type_Query_InstructionInputs */
 
-const en_type_query_instruction = /** @type {(inputs: Type_Query_InstructionInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Type your query above and click the Search button to display results.`)
-};
-
 const zh_type_query_instruction = /** @type {(inputs: Type_Query_InstructionInputs) => LocalizedString} */ () => {
 	return /** @type {LocalizedString} */ (`在上方输入查询内容并点击搜索按钮以显示结果。`)
+};
+
+const en_type_query_instruction = /** @type {(inputs: Type_Query_InstructionInputs) => LocalizedString} */ () => {
+	return /** @type {LocalizedString} */ (`Type your query above and click the Search button to display results.`)
 };
 
 /**
@@ -19,11 +19,11 @@ const zh_type_query_instruction = /** @type {(inputs: Type_Query_InstructionInpu
 * | "Type your query above and click the Search button to display results." |
 *
 * @param {Type_Query_InstructionInputs} inputs
-* @param {{ locale?: "en" | "zh" }} options
+* @param {{ locale?: "zh" | "en" }} options
 * @returns {LocalizedString}
 */
-export const type_query_instruction = /** @type {((inputs?: Type_Query_InstructionInputs, options?: { locale?: "en" | "zh" }) => LocalizedString) & import('../runtime.js').MessageMetadata<Type_Query_InstructionInputs, { locale?: "en" | "zh" }, {}>} */ ((inputs = {}, options = {}) => {
+export const type_query_instruction = /** @type {((inputs?: Type_Query_InstructionInputs, options?: { locale?: "zh" | "en" }) => LocalizedString) & import('../runtime.js').MessageMetadata<Type_Query_InstructionInputs, { locale?: "zh" | "en" }, {}>} */ ((inputs = {}, options = {}) => {
 	const locale = experimentalStaticLocale ?? options.locale ?? getLocale()
-	if (locale === "en") return en_type_query_instruction(inputs)
-	return zh_type_query_instruction(inputs)
+	if (locale === "zh") return zh_type_query_instruction(inputs)
+	return en_type_query_instruction(inputs)
 });

@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { useQuery, useQueries } from '@tanstack/react-query'
-import type { Timeframe } from '@shumai/dtos'
+import type { Timeframe } from '@zhenyue/dtos'
 import { client } from '@/ui/api/client'
 import { m } from '@/ui/paraglide/messages.js'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/ui/components/ui/card'

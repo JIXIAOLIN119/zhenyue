@@ -5,12 +5,12 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 
 /** @typedef {{}} Move_HereInputs */
 
-const en_move_here = /** @type {(inputs: Move_HereInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Move Here`)
-};
-
 const zh_move_here = /** @type {(inputs: Move_HereInputs) => LocalizedString} */ () => {
 	return /** @type {LocalizedString} */ (`移动到此处`)
+};
+
+const en_move_here = /** @type {(inputs: Move_HereInputs) => LocalizedString} */ () => {
+	return /** @type {LocalizedString} */ (`Move Here`)
 };
 
 /**
@@ -19,11 +19,11 @@ const zh_move_here = /** @type {(inputs: Move_HereInputs) => LocalizedString} */
 * | "Move Here" |
 *
 * @param {Move_HereInputs} inputs
-* @param {{ locale?: "en" | "zh" }} options
+* @param {{ locale?: "zh" | "en" }} options
 * @returns {LocalizedString}
 */
-export const move_here = /** @type {((inputs?: Move_HereInputs, options?: { locale?: "en" | "zh" }) => LocalizedString) & import('../runtime.js').MessageMetadata<Move_HereInputs, { locale?: "en" | "zh" }, {}>} */ ((inputs = {}, options = {}) => {
+export const move_here = /** @type {((inputs?: Move_HereInputs, options?: { locale?: "zh" | "en" }) => LocalizedString) & import('../runtime.js').MessageMetadata<Move_HereInputs, { locale?: "zh" | "en" }, {}>} */ ((inputs = {}, options = {}) => {
 	const locale = experimentalStaticLocale ?? options.locale ?? getLocale()
-	if (locale === "en") return en_move_here(inputs)
-	return zh_move_here(inputs)
+	if (locale === "zh") return zh_move_here(inputs)
+	return en_move_here(inputs)
 });

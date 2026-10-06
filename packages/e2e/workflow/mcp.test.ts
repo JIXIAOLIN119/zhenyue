@@ -1,15 +1,15 @@
 import { describe, it, expect, beforeAll, afterAll, vi } from 'vitest'
-import { prisma } from '@shumai/db'
-import { setupTestDbHooks } from '@shumai/db/test'
-import { workflowService, TaskQueueAgent } from '@shumai/workflow-core'
-import { initAgentWorkflows } from '@shumai/agent'
-import { s3Service } from '@shumai/core/src/s3/s3'
-import { mcpService } from '@shumai/core/src/mcp/mcp-service'
+import { prisma } from '@zhenyue/db'
+import { setupTestDbHooks } from '@zhenyue/db/test'
+import { workflowService, TaskQueueAgent } from '@zhenyue/workflow-core'
+import { initAgentWorkflows } from '@zhenyue/agent'
+import { s3Service } from '@zhenyue/core/src/s3/s3'
+import { mcpService } from '@zhenyue/core/src/mcp/mcp-service'
 import {
   startTestMcpServer,
   standardTestTools,
   type RunningTestMcpServer,
-} from '@shumai/core/src/mcp/mcp-test-server'
+} from '@zhenyue/core/src/mcp/mcp-test-server'
 import { AgentHarness } from '@earendil-works/pi-agent-core'
 import { fileURLToPath } from 'url'
 import * as path from 'path'
@@ -24,7 +24,7 @@ describe.each(['local', 'temporal'] as const)('Workflow E2E - MCP tools (executo
   let mcpTestServer: RunningTestMcpServer
 
   beforeAll(async () => {
-    process.env.S3_BUCKET = 'shumai-e2e-test-bucket-mcp'
+    process.env.S3_BUCKET = 'zhenyue-e2e-test-bucket-mcp'
     process.env.GEMINI_API_KEY = 'dummy-key'
 
     // Real in-process MCP server — only AI calls are mocked. It self-reports
@@ -98,7 +98,7 @@ describe.each(['local', 'temporal'] as const)('Workflow E2E - MCP tools (executo
     await mcpTestServer.stop()
     try {
       console.log('Cleaning up local E2E storage files...')
-      await s3Service.deletePrefix('shumai-e2e-test-bucket-mcp', '')
+      await s3Service.deletePrefix('zhenyue-e2e-test-bucket-mcp', '')
     } catch (err) {
       console.error('Failed to clean up E2E storage folder:', err)
     }
@@ -116,7 +116,7 @@ describe.each(['local', 'temporal'] as const)('Workflow E2E - MCP tools (executo
     const agentUser = await prisma.user.create({
       data: {
         name: 'MCP E2E Agent',
-        email: `mcp-e2e-${mode}@shumai.ai`,
+        email: `mcp-e2e-${mode}@zhenyue.ai`,
         type: 'agent',
       },
     })

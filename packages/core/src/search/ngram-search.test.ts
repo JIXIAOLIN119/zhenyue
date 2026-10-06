@@ -1,8 +1,8 @@
 import { describe, expect, it, beforeEach } from 'vitest'
-import { prisma } from '@shumai/db'
-import { setupTestDbHooks } from '@shumai/db/test'
+import { prisma } from '@zhenyue/db'
+import { setupTestDbHooks } from '@zhenyue/db/test'
 import { SearchService } from './search'
-import { AssetType } from '@shumai/db'
+import { AssetType } from '@zhenyue/db'
 
 describe('N-gram Search Integration', () => {
   setupTestDbHooks()

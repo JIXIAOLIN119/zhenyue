@@ -1,12 +1,12 @@
 # Frame-Accurate Video Player & Comment System: Technical Design Document
 
-This document outlines the technical design, mathematical formulas, synchronization loops, and database schemes that guarantee **100% frame-accurate playback, scrubbing, stepping, and comment navigation** in Shumai.
+This document outlines the technical design, mathematical formulas, synchronization loops, and database schemes that guarantee **100% frame-accurate playback, scrubbing, stepping, and comment navigation** in ZhenYue.
 
 ---
 
 ## 1. Architectural Overview
 
-Shumai's video player is a decoupled, frame-locked system that coordinates three primary components around a single state coordinator (`useFramePlayer`):
+ZhenYue's video player is a decoupled, frame-locked system that coordinates three primary components around a single state coordinator (`useFramePlayer`):
 
 ```
                      ┌───────────────────────────┐
@@ -229,7 +229,7 @@ When playing, the playhead loop coordinates two mechanisms in parallel to preven
 ## 5. Backend Specifications
 
 ### A. Transcode & Metadata Extraction
-When a video is uploaded, the `@shumai/transcode` worker executes an `ffprobe` command to analyze the source container and streams:
+When a video is uploaded, the `@zhenyue/transcode` worker executes an `ffprobe` command to analyze the source container and streams:
 ```bash
 ffprobe -v error -select_streams v:0 -show_entries stream=r_frame_rate,duration,nb_frames -of default=noprint_wrappers=1:nocaveat=1 input.mp4
 ```

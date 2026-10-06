@@ -5,12 +5,12 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 
 /** @typedef {{}} LoopInputs */
 
-const en_loop = /** @type {(inputs: LoopInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Loop`)
-};
-
 const zh_loop = /** @type {(inputs: LoopInputs) => LocalizedString} */ () => {
 	return /** @type {LocalizedString} */ (`循环`)
+};
+
+const en_loop = /** @type {(inputs: LoopInputs) => LocalizedString} */ () => {
+	return /** @type {LocalizedString} */ (`Loop`)
 };
 
 /**
@@ -19,11 +19,11 @@ const zh_loop = /** @type {(inputs: LoopInputs) => LocalizedString} */ () => {
 * | "Loop" |
 *
 * @param {LoopInputs} inputs
-* @param {{ locale?: "en" | "zh" }} options
+* @param {{ locale?: "zh" | "en" }} options
 * @returns {LocalizedString}
 */
-export const loop = /** @type {((inputs?: LoopInputs, options?: { locale?: "en" | "zh" }) => LocalizedString) & import('../runtime.js').MessageMetadata<LoopInputs, { locale?: "en" | "zh" }, {}>} */ ((inputs = {}, options = {}) => {
+export const loop = /** @type {((inputs?: LoopInputs, options?: { locale?: "zh" | "en" }) => LocalizedString) & import('../runtime.js').MessageMetadata<LoopInputs, { locale?: "zh" | "en" }, {}>} */ ((inputs = {}, options = {}) => {
 	const locale = experimentalStaticLocale ?? options.locale ?? getLocale()
-	if (locale === "en") return en_loop(inputs)
-	return zh_loop(inputs)
+	if (locale === "zh") return zh_loop(inputs)
+	return en_loop(inputs)
 });

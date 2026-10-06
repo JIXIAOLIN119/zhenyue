@@ -4,13 +4,13 @@
 * | "No skills installed" |
 *
 * @param {No_Skills_InstalledInputs} inputs
-* @param {{ locale?: "en" | "zh" }} options
+* @param {{ locale?: "zh" | "en" }} options
 * @returns {LocalizedString}
 */
 export const no_skills_installed: ((inputs?: No_Skills_InstalledInputs, options?: {
-    locale?: "en" | "zh";
+    locale?: "zh" | "en";
 }) => LocalizedString) & import("../runtime.js").MessageMetadata<No_Skills_InstalledInputs, {
-    locale?: "en" | "zh";
+    locale?: "zh" | "en";
 }, {}>;
 export type LocalizedString = import("../runtime.js").LocalizedString;
 export type No_Skills_InstalledInputs = {};

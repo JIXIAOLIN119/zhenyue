@@ -1,3 +1,4 @@
+import { E2E_STORAGE_STATE } from '../../helpers/auth'
 import { expect, test } from '../../fixtures'
 import { E2E_PASSWORD, uniqueEmail } from '../../helpers/auth'
 import { apiCreateProject, uniqueProjectName } from '../../helpers/project'
@@ -27,7 +28,7 @@ test('owner invites a member to a project; the member only sees the invited proj
   expect(inviteLink.startsWith(`${origin}/signup?inviteCode=`)).toBe(true)
 
   // 2. The invitee signs up through the invite link in a brand-new session
-  const inviteeContext = await browser.newContext()
+  const inviteeContext = await browser.newContext({ storageState: E2E_STORAGE_STATE })
   const inviteePage = await inviteeContext.newPage()
   const inviteeEmail = uniqueEmail('project-invitee')
   try {

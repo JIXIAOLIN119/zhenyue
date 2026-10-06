@@ -1,6 +1,6 @@
-import { prisma } from '@shumai/db'
-import { ProviderConfigSerializable, providerModelSchema } from '@shumai/dtos'
-import { getBuiltinProvidersMap } from '@shumai/core/src/provider/builtin'
+import { prisma } from '@zhenyue/db'
+import { ProviderConfigSerializable, providerModelSchema } from '@zhenyue/dtos'
+import { getBuiltinProvidersMap } from '@zhenyue/core/src/provider/builtin'
 import { z } from 'zod'
 
 type ProviderModel = z.infer<typeof providerModelSchema>

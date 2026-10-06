@@ -5,12 +5,12 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 
 /** @typedef {{}} Renamed_SuccessfullyInputs */
 
-const en_renamed_successfully = /** @type {(inputs: Renamed_SuccessfullyInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Renamed successfully`)
-};
-
 const zh_renamed_successfully = /** @type {(inputs: Renamed_SuccessfullyInputs) => LocalizedString} */ () => {
 	return /** @type {LocalizedString} */ (`重命名成功`)
+};
+
+const en_renamed_successfully = /** @type {(inputs: Renamed_SuccessfullyInputs) => LocalizedString} */ () => {
+	return /** @type {LocalizedString} */ (`Renamed successfully`)
 };
 
 /**
@@ -19,11 +19,11 @@ const zh_renamed_successfully = /** @type {(inputs: Renamed_SuccessfullyInputs) 
 * | "Renamed successfully" |
 *
 * @param {Renamed_SuccessfullyInputs} inputs
-* @param {{ locale?: "en" | "zh" }} options
+* @param {{ locale?: "zh" | "en" }} options
 * @returns {LocalizedString}
 */
-export const renamed_successfully = /** @type {((inputs?: Renamed_SuccessfullyInputs, options?: { locale?: "en" | "zh" }) => LocalizedString) & import('../runtime.js').MessageMetadata<Renamed_SuccessfullyInputs, { locale?: "en" | "zh" }, {}>} */ ((inputs = {}, options = {}) => {
+export const renamed_successfully = /** @type {((inputs?: Renamed_SuccessfullyInputs, options?: { locale?: "zh" | "en" }) => LocalizedString) & import('../runtime.js').MessageMetadata<Renamed_SuccessfullyInputs, { locale?: "zh" | "en" }, {}>} */ ((inputs = {}, options = {}) => {
 	const locale = experimentalStaticLocale ?? options.locale ?? getLocale()
-	if (locale === "en") return en_renamed_successfully(inputs)
-	return zh_renamed_successfully(inputs)
+	if (locale === "zh") return zh_renamed_successfully(inputs)
+	return en_renamed_successfully(inputs)
 });

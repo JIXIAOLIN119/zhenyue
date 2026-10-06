@@ -3,10 +3,27 @@ import type { APIRequestContext, BrowserContext } from '@playwright/test'
 /** Base URL of the fullstack app under test (must match playwright.config.ts). */
 export const E2E_APP_URL = process.env.E2E_APP_URL || 'http://localhost:5200'
 
+// UI assertions use English even when the product defaults to Chinese.
+export const E2E_STORAGE_STATE = {
+  cookies: [
+    {
+      name: 'PARAGLIDE_LOCALE',
+      value: 'en',
+      domain: 'localhost',
+      path: '/',
+      expires: -1,
+      httpOnly: false,
+      secure: false,
+      sameSite: 'Lax' as const,
+    },
+  ],
+  origins: [],
+}
+
 export const E2E_PASSWORD = 'Password123!'
 
 export function uniqueEmail(prefix = 'user'): string {
-  return `${prefix}-${Date.now()}-${Math.random().toString(36).slice(2, 8)}@shumai.local`
+  return `${prefix}-${Date.now()}-${Math.random().toString(36).slice(2, 8)}@zhenyue.local`
 }
 
 export interface AuthUser {

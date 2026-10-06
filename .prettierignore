@@ -8,3 +8,5 @@ src/ui/components/ui
 packages/webui/paraglide
 *.md
 **/*.md
+# Vendored, minified PDF.js worker
+packages/webui/public/pdf.worker.min.mjs

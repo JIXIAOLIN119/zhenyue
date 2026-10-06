@@ -5,12 +5,12 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 
 /** @typedef {{}} ProviderInputs */
 
-const en_provider = /** @type {(inputs: ProviderInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Provider`)
-};
-
 const zh_provider = /** @type {(inputs: ProviderInputs) => LocalizedString} */ () => {
 	return /** @type {LocalizedString} */ (`提供商`)
+};
+
+const en_provider = /** @type {(inputs: ProviderInputs) => LocalizedString} */ () => {
+	return /** @type {LocalizedString} */ (`Provider`)
 };
 
 /**
@@ -19,11 +19,11 @@ const zh_provider = /** @type {(inputs: ProviderInputs) => LocalizedString} */ (
 * | "Provider" |
 *
 * @param {ProviderInputs} inputs
-* @param {{ locale?: "en" | "zh" }} options
+* @param {{ locale?: "zh" | "en" }} options
 * @returns {LocalizedString}
 */
-export const provider = /** @type {((inputs?: ProviderInputs, options?: { locale?: "en" | "zh" }) => LocalizedString) & import('../runtime.js').MessageMetadata<ProviderInputs, { locale?: "en" | "zh" }, {}>} */ ((inputs = {}, options = {}) => {
+export const provider = /** @type {((inputs?: ProviderInputs, options?: { locale?: "zh" | "en" }) => LocalizedString) & import('../runtime.js').MessageMetadata<ProviderInputs, { locale?: "zh" | "en" }, {}>} */ ((inputs = {}, options = {}) => {
 	const locale = experimentalStaticLocale ?? options.locale ?? getLocale()
-	if (locale === "en") return en_provider(inputs)
-	return zh_provider(inputs)
+	if (locale === "zh") return zh_provider(inputs)
+	return en_provider(inputs)
 });

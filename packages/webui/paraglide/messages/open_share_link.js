@@ -5,12 +5,12 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 
 /** @typedef {{}} Open_Share_LinkInputs */
 
-const en_open_share_link = /** @type {(inputs: Open_Share_LinkInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Open Share Link`)
-};
-
 const zh_open_share_link = /** @type {(inputs: Open_Share_LinkInputs) => LocalizedString} */ () => {
 	return /** @type {LocalizedString} */ (`打开分享链接`)
+};
+
+const en_open_share_link = /** @type {(inputs: Open_Share_LinkInputs) => LocalizedString} */ () => {
+	return /** @type {LocalizedString} */ (`Open Share Link`)
 };
 
 /**
@@ -19,11 +19,11 @@ const zh_open_share_link = /** @type {(inputs: Open_Share_LinkInputs) => Localiz
 * | "Open Share Link" |
 *
 * @param {Open_Share_LinkInputs} inputs
-* @param {{ locale?: "en" | "zh" }} options
+* @param {{ locale?: "zh" | "en" }} options
 * @returns {LocalizedString}
 */
-export const open_share_link = /** @type {((inputs?: Open_Share_LinkInputs, options?: { locale?: "en" | "zh" }) => LocalizedString) & import('../runtime.js').MessageMetadata<Open_Share_LinkInputs, { locale?: "en" | "zh" }, {}>} */ ((inputs = {}, options = {}) => {
+export const open_share_link = /** @type {((inputs?: Open_Share_LinkInputs, options?: { locale?: "zh" | "en" }) => LocalizedString) & import('../runtime.js').MessageMetadata<Open_Share_LinkInputs, { locale?: "zh" | "en" }, {}>} */ ((inputs = {}, options = {}) => {
 	const locale = experimentalStaticLocale ?? options.locale ?? getLocale()
-	if (locale === "en") return en_open_share_link(inputs)
-	return zh_open_share_link(inputs)
+	if (locale === "zh") return zh_open_share_link(inputs)
+	return en_open_share_link(inputs)
 });

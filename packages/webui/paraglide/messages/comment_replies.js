@@ -5,12 +5,12 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 
 /** @typedef {{}} Comment_RepliesInputs */
 
-const en_comment_replies = /** @type {(inputs: Comment_RepliesInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Comment Replies`)
-};
-
 const zh_comment_replies = /** @type {(inputs: Comment_RepliesInputs) => LocalizedString} */ () => {
 	return /** @type {LocalizedString} */ (`评论回复`)
+};
+
+const en_comment_replies = /** @type {(inputs: Comment_RepliesInputs) => LocalizedString} */ () => {
+	return /** @type {LocalizedString} */ (`Comment Replies`)
 };
 
 /**
@@ -19,11 +19,11 @@ const zh_comment_replies = /** @type {(inputs: Comment_RepliesInputs) => Localiz
 * | "Comment Replies" |
 *
 * @param {Comment_RepliesInputs} inputs
-* @param {{ locale?: "en" | "zh" }} options
+* @param {{ locale?: "zh" | "en" }} options
 * @returns {LocalizedString}
 */
-export const comment_replies = /** @type {((inputs?: Comment_RepliesInputs, options?: { locale?: "en" | "zh" }) => LocalizedString) & import('../runtime.js').MessageMetadata<Comment_RepliesInputs, { locale?: "en" | "zh" }, {}>} */ ((inputs = {}, options = {}) => {
+export const comment_replies = /** @type {((inputs?: Comment_RepliesInputs, options?: { locale?: "zh" | "en" }) => LocalizedString) & import('../runtime.js').MessageMetadata<Comment_RepliesInputs, { locale?: "zh" | "en" }, {}>} */ ((inputs = {}, options = {}) => {
 	const locale = experimentalStaticLocale ?? options.locale ?? getLocale()
-	if (locale === "en") return en_comment_replies(inputs)
-	return zh_comment_replies(inputs)
+	if (locale === "zh") return zh_comment_replies(inputs)
+	return en_comment_replies(inputs)
 });

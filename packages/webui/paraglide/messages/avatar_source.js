@@ -5,12 +5,12 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 
 /** @typedef {{}} Avatar_SourceInputs */
 
-const en_avatar_source = /** @type {(inputs: Avatar_SourceInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Avatar Source`)
-};
-
 const zh_avatar_source = /** @type {(inputs: Avatar_SourceInputs) => LocalizedString} */ () => {
 	return /** @type {LocalizedString} */ (`头像来源`)
+};
+
+const en_avatar_source = /** @type {(inputs: Avatar_SourceInputs) => LocalizedString} */ () => {
+	return /** @type {LocalizedString} */ (`Avatar Source`)
 };
 
 /**
@@ -19,11 +19,11 @@ const zh_avatar_source = /** @type {(inputs: Avatar_SourceInputs) => LocalizedSt
 * | "Avatar Source" |
 *
 * @param {Avatar_SourceInputs} inputs
-* @param {{ locale?: "en" | "zh" }} options
+* @param {{ locale?: "zh" | "en" }} options
 * @returns {LocalizedString}
 */
-export const avatar_source = /** @type {((inputs?: Avatar_SourceInputs, options?: { locale?: "en" | "zh" }) => LocalizedString) & import('../runtime.js').MessageMetadata<Avatar_SourceInputs, { locale?: "en" | "zh" }, {}>} */ ((inputs = {}, options = {}) => {
+export const avatar_source = /** @type {((inputs?: Avatar_SourceInputs, options?: { locale?: "zh" | "en" }) => LocalizedString) & import('../runtime.js').MessageMetadata<Avatar_SourceInputs, { locale?: "zh" | "en" }, {}>} */ ((inputs = {}, options = {}) => {
 	const locale = experimentalStaticLocale ?? options.locale ?? getLocale()
-	if (locale === "en") return en_avatar_source(inputs)
-	return zh_avatar_source(inputs)
+	if (locale === "zh") return zh_avatar_source(inputs)
+	return en_avatar_source(inputs)
 });

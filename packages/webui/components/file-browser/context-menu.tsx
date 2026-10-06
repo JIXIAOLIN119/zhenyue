@@ -1,5 +1,5 @@
-import type { AssetInfo } from '@shumai/dtos'
-import type { ShareLinkInfo } from '@shumai/dtos'
+import type { AssetInfo } from '@zhenyue/dtos'
+import type { ShareLinkInfo } from '@zhenyue/dtos'
 import { m } from '@/ui/paraglide/messages.js'
 import {
   ContextMenuContent,

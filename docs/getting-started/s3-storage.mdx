@@ -1,9 +1,9 @@
 ---
 title: S3 Compatible Storage
-description: Configure AWS S3 or any S3-compatible storage backend (Cloudflare R2, MinIO, Google Cloud Storage, etc.) for Shumai.
+description: Configure AWS S3 or any S3-compatible storage backend (Cloudflare R2, MinIO, Google Cloud Storage, etc.) for ZhenYue.
 ---
 
-Shumai uses Bun's high-performance native S3 client to store and serve creative assets. By utilizing standard S3 APIs, Shumai can connect to any S3-compatible storage provider, including AWS S3, Cloudflare R2, MinIO, Google Cloud Storage, and more.
+ZhenYue uses Bun's high-performance native S3 client to store and serve creative assets. By utilizing standard S3 APIs, ZhenYue can connect to any S3-compatible storage provider, including AWS S3, Cloudflare R2, MinIO, Google Cloud Storage, and more.
 
 Using external S3 storage is highly recommended for production teams. It allows you to separate storage from the application server, scale storage capacity independently, and support distributed media transcoding.
 
@@ -16,7 +16,7 @@ To enable S3-compatible storage, update the following environment variables in y
 | Variable                   | Description                                                               | Required | Default / Example                    |
 | :------------------------- | :------------------------------------------------------------------------ | :------- | :----------------------------------- |
 | `STORAGE_BACKEND`          | Set to `s3` to enable S3 compatible storage.                              | Yes      | `s3`                                 |
-| `S3_BUCKET`                | The name of the S3 bucket where files will be stored.                     | Yes      | `shumai-bucket`                      |
+| `S3_BUCKET`                | The name of the S3 bucket where files will be stored.                     | Yes      | `zhenyue-bucket`                     |
 | `S3_REGION`                | The region of your S3 bucket.                                             | No       | `auto`                               |
 | `S3_ACCESS_KEY_ID`         | The access key ID for your storage service.                               | Yes      | `your-access-key-id`                 |
 | `S3_SECRET_ACCESS_KEY`     | The secret access key for your storage service.                           | Yes      | `your-secret-access-key`             |
@@ -35,7 +35,7 @@ For standard AWS S3, configure the corresponding endpoint URL:
 
 ```env
 STORAGE_BACKEND=s3
-S3_BUCKET=your-shumai-bucket
+S3_BUCKET=your-zhenyue-bucket
 S3_ACCESS_KEY_ID=AKIAIOSFODNN7EXAMPLE
 S3_SECRET_ACCESS_KEY=wJalrXUtnFEMI/K7MDENG/bPxRfiCYEXAMPLEKEY
 AWS_ENDPOINT_URL_S3=https://s3.us-east-1.amazonaws.com
@@ -47,7 +47,7 @@ Cloudflare R2 requires your Cloudflare account ID to construct the endpoint URL.
 
 ```env
 STORAGE_BACKEND=s3
-S3_BUCKET=your-shumai-bucket
+S3_BUCKET=your-zhenyue-bucket
 S3_ACCESS_KEY_ID=your-r2-access-key-id
 S3_SECRET_ACCESS_KEY=your-r2-secret-access-key
 AWS_ENDPOINT_URL_S3=https://<account-id>.r2.cloudflarestorage.com
@@ -59,7 +59,7 @@ For local development or self-hosted environments using MinIO, set the endpoint 
 
 ```env
 STORAGE_BACKEND=s3
-S3_BUCKET=shumai
+S3_BUCKET=zhenyue
 S3_ACCESS_KEY_ID=minioadmin
 S3_SECRET_ACCESS_KEY=minioadmin
 AWS_ENDPOINT_URL_S3=http://localhost:9000
@@ -106,9 +106,9 @@ AWS_ENDPOINT_URL_S3=https://<account-id>.supabase.co/storage/v1/s3
 
 ## CORS Configuration
 
-Since Shumai uploads files directly from the user's browser using presigned URLs, you must configure **Cross-Origin Resource Sharing (CORS)** on your storage bucket. Without CORS configuration, uploads will fail with network or origin errors.
+Since ZhenYue uploads files directly from the user's browser using presigned URLs, you must configure **Cross-Origin Resource Sharing (CORS)** on your storage bucket. Without CORS configuration, uploads will fail with network or origin errors.
 
-Ensure your bucket CORS policy allows the following rules from your Shumai application URL (e.g., `http://localhost:3000` or `https://app.shumai.one`):
+Ensure your bucket CORS policy allows the following rules from your ZhenYue application URL (e.g., `http://localhost:3000` or `https://app.shumai.one`):
 
 ### CORS JSON Policy Example (AWS S3, R2, GCS)
 
@@ -117,7 +117,7 @@ Ensure your bucket CORS policy allows the following rules from your Shumai appli
   {
     "AllowedHeaders": ["*"],
     "AllowedMethods": ["GET", "PUT", "POST", "DELETE", "HEAD"],
-    "AllowedOrigins": ["http://localhost:3000", "https://your-shumai-domain.com"],
+    "AllowedOrigins": ["http://localhost:3000", "https://your-zhenyue-domain.com"],
     "ExposeHeaders": ["ETag"],
     "MaxAgeSeconds": 3000
   }

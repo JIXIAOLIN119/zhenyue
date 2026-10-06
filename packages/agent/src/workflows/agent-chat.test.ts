@@ -1,12 +1,12 @@
 import { describe, it, expect, vi, beforeEach } from 'vitest'
 import { agentChat } from './agent-chat'
-import { prisma } from '@shumai/db'
-import { setupTestDbHooks } from '@shumai/db/test'
-import * as workflowUtils from '@shumai/workflow-core'
+import { prisma } from '@zhenyue/db'
+import { setupTestDbHooks } from '@zhenyue/db/test'
+import * as workflowUtils from '@zhenyue/workflow-core'
 import { AgentChatPromptBuilder } from './agent-chat-prompt-builder'
 
-vi.mock('@shumai/workflow-core', async () => {
-  const actual = await vi.importActual('@shumai/workflow-core')
+vi.mock('@zhenyue/workflow-core', async () => {
+  const actual = await vi.importActual('@zhenyue/workflow-core')
   return {
     ...actual,
     getActivities: vi.fn(),

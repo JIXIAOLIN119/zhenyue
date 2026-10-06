@@ -1,6 +1,6 @@
-import type { WorkflowTask } from '@shumai/db'
-import '@shumai/db/src/prisma-json-types'
-import { executeActivity, getActivities } from '@shumai/workflow-core'
+import type { WorkflowTask } from '@zhenyue/db'
+import '@zhenyue/db/src/prisma-json-types'
+import { executeActivity, getActivities } from '@zhenyue/workflow-core'
 import {
   getWorkerQueueAndStartTask,
   fetchAssetWithKey,

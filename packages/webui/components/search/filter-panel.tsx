@@ -10,8 +10,8 @@ import {
   SelectValue,
 } from '@/ui/components/ui/select'
 import { cn } from '@/ui/lib/utils'
-import type { SearchCondition, SearchConditionOperator } from '@shumai/dtos'
-import { type FieldInfo } from '@shumai/dtos'
+import type { SearchCondition, SearchConditionOperator } from '@zhenyue/dtos'
+import { type FieldInfo } from '@zhenyue/dtos'
 import { Check, ChevronDown, Trash2 } from 'lucide-react'
 import { getOptionStyle } from '../fields-manager'
 import RatingField from '../fields/rating-field'

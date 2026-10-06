@@ -5,12 +5,12 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 
 /** @typedef {{}} Modified_ColumnInputs */
 
-const en_modified_column = /** @type {(inputs: Modified_ColumnInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Modified`)
-};
-
 const zh_modified_column = /** @type {(inputs: Modified_ColumnInputs) => LocalizedString} */ () => {
 	return /** @type {LocalizedString} */ (`修改时间`)
+};
+
+const en_modified_column = /** @type {(inputs: Modified_ColumnInputs) => LocalizedString} */ () => {
+	return /** @type {LocalizedString} */ (`Modified`)
 };
 
 /**
@@ -19,11 +19,11 @@ const zh_modified_column = /** @type {(inputs: Modified_ColumnInputs) => Localiz
 * | "Modified" |
 *
 * @param {Modified_ColumnInputs} inputs
-* @param {{ locale?: "en" | "zh" }} options
+* @param {{ locale?: "zh" | "en" }} options
 * @returns {LocalizedString}
 */
-export const modified_column = /** @type {((inputs?: Modified_ColumnInputs, options?: { locale?: "en" | "zh" }) => LocalizedString) & import('../runtime.js').MessageMetadata<Modified_ColumnInputs, { locale?: "en" | "zh" }, {}>} */ ((inputs = {}, options = {}) => {
+export const modified_column = /** @type {((inputs?: Modified_ColumnInputs, options?: { locale?: "zh" | "en" }) => LocalizedString) & import('../runtime.js').MessageMetadata<Modified_ColumnInputs, { locale?: "zh" | "en" }, {}>} */ ((inputs = {}, options = {}) => {
 	const locale = experimentalStaticLocale ?? options.locale ?? getLocale()
-	if (locale === "en") return en_modified_column(inputs)
-	return zh_modified_column(inputs)
+	if (locale === "zh") return zh_modified_column(inputs)
+	return en_modified_column(inputs)
 });

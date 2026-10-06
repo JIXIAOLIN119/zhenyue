@@ -4,13 +4,13 @@
 * | "Add MCP Server" |
 *
 * @param {Add_Mcp_ServerInputs} inputs
-* @param {{ locale?: "en" | "zh" }} options
+* @param {{ locale?: "zh" | "en" }} options
 * @returns {LocalizedString}
 */
 export const add_mcp_server: ((inputs?: Add_Mcp_ServerInputs, options?: {
-    locale?: "en" | "zh";
+    locale?: "zh" | "en";
 }) => LocalizedString) & import("../runtime.js").MessageMetadata<Add_Mcp_ServerInputs, {
-    locale?: "en" | "zh";
+    locale?: "zh" | "en";
 }, {}>;
 export type LocalizedString = import("../runtime.js").LocalizedString;
 export type Add_Mcp_ServerInputs = {};

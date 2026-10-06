@@ -1,12 +1,12 @@
-import { prisma } from '@shumai/db'
-import { setupTestDbHooks } from '@shumai/db/test'
-import { watermarkService } from '@shumai/core/src/watermark/watermark'
-import { generateWatermarkSvg } from '@shumai/core/src/watermark/watermark-svg'
-import { shareService } from '@shumai/core/src/share/share'
-import { teamService } from '@shumai/core/src/team/team'
-import { s3Service } from '@shumai/core/src/s3/s3'
-import { computeWatermarkConfigHash } from '@shumai/core/src/watermark/watermark-hash'
-import type { WatermarkConfigSpec } from '@shumai/dtos'
+import { prisma } from '@zhenyue/db'
+import { setupTestDbHooks } from '@zhenyue/db/test'
+import { watermarkService } from '@zhenyue/core/src/watermark/watermark'
+import { generateWatermarkSvg } from '@zhenyue/core/src/watermark/watermark-svg'
+import { shareService } from '@zhenyue/core/src/share/share'
+import { teamService } from '@zhenyue/core/src/team/team'
+import { s3Service } from '@zhenyue/core/src/s3/s3'
+import { computeWatermarkConfigHash } from '@zhenyue/core/src/watermark/watermark-hash'
+import type { WatermarkConfigSpec } from '@zhenyue/dtos'
 import { beforeEach, describe, expect, it, vi } from 'vitest'
 
 describe('WatermarkService', () => {
@@ -259,7 +259,7 @@ describe('WatermarkService', () => {
   })
 
   describe('purgeOrphanWatermarkConfigs', () => {
-    const bucket = 'shumai-gc-test-bucket'
+    const bucket = 'zhenyue-gc-test-bucket'
 
     beforeEach(() => {
       vi.restoreAllMocks()

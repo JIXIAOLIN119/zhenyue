@@ -1,9 +1,9 @@
 import { describe, it, expect, vi, beforeEach } from 'vitest'
 import { createReadThreadTool } from './read-thread'
-import { prisma } from '@shumai/db'
+import { prisma } from '@zhenyue/db'
 
-vi.mock('@shumai/db', async (importOriginal) => {
-  const actual = await importOriginal<typeof import('@shumai/db')>()
+vi.mock('@zhenyue/db', async (importOriginal) => {
+  const actual = await importOriginal<typeof import('@zhenyue/db')>()
   return {
     ...actual,
     prisma: {

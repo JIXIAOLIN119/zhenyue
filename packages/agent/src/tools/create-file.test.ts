@@ -1,14 +1,14 @@
 import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest'
 import { createCreateFileTool } from './create-file'
 import { fieldsToTypeBoxSchema } from '../index'
-import { s3Service } from '@shumai/core/src/s3/s3'
+import { s3Service } from '@zhenyue/core/src/s3/s3'
 import { executeAgentToolWorkflow } from './utils'
 import { Value } from 'typebox/value'
 import * as fs from 'fs'
 import * as os from 'os'
 import * as path from 'path'
 
-vi.mock('@shumai/core/src/s3/s3', () => ({
+vi.mock('@zhenyue/core/src/s3/s3', () => ({
   s3Service: {
     uploadFileToKey: vi.fn(),
     putObject: vi.fn(),
@@ -178,7 +178,7 @@ describe('createCreateFileTool', () => {
     const [bucket, s3Key, body, size, contentType] = vi.mocked(s3Service.putObject).mock
       .calls[0] as unknown as [string, string, Buffer, number, string]
 
-    expect(bucket).toBe(process.env.S3_BUCKET || 'shumai')
+    expect(bucket).toBe(process.env.S3_BUCKET || 'zhenyue')
     expect(s3Key).toMatch(/^files\/.+notes\.md$/)
     expect(body.toString('utf-8')).toBe('# Notes\n\nHello')
     expect(size).toBe(Buffer.byteLength('# Notes\n\nHello', 'utf-8'))

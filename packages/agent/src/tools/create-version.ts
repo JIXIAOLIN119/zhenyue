@@ -3,10 +3,10 @@ import { type AgentTool } from '@earendil-works/pi-agent-core'
 import { executeAgentToolWorkflow } from './utils'
 import * as fs from 'fs'
 import * as path from 'path'
-import { s3Service } from '@shumai/core/src/s3/s3'
-import { readFileMimeType } from '@shumai/core/src/utils/file-mime'
+import { s3Service } from '@zhenyue/core/src/s3/s3'
+import { readFileMimeType } from '@zhenyue/core/src/utils/file-mime'
 import { ulid } from 'ulid'
-import { sanitizeFilename } from '@shumai/core/src/utils/filename'
+import { sanitizeFilename } from '@zhenyue/core/src/utils/filename'
 
 interface CreateVersionToolParams {
   parent: string

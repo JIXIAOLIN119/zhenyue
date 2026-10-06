@@ -5,12 +5,12 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 
 /** @typedef {{}} Enter_Template_NameInputs */
 
-const en_enter_template_name = /** @type {(inputs: Enter_Template_NameInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Enter template name...`)
-};
-
 const zh_enter_template_name = /** @type {(inputs: Enter_Template_NameInputs) => LocalizedString} */ () => {
 	return /** @type {LocalizedString} */ (`请输入模板名称...`)
+};
+
+const en_enter_template_name = /** @type {(inputs: Enter_Template_NameInputs) => LocalizedString} */ () => {
+	return /** @type {LocalizedString} */ (`Enter template name...`)
 };
 
 /**
@@ -19,11 +19,11 @@ const zh_enter_template_name = /** @type {(inputs: Enter_Template_NameInputs) =>
 * | "Enter template name..." |
 *
 * @param {Enter_Template_NameInputs} inputs
-* @param {{ locale?: "en" | "zh" }} options
+* @param {{ locale?: "zh" | "en" }} options
 * @returns {LocalizedString}
 */
-export const enter_template_name = /** @type {((inputs?: Enter_Template_NameInputs, options?: { locale?: "en" | "zh" }) => LocalizedString) & import('../runtime.js').MessageMetadata<Enter_Template_NameInputs, { locale?: "en" | "zh" }, {}>} */ ((inputs = {}, options = {}) => {
+export const enter_template_name = /** @type {((inputs?: Enter_Template_NameInputs, options?: { locale?: "zh" | "en" }) => LocalizedString) & import('../runtime.js').MessageMetadata<Enter_Template_NameInputs, { locale?: "zh" | "en" }, {}>} */ ((inputs = {}, options = {}) => {
 	const locale = experimentalStaticLocale ?? options.locale ?? getLocale()
-	if (locale === "en") return en_enter_template_name(inputs)
-	return zh_enter_template_name(inputs)
+	if (locale === "zh") return zh_enter_template_name(inputs)
+	return en_enter_template_name(inputs)
 });

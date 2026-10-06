@@ -1,5 +1,5 @@
 import { z } from 'zod'
-import { MetadataFieldScope } from '@shumai/db/enums'
+import { MetadataFieldScope } from '@zhenyue/db/enums'
 
 export { MetadataFieldScope }
 

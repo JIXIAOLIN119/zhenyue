@@ -1,19 +1,19 @@
 import { describe, expect, test, vi, beforeEach } from 'vitest'
 import { Hono } from 'hono'
 import skillRoute from './skill'
-import { skillService } from '@shumai/core/src/skill/skill'
+import { skillService } from '@zhenyue/core/src/skill/skill'
 import { authMiddleware } from './middleware/auth'
-import { authzService, ResourceType, Permission } from '@shumai/core/src/authz/authz'
+import { authzService, ResourceType, Permission } from '@zhenyue/core/src/authz/authz'
 
-import { auditLogService } from '@shumai/core/src/auditLog/auditLog'
+import { auditLogService } from '@zhenyue/core/src/auditLog/auditLog'
 
-vi.mock('@shumai/core/src/auditLog/auditLog', () => ({
+vi.mock('@zhenyue/core/src/auditLog/auditLog', () => ({
   auditLogService: {
     logAction: vi.fn().mockResolvedValue({}),
   },
 }))
 
-vi.mock('@shumai/core/src/skill/skill', () => ({
+vi.mock('@zhenyue/core/src/skill/skill', () => ({
   skillService: {
     listSkills: vi.fn(),
     upsertSkill: vi.fn(),
@@ -33,7 +33,7 @@ vi.mock('./middleware/auth', () => ({
   },
 }))
 
-vi.mock('@shumai/core/src/authz/authz', () => ({
+vi.mock('@zhenyue/core/src/authz/authz', () => ({
   authzService: {
     hasPermission: vi.fn().mockResolvedValue(undefined),
   },

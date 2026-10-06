@@ -5,12 +5,12 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 
 /** @typedef {{}} Resource_QuotasInputs */
 
-const en_resource_quotas = /** @type {(inputs: Resource_QuotasInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Resource Quotas`)
-};
-
 const zh_resource_quotas = /** @type {(inputs: Resource_QuotasInputs) => LocalizedString} */ () => {
 	return /** @type {LocalizedString} */ (`资源配额`)
+};
+
+const en_resource_quotas = /** @type {(inputs: Resource_QuotasInputs) => LocalizedString} */ () => {
+	return /** @type {LocalizedString} */ (`Resource Quotas`)
 };
 
 /**
@@ -19,11 +19,11 @@ const zh_resource_quotas = /** @type {(inputs: Resource_QuotasInputs) => Localiz
 * | "Resource Quotas" |
 *
 * @param {Resource_QuotasInputs} inputs
-* @param {{ locale?: "en" | "zh" }} options
+* @param {{ locale?: "zh" | "en" }} options
 * @returns {LocalizedString}
 */
-export const resource_quotas = /** @type {((inputs?: Resource_QuotasInputs, options?: { locale?: "en" | "zh" }) => LocalizedString) & import('../runtime.js').MessageMetadata<Resource_QuotasInputs, { locale?: "en" | "zh" }, {}>} */ ((inputs = {}, options = {}) => {
+export const resource_quotas = /** @type {((inputs?: Resource_QuotasInputs, options?: { locale?: "zh" | "en" }) => LocalizedString) & import('../runtime.js').MessageMetadata<Resource_QuotasInputs, { locale?: "zh" | "en" }, {}>} */ ((inputs = {}, options = {}) => {
 	const locale = experimentalStaticLocale ?? options.locale ?? getLocale()
-	if (locale === "en") return en_resource_quotas(inputs)
-	return zh_resource_quotas(inputs)
+	if (locale === "zh") return zh_resource_quotas(inputs)
+	return en_resource_quotas(inputs)
 });

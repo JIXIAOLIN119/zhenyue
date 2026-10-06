@@ -1,17 +1,17 @@
 import { zValidator } from '@hono/zod-validator'
 import { Hono } from 'hono'
-import { metadataService } from '@shumai/core/src/metadata/metadata'
-import { projectService } from '@shumai/core/src/project/project'
-import { authzService, Permission, ResourceType } from '@shumai/core/src/authz/authz'
+import { metadataService } from '@zhenyue/core/src/metadata/metadata'
+import { projectService } from '@zhenyue/core/src/project/project'
+import { authzService, Permission, ResourceType } from '@zhenyue/core/src/authz/authz'
 import {
   createFieldRequestSchema,
   updateFieldRequestSchema,
   updateProjectFieldsOrderRequestSchema,
   FieldInfo,
   AuditAction,
-} from '@shumai/dtos'
-import type { Prisma } from '@shumai/db'
-import { auditLogService } from '@shumai/core/src/auditLog/auditLog'
+} from '@zhenyue/dtos'
+import type { Prisma } from '@zhenyue/db'
+import { auditLogService } from '@zhenyue/core/src/auditLog/auditLog'
 
 type User = Prisma.UserGetPayload<Record<string, never>>
 

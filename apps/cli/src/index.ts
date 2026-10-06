@@ -6,7 +6,7 @@ import { createVersion } from './commands/create-version'
 
 function printHelp() {
   console.log(`
-Usage: shumai-cli <command> [arguments] [options]
+Usage: zhenyue-cli <command> [arguments] [options]
 
 Commands:
   project ls                      List all projects (returns id, name, root folder id)
@@ -57,7 +57,7 @@ async function main() {
     const name = cleanArgs[1]
     if (!name) {
       console.error(
-        'Error: Folder name is required. Usage: shumai-cli mkdir <folderName> -p <parentId>',
+        'Error: Folder name is required. Usage: zhenyue-cli mkdir <folderName> -p <parentId>',
       )
       process.exit(1)
     }
@@ -70,7 +70,7 @@ async function main() {
     const localPath = cleanArgs[1]
     if (!localPath) {
       console.error(
-        'Error: File/folder path is required. Usage: shumai-cli upload <localPath> -p <parentId>',
+        'Error: File/folder path is required. Usage: zhenyue-cli upload <localPath> -p <parentId>',
       )
       process.exit(1)
     }
@@ -83,7 +83,7 @@ async function main() {
     const localPath = cleanArgs[1]
     if (!localPath) {
       console.error(
-        'Error: Local file path is required. Usage: shumai-cli create-version <localPath> -p <parentAssetId>',
+        'Error: Local file path is required. Usage: zhenyue-cli create-version <localPath> -p <parentAssetId>',
       )
       process.exit(1)
     }
@@ -93,7 +93,7 @@ async function main() {
     }
     await createVersion(localPath, parentId)
   } else {
-    console.error(`Error: Unknown command "${cmd}". Run "shumai-cli --help" for usage.`)
+    console.error(`Error: Unknown command "${cmd}". Run "zhenyue-cli --help" for usage.`)
     process.exit(1)
   }
 }

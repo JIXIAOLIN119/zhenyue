@@ -1,10 +1,10 @@
 import { describe, it, expect, beforeAll, afterAll, vi } from 'vitest'
-import { prisma } from '@shumai/db'
-import { setupTestDbHooks } from '@shumai/db/test'
-import { workflowService, TaskQueueAgent, TaskQueueTranscode } from '@shumai/workflow-core'
-import { initAgentWorkflows } from '@shumai/agent'
-import { initTranscodeWorkflows } from '@shumai/transcode'
-import { s3Service } from '@shumai/core/src/s3/s3'
+import { prisma } from '@zhenyue/db'
+import { setupTestDbHooks } from '@zhenyue/db/test'
+import { workflowService, TaskQueueAgent, TaskQueueTranscode } from '@zhenyue/workflow-core'
+import { initAgentWorkflows } from '@zhenyue/agent'
+import { initTranscodeWorkflows } from '@zhenyue/transcode'
+import { s3Service } from '@zhenyue/core/src/s3/s3'
 import { AgentHarness } from '@earendil-works/pi-agent-core'
 import { fileURLToPath } from 'url'
 import * as path from 'path'
@@ -23,7 +23,7 @@ describe.each(['local', 'temporal'] as const)(
 
     beforeAll(async () => {
       // Set bucket environment
-      process.env.S3_BUCKET = 'shumai-e2e-test-bucket'
+      process.env.S3_BUCKET = 'zhenyue-e2e-test-bucket'
 
       // Configure the workflow service executor dynamically
       workflowService.setExecutorType(mode)
@@ -98,7 +98,7 @@ describe.each(['local', 'temporal'] as const)(
       // Clean up E2E files in local filesystem storage
       try {
         console.log('Cleaning up local E2E storage files...')
-        await s3Service.deletePrefix('shumai-e2e-test-bucket', '')
+        await s3Service.deletePrefix('zhenyue-e2e-test-bucket', '')
       } catch (err) {
         console.error('Failed to clean up E2E storage folder:', err)
       }
@@ -166,7 +166,7 @@ describe.each(['local', 'temporal'] as const)(
       const agentUser = await prisma.user.create({
         data: {
           name: 'E2E Autofill Agent User',
-          email: 'e2e-autofill-agent@shumai.ai',
+          email: 'e2e-autofill-agent@zhenyue.ai',
           type: 'agent',
         },
       })
@@ -245,7 +245,7 @@ describe.each(['local', 'temporal'] as const)(
         'iVBORw0KGgoAAAANSUhEUgAAAAEAAAABCAQAAAC1HAwCAAAAC0lEQVR42mNkYAAAAAYAAjCB0C8AAAAASUVORK5CYII='
       const pngBuffer = Buffer.from(base64Png, 'base64')
       await s3Service.putObject(
-        'shumai-e2e-test-bucket',
+        'zhenyue-e2e-test-bucket',
         'projects/e2e/test-image.png',
         pngBuffer,
         pngBuffer.length,

@@ -1,19 +1,19 @@
 import { describe, expect, test, vi, beforeEach } from 'vitest'
 import { Hono } from 'hono'
 import quotaRoute from './quota'
-import { quotaService } from '@shumai/core/src/quota/quota-service'
+import { quotaService } from '@zhenyue/core/src/quota/quota-service'
 import { authMiddleware } from './middleware/auth'
-import { authzService, ResourceType, Permission } from '@shumai/core/src/authz/authz'
-import { auditLogService } from '@shumai/core/src/auditLog/auditLog'
-import { AuditAction } from '@shumai/dtos'
+import { authzService, ResourceType, Permission } from '@zhenyue/core/src/authz/authz'
+import { auditLogService } from '@zhenyue/core/src/auditLog/auditLog'
+import { AuditAction } from '@zhenyue/dtos'
 
-vi.mock('@shumai/core/src/auditLog/auditLog', () => ({
+vi.mock('@zhenyue/core/src/auditLog/auditLog', () => ({
   auditLogService: {
     logAction: vi.fn().mockResolvedValue({}),
   },
 }))
 
-vi.mock('@shumai/core/src/quota/quota-service', () => ({
+vi.mock('@zhenyue/core/src/quota/quota-service', () => ({
   quotaService: {
     listRules: vi.fn(),
     createRule: vi.fn(),
@@ -34,7 +34,7 @@ vi.mock('./middleware/auth', () => ({
   },
 }))
 
-vi.mock('@shumai/core/src/authz/authz', () => ({
+vi.mock('@zhenyue/core/src/authz/authz', () => ({
   authzService: {
     hasPermission: vi.fn().mockResolvedValue(undefined),
   },

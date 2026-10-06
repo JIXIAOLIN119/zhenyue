@@ -5,12 +5,12 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 
 /** @typedef {{}} Global_ChatbotInputs */
 
-const en_global_chatbot = /** @type {(inputs: Global_ChatbotInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Global Chatbot`)
-};
-
 const zh_global_chatbot = /** @type {(inputs: Global_ChatbotInputs) => LocalizedString} */ () => {
 	return /** @type {LocalizedString} */ (`全局聊天机器人`)
+};
+
+const en_global_chatbot = /** @type {(inputs: Global_ChatbotInputs) => LocalizedString} */ () => {
+	return /** @type {LocalizedString} */ (`Global Chatbot`)
 };
 
 /**
@@ -19,11 +19,11 @@ const zh_global_chatbot = /** @type {(inputs: Global_ChatbotInputs) => Localized
 * | "Global Chatbot" |
 *
 * @param {Global_ChatbotInputs} inputs
-* @param {{ locale?: "en" | "zh" }} options
+* @param {{ locale?: "zh" | "en" }} options
 * @returns {LocalizedString}
 */
-export const global_chatbot = /** @type {((inputs?: Global_ChatbotInputs, options?: { locale?: "en" | "zh" }) => LocalizedString) & import('../runtime.js').MessageMetadata<Global_ChatbotInputs, { locale?: "en" | "zh" }, {}>} */ ((inputs = {}, options = {}) => {
+export const global_chatbot = /** @type {((inputs?: Global_ChatbotInputs, options?: { locale?: "zh" | "en" }) => LocalizedString) & import('../runtime.js').MessageMetadata<Global_ChatbotInputs, { locale?: "zh" | "en" }, {}>} */ ((inputs = {}, options = {}) => {
 	const locale = experimentalStaticLocale ?? options.locale ?? getLocale()
-	if (locale === "en") return en_global_chatbot(inputs)
-	return zh_global_chatbot(inputs)
+	if (locale === "zh") return zh_global_chatbot(inputs)
+	return en_global_chatbot(inputs)
 });

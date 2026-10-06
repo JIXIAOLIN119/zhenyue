@@ -7,8 +7,8 @@ import type {
   CollectionInfo,
   SearchCondition,
   SearchSort,
-} from '@shumai/dtos'
-import { type FieldInfo as MetadataFieldInfo } from '@shumai/dtos'
+} from '@zhenyue/dtos'
+import { type FieldInfo as MetadataFieldInfo } from '@zhenyue/dtos'
 import { useMutation } from '@tanstack/react-query'
 import { InferRequestType, InferResponseType } from 'hono/client'
 

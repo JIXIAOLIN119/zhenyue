@@ -12,13 +12,16 @@ async function start() {
 
   // Generate a random S3 bucket name
   const randomSuffix = randomBytes(4).toString('hex')
-  const bucketName = `shumai-e2e-${randomSuffix}`
+  const bucketName = `zhenyue-e2e-${randomSuffix}`
 
+  // Keep uploads on this isolated server even if the developer .env points elsewhere.
+  process.env.STORAGE_BACKEND = 'local'
+  process.env.AWS_ENDPOINT_URL_S3 = 'http://localhost:5200'
   process.env.S3_BUCKET = bucketName
-  process.env.SHUMAI_SERVER_PORT = '5200'
+  process.env.ZHENYUE_SERVER_PORT = '5200'
   process.env.BETTER_AUTH_URL = 'http://localhost:5200'
   process.env.NODE_ENV = 'development'
-  process.env.SHUMAI_E2E = 'true'
+  process.env.ZHENYUE_E2E = 'true'
 
   // Write variables to .env.e2e file so the teardown can load them
   const envContent = [`DATABASE_URL=${process.env.DATABASE_URL}`, `S3_BUCKET=${bucketName}`].join(

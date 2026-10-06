@@ -5,12 +5,12 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 
 /** @typedef {{}} Quota_EnabledInputs */
 
-const en_quota_enabled = /** @type {(inputs: Quota_EnabledInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Enabled`)
-};
-
 const zh_quota_enabled = /** @type {(inputs: Quota_EnabledInputs) => LocalizedString} */ () => {
 	return /** @type {LocalizedString} */ (`已启用`)
+};
+
+const en_quota_enabled = /** @type {(inputs: Quota_EnabledInputs) => LocalizedString} */ () => {
+	return /** @type {LocalizedString} */ (`Enabled`)
 };
 
 /**
@@ -19,11 +19,11 @@ const zh_quota_enabled = /** @type {(inputs: Quota_EnabledInputs) => LocalizedSt
 * | "Enabled" |
 *
 * @param {Quota_EnabledInputs} inputs
-* @param {{ locale?: "en" | "zh" }} options
+* @param {{ locale?: "zh" | "en" }} options
 * @returns {LocalizedString}
 */
-export const quota_enabled = /** @type {((inputs?: Quota_EnabledInputs, options?: { locale?: "en" | "zh" }) => LocalizedString) & import('../runtime.js').MessageMetadata<Quota_EnabledInputs, { locale?: "en" | "zh" }, {}>} */ ((inputs = {}, options = {}) => {
+export const quota_enabled = /** @type {((inputs?: Quota_EnabledInputs, options?: { locale?: "zh" | "en" }) => LocalizedString) & import('../runtime.js').MessageMetadata<Quota_EnabledInputs, { locale?: "zh" | "en" }, {}>} */ ((inputs = {}, options = {}) => {
 	const locale = experimentalStaticLocale ?? options.locale ?? getLocale()
-	if (locale === "en") return en_quota_enabled(inputs)
-	return zh_quota_enabled(inputs)
+	if (locale === "zh") return zh_quota_enabled(inputs)
+	return en_quota_enabled(inputs)
 });

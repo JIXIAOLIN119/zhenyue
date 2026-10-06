@@ -1,7 +1,7 @@
 import { describe, expect, test } from 'vitest'
 import { AgentService } from './agent'
-import { prisma } from '@shumai/db'
-import { setupTestDbHooks } from '@shumai/db/test'
+import { prisma } from '@zhenyue/db'
+import { setupTestDbHooks } from '@zhenyue/db/test'
 
 describe('AgentService', () => {
   setupTestDbHooks()
@@ -45,7 +45,7 @@ describe('AgentService', () => {
     const user = await db.user.create({
       data: {
         name: 'Bot 1',
-        email: 'bot1@shumai.ai',
+        email: 'bot1@zhenyue.ai',
         type: 'agent',
       },
     })
@@ -220,7 +220,7 @@ describe('AgentService', () => {
       const { team, provider, model } = await setupTestData(db)
 
       const avatarPresigned =
-        'https://shumai.s3.amazonaws.com/files/01JK23456789ABCDEF01234567?AWSAccessKeyId=foo'
+        'https://zhenyue.s3.amazonaws.com/files/01JK23456789ABCDEF01234567?AWSAccessKeyId=foo'
       const agent = await svc.createAgent({
         teamId: team.id,
         name: 'Agent with URL',
@@ -242,7 +242,7 @@ describe('AgentService', () => {
       const { agent } = await setupTestData(db)
 
       const avatarPresigned =
-        'https://shumai.s3.amazonaws.com/files/01JK23456789ABCDEF01234567?AWSAccessKeyId=foo'
+        'https://zhenyue.s3.amazonaws.com/files/01JK23456789ABCDEF01234567?AWSAccessKeyId=foo'
       const updated = await svc.updateAgent({
         agentId: agent.id,
         name: 'Updated with URL',
@@ -349,7 +349,7 @@ describe('AgentService', () => {
       const user = await db.user.create({
         data: {
           name: 'Regular User',
-          email: 'user@shumai.ai',
+          email: 'user@zhenyue.ai',
         },
       })
 
@@ -498,21 +498,21 @@ describe('AgentService', () => {
 
       // Create 3 test users with different roles in the team
       const reviewerUser = await db.user.create({
-        data: { name: 'Reviewer User', email: 'rev@shumai.ai' },
+        data: { name: 'Reviewer User', email: 'rev@zhenyue.ai' },
       })
       await db.teamMember.create({
         data: { teamId: team.id, userId: reviewerUser.id, role: 'reviewer' },
       })
 
       const editorUser = await db.user.create({
-        data: { name: 'Editor User', email: 'ed@shumai.ai' },
+        data: { name: 'Editor User', email: 'ed@zhenyue.ai' },
       })
       await db.teamMember.create({
         data: { teamId: team.id, userId: editorUser.id, role: 'editor' },
       })
 
       const ownerUser = await db.user.create({
-        data: { name: 'Owner User', email: 'own@shumai.ai' },
+        data: { name: 'Owner User', email: 'own@zhenyue.ai' },
       })
       await db.teamMember.create({
         data: { teamId: team.id, userId: ownerUser.id, role: 'owner' },
@@ -583,7 +583,7 @@ describe('AgentService', () => {
 
       // Team reviewer, promoted to project owner in this project
       const projectOwner = await db.user.create({
-        data: { name: 'Proj Owner', email: 'projowner@shumai.ai' },
+        data: { name: 'Proj Owner', email: 'projowner@zhenyue.ai' },
       })
       const projectOwnerTm = await db.teamMember.create({
         data: { teamId: team.id, userId: projectOwner.id, role: 'reviewer', scope: 'team' },
@@ -633,7 +633,7 @@ describe('AgentService', () => {
 
       // Project-scoped member invited as reviewer in this project
       const guest = await db.user.create({
-        data: { name: 'Guest', email: 'guest@shumai.ai' },
+        data: { name: 'Guest', email: 'guest@zhenyue.ai' },
       })
       const guestTm = await db.teamMember.create({
         data: { teamId: team.id, userId: guest.id, role: 'reviewer', scope: 'project' },
@@ -672,7 +672,7 @@ describe('AgentService', () => {
 
       // Project-scoped member of projectB only
       const guest = await db.user.create({
-        data: { name: 'Guest B', email: 'guestb@shumai.ai' },
+        data: { name: 'Guest B', email: 'guestb@zhenyue.ai' },
       })
       const guestTm = await db.teamMember.create({
         data: { teamId: team.id, userId: guest.id, role: 'reviewer', scope: 'project' },

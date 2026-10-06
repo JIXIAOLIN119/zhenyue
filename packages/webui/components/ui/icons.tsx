@@ -129,7 +129,7 @@ export const DrawAnnotation: React.FC<React.SVGProps<SVGSVGElement>> = (props) =
   </svg>
 )
 
-export const ShumaiLogo: React.FC<React.SVGProps<SVGSVGElement>> = (props) => {
+export const ZhenYueLogo: React.FC<React.SVGProps<SVGSVGElement>> = (props) => {
   return (
     <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg" {...props}>
       <defs>
@@ -139,32 +139,44 @@ export const ShumaiLogo: React.FC<React.SVGProps<SVGSVGElement>> = (props) => {
       </defs>
 
       {/* Background */}
-      <rect x="5" y="5" width="90" height="90" rx="22" fill="#D95A66" />
+      <rect x="5" y="5" width="90" height="90" rx="22" fill="var(--primary)" />
 
       {/* Long Shadow */}
       <path
         d="M 35 75 L 65 75 L 80 60 L 75 30 L 175 130 L 135 175 Z"
-        fill="#A8384D"
+        fill="var(--sidebar-accent)"
         clipPath="url(#bg-clip)"
       />
 
-      {/* Left Cream */}
-      <path d="M 25 30 Q 38 36 50 42 L 35 55 L 35 75 L 20 60 Z" fill="#FDF0D5" />
+      {/* Left face */}
+      <path d="M 25 30 Q 38 36 50 42 L 35 55 L 35 75 L 20 60 Z" fill="var(--primary-foreground)" />
 
-      {/* Right Orange */}
-      <path d="M 50 42 Q 62 36 75 30 L 80 60 L 65 75 L 65 55 Z" fill="#E77A65" />
+      {/* Right face */}
+      <path
+        d="M 50 42 Q 62 36 75 30 L 80 60 L 65 75 L 65 55 Z"
+        fill="var(--primary-foreground)"
+        opacity="0.65"
+      />
 
-      {/* Front Peach */}
-      <path d="M 35 75 L 65 75 L 65 55 L 50 42 L 35 55 Z" fill="#F5B895" />
+      {/* Front face */}
+      <path
+        d="M 35 75 L 65 75 L 65 55 L 50 42 L 35 55 Z"
+        fill="var(--primary-foreground)"
+        opacity="0.85"
+      />
 
-      {/* Top Pink */}
-      <path d="M 50 42 Q 38 36 25 30 Q 38 26 50 20 Q 62 26 75 30 Q 62 36 50 42 Z" fill="#F4B8B8" />
+      {/* Top face */}
+      <path
+        d="M 50 42 Q 38 36 25 30 Q 38 26 50 20 Q 62 26 75 30 Q 62 36 50 42 Z"
+        fill="var(--primary-foreground)"
+        opacity="0.95"
+      />
 
       {/* Hole Left */}
-      <path d="M 50 25 L 42 30 L 50 35 Z" fill="#E57A5F" />
+      <path d="M 50 25 L 42 30 L 50 35 Z" fill="var(--primary)" />
 
       {/* Hole Right */}
-      <path d="M 50 25 L 58 30 L 50 35 Z" fill="#C2523C" />
+      <path d="M 50 25 L 58 30 L 50 35 Z" fill="var(--sidebar-accent)" />
     </svg>
   )
 }

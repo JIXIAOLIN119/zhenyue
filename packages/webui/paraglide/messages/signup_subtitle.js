@@ -5,12 +5,12 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 
 /** @typedef {{}} Signup_SubtitleInputs */
 
-const en_signup_subtitle = /** @type {(inputs: Signup_SubtitleInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Start building and organizing your space.`)
-};
-
 const zh_signup_subtitle = /** @type {(inputs: Signup_SubtitleInputs) => LocalizedString} */ () => {
 	return /** @type {LocalizedString} */ (`开始构建和整理您的空间。`)
+};
+
+const en_signup_subtitle = /** @type {(inputs: Signup_SubtitleInputs) => LocalizedString} */ () => {
+	return /** @type {LocalizedString} */ (`Start building and organizing your space.`)
 };
 
 /**
@@ -19,11 +19,11 @@ const zh_signup_subtitle = /** @type {(inputs: Signup_SubtitleInputs) => Localiz
 * | "Start building and organizing your space." |
 *
 * @param {Signup_SubtitleInputs} inputs
-* @param {{ locale?: "en" | "zh" }} options
+* @param {{ locale?: "zh" | "en" }} options
 * @returns {LocalizedString}
 */
-export const signup_subtitle = /** @type {((inputs?: Signup_SubtitleInputs, options?: { locale?: "en" | "zh" }) => LocalizedString) & import('../runtime.js').MessageMetadata<Signup_SubtitleInputs, { locale?: "en" | "zh" }, {}>} */ ((inputs = {}, options = {}) => {
+export const signup_subtitle = /** @type {((inputs?: Signup_SubtitleInputs, options?: { locale?: "zh" | "en" }) => LocalizedString) & import('../runtime.js').MessageMetadata<Signup_SubtitleInputs, { locale?: "zh" | "en" }, {}>} */ ((inputs = {}, options = {}) => {
 	const locale = experimentalStaticLocale ?? options.locale ?? getLocale()
-	if (locale === "en") return en_signup_subtitle(inputs)
-	return zh_signup_subtitle(inputs)
+	if (locale === "zh") return zh_signup_subtitle(inputs)
+	return en_signup_subtitle(inputs)
 });

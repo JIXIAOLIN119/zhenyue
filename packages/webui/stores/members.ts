@@ -2,7 +2,7 @@ import { create } from 'zustand'
 import { devtools } from 'zustand/middleware'
 import { immer } from 'zustand/middleware/immer'
 import { client } from '@/ui/api/client'
-import type { UserInfo, ProjectUserInfo } from '@shumai/dtos'
+import type { UserInfo, ProjectUserInfo } from '@zhenyue/dtos'
 
 export type MemberInfo = UserInfo | ProjectUserInfo
 

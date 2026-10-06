@@ -1,4 +1,4 @@
-import type { FieldInfo as FieldInfo } from '@shumai/dtos'
+import type { FieldInfo as FieldInfo } from '@zhenyue/dtos'
 import React from 'react'
 import DateField from './fields/date-field'
 import LongTextField from './fields/long-text-field'

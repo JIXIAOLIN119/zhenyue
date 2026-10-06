@@ -1,11 +1,11 @@
-import { prisma } from '@shumai/db'
+import { prisma } from '@zhenyue/db'
 import {
   CreateFieldRequest,
   ProjectFieldOrder,
   UpdateAssetMetadataRequest,
   UpdateFieldRequest,
-} from '@shumai/dtos'
-import type { Prisma } from '@shumai/db'
+} from '@zhenyue/dtos'
+import type { Prisma } from '@zhenyue/db'
 import { ulid } from 'ulid'
 import { assetService } from '../asset/asset'
 import { systemFields } from './system_fields'

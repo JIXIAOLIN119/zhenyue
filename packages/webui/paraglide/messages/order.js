@@ -5,12 +5,12 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 
 /** @typedef {{}} OrderInputs */
 
-const en_order = /** @type {(inputs: OrderInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Order`)
-};
-
 const zh_order = /** @type {(inputs: OrderInputs) => LocalizedString} */ () => {
 	return /** @type {LocalizedString} */ (`顺序`)
+};
+
+const en_order = /** @type {(inputs: OrderInputs) => LocalizedString} */ () => {
+	return /** @type {LocalizedString} */ (`Order`)
 };
 
 /**
@@ -19,11 +19,11 @@ const zh_order = /** @type {(inputs: OrderInputs) => LocalizedString} */ () => {
 * | "Order" |
 *
 * @param {OrderInputs} inputs
-* @param {{ locale?: "en" | "zh" }} options
+* @param {{ locale?: "zh" | "en" }} options
 * @returns {LocalizedString}
 */
-export const order = /** @type {((inputs?: OrderInputs, options?: { locale?: "en" | "zh" }) => LocalizedString) & import('../runtime.js').MessageMetadata<OrderInputs, { locale?: "en" | "zh" }, {}>} */ ((inputs = {}, options = {}) => {
+export const order = /** @type {((inputs?: OrderInputs, options?: { locale?: "zh" | "en" }) => LocalizedString) & import('../runtime.js').MessageMetadata<OrderInputs, { locale?: "zh" | "en" }, {}>} */ ((inputs = {}, options = {}) => {
 	const locale = experimentalStaticLocale ?? options.locale ?? getLocale()
-	if (locale === "en") return en_order(inputs)
-	return zh_order(inputs)
+	if (locale === "zh") return zh_order(inputs)
+	return en_order(inputs)
 });

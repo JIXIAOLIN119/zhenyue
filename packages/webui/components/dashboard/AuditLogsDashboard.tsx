@@ -3,7 +3,7 @@ import { useInfiniteQuery, useQuery } from '@tanstack/react-query'
 import { useInView } from 'react-intersection-observer'
 import { client } from '@/ui/api/client'
 import { m } from '@/ui/paraglide/messages.js'
-import { AuditAction } from '@shumai/dtos'
+import { AuditAction } from '@zhenyue/dtos'
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/ui/components/ui/card'
 import {
   Table,

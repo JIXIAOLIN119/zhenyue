@@ -1,39 +1,42 @@
 services:
   postgres:
     image: pgvector/pgvector:pg18
-    container_name: shumai_postgres
+    container_name: zhenyue_postgres
     environment:
-      POSTGRES_USER: shumai
-      POSTGRES_PASSWORD: shumai_password
-      POSTGRES_DB: shumai_db
+      POSTGRES_USER: zhenyue
+      POSTGRES_PASSWORD: zhenyue_password
+      POSTGRES_DB: zhenyue_db
     ports:
       - '5432:5432'
     volumes:
       - postgres_data:/var/lib/postgresql/18/docker
     healthcheck:
-      test: ['CMD-SHELL', 'pg_isready -U shumai -d shumai_db']
+      test: ['CMD-SHELL', 'pg_isready -U zhenyue -d zhenyue_db']
       interval: 5s
       timeout: 5s
       retries: 5
 
-  shumai:
-    image: shumaione/shumai:latest
+  zhenyue:
+    build:
+      context: ../..
+      dockerfile: Dockerfile
+    image: zhenyueone/zhenyue:latest
     cap_add:
       - SYS_ADMIN
     security_opt:
       - apparmor=unconfined
       - seccomp=unconfined
-    container_name: shumai_app
+    container_name: zhenyue_app
     ports:
       - '3000:3000'
     volumes:
       - ./data:/app/data
     environment:
       # Database Configuration
-      DATABASE_URL: postgres://shumai:shumai_password@shumai_postgres:5432/shumai_db?search_path=public&sslmode=disable
+      DATABASE_URL: postgres://zhenyue:zhenyue_password@zhenyue_postgres:5432/zhenyue_db?search_path=public&sslmode=disable
 
       # Server Configuration
-      SHUMAI_SERVER_PORT: 3000
+      ZHENYUE_SERVER_PORT: 3000
 
       # S3 Configuration
       STORAGE_BACKEND: local

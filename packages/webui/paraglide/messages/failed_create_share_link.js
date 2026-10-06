@@ -5,12 +5,12 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 
 /** @typedef {{}} Failed_Create_Share_LinkInputs */
 
-const en_failed_create_share_link = /** @type {(inputs: Failed_Create_Share_LinkInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Failed to create share link`)
-};
-
 const zh_failed_create_share_link = /** @type {(inputs: Failed_Create_Share_LinkInputs) => LocalizedString} */ () => {
 	return /** @type {LocalizedString} */ (`创建分享链接失败`)
+};
+
+const en_failed_create_share_link = /** @type {(inputs: Failed_Create_Share_LinkInputs) => LocalizedString} */ () => {
+	return /** @type {LocalizedString} */ (`Failed to create share link`)
 };
 
 /**
@@ -19,11 +19,11 @@ const zh_failed_create_share_link = /** @type {(inputs: Failed_Create_Share_Link
 * | "Failed to create share link" |
 *
 * @param {Failed_Create_Share_LinkInputs} inputs
-* @param {{ locale?: "en" | "zh" }} options
+* @param {{ locale?: "zh" | "en" }} options
 * @returns {LocalizedString}
 */
-export const failed_create_share_link = /** @type {((inputs?: Failed_Create_Share_LinkInputs, options?: { locale?: "en" | "zh" }) => LocalizedString) & import('../runtime.js').MessageMetadata<Failed_Create_Share_LinkInputs, { locale?: "en" | "zh" }, {}>} */ ((inputs = {}, options = {}) => {
+export const failed_create_share_link = /** @type {((inputs?: Failed_Create_Share_LinkInputs, options?: { locale?: "zh" | "en" }) => LocalizedString) & import('../runtime.js').MessageMetadata<Failed_Create_Share_LinkInputs, { locale?: "zh" | "en" }, {}>} */ ((inputs = {}, options = {}) => {
 	const locale = experimentalStaticLocale ?? options.locale ?? getLocale()
-	if (locale === "en") return en_failed_create_share_link(inputs)
-	return zh_failed_create_share_link(inputs)
+	if (locale === "zh") return zh_failed_create_share_link(inputs)
+	return en_failed_create_share_link(inputs)
 });

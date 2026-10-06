@@ -1,5 +1,5 @@
-import { newTablePrinter, withTruncate } from '@shumai/tableprinter'
-import type { AssetInfo } from '@shumai/dtos'
+import { newTablePrinter, withTruncate } from '@zhenyue/tableprinter'
+import type { AssetInfo } from '@zhenyue/dtos'
 import { getClient } from '../client'
 
 function formatSize(bytes: number): string {

@@ -4,13 +4,13 @@
 * | "No description provided." |
 *
 * @param {No_Description_ProvidedInputs} inputs
-* @param {{ locale?: "en" | "zh" }} options
+* @param {{ locale?: "zh" | "en" }} options
 * @returns {LocalizedString}
 */
 export const no_description_provided: ((inputs?: No_Description_ProvidedInputs, options?: {
-    locale?: "en" | "zh";
+    locale?: "zh" | "en";
 }) => LocalizedString) & import("../runtime.js").MessageMetadata<No_Description_ProvidedInputs, {
-    locale?: "en" | "zh";
+    locale?: "zh" | "en";
 }, {}>;
 export type LocalizedString = import("../runtime.js").LocalizedString;
 export type No_Description_ProvidedInputs = {};

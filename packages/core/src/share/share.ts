@@ -1,5 +1,5 @@
-import { prisma } from '@shumai/db'
-import { AssetType, Prisma } from '@shumai/db'
+import { prisma } from '@zhenyue/db'
+import { AssetType, Prisma } from '@zhenyue/db'
 import {
   ShareLinkInfo,
   CreateShareLinkRequest,
@@ -7,10 +7,10 @@ import {
   ListShareLinksRequest,
   AddAssetToShareRequest,
   WatermarkConfigSpec,
-} from '@shumai/dtos'
-import { PaginatedData, paginateQuery } from '@shumai/core/src/pagination'
-import { getAvatarUrl } from '@shumai/core/src/user/avatar'
-import { watermarkService } from '@shumai/core/src/watermark/watermark'
+} from '@zhenyue/dtos'
+import { PaginatedData, paginateQuery } from '@zhenyue/core/src/pagination'
+import { getAvatarUrl } from '@zhenyue/core/src/user/avatar'
+import { watermarkService } from '@zhenyue/core/src/watermark/watermark'
 import {
   ShareLinkNotFoundError,
   ShareLinkDisabledError,

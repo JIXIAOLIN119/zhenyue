@@ -5,12 +5,12 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 
 /** @typedef {{}} Select_ModelInputs */
 
-const en_select_model = /** @type {(inputs: Select_ModelInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Select Model`)
-};
-
 const zh_select_model = /** @type {(inputs: Select_ModelInputs) => LocalizedString} */ () => {
 	return /** @type {LocalizedString} */ (`选择模型`)
+};
+
+const en_select_model = /** @type {(inputs: Select_ModelInputs) => LocalizedString} */ () => {
+	return /** @type {LocalizedString} */ (`Select Model`)
 };
 
 /**
@@ -19,11 +19,11 @@ const zh_select_model = /** @type {(inputs: Select_ModelInputs) => LocalizedStri
 * | "Select Model" |
 *
 * @param {Select_ModelInputs} inputs
-* @param {{ locale?: "en" | "zh" }} options
+* @param {{ locale?: "zh" | "en" }} options
 * @returns {LocalizedString}
 */
-export const select_model = /** @type {((inputs?: Select_ModelInputs, options?: { locale?: "en" | "zh" }) => LocalizedString) & import('../runtime.js').MessageMetadata<Select_ModelInputs, { locale?: "en" | "zh" }, {}>} */ ((inputs = {}, options = {}) => {
+export const select_model = /** @type {((inputs?: Select_ModelInputs, options?: { locale?: "zh" | "en" }) => LocalizedString) & import('../runtime.js').MessageMetadata<Select_ModelInputs, { locale?: "zh" | "en" }, {}>} */ ((inputs = {}, options = {}) => {
 	const locale = experimentalStaticLocale ?? options.locale ?? getLocale()
-	if (locale === "en") return en_select_model(inputs)
-	return zh_select_model(inputs)
+	if (locale === "zh") return zh_select_model(inputs)
+	return en_select_model(inputs)
 });

@@ -5,12 +5,12 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 
 /** @typedef {{}} Enter_New_NameInputs */
 
-const en_enter_new_name = /** @type {(inputs: Enter_New_NameInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Enter new name`)
-};
-
 const zh_enter_new_name = /** @type {(inputs: Enter_New_NameInputs) => LocalizedString} */ () => {
 	return /** @type {LocalizedString} */ (`输入新名称`)
+};
+
+const en_enter_new_name = /** @type {(inputs: Enter_New_NameInputs) => LocalizedString} */ () => {
+	return /** @type {LocalizedString} */ (`Enter new name`)
 };
 
 /**
@@ -19,11 +19,11 @@ const zh_enter_new_name = /** @type {(inputs: Enter_New_NameInputs) => Localized
 * | "Enter new name" |
 *
 * @param {Enter_New_NameInputs} inputs
-* @param {{ locale?: "en" | "zh" }} options
+* @param {{ locale?: "zh" | "en" }} options
 * @returns {LocalizedString}
 */
-export const enter_new_name = /** @type {((inputs?: Enter_New_NameInputs, options?: { locale?: "en" | "zh" }) => LocalizedString) & import('../runtime.js').MessageMetadata<Enter_New_NameInputs, { locale?: "en" | "zh" }, {}>} */ ((inputs = {}, options = {}) => {
+export const enter_new_name = /** @type {((inputs?: Enter_New_NameInputs, options?: { locale?: "zh" | "en" }) => LocalizedString) & import('../runtime.js').MessageMetadata<Enter_New_NameInputs, { locale?: "zh" | "en" }, {}>} */ ((inputs = {}, options = {}) => {
 	const locale = experimentalStaticLocale ?? options.locale ?? getLocale()
-	if (locale === "en") return en_enter_new_name(inputs)
-	return zh_enter_new_name(inputs)
+	if (locale === "zh") return zh_enter_new_name(inputs)
+	return en_enter_new_name(inputs)
 });

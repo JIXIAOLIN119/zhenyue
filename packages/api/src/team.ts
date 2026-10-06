@@ -1,9 +1,9 @@
 import { Hono } from 'hono'
 import { zValidator } from '@hono/zod-validator'
-import { authzService, Permission, ResourceType } from '@shumai/core/src/authz/authz'
-import { teamService } from '@shumai/core/src/team/team'
-import { userMetadataService } from '@shumai/core/src/user-metadata/user-metadata'
-import { notificationService } from '@shumai/core/src/notification/notification'
+import { authzService, Permission, ResourceType } from '@zhenyue/core/src/authz/authz'
+import { teamService } from '@zhenyue/core/src/team/team'
+import { userMetadataService } from '@zhenyue/core/src/user-metadata/user-metadata'
+import { notificationService } from '@zhenyue/core/src/notification/notification'
 import {
   createTeamRequestSchema,
   getUserTeamsRequestSchema,
@@ -14,17 +14,17 @@ import {
   updateTeamMemberRoleRequestSchema,
   createApiTokenRequestSchema,
   listAuditLogsQuerySchema,
-} from '@shumai/dtos'
+} from '@zhenyue/dtos'
 import {
   updateUserMetadataRequestSchema,
   getTeamAiUsageQuerySchema,
   AuditAction,
-} from '@shumai/dtos'
-import { apiTokenService } from '@shumai/core/src/user/api-token'
-import { aiUsageService } from '@shumai/core/src/ai-usage/ai-usage'
-import { auditLogService } from '@shumai/core/src/auditLog/auditLog'
-import { NotificationType } from '@shumai/db'
-import type { Prisma } from '@shumai/db'
+} from '@zhenyue/dtos'
+import { apiTokenService } from '@zhenyue/core/src/user/api-token'
+import { aiUsageService } from '@zhenyue/core/src/ai-usage/ai-usage'
+import { auditLogService } from '@zhenyue/core/src/auditLog/auditLog'
+import { NotificationType } from '@zhenyue/db'
+import type { Prisma } from '@zhenyue/db'
 
 type User = Prisma.UserGetPayload<Record<string, never>>
 

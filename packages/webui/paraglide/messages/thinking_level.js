@@ -5,12 +5,12 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 
 /** @typedef {{}} Thinking_LevelInputs */
 
-const en_thinking_level = /** @type {(inputs: Thinking_LevelInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Thinking Level`)
-};
-
 const zh_thinking_level = /** @type {(inputs: Thinking_LevelInputs) => LocalizedString} */ () => {
 	return /** @type {LocalizedString} */ (`思考级别`)
+};
+
+const en_thinking_level = /** @type {(inputs: Thinking_LevelInputs) => LocalizedString} */ () => {
+	return /** @type {LocalizedString} */ (`Thinking Level`)
 };
 
 /**
@@ -19,11 +19,11 @@ const zh_thinking_level = /** @type {(inputs: Thinking_LevelInputs) => Localized
 * | "Thinking Level" |
 *
 * @param {Thinking_LevelInputs} inputs
-* @param {{ locale?: "en" | "zh" }} options
+* @param {{ locale?: "zh" | "en" }} options
 * @returns {LocalizedString}
 */
-export const thinking_level = /** @type {((inputs?: Thinking_LevelInputs, options?: { locale?: "en" | "zh" }) => LocalizedString) & import('../runtime.js').MessageMetadata<Thinking_LevelInputs, { locale?: "en" | "zh" }, {}>} */ ((inputs = {}, options = {}) => {
+export const thinking_level = /** @type {((inputs?: Thinking_LevelInputs, options?: { locale?: "zh" | "en" }) => LocalizedString) & import('../runtime.js').MessageMetadata<Thinking_LevelInputs, { locale?: "zh" | "en" }, {}>} */ ((inputs = {}, options = {}) => {
 	const locale = experimentalStaticLocale ?? options.locale ?? getLocale()
-	if (locale === "en") return en_thinking_level(inputs)
-	return zh_thinking_level(inputs)
+	if (locale === "zh") return zh_thinking_level(inputs)
+	return en_thinking_level(inputs)
 });

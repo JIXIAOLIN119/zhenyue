@@ -2,7 +2,10 @@ import { expect, test } from '../../fixtures'
 import { E2E_PASSWORD, uniqueEmail } from '../../helpers/auth'
 import { signupViaUi } from '../../helpers/ui'
 
-test('should sign up as the first user and become the team owner', async ({ page, prisma }) => {
+test('should sign up as the first user, become the team owner, and preserve the selected locale', async ({
+  page,
+  prisma,
+}) => {
   const email = uniqueEmail('signup')
   const password = E2E_PASSWORD
 
@@ -11,6 +14,9 @@ test('should sign up as the first user and become the team owner', async ({ page
   // The first user is redirected to their single team
   await expect(page).toHaveURL(/\/teams\/[^/]+/)
   await expect(page.getByRole('heading', { name: 'Projects' })).toBeVisible()
+  expect(
+    (await page.context().cookies()).find((cookie) => cookie.name === 'PARAGLIDE_LOCALE')?.value,
+  ).toBe('en')
 
   // The new user exists and is the owner of the team
   const user = await prisma.user.findUnique({ where: { email } })

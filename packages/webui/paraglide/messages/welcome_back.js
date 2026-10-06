@@ -5,12 +5,12 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 
 /** @typedef {{}} Welcome_BackInputs */
 
-const en_welcome_back = /** @type {(inputs: Welcome_BackInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Welcome Back`)
-};
-
 const zh_welcome_back = /** @type {(inputs: Welcome_BackInputs) => LocalizedString} */ () => {
 	return /** @type {LocalizedString} */ (`欢迎回来`)
+};
+
+const en_welcome_back = /** @type {(inputs: Welcome_BackInputs) => LocalizedString} */ () => {
+	return /** @type {LocalizedString} */ (`Welcome Back`)
 };
 
 /**
@@ -19,11 +19,11 @@ const zh_welcome_back = /** @type {(inputs: Welcome_BackInputs) => LocalizedStri
 * | "Welcome Back" |
 *
 * @param {Welcome_BackInputs} inputs
-* @param {{ locale?: "en" | "zh" }} options
+* @param {{ locale?: "zh" | "en" }} options
 * @returns {LocalizedString}
 */
-export const welcome_back = /** @type {((inputs?: Welcome_BackInputs, options?: { locale?: "en" | "zh" }) => LocalizedString) & import('../runtime.js').MessageMetadata<Welcome_BackInputs, { locale?: "en" | "zh" }, {}>} */ ((inputs = {}, options = {}) => {
+export const welcome_back = /** @type {((inputs?: Welcome_BackInputs, options?: { locale?: "zh" | "en" }) => LocalizedString) & import('../runtime.js').MessageMetadata<Welcome_BackInputs, { locale?: "zh" | "en" }, {}>} */ ((inputs = {}, options = {}) => {
 	const locale = experimentalStaticLocale ?? options.locale ?? getLocale()
-	if (locale === "en") return en_welcome_back(inputs)
-	return zh_welcome_back(inputs)
+	if (locale === "zh") return zh_welcome_back(inputs)
+	return en_welcome_back(inputs)
 });

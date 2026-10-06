@@ -5,12 +5,12 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 
 /** @typedef {{}} Preparing_DownloadInputs */
 
-const en_preparing_download = /** @type {(inputs: Preparing_DownloadInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Preparing Download`)
-};
-
 const zh_preparing_download = /** @type {(inputs: Preparing_DownloadInputs) => LocalizedString} */ () => {
 	return /** @type {LocalizedString} */ (`正在准备下载`)
+};
+
+const en_preparing_download = /** @type {(inputs: Preparing_DownloadInputs) => LocalizedString} */ () => {
+	return /** @type {LocalizedString} */ (`Preparing Download`)
 };
 
 /**
@@ -19,11 +19,11 @@ const zh_preparing_download = /** @type {(inputs: Preparing_DownloadInputs) => L
 * | "Preparing Download" |
 *
 * @param {Preparing_DownloadInputs} inputs
-* @param {{ locale?: "en" | "zh" }} options
+* @param {{ locale?: "zh" | "en" }} options
 * @returns {LocalizedString}
 */
-export const preparing_download = /** @type {((inputs?: Preparing_DownloadInputs, options?: { locale?: "en" | "zh" }) => LocalizedString) & import('../runtime.js').MessageMetadata<Preparing_DownloadInputs, { locale?: "en" | "zh" }, {}>} */ ((inputs = {}, options = {}) => {
+export const preparing_download = /** @type {((inputs?: Preparing_DownloadInputs, options?: { locale?: "zh" | "en" }) => LocalizedString) & import('../runtime.js').MessageMetadata<Preparing_DownloadInputs, { locale?: "zh" | "en" }, {}>} */ ((inputs = {}, options = {}) => {
 	const locale = experimentalStaticLocale ?? options.locale ?? getLocale()
-	if (locale === "en") return en_preparing_download(inputs)
-	return zh_preparing_download(inputs)
+	if (locale === "zh") return zh_preparing_download(inputs)
+	return en_preparing_download(inputs)
 });

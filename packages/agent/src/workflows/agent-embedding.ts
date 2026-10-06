@@ -1,11 +1,11 @@
 import { ApplicationFailure } from '@temporalio/workflow'
-import type { WorkflowTask } from '@shumai/db'
+import type { WorkflowTask } from '@zhenyue/db'
 import {
   getActivities,
   executeActivity,
   TaskQueueAgent,
   TaskQueueTranscode,
-} from '@shumai/workflow-core'
+} from '@zhenyue/workflow-core'
 
 export interface GeneratedEmbedding {
   embedding: number[]

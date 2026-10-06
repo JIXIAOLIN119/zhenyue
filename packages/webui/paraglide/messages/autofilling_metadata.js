@@ -5,12 +5,12 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 
 /** @typedef {{}} Autofilling_MetadataInputs */
 
-const en_autofilling_metadata = /** @type {(inputs: Autofilling_MetadataInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Autofilling metadata...`)
-};
-
 const zh_autofilling_metadata = /** @type {(inputs: Autofilling_MetadataInputs) => LocalizedString} */ () => {
 	return /** @type {LocalizedString} */ (`正在自动填充元数据...`)
+};
+
+const en_autofilling_metadata = /** @type {(inputs: Autofilling_MetadataInputs) => LocalizedString} */ () => {
+	return /** @type {LocalizedString} */ (`Autofilling metadata...`)
 };
 
 /**
@@ -19,11 +19,11 @@ const zh_autofilling_metadata = /** @type {(inputs: Autofilling_MetadataInputs) 
 * | "Autofilling metadata..." |
 *
 * @param {Autofilling_MetadataInputs} inputs
-* @param {{ locale?: "en" | "zh" }} options
+* @param {{ locale?: "zh" | "en" }} options
 * @returns {LocalizedString}
 */
-export const autofilling_metadata = /** @type {((inputs?: Autofilling_MetadataInputs, options?: { locale?: "en" | "zh" }) => LocalizedString) & import('../runtime.js').MessageMetadata<Autofilling_MetadataInputs, { locale?: "en" | "zh" }, {}>} */ ((inputs = {}, options = {}) => {
+export const autofilling_metadata = /** @type {((inputs?: Autofilling_MetadataInputs, options?: { locale?: "zh" | "en" }) => LocalizedString) & import('../runtime.js').MessageMetadata<Autofilling_MetadataInputs, { locale?: "zh" | "en" }, {}>} */ ((inputs = {}, options = {}) => {
 	const locale = experimentalStaticLocale ?? options.locale ?? getLocale()
-	if (locale === "en") return en_autofilling_metadata(inputs)
-	return zh_autofilling_metadata(inputs)
+	if (locale === "zh") return zh_autofilling_metadata(inputs)
+	return en_autofilling_metadata(inputs)
 });

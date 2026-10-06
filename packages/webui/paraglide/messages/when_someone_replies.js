@@ -5,12 +5,12 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 
 /** @typedef {{}} When_Someone_RepliesInputs */
 
-const en_when_someone_replies = /** @type {(inputs: When_Someone_RepliesInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`When someone replies to your comment`)
-};
-
 const zh_when_someone_replies = /** @type {(inputs: When_Someone_RepliesInputs) => LocalizedString} */ () => {
 	return /** @type {LocalizedString} */ (`当有人回复你的评论时`)
+};
+
+const en_when_someone_replies = /** @type {(inputs: When_Someone_RepliesInputs) => LocalizedString} */ () => {
+	return /** @type {LocalizedString} */ (`When someone replies to your comment`)
 };
 
 /**
@@ -19,11 +19,11 @@ const zh_when_someone_replies = /** @type {(inputs: When_Someone_RepliesInputs) 
 * | "When someone replies to your comment" |
 *
 * @param {When_Someone_RepliesInputs} inputs
-* @param {{ locale?: "en" | "zh" }} options
+* @param {{ locale?: "zh" | "en" }} options
 * @returns {LocalizedString}
 */
-export const when_someone_replies = /** @type {((inputs?: When_Someone_RepliesInputs, options?: { locale?: "en" | "zh" }) => LocalizedString) & import('../runtime.js').MessageMetadata<When_Someone_RepliesInputs, { locale?: "en" | "zh" }, {}>} */ ((inputs = {}, options = {}) => {
+export const when_someone_replies = /** @type {((inputs?: When_Someone_RepliesInputs, options?: { locale?: "zh" | "en" }) => LocalizedString) & import('../runtime.js').MessageMetadata<When_Someone_RepliesInputs, { locale?: "zh" | "en" }, {}>} */ ((inputs = {}, options = {}) => {
 	const locale = experimentalStaticLocale ?? options.locale ?? getLocale()
-	if (locale === "en") return en_when_someone_replies(inputs)
-	return zh_when_someone_replies(inputs)
+	if (locale === "zh") return zh_when_someone_replies(inputs)
+	return en_when_someone_replies(inputs)
 });

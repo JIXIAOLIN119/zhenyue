@@ -28,7 +28,7 @@ import { useEffect, useMemo, useState } from 'react'
 import { Copy, ExternalLink, Calendar, Link2, Share2, Loader2 } from 'lucide-react'
 import { useInView } from 'react-intersection-observer'
 import { toast } from 'sonner'
-import type { ShareLinkInfo } from '@shumai/dtos'
+import type { ShareLinkInfo } from '@zhenyue/dtos'
 import { ProjectFolderSkeleton } from '@/ui/components/loading-skeletons'
 import { projectInfoQueryOptions } from './index'
 

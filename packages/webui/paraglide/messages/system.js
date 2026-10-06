@@ -5,12 +5,12 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 
 /** @typedef {{}} SystemInputs */
 
-const en_system = /** @type {(inputs: SystemInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`System`)
-};
-
 const zh_system = /** @type {(inputs: SystemInputs) => LocalizedString} */ () => {
 	return /** @type {LocalizedString} */ (`跟随系统`)
+};
+
+const en_system = /** @type {(inputs: SystemInputs) => LocalizedString} */ () => {
+	return /** @type {LocalizedString} */ (`System`)
 };
 
 /**
@@ -19,11 +19,11 @@ const zh_system = /** @type {(inputs: SystemInputs) => LocalizedString} */ () =>
 * | "System" |
 *
 * @param {SystemInputs} inputs
-* @param {{ locale?: "en" | "zh" }} options
+* @param {{ locale?: "zh" | "en" }} options
 * @returns {LocalizedString}
 */
-export const system = /** @type {((inputs?: SystemInputs, options?: { locale?: "en" | "zh" }) => LocalizedString) & import('../runtime.js').MessageMetadata<SystemInputs, { locale?: "en" | "zh" }, {}>} */ ((inputs = {}, options = {}) => {
+export const system = /** @type {((inputs?: SystemInputs, options?: { locale?: "zh" | "en" }) => LocalizedString) & import('../runtime.js').MessageMetadata<SystemInputs, { locale?: "zh" | "en" }, {}>} */ ((inputs = {}, options = {}) => {
 	const locale = experimentalStaticLocale ?? options.locale ?? getLocale()
-	if (locale === "en") return en_system(inputs)
-	return zh_system(inputs)
+	if (locale === "zh") return zh_system(inputs)
+	return en_system(inputs)
 });

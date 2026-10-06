@@ -5,12 +5,12 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 
 /** @typedef {{}} Failed_Create_FolderInputs */
 
-const en_failed_create_folder = /** @type {(inputs: Failed_Create_FolderInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Failed to create folder`)
-};
-
 const zh_failed_create_folder = /** @type {(inputs: Failed_Create_FolderInputs) => LocalizedString} */ () => {
 	return /** @type {LocalizedString} */ (`创建文件夹失败`)
+};
+
+const en_failed_create_folder = /** @type {(inputs: Failed_Create_FolderInputs) => LocalizedString} */ () => {
+	return /** @type {LocalizedString} */ (`Failed to create folder`)
 };
 
 /**
@@ -19,11 +19,11 @@ const zh_failed_create_folder = /** @type {(inputs: Failed_Create_FolderInputs) 
 * | "Failed to create folder" |
 *
 * @param {Failed_Create_FolderInputs} inputs
-* @param {{ locale?: "en" | "zh" }} options
+* @param {{ locale?: "zh" | "en" }} options
 * @returns {LocalizedString}
 */
-export const failed_create_folder = /** @type {((inputs?: Failed_Create_FolderInputs, options?: { locale?: "en" | "zh" }) => LocalizedString) & import('../runtime.js').MessageMetadata<Failed_Create_FolderInputs, { locale?: "en" | "zh" }, {}>} */ ((inputs = {}, options = {}) => {
+export const failed_create_folder = /** @type {((inputs?: Failed_Create_FolderInputs, options?: { locale?: "zh" | "en" }) => LocalizedString) & import('../runtime.js').MessageMetadata<Failed_Create_FolderInputs, { locale?: "zh" | "en" }, {}>} */ ((inputs = {}, options = {}) => {
 	const locale = experimentalStaticLocale ?? options.locale ?? getLocale()
-	if (locale === "en") return en_failed_create_folder(inputs)
-	return zh_failed_create_folder(inputs)
+	if (locale === "zh") return zh_failed_create_folder(inputs)
+	return en_failed_create_folder(inputs)
 });

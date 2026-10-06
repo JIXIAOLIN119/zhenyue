@@ -1,17 +1,17 @@
-import { prisma } from '@shumai/db'
-import type { Prisma } from '@shumai/db'
+import { prisma } from '@zhenyue/db'
+import type { Prisma } from '@zhenyue/db'
 import {
   authzService,
   Permission,
   ResourceType,
   resolveEffectiveRole,
-} from '@shumai/core/src/authz/authz'
-import { paginateQuery, type PaginatedData } from '@shumai/core/src/pagination'
-import type { ChatRequest, ChatSessionInfo, ChatMessage } from '@shumai/dtos'
+} from '@zhenyue/core/src/authz/authz'
+import { paginateQuery, type PaginatedData } from '@zhenyue/core/src/pagination'
+import type { ChatRequest, ChatSessionInfo, ChatMessage } from '@zhenyue/dtos'
 import type { SessionTreeEntry } from '@earendil-works/pi-agent-core'
-import { workflowService } from '@shumai/workflow-core'
-import { agentService } from '@shumai/core/src/agent/agent'
-import { getAgentRequiredLevel, getRoleLevel } from '@shumai/core/src/agent/permissions'
+import { workflowService } from '@zhenyue/workflow-core'
+import { agentService } from '@zhenyue/core/src/agent/agent'
+import { getAgentRequiredLevel, getRoleLevel } from '@zhenyue/core/src/agent/permissions'
 
 type User = Prisma.UserGetPayload<Record<string, never>>
 

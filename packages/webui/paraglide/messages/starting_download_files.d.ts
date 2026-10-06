@@ -4,13 +4,13 @@
 * | "Starting download of {count} files. Please allow multiple downloads if prompted by your browser." |
 *
 * @param {Starting_Download_FilesInputs} inputs
-* @param {{ locale?: "en" | "zh" }} options
+* @param {{ locale?: "zh" | "en" }} options
 * @returns {LocalizedString}
 */
 export const starting_download_files: ((inputs: Starting_Download_FilesInputs, options?: {
-    locale?: "en" | "zh";
+    locale?: "zh" | "en";
 }) => LocalizedString) & import("../runtime.js").MessageMetadata<Starting_Download_FilesInputs, {
-    locale?: "en" | "zh";
+    locale?: "zh" | "en";
 }, {}>;
 export type LocalizedString = import("../runtime.js").LocalizedString;
 export type Starting_Download_FilesInputs = {

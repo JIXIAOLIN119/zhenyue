@@ -5,12 +5,12 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 
 /** @typedef {{}} UploadInputs */
 
-const en_upload = /** @type {(inputs: UploadInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Upload`)
-};
-
 const zh_upload = /** @type {(inputs: UploadInputs) => LocalizedString} */ () => {
 	return /** @type {LocalizedString} */ (`上传`)
+};
+
+const en_upload = /** @type {(inputs: UploadInputs) => LocalizedString} */ () => {
+	return /** @type {LocalizedString} */ (`Upload`)
 };
 
 /**
@@ -19,11 +19,11 @@ const zh_upload = /** @type {(inputs: UploadInputs) => LocalizedString} */ () =>
 * | "Upload" |
 *
 * @param {UploadInputs} inputs
-* @param {{ locale?: "en" | "zh" }} options
+* @param {{ locale?: "zh" | "en" }} options
 * @returns {LocalizedString}
 */
-export const upload = /** @type {((inputs?: UploadInputs, options?: { locale?: "en" | "zh" }) => LocalizedString) & import('../runtime.js').MessageMetadata<UploadInputs, { locale?: "en" | "zh" }, {}>} */ ((inputs = {}, options = {}) => {
+export const upload = /** @type {((inputs?: UploadInputs, options?: { locale?: "zh" | "en" }) => LocalizedString) & import('../runtime.js').MessageMetadata<UploadInputs, { locale?: "zh" | "en" }, {}>} */ ((inputs = {}, options = {}) => {
 	const locale = experimentalStaticLocale ?? options.locale ?? getLocale()
-	if (locale === "en") return en_upload(inputs)
-	return zh_upload(inputs)
+	if (locale === "zh") return zh_upload(inputs)
+	return en_upload(inputs)
 });

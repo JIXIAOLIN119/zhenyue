@@ -1,13 +1,13 @@
 import { describe, it, expect, beforeEach, vi } from 'vitest'
-import { prisma } from '@shumai/db'
-import { setupTestDbHooks } from '@shumai/db/test'
+import { prisma } from '@zhenyue/db'
+import { setupTestDbHooks } from '@zhenyue/db/test'
 import { shareService } from './share'
-import { assetService } from '@shumai/core/src/asset/asset'
-import { projectService } from '@shumai/core/src/project/project'
-import { AssetType } from '@shumai/db'
-import { s3Service } from '@shumai/core/src/s3/s3'
+import { assetService } from '@zhenyue/core/src/asset/asset'
+import { projectService } from '@zhenyue/core/src/project/project'
+import { AssetType } from '@zhenyue/db'
+import { s3Service } from '@zhenyue/core/src/s3/s3'
 
-vi.mock('@shumai/core/src/s3/s3', () => ({
+vi.mock('@zhenyue/core/src/s3/s3', () => ({
   s3Service: {
     presign: vi.fn(),
   },

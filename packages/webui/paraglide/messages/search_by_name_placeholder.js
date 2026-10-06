@@ -5,12 +5,12 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 
 /** @typedef {{}} Search_By_Name_PlaceholderInputs */
 
-const en_search_by_name_placeholder = /** @type {(inputs: Search_By_Name_PlaceholderInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Search records by name...`)
-};
-
 const zh_search_by_name_placeholder = /** @type {(inputs: Search_By_Name_PlaceholderInputs) => LocalizedString} */ () => {
 	return /** @type {LocalizedString} */ (`按名称搜索记录...`)
+};
+
+const en_search_by_name_placeholder = /** @type {(inputs: Search_By_Name_PlaceholderInputs) => LocalizedString} */ () => {
+	return /** @type {LocalizedString} */ (`Search records by name...`)
 };
 
 /**
@@ -19,11 +19,11 @@ const zh_search_by_name_placeholder = /** @type {(inputs: Search_By_Name_Placeho
 * | "Search records by name..." |
 *
 * @param {Search_By_Name_PlaceholderInputs} inputs
-* @param {{ locale?: "en" | "zh" }} options
+* @param {{ locale?: "zh" | "en" }} options
 * @returns {LocalizedString}
 */
-export const search_by_name_placeholder = /** @type {((inputs?: Search_By_Name_PlaceholderInputs, options?: { locale?: "en" | "zh" }) => LocalizedString) & import('../runtime.js').MessageMetadata<Search_By_Name_PlaceholderInputs, { locale?: "en" | "zh" }, {}>} */ ((inputs = {}, options = {}) => {
+export const search_by_name_placeholder = /** @type {((inputs?: Search_By_Name_PlaceholderInputs, options?: { locale?: "zh" | "en" }) => LocalizedString) & import('../runtime.js').MessageMetadata<Search_By_Name_PlaceholderInputs, { locale?: "zh" | "en" }, {}>} */ ((inputs = {}, options = {}) => {
 	const locale = experimentalStaticLocale ?? options.locale ?? getLocale()
-	if (locale === "en") return en_search_by_name_placeholder(inputs)
-	return zh_search_by_name_placeholder(inputs)
+	if (locale === "zh") return zh_search_by_name_placeholder(inputs)
+	return en_search_by_name_placeholder(inputs)
 });

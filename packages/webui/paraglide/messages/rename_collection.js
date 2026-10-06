@@ -5,12 +5,12 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 
 /** @typedef {{}} Rename_CollectionInputs */
 
-const en_rename_collection = /** @type {(inputs: Rename_CollectionInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Rename Collection`)
-};
-
 const zh_rename_collection = /** @type {(inputs: Rename_CollectionInputs) => LocalizedString} */ () => {
 	return /** @type {LocalizedString} */ (`重命名媒体合集`)
+};
+
+const en_rename_collection = /** @type {(inputs: Rename_CollectionInputs) => LocalizedString} */ () => {
+	return /** @type {LocalizedString} */ (`Rename Collection`)
 };
 
 /**
@@ -19,11 +19,11 @@ const zh_rename_collection = /** @type {(inputs: Rename_CollectionInputs) => Loc
 * | "Rename Collection" |
 *
 * @param {Rename_CollectionInputs} inputs
-* @param {{ locale?: "en" | "zh" }} options
+* @param {{ locale?: "zh" | "en" }} options
 * @returns {LocalizedString}
 */
-export const rename_collection = /** @type {((inputs?: Rename_CollectionInputs, options?: { locale?: "en" | "zh" }) => LocalizedString) & import('../runtime.js').MessageMetadata<Rename_CollectionInputs, { locale?: "en" | "zh" }, {}>} */ ((inputs = {}, options = {}) => {
+export const rename_collection = /** @type {((inputs?: Rename_CollectionInputs, options?: { locale?: "zh" | "en" }) => LocalizedString) & import('../runtime.js').MessageMetadata<Rename_CollectionInputs, { locale?: "zh" | "en" }, {}>} */ ((inputs = {}, options = {}) => {
 	const locale = experimentalStaticLocale ?? options.locale ?? getLocale()
-	if (locale === "en") return en_rename_collection(inputs)
-	return zh_rename_collection(inputs)
+	if (locale === "zh") return zh_rename_collection(inputs)
+	return en_rename_collection(inputs)
 });

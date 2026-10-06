@@ -5,12 +5,12 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 
 /** @typedef {{}} Remove_From_ContextInputs */
 
-const en_remove_from_context = /** @type {(inputs: Remove_From_ContextInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Remove from context`)
-};
-
 const zh_remove_from_context = /** @type {(inputs: Remove_From_ContextInputs) => LocalizedString} */ () => {
 	return /** @type {LocalizedString} */ (`从上下文中移除`)
+};
+
+const en_remove_from_context = /** @type {(inputs: Remove_From_ContextInputs) => LocalizedString} */ () => {
+	return /** @type {LocalizedString} */ (`Remove from context`)
 };
 
 /**
@@ -19,11 +19,11 @@ const zh_remove_from_context = /** @type {(inputs: Remove_From_ContextInputs) =>
 * | "Remove from context" |
 *
 * @param {Remove_From_ContextInputs} inputs
-* @param {{ locale?: "en" | "zh" }} options
+* @param {{ locale?: "zh" | "en" }} options
 * @returns {LocalizedString}
 */
-export const remove_from_context = /** @type {((inputs?: Remove_From_ContextInputs, options?: { locale?: "en" | "zh" }) => LocalizedString) & import('../runtime.js').MessageMetadata<Remove_From_ContextInputs, { locale?: "en" | "zh" }, {}>} */ ((inputs = {}, options = {}) => {
+export const remove_from_context = /** @type {((inputs?: Remove_From_ContextInputs, options?: { locale?: "zh" | "en" }) => LocalizedString) & import('../runtime.js').MessageMetadata<Remove_From_ContextInputs, { locale?: "zh" | "en" }, {}>} */ ((inputs = {}, options = {}) => {
 	const locale = experimentalStaticLocale ?? options.locale ?? getLocale()
-	if (locale === "en") return en_remove_from_context(inputs)
-	return zh_remove_from_context(inputs)
+	if (locale === "zh") return zh_remove_from_context(inputs)
+	return en_remove_from_context(inputs)
 });

@@ -5,12 +5,12 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 
 /** @typedef {{}} Select_Template_To_OverwriteInputs */
 
-const en_select_template_to_overwrite = /** @type {(inputs: Select_Template_To_OverwriteInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Select template to overwrite`)
-};
-
 const zh_select_template_to_overwrite = /** @type {(inputs: Select_Template_To_OverwriteInputs) => LocalizedString} */ () => {
 	return /** @type {LocalizedString} */ (`选择要覆盖的模板`)
+};
+
+const en_select_template_to_overwrite = /** @type {(inputs: Select_Template_To_OverwriteInputs) => LocalizedString} */ () => {
+	return /** @type {LocalizedString} */ (`Select template to overwrite`)
 };
 
 /**
@@ -19,11 +19,11 @@ const zh_select_template_to_overwrite = /** @type {(inputs: Select_Template_To_O
 * | "Select template to overwrite" |
 *
 * @param {Select_Template_To_OverwriteInputs} inputs
-* @param {{ locale?: "en" | "zh" }} options
+* @param {{ locale?: "zh" | "en" }} options
 * @returns {LocalizedString}
 */
-export const select_template_to_overwrite = /** @type {((inputs?: Select_Template_To_OverwriteInputs, options?: { locale?: "en" | "zh" }) => LocalizedString) & import('../runtime.js').MessageMetadata<Select_Template_To_OverwriteInputs, { locale?: "en" | "zh" }, {}>} */ ((inputs = {}, options = {}) => {
+export const select_template_to_overwrite = /** @type {((inputs?: Select_Template_To_OverwriteInputs, options?: { locale?: "zh" | "en" }) => LocalizedString) & import('../runtime.js').MessageMetadata<Select_Template_To_OverwriteInputs, { locale?: "zh" | "en" }, {}>} */ ((inputs = {}, options = {}) => {
 	const locale = experimentalStaticLocale ?? options.locale ?? getLocale()
-	if (locale === "en") return en_select_template_to_overwrite(inputs)
-	return zh_select_template_to_overwrite(inputs)
+	if (locale === "zh") return zh_select_template_to_overwrite(inputs)
+	return en_select_template_to_overwrite(inputs)
 });

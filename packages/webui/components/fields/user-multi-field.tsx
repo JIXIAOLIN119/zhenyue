@@ -1,4 +1,4 @@
-import type { UserInfo } from '@shumai/dtos'
+import type { UserInfo } from '@zhenyue/dtos'
 import { Check } from 'lucide-react'
 import React, { useEffect, useLayoutEffect, useRef, useState } from 'react'
 import type { FieldProps } from './field-types'

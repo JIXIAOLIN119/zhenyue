@@ -5,25 +5,25 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 
 /** @typedef {{}} Agent_Tool_Create_Folder_DescInputs */
 
-const en_agent_tool_create_folder_desc = /** @type {(inputs: Agent_Tool_Create_Folder_DescInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Allows the agent to create new folders in Shumai.`)
+const zh_agent_tool_create_folder_desc = /** @type {(inputs: Agent_Tool_Create_Folder_DescInputs) => LocalizedString} */ () => {
+	return /** @type {LocalizedString} */ (`允许智能体在 帧阅 中创建新文件夹。`)
 };
 
-const zh_agent_tool_create_folder_desc = /** @type {(inputs: Agent_Tool_Create_Folder_DescInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`允许智能体在 Shumai 中创建新文件夹。`)
+const en_agent_tool_create_folder_desc = /** @type {(inputs: Agent_Tool_Create_Folder_DescInputs) => LocalizedString} */ () => {
+	return /** @type {LocalizedString} */ (`Allows the agent to create new folders in ZhenYue.`)
 };
 
 /**
 * | output |
 * | --- |
-* | "Allows the agent to create new folders in Shumai." |
+* | "Allows the agent to create new folders in ZhenYue." |
 *
 * @param {Agent_Tool_Create_Folder_DescInputs} inputs
-* @param {{ locale?: "en" | "zh" }} options
+* @param {{ locale?: "zh" | "en" }} options
 * @returns {LocalizedString}
 */
-export const agent_tool_create_folder_desc = /** @type {((inputs?: Agent_Tool_Create_Folder_DescInputs, options?: { locale?: "en" | "zh" }) => LocalizedString) & import('../runtime.js').MessageMetadata<Agent_Tool_Create_Folder_DescInputs, { locale?: "en" | "zh" }, {}>} */ ((inputs = {}, options = {}) => {
+export const agent_tool_create_folder_desc = /** @type {((inputs?: Agent_Tool_Create_Folder_DescInputs, options?: { locale?: "zh" | "en" }) => LocalizedString) & import('../runtime.js').MessageMetadata<Agent_Tool_Create_Folder_DescInputs, { locale?: "zh" | "en" }, {}>} */ ((inputs = {}, options = {}) => {
 	const locale = experimentalStaticLocale ?? options.locale ?? getLocale()
-	if (locale === "en") return en_agent_tool_create_folder_desc(inputs)
-	return zh_agent_tool_create_folder_desc(inputs)
+	if (locale === "zh") return zh_agent_tool_create_folder_desc(inputs)
+	return en_agent_tool_create_folder_desc(inputs)
 });

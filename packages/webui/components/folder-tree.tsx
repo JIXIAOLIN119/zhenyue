@@ -36,7 +36,7 @@ import type {
   CollectionInfo,
   ShareLinkInfo,
   AncestorFolder,
-} from '@shumai/dtos'
+} from '@zhenyue/dtos'
 import { useInfiniteQuery, useMutation, useQueryClient } from '@tanstack/react-query'
 import { useMatch, useNavigate, useParams } from '@tanstack/react-router'
 import {

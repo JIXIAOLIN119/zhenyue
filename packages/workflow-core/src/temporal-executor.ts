@@ -1,5 +1,5 @@
 import { Connection, Client } from '@temporalio/client'
-import { WorkflowTask, WorkflowTaskType } from '@shumai/db'
+import { WorkflowTask, WorkflowTaskType } from '@zhenyue/db'
 import { Executor } from './executor'
 import { TaskQueueAgent, TaskQueueTranscode } from './workflow-utils'
 

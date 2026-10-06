@@ -5,12 +5,12 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 
 /** @typedef {{}} Clear_SearchInputs */
 
-const en_clear_search = /** @type {(inputs: Clear_SearchInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Clear search`)
-};
-
 const zh_clear_search = /** @type {(inputs: Clear_SearchInputs) => LocalizedString} */ () => {
 	return /** @type {LocalizedString} */ (`清除搜索`)
+};
+
+const en_clear_search = /** @type {(inputs: Clear_SearchInputs) => LocalizedString} */ () => {
+	return /** @type {LocalizedString} */ (`Clear search`)
 };
 
 /**
@@ -19,11 +19,11 @@ const zh_clear_search = /** @type {(inputs: Clear_SearchInputs) => LocalizedStri
 * | "Clear search" |
 *
 * @param {Clear_SearchInputs} inputs
-* @param {{ locale?: "en" | "zh" }} options
+* @param {{ locale?: "zh" | "en" }} options
 * @returns {LocalizedString}
 */
-export const clear_search = /** @type {((inputs?: Clear_SearchInputs, options?: { locale?: "en" | "zh" }) => LocalizedString) & import('../runtime.js').MessageMetadata<Clear_SearchInputs, { locale?: "en" | "zh" }, {}>} */ ((inputs = {}, options = {}) => {
+export const clear_search = /** @type {((inputs?: Clear_SearchInputs, options?: { locale?: "zh" | "en" }) => LocalizedString) & import('../runtime.js').MessageMetadata<Clear_SearchInputs, { locale?: "zh" | "en" }, {}>} */ ((inputs = {}, options = {}) => {
 	const locale = experimentalStaticLocale ?? options.locale ?? getLocale()
-	if (locale === "en") return en_clear_search(inputs)
-	return zh_clear_search(inputs)
+	if (locale === "zh") return zh_clear_search(inputs)
+	return en_clear_search(inputs)
 });

@@ -1,4 +1,4 @@
-import type { WatermarkConfigSpec } from '@shumai/dtos'
+import type { WatermarkConfigSpec } from '@zhenyue/dtos'
 
 export function computeWatermarkConfigHash(config: WatermarkConfigSpec): string {
   const blockStrings = config.blocks.map((block) => {

@@ -5,12 +5,12 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 
 /** @typedef {{}} Mcp_Test_ConnectionInputs */
 
-const en_mcp_test_connection = /** @type {(inputs: Mcp_Test_ConnectionInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Test Connection`)
-};
-
 const zh_mcp_test_connection = /** @type {(inputs: Mcp_Test_ConnectionInputs) => LocalizedString} */ () => {
 	return /** @type {LocalizedString} */ (`测试连接`)
+};
+
+const en_mcp_test_connection = /** @type {(inputs: Mcp_Test_ConnectionInputs) => LocalizedString} */ () => {
+	return /** @type {LocalizedString} */ (`Test Connection`)
 };
 
 /**
@@ -19,11 +19,11 @@ const zh_mcp_test_connection = /** @type {(inputs: Mcp_Test_ConnectionInputs) =>
 * | "Test Connection" |
 *
 * @param {Mcp_Test_ConnectionInputs} inputs
-* @param {{ locale?: "en" | "zh" }} options
+* @param {{ locale?: "zh" | "en" }} options
 * @returns {LocalizedString}
 */
-export const mcp_test_connection = /** @type {((inputs?: Mcp_Test_ConnectionInputs, options?: { locale?: "en" | "zh" }) => LocalizedString) & import('../runtime.js').MessageMetadata<Mcp_Test_ConnectionInputs, { locale?: "en" | "zh" }, {}>} */ ((inputs = {}, options = {}) => {
+export const mcp_test_connection = /** @type {((inputs?: Mcp_Test_ConnectionInputs, options?: { locale?: "zh" | "en" }) => LocalizedString) & import('../runtime.js').MessageMetadata<Mcp_Test_ConnectionInputs, { locale?: "zh" | "en" }, {}>} */ ((inputs = {}, options = {}) => {
 	const locale = experimentalStaticLocale ?? options.locale ?? getLocale()
-	if (locale === "en") return en_mcp_test_connection(inputs)
-	return zh_mcp_test_connection(inputs)
+	if (locale === "zh") return zh_mcp_test_connection(inputs)
+	return en_mcp_test_connection(inputs)
 });

@@ -5,12 +5,12 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 
 /** @typedef {{}} Sort_CustomInputs */
 
-const en_sort_custom = /** @type {(inputs: Sort_CustomInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Custom`)
-};
-
 const zh_sort_custom = /** @type {(inputs: Sort_CustomInputs) => LocalizedString} */ () => {
 	return /** @type {LocalizedString} */ (`自定义`)
+};
+
+const en_sort_custom = /** @type {(inputs: Sort_CustomInputs) => LocalizedString} */ () => {
+	return /** @type {LocalizedString} */ (`Custom`)
 };
 
 /**
@@ -19,11 +19,11 @@ const zh_sort_custom = /** @type {(inputs: Sort_CustomInputs) => LocalizedString
 * | "Custom" |
 *
 * @param {Sort_CustomInputs} inputs
-* @param {{ locale?: "en" | "zh" }} options
+* @param {{ locale?: "zh" | "en" }} options
 * @returns {LocalizedString}
 */
-export const sort_custom = /** @type {((inputs?: Sort_CustomInputs, options?: { locale?: "en" | "zh" }) => LocalizedString) & import('../runtime.js').MessageMetadata<Sort_CustomInputs, { locale?: "en" | "zh" }, {}>} */ ((inputs = {}, options = {}) => {
+export const sort_custom = /** @type {((inputs?: Sort_CustomInputs, options?: { locale?: "zh" | "en" }) => LocalizedString) & import('../runtime.js').MessageMetadata<Sort_CustomInputs, { locale?: "zh" | "en" }, {}>} */ ((inputs = {}, options = {}) => {
 	const locale = experimentalStaticLocale ?? options.locale ?? getLocale()
-	if (locale === "en") return en_sort_custom(inputs)
-	return zh_sort_custom(inputs)
+	if (locale === "zh") return zh_sort_custom(inputs)
+	return en_sort_custom(inputs)
 });

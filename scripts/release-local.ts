@@ -81,7 +81,7 @@ function isInsidePath(child: string, parent: string) {
 
 function prepareOutputDirectory(outDirOpt: string, force: boolean, repoRoot: string) {
   if (!outDirOpt) {
-    const randomName = `shumai-local-release-${Math.random().toString(36).substring(2, 10)}`
+    const randomName = `zhenyue-local-release-${Math.random().toString(36).substring(2, 10)}`
     return join(tmpdir(), randomName)
   }
 
@@ -127,7 +127,7 @@ const options = parseArgs()
 const repoRoot = process.cwd()
 const rootPackageJson = readPackageJson(repoRoot)
 
-if (rootPackageJson.name !== 'shumai') {
+if (rootPackageJson.name !== 'zhenyue') {
   throw new Error('Run this script from the repository root')
 }
 
@@ -178,10 +178,10 @@ console.log('📦 Creating isolated npm installation...')
 mkdirSync(nodeInstallDirectory, { recursive: true })
 
 const wrapperAppNames = [
-  '@shumai-one/shumai',
-  '@shumai-one/shumai-agent',
-  '@shumai-one/shumai-transcode',
-  '@shumai-one/shumai-cli',
+  '@zhenyue-one/zhenyue',
+  '@zhenyue-one/zhenyue-agent',
+  '@zhenyue-one/zhenyue-transcode',
+  '@zhenyue-one/zhenyue-cli',
 ]
 const dependencies = Object.fromEntries(
   packages
@@ -213,7 +213,7 @@ console.log('\nIsolated npm install location:')
 console.log(`  ${nodeInstallDirectory}`)
 
 console.log('\nTo run the locally packed CLI apps from outside the repository:')
-console.log(`  npx --prefix ${nodeInstallDirectory} shumai`)
-console.log(`  npx --prefix ${nodeInstallDirectory} shumai-agent`)
-console.log(`  npx --prefix ${nodeInstallDirectory} shumai-transcode`)
-console.log(`  npx --prefix ${nodeInstallDirectory} shumai-cli`)
+console.log(`  npx --prefix ${nodeInstallDirectory} zhenyue`)
+console.log(`  npx --prefix ${nodeInstallDirectory} zhenyue-agent`)
+console.log(`  npx --prefix ${nodeInstallDirectory} zhenyue-transcode`)
+console.log(`  npx --prefix ${nodeInstallDirectory} zhenyue-cli`)

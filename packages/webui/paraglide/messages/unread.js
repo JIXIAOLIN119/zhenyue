@@ -5,12 +5,12 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 
 /** @typedef {{}} UnreadInputs */
 
-const en_unread = /** @type {(inputs: UnreadInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Unread`)
-};
-
 const zh_unread = /** @type {(inputs: UnreadInputs) => LocalizedString} */ () => {
 	return /** @type {LocalizedString} */ (`未读`)
+};
+
+const en_unread = /** @type {(inputs: UnreadInputs) => LocalizedString} */ () => {
+	return /** @type {LocalizedString} */ (`Unread`)
 };
 
 /**
@@ -19,11 +19,11 @@ const zh_unread = /** @type {(inputs: UnreadInputs) => LocalizedString} */ () =>
 * | "Unread" |
 *
 * @param {UnreadInputs} inputs
-* @param {{ locale?: "en" | "zh" }} options
+* @param {{ locale?: "zh" | "en" }} options
 * @returns {LocalizedString}
 */
-export const unread = /** @type {((inputs?: UnreadInputs, options?: { locale?: "en" | "zh" }) => LocalizedString) & import('../runtime.js').MessageMetadata<UnreadInputs, { locale?: "en" | "zh" }, {}>} */ ((inputs = {}, options = {}) => {
+export const unread = /** @type {((inputs?: UnreadInputs, options?: { locale?: "zh" | "en" }) => LocalizedString) & import('../runtime.js').MessageMetadata<UnreadInputs, { locale?: "zh" | "en" }, {}>} */ ((inputs = {}, options = {}) => {
 	const locale = experimentalStaticLocale ?? options.locale ?? getLocale()
-	if (locale === "en") return en_unread(inputs)
-	return zh_unread(inputs)
+	if (locale === "zh") return zh_unread(inputs)
+	return en_unread(inputs)
 });

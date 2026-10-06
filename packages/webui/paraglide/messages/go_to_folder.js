@@ -5,12 +5,12 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 
 /** @typedef {{}} Go_To_FolderInputs */
 
-const en_go_to_folder = /** @type {(inputs: Go_To_FolderInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Go to folder`)
-};
-
 const zh_go_to_folder = /** @type {(inputs: Go_To_FolderInputs) => LocalizedString} */ () => {
 	return /** @type {LocalizedString} */ (`前往文件夹`)
+};
+
+const en_go_to_folder = /** @type {(inputs: Go_To_FolderInputs) => LocalizedString} */ () => {
+	return /** @type {LocalizedString} */ (`Go to folder`)
 };
 
 /**
@@ -19,11 +19,11 @@ const zh_go_to_folder = /** @type {(inputs: Go_To_FolderInputs) => LocalizedStri
 * | "Go to folder" |
 *
 * @param {Go_To_FolderInputs} inputs
-* @param {{ locale?: "en" | "zh" }} options
+* @param {{ locale?: "zh" | "en" }} options
 * @returns {LocalizedString}
 */
-export const go_to_folder = /** @type {((inputs?: Go_To_FolderInputs, options?: { locale?: "en" | "zh" }) => LocalizedString) & import('../runtime.js').MessageMetadata<Go_To_FolderInputs, { locale?: "en" | "zh" }, {}>} */ ((inputs = {}, options = {}) => {
+export const go_to_folder = /** @type {((inputs?: Go_To_FolderInputs, options?: { locale?: "zh" | "en" }) => LocalizedString) & import('../runtime.js').MessageMetadata<Go_To_FolderInputs, { locale?: "zh" | "en" }, {}>} */ ((inputs = {}, options = {}) => {
 	const locale = experimentalStaticLocale ?? options.locale ?? getLocale()
-	if (locale === "en") return en_go_to_folder(inputs)
-	return zh_go_to_folder(inputs)
+	if (locale === "zh") return zh_go_to_folder(inputs)
+	return en_go_to_folder(inputs)
 });

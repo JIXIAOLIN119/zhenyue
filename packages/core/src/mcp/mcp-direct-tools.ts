@@ -10,7 +10,7 @@
 
 import { Type } from '@sinclair/typebox'
 import type { AgentTool, AgentToolResult } from '@earendil-works/pi-agent-core'
-import '@shumai/db/src/prisma-json-types'
+import '@zhenyue/db/src/prisma-json-types'
 import type { ToolMetadata } from './mcp-tool-registry'
 import { isToolAllowed } from './mcp-tool-registry'
 import { toToolParameters } from './mcp-tool-schema'

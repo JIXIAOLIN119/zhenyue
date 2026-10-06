@@ -5,12 +5,12 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 
 /** @typedef {{}} Moved_SuccessfullyInputs */
 
-const en_moved_successfully = /** @type {(inputs: Moved_SuccessfullyInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Moved successfully`)
-};
-
 const zh_moved_successfully = /** @type {(inputs: Moved_SuccessfullyInputs) => LocalizedString} */ () => {
 	return /** @type {LocalizedString} */ (`移动成功`)
+};
+
+const en_moved_successfully = /** @type {(inputs: Moved_SuccessfullyInputs) => LocalizedString} */ () => {
+	return /** @type {LocalizedString} */ (`Moved successfully`)
 };
 
 /**
@@ -19,11 +19,11 @@ const zh_moved_successfully = /** @type {(inputs: Moved_SuccessfullyInputs) => L
 * | "Moved successfully" |
 *
 * @param {Moved_SuccessfullyInputs} inputs
-* @param {{ locale?: "en" | "zh" }} options
+* @param {{ locale?: "zh" | "en" }} options
 * @returns {LocalizedString}
 */
-export const moved_successfully = /** @type {((inputs?: Moved_SuccessfullyInputs, options?: { locale?: "en" | "zh" }) => LocalizedString) & import('../runtime.js').MessageMetadata<Moved_SuccessfullyInputs, { locale?: "en" | "zh" }, {}>} */ ((inputs = {}, options = {}) => {
+export const moved_successfully = /** @type {((inputs?: Moved_SuccessfullyInputs, options?: { locale?: "zh" | "en" }) => LocalizedString) & import('../runtime.js').MessageMetadata<Moved_SuccessfullyInputs, { locale?: "zh" | "en" }, {}>} */ ((inputs = {}, options = {}) => {
 	const locale = experimentalStaticLocale ?? options.locale ?? getLocale()
-	if (locale === "en") return en_moved_successfully(inputs)
-	return zh_moved_successfully(inputs)
+	if (locale === "zh") return zh_moved_successfully(inputs)
+	return en_moved_successfully(inputs)
 });

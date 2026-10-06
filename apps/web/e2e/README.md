@@ -1,6 +1,6 @@
 # Web App E2E Tests
 
-Fullstack end-to-end tests for the Shumai web app. They run against a real backend
+Fullstack end-to-end tests for the ZhenYue web app. They run against a real backend
 (pgvector container + local S3 storage) served on `http://localhost:5200` and are
 executed with Playwright via `bun run test:e2e:app`.
 
@@ -54,7 +54,7 @@ apps/web/e2e/
 ### auth
 | Test | File |
 |---|---|
-| Sign up as the first user and become the team owner | `tests/auth/signup.spec.ts` |
+| Sign up as the first user, become the team owner, and preserve the selected locale | `tests/auth/signup.spec.ts` |
 | Log in with existing credentials | `tests/auth/login.spec.ts` |
 
 ### team

@@ -5,12 +5,12 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 
 /** @typedef {{}} Media_Not_AvailableInputs */
 
-const en_media_not_available = /** @type {(inputs: Media_Not_AvailableInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Media is not available.`)
-};
-
 const zh_media_not_available = /** @type {(inputs: Media_Not_AvailableInputs) => LocalizedString} */ () => {
 	return /** @type {LocalizedString} */ (`媒体不可用。`)
+};
+
+const en_media_not_available = /** @type {(inputs: Media_Not_AvailableInputs) => LocalizedString} */ () => {
+	return /** @type {LocalizedString} */ (`Media is not available.`)
 };
 
 /**
@@ -19,11 +19,11 @@ const zh_media_not_available = /** @type {(inputs: Media_Not_AvailableInputs) =>
 * | "Media is not available." |
 *
 * @param {Media_Not_AvailableInputs} inputs
-* @param {{ locale?: "en" | "zh" }} options
+* @param {{ locale?: "zh" | "en" }} options
 * @returns {LocalizedString}
 */
-export const media_not_available = /** @type {((inputs?: Media_Not_AvailableInputs, options?: { locale?: "en" | "zh" }) => LocalizedString) & import('../runtime.js').MessageMetadata<Media_Not_AvailableInputs, { locale?: "en" | "zh" }, {}>} */ ((inputs = {}, options = {}) => {
+export const media_not_available = /** @type {((inputs?: Media_Not_AvailableInputs, options?: { locale?: "zh" | "en" }) => LocalizedString) & import('../runtime.js').MessageMetadata<Media_Not_AvailableInputs, { locale?: "zh" | "en" }, {}>} */ ((inputs = {}, options = {}) => {
 	const locale = experimentalStaticLocale ?? options.locale ?? getLocale()
-	if (locale === "en") return en_media_not_available(inputs)
-	return zh_media_not_available(inputs)
+	if (locale === "zh") return zh_media_not_available(inputs)
+	return en_media_not_available(inputs)
 });

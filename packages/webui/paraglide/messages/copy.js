@@ -5,12 +5,12 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 
 /** @typedef {{}} CopyInputs */
 
-const en_copy = /** @type {(inputs: CopyInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Copy`)
-};
-
 const zh_copy = /** @type {(inputs: CopyInputs) => LocalizedString} */ () => {
 	return /** @type {LocalizedString} */ (`复制`)
+};
+
+const en_copy = /** @type {(inputs: CopyInputs) => LocalizedString} */ () => {
+	return /** @type {LocalizedString} */ (`Copy`)
 };
 
 /**
@@ -19,11 +19,11 @@ const zh_copy = /** @type {(inputs: CopyInputs) => LocalizedString} */ () => {
 * | "Copy" |
 *
 * @param {CopyInputs} inputs
-* @param {{ locale?: "en" | "zh" }} options
+* @param {{ locale?: "zh" | "en" }} options
 * @returns {LocalizedString}
 */
-export const copy = /** @type {((inputs?: CopyInputs, options?: { locale?: "en" | "zh" }) => LocalizedString) & import('../runtime.js').MessageMetadata<CopyInputs, { locale?: "en" | "zh" }, {}>} */ ((inputs = {}, options = {}) => {
+export const copy = /** @type {((inputs?: CopyInputs, options?: { locale?: "zh" | "en" }) => LocalizedString) & import('../runtime.js').MessageMetadata<CopyInputs, { locale?: "zh" | "en" }, {}>} */ ((inputs = {}, options = {}) => {
 	const locale = experimentalStaticLocale ?? options.locale ?? getLocale()
-	if (locale === "en") return en_copy(inputs)
-	return zh_copy(inputs)
+	if (locale === "zh") return zh_copy(inputs)
+	return en_copy(inputs)
 });

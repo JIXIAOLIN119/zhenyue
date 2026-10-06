@@ -5,12 +5,12 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 
 /** @typedef {{}} AscendingInputs */
 
-const en_ascending = /** @type {(inputs: AscendingInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Ascending`)
-};
-
 const zh_ascending = /** @type {(inputs: AscendingInputs) => LocalizedString} */ () => {
 	return /** @type {LocalizedString} */ (`升序`)
+};
+
+const en_ascending = /** @type {(inputs: AscendingInputs) => LocalizedString} */ () => {
+	return /** @type {LocalizedString} */ (`Ascending`)
 };
 
 /**
@@ -19,11 +19,11 @@ const zh_ascending = /** @type {(inputs: AscendingInputs) => LocalizedString} */
 * | "Ascending" |
 *
 * @param {AscendingInputs} inputs
-* @param {{ locale?: "en" | "zh" }} options
+* @param {{ locale?: "zh" | "en" }} options
 * @returns {LocalizedString}
 */
-export const ascending = /** @type {((inputs?: AscendingInputs, options?: { locale?: "en" | "zh" }) => LocalizedString) & import('../runtime.js').MessageMetadata<AscendingInputs, { locale?: "en" | "zh" }, {}>} */ ((inputs = {}, options = {}) => {
+export const ascending = /** @type {((inputs?: AscendingInputs, options?: { locale?: "zh" | "en" }) => LocalizedString) & import('../runtime.js').MessageMetadata<AscendingInputs, { locale?: "zh" | "en" }, {}>} */ ((inputs = {}, options = {}) => {
 	const locale = experimentalStaticLocale ?? options.locale ?? getLocale()
-	if (locale === "en") return en_ascending(inputs)
-	return zh_ascending(inputs)
+	if (locale === "zh") return zh_ascending(inputs)
+	return en_ascending(inputs)
 });

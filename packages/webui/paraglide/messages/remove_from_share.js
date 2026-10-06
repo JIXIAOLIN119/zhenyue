@@ -5,12 +5,12 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 
 /** @typedef {{}} Remove_From_ShareInputs */
 
-const en_remove_from_share = /** @type {(inputs: Remove_From_ShareInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Remove from Share`)
-};
-
 const zh_remove_from_share = /** @type {(inputs: Remove_From_ShareInputs) => LocalizedString} */ () => {
 	return /** @type {LocalizedString} */ (`从分享中移除`)
+};
+
+const en_remove_from_share = /** @type {(inputs: Remove_From_ShareInputs) => LocalizedString} */ () => {
+	return /** @type {LocalizedString} */ (`Remove from Share`)
 };
 
 /**
@@ -19,11 +19,11 @@ const zh_remove_from_share = /** @type {(inputs: Remove_From_ShareInputs) => Loc
 * | "Remove from Share" |
 *
 * @param {Remove_From_ShareInputs} inputs
-* @param {{ locale?: "en" | "zh" }} options
+* @param {{ locale?: "zh" | "en" }} options
 * @returns {LocalizedString}
 */
-export const remove_from_share = /** @type {((inputs?: Remove_From_ShareInputs, options?: { locale?: "en" | "zh" }) => LocalizedString) & import('../runtime.js').MessageMetadata<Remove_From_ShareInputs, { locale?: "en" | "zh" }, {}>} */ ((inputs = {}, options = {}) => {
+export const remove_from_share = /** @type {((inputs?: Remove_From_ShareInputs, options?: { locale?: "zh" | "en" }) => LocalizedString) & import('../runtime.js').MessageMetadata<Remove_From_ShareInputs, { locale?: "zh" | "en" }, {}>} */ ((inputs = {}, options = {}) => {
 	const locale = experimentalStaticLocale ?? options.locale ?? getLocale()
-	if (locale === "en") return en_remove_from_share(inputs)
-	return zh_remove_from_share(inputs)
+	if (locale === "zh") return zh_remove_from_share(inputs)
+	return en_remove_from_share(inputs)
 });

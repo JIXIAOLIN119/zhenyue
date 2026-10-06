@@ -5,12 +5,12 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 
 /** @typedef {{}} Failed_Save_CollectionInputs */
 
-const en_failed_save_collection = /** @type {(inputs: Failed_Save_CollectionInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Failed to save collection`)
-};
-
 const zh_failed_save_collection = /** @type {(inputs: Failed_Save_CollectionInputs) => LocalizedString} */ () => {
 	return /** @type {LocalizedString} */ (`保存媒体合集失败`)
+};
+
+const en_failed_save_collection = /** @type {(inputs: Failed_Save_CollectionInputs) => LocalizedString} */ () => {
+	return /** @type {LocalizedString} */ (`Failed to save collection`)
 };
 
 /**
@@ -19,11 +19,11 @@ const zh_failed_save_collection = /** @type {(inputs: Failed_Save_CollectionInpu
 * | "Failed to save collection" |
 *
 * @param {Failed_Save_CollectionInputs} inputs
-* @param {{ locale?: "en" | "zh" }} options
+* @param {{ locale?: "zh" | "en" }} options
 * @returns {LocalizedString}
 */
-export const failed_save_collection = /** @type {((inputs?: Failed_Save_CollectionInputs, options?: { locale?: "en" | "zh" }) => LocalizedString) & import('../runtime.js').MessageMetadata<Failed_Save_CollectionInputs, { locale?: "en" | "zh" }, {}>} */ ((inputs = {}, options = {}) => {
+export const failed_save_collection = /** @type {((inputs?: Failed_Save_CollectionInputs, options?: { locale?: "zh" | "en" }) => LocalizedString) & import('../runtime.js').MessageMetadata<Failed_Save_CollectionInputs, { locale?: "zh" | "en" }, {}>} */ ((inputs = {}, options = {}) => {
 	const locale = experimentalStaticLocale ?? options.locale ?? getLocale()
-	if (locale === "en") return en_failed_save_collection(inputs)
-	return zh_failed_save_collection(inputs)
+	if (locale === "zh") return zh_failed_save_collection(inputs)
+	return en_failed_save_collection(inputs)
 });

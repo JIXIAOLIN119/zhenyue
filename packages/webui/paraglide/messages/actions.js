@@ -5,12 +5,12 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 
 /** @typedef {{}} ActionsInputs */
 
-const en_actions = /** @type {(inputs: ActionsInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Actions`)
-};
-
 const zh_actions = /** @type {(inputs: ActionsInputs) => LocalizedString} */ () => {
 	return /** @type {LocalizedString} */ (`操作`)
+};
+
+const en_actions = /** @type {(inputs: ActionsInputs) => LocalizedString} */ () => {
+	return /** @type {LocalizedString} */ (`Actions`)
 };
 
 /**
@@ -19,11 +19,11 @@ const zh_actions = /** @type {(inputs: ActionsInputs) => LocalizedString} */ () 
 * | "Actions" |
 *
 * @param {ActionsInputs} inputs
-* @param {{ locale?: "en" | "zh" }} options
+* @param {{ locale?: "zh" | "en" }} options
 * @returns {LocalizedString}
 */
-export const actions = /** @type {((inputs?: ActionsInputs, options?: { locale?: "en" | "zh" }) => LocalizedString) & import('../runtime.js').MessageMetadata<ActionsInputs, { locale?: "en" | "zh" }, {}>} */ ((inputs = {}, options = {}) => {
+export const actions = /** @type {((inputs?: ActionsInputs, options?: { locale?: "zh" | "en" }) => LocalizedString) & import('../runtime.js').MessageMetadata<ActionsInputs, { locale?: "zh" | "en" }, {}>} */ ((inputs = {}, options = {}) => {
 	const locale = experimentalStaticLocale ?? options.locale ?? getLocale()
-	if (locale === "en") return en_actions(inputs)
-	return zh_actions(inputs)
+	if (locale === "zh") return zh_actions(inputs)
+	return en_actions(inputs)
 });

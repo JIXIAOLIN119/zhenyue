@@ -1,6 +1,6 @@
 import { Hono } from 'hono'
-import { inviteService } from '@shumai/core/src/invite/invite'
-import { InviteInfo } from '@shumai/dtos'
+import { inviteService } from '@zhenyue/core/src/invite/invite'
+import { InviteInfo } from '@zhenyue/dtos'
 
 const app = new Hono()
 

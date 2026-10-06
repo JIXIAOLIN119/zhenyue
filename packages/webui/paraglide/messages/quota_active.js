@@ -5,12 +5,12 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 
 /** @typedef {{}} Quota_ActiveInputs */
 
-const en_quota_active = /** @type {(inputs: Quota_ActiveInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Active`)
-};
-
 const zh_quota_active = /** @type {(inputs: Quota_ActiveInputs) => LocalizedString} */ () => {
 	return /** @type {LocalizedString} */ (`使用中`)
+};
+
+const en_quota_active = /** @type {(inputs: Quota_ActiveInputs) => LocalizedString} */ () => {
+	return /** @type {LocalizedString} */ (`Active`)
 };
 
 /**
@@ -19,11 +19,11 @@ const zh_quota_active = /** @type {(inputs: Quota_ActiveInputs) => LocalizedStri
 * | "Active" |
 *
 * @param {Quota_ActiveInputs} inputs
-* @param {{ locale?: "en" | "zh" }} options
+* @param {{ locale?: "zh" | "en" }} options
 * @returns {LocalizedString}
 */
-export const quota_active = /** @type {((inputs?: Quota_ActiveInputs, options?: { locale?: "en" | "zh" }) => LocalizedString) & import('../runtime.js').MessageMetadata<Quota_ActiveInputs, { locale?: "en" | "zh" }, {}>} */ ((inputs = {}, options = {}) => {
+export const quota_active = /** @type {((inputs?: Quota_ActiveInputs, options?: { locale?: "zh" | "en" }) => LocalizedString) & import('../runtime.js').MessageMetadata<Quota_ActiveInputs, { locale?: "zh" | "en" }, {}>} */ ((inputs = {}, options = {}) => {
 	const locale = experimentalStaticLocale ?? options.locale ?? getLocale()
-	if (locale === "en") return en_quota_active(inputs)
-	return zh_quota_active(inputs)
+	if (locale === "zh") return zh_quota_active(inputs)
+	return en_quota_active(inputs)
 });

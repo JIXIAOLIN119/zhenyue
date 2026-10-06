@@ -5,12 +5,12 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 
 /** @typedef {{}} Image_Asset_IdInputs */
 
-const en_image_asset_id = /** @type {(inputs: Image_Asset_IdInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Image Asset ID`)
-};
-
 const zh_image_asset_id = /** @type {(inputs: Image_Asset_IdInputs) => LocalizedString} */ () => {
 	return /** @type {LocalizedString} */ (`图片资源 ID`)
+};
+
+const en_image_asset_id = /** @type {(inputs: Image_Asset_IdInputs) => LocalizedString} */ () => {
+	return /** @type {LocalizedString} */ (`Image Asset ID`)
 };
 
 /**
@@ -19,11 +19,11 @@ const zh_image_asset_id = /** @type {(inputs: Image_Asset_IdInputs) => Localized
 * | "Image Asset ID" |
 *
 * @param {Image_Asset_IdInputs} inputs
-* @param {{ locale?: "en" | "zh" }} options
+* @param {{ locale?: "zh" | "en" }} options
 * @returns {LocalizedString}
 */
-export const image_asset_id = /** @type {((inputs?: Image_Asset_IdInputs, options?: { locale?: "en" | "zh" }) => LocalizedString) & import('../runtime.js').MessageMetadata<Image_Asset_IdInputs, { locale?: "en" | "zh" }, {}>} */ ((inputs = {}, options = {}) => {
+export const image_asset_id = /** @type {((inputs?: Image_Asset_IdInputs, options?: { locale?: "zh" | "en" }) => LocalizedString) & import('../runtime.js').MessageMetadata<Image_Asset_IdInputs, { locale?: "zh" | "en" }, {}>} */ ((inputs = {}, options = {}) => {
 	const locale = experimentalStaticLocale ?? options.locale ?? getLocale()
-	if (locale === "en") return en_image_asset_id(inputs)
-	return zh_image_asset_id(inputs)
+	if (locale === "zh") return zh_image_asset_id(inputs)
+	return en_image_asset_id(inputs)
 });

@@ -1,8 +1,8 @@
-import { prisma } from '@shumai/db'
-import { setupTestDbHooks } from '@shumai/db/test'
+import { prisma } from '@zhenyue/db'
+import { setupTestDbHooks } from '@zhenyue/db/test'
 import { chatService, buildSessionMessages, mapEntryToMessage, type PathEntry } from './chat'
 import { describe, expect, it, vi } from 'vitest'
-import { workflowService } from '@shumai/workflow-core'
+import { workflowService } from '@zhenyue/workflow-core'
 
 describe('ChatService', () => {
   setupTestDbHooks()
@@ -53,7 +53,7 @@ describe('ChatService', () => {
       data: {
         id: 'test-agent-id',
         name: 'Test Agent',
-        email: 'test-agent@shumai.ai',
+        email: 'test-agent@zhenyue.ai',
         type: 'agent',
       },
     })
@@ -262,7 +262,7 @@ describe('ChatService', () => {
     const ownerAgentUser = await prisma.user.create({
       data: {
         name: 'Owner Agent User',
-        email: `owner-agent-${Date.now()}@shumai.ai`,
+        email: `owner-agent-${Date.now()}@zhenyue.ai`,
         type: 'agent',
       },
     })
@@ -278,14 +278,14 @@ describe('ChatService', () => {
 
     // Create an editor user and a reviewer user
     const editorUser = await prisma.user.create({
-      data: { name: 'Editor User', email: `ed-${Date.now()}@shumai.ai`, password: 'pw' },
+      data: { name: 'Editor User', email: `ed-${Date.now()}@zhenyue.ai`, password: 'pw' },
     })
     await prisma.teamMember.create({
       data: { teamId: team.id, userId: editorUser.id, role: 'editor' },
     })
 
     const reviewerUser = await prisma.user.create({
-      data: { name: 'Reviewer User', email: `rev-${Date.now()}@shumai.ai`, password: 'pw' },
+      data: { name: 'Reviewer User', email: `rev-${Date.now()}@zhenyue.ai`, password: 'pw' },
     })
     await prisma.teamMember.create({
       data: { teamId: team.id, userId: reviewerUser.id, role: 'reviewer' },
@@ -799,7 +799,7 @@ describe('ChatService', () => {
 
       const createAgent = async (name: string, permission: 'owner' | 'editor' | 'reviewer') => {
         const agentUser = await prisma.user.create({
-          data: { name, email: `${name}-${Date.now()}@shumai.ai`, type: 'agent' },
+          data: { name, email: `${name}-${Date.now()}@zhenyue.ai`, type: 'agent' },
         })
         return prisma.agent.create({
           data: {

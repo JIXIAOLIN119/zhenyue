@@ -5,12 +5,12 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 
 /** @typedef {{}} Date_YesterdayInputs */
 
-const en_date_yesterday = /** @type {(inputs: Date_YesterdayInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Yesterday`)
-};
-
 const zh_date_yesterday = /** @type {(inputs: Date_YesterdayInputs) => LocalizedString} */ () => {
 	return /** @type {LocalizedString} */ (`昨天`)
+};
+
+const en_date_yesterday = /** @type {(inputs: Date_YesterdayInputs) => LocalizedString} */ () => {
+	return /** @type {LocalizedString} */ (`Yesterday`)
 };
 
 /**
@@ -19,11 +19,11 @@ const zh_date_yesterday = /** @type {(inputs: Date_YesterdayInputs) => Localized
 * | "Yesterday" |
 *
 * @param {Date_YesterdayInputs} inputs
-* @param {{ locale?: "en" | "zh" }} options
+* @param {{ locale?: "zh" | "en" }} options
 * @returns {LocalizedString}
 */
-export const date_yesterday = /** @type {((inputs?: Date_YesterdayInputs, options?: { locale?: "en" | "zh" }) => LocalizedString) & import('../runtime.js').MessageMetadata<Date_YesterdayInputs, { locale?: "en" | "zh" }, {}>} */ ((inputs = {}, options = {}) => {
+export const date_yesterday = /** @type {((inputs?: Date_YesterdayInputs, options?: { locale?: "zh" | "en" }) => LocalizedString) & import('../runtime.js').MessageMetadata<Date_YesterdayInputs, { locale?: "zh" | "en" }, {}>} */ ((inputs = {}, options = {}) => {
 	const locale = experimentalStaticLocale ?? options.locale ?? getLocale()
-	if (locale === "en") return en_date_yesterday(inputs)
-	return zh_date_yesterday(inputs)
+	if (locale === "zh") return zh_date_yesterday(inputs)
+	return en_date_yesterday(inputs)
 });

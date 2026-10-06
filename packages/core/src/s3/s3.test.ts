@@ -302,10 +302,10 @@ describe('S3Service implementations', () => {
       process.env = originalEnv
     })
 
-    it('should initialize LocalStorageService with default localhost and SHUMAI_SERVER_PORT when AWS_ENDPOINT_URL_S3 is not set', async () => {
+    it('should initialize LocalStorageService with default localhost and ZHENYUE_SERVER_PORT when AWS_ENDPOINT_URL_S3 is not set', async () => {
       process.env.STORAGE_BACKEND = 'local'
       delete process.env.AWS_ENDPOINT_URL_S3
-      process.env.SHUMAI_SERVER_PORT = '4567'
+      process.env.ZHENYUE_SERVER_PORT = '4567'
 
       vi.resetModules()
       const { s3Service } = await import('./s3')
@@ -316,7 +316,7 @@ describe('S3Service implementations', () => {
     it('should initialize LocalStorageService with exact AWS_ENDPOINT_URL_S3 when it is set', async () => {
       process.env.STORAGE_BACKEND = 'local'
       process.env.AWS_ENDPOINT_URL_S3 = 'http://123.456.7.8:12345'
-      process.env.SHUMAI_SERVER_PORT = '4567'
+      process.env.ZHENYUE_SERVER_PORT = '4567'
 
       vi.resetModules()
       const { s3Service } = await import('./s3')

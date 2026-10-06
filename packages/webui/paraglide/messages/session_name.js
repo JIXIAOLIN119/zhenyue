@@ -5,12 +5,12 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 
 /** @typedef {{}} Session_NameInputs */
 
-const en_session_name = /** @type {(inputs: Session_NameInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Session Name`)
-};
-
 const zh_session_name = /** @type {(inputs: Session_NameInputs) => LocalizedString} */ () => {
 	return /** @type {LocalizedString} */ (`会话名称`)
+};
+
+const en_session_name = /** @type {(inputs: Session_NameInputs) => LocalizedString} */ () => {
+	return /** @type {LocalizedString} */ (`Session Name`)
 };
 
 /**
@@ -19,11 +19,11 @@ const zh_session_name = /** @type {(inputs: Session_NameInputs) => LocalizedStri
 * | "Session Name" |
 *
 * @param {Session_NameInputs} inputs
-* @param {{ locale?: "en" | "zh" }} options
+* @param {{ locale?: "zh" | "en" }} options
 * @returns {LocalizedString}
 */
-export const session_name = /** @type {((inputs?: Session_NameInputs, options?: { locale?: "en" | "zh" }) => LocalizedString) & import('../runtime.js').MessageMetadata<Session_NameInputs, { locale?: "en" | "zh" }, {}>} */ ((inputs = {}, options = {}) => {
+export const session_name = /** @type {((inputs?: Session_NameInputs, options?: { locale?: "zh" | "en" }) => LocalizedString) & import('../runtime.js').MessageMetadata<Session_NameInputs, { locale?: "zh" | "en" }, {}>} */ ((inputs = {}, options = {}) => {
 	const locale = experimentalStaticLocale ?? options.locale ?? getLocale()
-	if (locale === "en") return en_session_name(inputs)
-	return zh_session_name(inputs)
+	if (locale === "zh") return zh_session_name(inputs)
+	return en_session_name(inputs)
 });

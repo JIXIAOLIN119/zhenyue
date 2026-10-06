@@ -5,12 +5,12 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 
 /** @typedef {{}} Enlarged_ViewInputs */
 
-const en_enlarged_view = /** @type {(inputs: Enlarged_ViewInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Enlarged view`)
-};
-
 const zh_enlarged_view = /** @type {(inputs: Enlarged_ViewInputs) => LocalizedString} */ () => {
 	return /** @type {LocalizedString} */ (`放大视图`)
+};
+
+const en_enlarged_view = /** @type {(inputs: Enlarged_ViewInputs) => LocalizedString} */ () => {
+	return /** @type {LocalizedString} */ (`Enlarged view`)
 };
 
 /**
@@ -19,11 +19,11 @@ const zh_enlarged_view = /** @type {(inputs: Enlarged_ViewInputs) => LocalizedSt
 * | "Enlarged view" |
 *
 * @param {Enlarged_ViewInputs} inputs
-* @param {{ locale?: "en" | "zh" }} options
+* @param {{ locale?: "zh" | "en" }} options
 * @returns {LocalizedString}
 */
-export const enlarged_view = /** @type {((inputs?: Enlarged_ViewInputs, options?: { locale?: "en" | "zh" }) => LocalizedString) & import('../runtime.js').MessageMetadata<Enlarged_ViewInputs, { locale?: "en" | "zh" }, {}>} */ ((inputs = {}, options = {}) => {
+export const enlarged_view = /** @type {((inputs?: Enlarged_ViewInputs, options?: { locale?: "zh" | "en" }) => LocalizedString) & import('../runtime.js').MessageMetadata<Enlarged_ViewInputs, { locale?: "zh" | "en" }, {}>} */ ((inputs = {}, options = {}) => {
 	const locale = experimentalStaticLocale ?? options.locale ?? getLocale()
-	if (locale === "en") return en_enlarged_view(inputs)
-	return zh_enlarged_view(inputs)
+	if (locale === "zh") return zh_enlarged_view(inputs)
+	return en_enlarged_view(inputs)
 });

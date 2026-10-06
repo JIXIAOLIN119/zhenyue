@@ -5,12 +5,12 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 
 /** @typedef {{}} No_Mcp_Servers_InstalledInputs */
 
-const en_no_mcp_servers_installed = /** @type {(inputs: No_Mcp_Servers_InstalledInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`No MCP servers configured`)
-};
-
 const zh_no_mcp_servers_installed = /** @type {(inputs: No_Mcp_Servers_InstalledInputs) => LocalizedString} */ () => {
 	return /** @type {LocalizedString} */ (`暂未配置 MCP 服务`)
+};
+
+const en_no_mcp_servers_installed = /** @type {(inputs: No_Mcp_Servers_InstalledInputs) => LocalizedString} */ () => {
+	return /** @type {LocalizedString} */ (`No MCP servers configured`)
 };
 
 /**
@@ -19,11 +19,11 @@ const zh_no_mcp_servers_installed = /** @type {(inputs: No_Mcp_Servers_Installed
 * | "No MCP servers configured" |
 *
 * @param {No_Mcp_Servers_InstalledInputs} inputs
-* @param {{ locale?: "en" | "zh" }} options
+* @param {{ locale?: "zh" | "en" }} options
 * @returns {LocalizedString}
 */
-export const no_mcp_servers_installed = /** @type {((inputs?: No_Mcp_Servers_InstalledInputs, options?: { locale?: "en" | "zh" }) => LocalizedString) & import('../runtime.js').MessageMetadata<No_Mcp_Servers_InstalledInputs, { locale?: "en" | "zh" }, {}>} */ ((inputs = {}, options = {}) => {
+export const no_mcp_servers_installed = /** @type {((inputs?: No_Mcp_Servers_InstalledInputs, options?: { locale?: "zh" | "en" }) => LocalizedString) & import('../runtime.js').MessageMetadata<No_Mcp_Servers_InstalledInputs, { locale?: "zh" | "en" }, {}>} */ ((inputs = {}, options = {}) => {
 	const locale = experimentalStaticLocale ?? options.locale ?? getLocale()
-	if (locale === "en") return en_no_mcp_servers_installed(inputs)
-	return zh_no_mcp_servers_installed(inputs)
+	if (locale === "zh") return zh_no_mcp_servers_installed(inputs)
+	return en_no_mcp_servers_installed(inputs)
 });

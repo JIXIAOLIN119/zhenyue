@@ -5,12 +5,12 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 
 /** @typedef {{}} Permission_Owner_And_EditorInputs */
 
-const en_permission_owner_and_editor = /** @type {(inputs: Permission_Owner_And_EditorInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Owner & Editor`)
-};
-
 const zh_permission_owner_and_editor = /** @type {(inputs: Permission_Owner_And_EditorInputs) => LocalizedString} */ () => {
 	return /** @type {LocalizedString} */ (`管理员与编辑`)
+};
+
+const en_permission_owner_and_editor = /** @type {(inputs: Permission_Owner_And_EditorInputs) => LocalizedString} */ () => {
+	return /** @type {LocalizedString} */ (`Owner & Editor`)
 };
 
 /**
@@ -19,11 +19,11 @@ const zh_permission_owner_and_editor = /** @type {(inputs: Permission_Owner_And_
 * | "Owner & Editor" |
 *
 * @param {Permission_Owner_And_EditorInputs} inputs
-* @param {{ locale?: "en" | "zh" }} options
+* @param {{ locale?: "zh" | "en" }} options
 * @returns {LocalizedString}
 */
-export const permission_owner_and_editor = /** @type {((inputs?: Permission_Owner_And_EditorInputs, options?: { locale?: "en" | "zh" }) => LocalizedString) & import('../runtime.js').MessageMetadata<Permission_Owner_And_EditorInputs, { locale?: "en" | "zh" }, {}>} */ ((inputs = {}, options = {}) => {
+export const permission_owner_and_editor = /** @type {((inputs?: Permission_Owner_And_EditorInputs, options?: { locale?: "zh" | "en" }) => LocalizedString) & import('../runtime.js').MessageMetadata<Permission_Owner_And_EditorInputs, { locale?: "zh" | "en" }, {}>} */ ((inputs = {}, options = {}) => {
 	const locale = experimentalStaticLocale ?? options.locale ?? getLocale()
-	if (locale === "en") return en_permission_owner_and_editor(inputs)
-	return zh_permission_owner_and_editor(inputs)
+	if (locale === "zh") return zh_permission_owner_and_editor(inputs)
+	return en_permission_owner_and_editor(inputs)
 });

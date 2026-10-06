@@ -5,12 +5,12 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 
 /** @typedef {{}} EditInputs */
 
-const en_edit = /** @type {(inputs: EditInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Edit`)
-};
-
 const zh_edit = /** @type {(inputs: EditInputs) => LocalizedString} */ () => {
 	return /** @type {LocalizedString} */ (`编辑`)
+};
+
+const en_edit = /** @type {(inputs: EditInputs) => LocalizedString} */ () => {
+	return /** @type {LocalizedString} */ (`Edit`)
 };
 
 /**
@@ -19,11 +19,11 @@ const zh_edit = /** @type {(inputs: EditInputs) => LocalizedString} */ () => {
 * | "Edit" |
 *
 * @param {EditInputs} inputs
-* @param {{ locale?: "en" | "zh" }} options
+* @param {{ locale?: "zh" | "en" }} options
 * @returns {LocalizedString}
 */
-export const edit = /** @type {((inputs?: EditInputs, options?: { locale?: "en" | "zh" }) => LocalizedString) & import('../runtime.js').MessageMetadata<EditInputs, { locale?: "en" | "zh" }, {}>} */ ((inputs = {}, options = {}) => {
+export const edit = /** @type {((inputs?: EditInputs, options?: { locale?: "zh" | "en" }) => LocalizedString) & import('../runtime.js').MessageMetadata<EditInputs, { locale?: "zh" | "en" }, {}>} */ ((inputs = {}, options = {}) => {
 	const locale = experimentalStaticLocale ?? options.locale ?? getLocale()
-	if (locale === "en") return en_edit(inputs)
-	return zh_edit(inputs)
+	if (locale === "zh") return zh_edit(inputs)
+	return en_edit(inputs)
 });

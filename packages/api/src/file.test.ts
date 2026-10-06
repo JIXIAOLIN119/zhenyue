@@ -1,13 +1,13 @@
 import { describe, expect, it, vi, beforeEach, afterEach } from 'vitest'
 import { Hono, type Context, type Next } from 'hono'
 import fileRoute from './file'
-import { assetService } from '@shumai/core/src/asset/asset'
-import { metadataService } from '@shumai/core/src/metadata/metadata'
-import { notificationService } from '@shumai/core/src/notification/notification'
-import { s3Service } from '@shumai/core/src/s3/s3'
-import { transcodeService } from '@shumai/core'
+import { assetService } from '@zhenyue/core/src/asset/asset'
+import { metadataService } from '@zhenyue/core/src/metadata/metadata'
+import { notificationService } from '@zhenyue/core/src/notification/notification'
+import { s3Service } from '@zhenyue/core/src/s3/s3'
+import { transcodeService } from '@zhenyue/core'
 import { authMiddleware } from './middleware/auth'
-import { authzService, ResourceType, Permission } from '@shumai/core/src/authz/authz'
+import { authzService, ResourceType, Permission } from '@zhenyue/core/src/authz/authz'
 
 vi.mock('fs', async (importOriginal) => {
   const actual = (await importOriginal()) as Record<string, unknown>
@@ -23,7 +23,7 @@ vi.mock('fs', async (importOriginal) => {
   }
 })
 
-vi.mock('@shumai/core/src/authz/authz', () => ({
+vi.mock('@zhenyue/core/src/authz/authz', () => ({
   authzService: {
     hasPermission: vi.fn().mockResolvedValue(undefined),
   },
@@ -39,9 +39,9 @@ vi.mock('@shumai/core/src/authz/authz', () => ({
   },
 }))
 
-import { auditLogService } from '@shumai/core/src/auditLog/auditLog'
+import { auditLogService } from '@zhenyue/core/src/auditLog/auditLog'
 
-vi.mock('@shumai/core/src/auditLog/auditLog', () => ({
+vi.mock('@zhenyue/core/src/auditLog/auditLog', () => ({
   auditLogService: {
     logAction: vi.fn().mockResolvedValue({}),
   },

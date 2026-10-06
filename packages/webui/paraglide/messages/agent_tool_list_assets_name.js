@@ -5,25 +5,25 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 
 /** @typedef {{}} Agent_Tool_List_Assets_NameInputs */
 
-const en_agent_tool_list_assets_name = /** @type {(inputs: Agent_Tool_List_Assets_NameInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Browse Shumai`)
+const zh_agent_tool_list_assets_name = /** @type {(inputs: Agent_Tool_List_Assets_NameInputs) => LocalizedString} */ () => {
+	return /** @type {LocalizedString} */ (`浏览 帧阅`)
 };
 
-const zh_agent_tool_list_assets_name = /** @type {(inputs: Agent_Tool_List_Assets_NameInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`浏览 Shumai`)
+const en_agent_tool_list_assets_name = /** @type {(inputs: Agent_Tool_List_Assets_NameInputs) => LocalizedString} */ () => {
+	return /** @type {LocalizedString} */ (`Browse ZhenYue`)
 };
 
 /**
 * | output |
 * | --- |
-* | "Browse Shumai" |
+* | "Browse ZhenYue" |
 *
 * @param {Agent_Tool_List_Assets_NameInputs} inputs
-* @param {{ locale?: "en" | "zh" }} options
+* @param {{ locale?: "zh" | "en" }} options
 * @returns {LocalizedString}
 */
-export const agent_tool_list_assets_name = /** @type {((inputs?: Agent_Tool_List_Assets_NameInputs, options?: { locale?: "en" | "zh" }) => LocalizedString) & import('../runtime.js').MessageMetadata<Agent_Tool_List_Assets_NameInputs, { locale?: "en" | "zh" }, {}>} */ ((inputs = {}, options = {}) => {
+export const agent_tool_list_assets_name = /** @type {((inputs?: Agent_Tool_List_Assets_NameInputs, options?: { locale?: "zh" | "en" }) => LocalizedString) & import('../runtime.js').MessageMetadata<Agent_Tool_List_Assets_NameInputs, { locale?: "zh" | "en" }, {}>} */ ((inputs = {}, options = {}) => {
 	const locale = experimentalStaticLocale ?? options.locale ?? getLocale()
-	if (locale === "en") return en_agent_tool_list_assets_name(inputs)
-	return zh_agent_tool_list_assets_name(inputs)
+	if (locale === "zh") return zh_agent_tool_list_assets_name(inputs)
+	return en_agent_tool_list_assets_name(inputs)
 });

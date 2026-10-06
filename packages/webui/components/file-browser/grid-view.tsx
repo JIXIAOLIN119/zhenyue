@@ -1,7 +1,7 @@
 'use client'
 
 import { useDroppable } from '@dnd-kit/react'
-import type { AssetInfo, SearchSort } from '@shumai/dtos'
+import type { AssetInfo, SearchSort } from '@zhenyue/dtos'
 import { useVirtualizer } from '@tanstack/react-virtual'
 import { ChevronDown, ChevronRight } from 'lucide-react'
 import React, { useEffect, useMemo, useRef, useState } from 'react'

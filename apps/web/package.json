@@ -1,17 +1,17 @@
 {
-  "name": "@shumai/web-app",
+  "name": "@zhenyue/web-app",
   "version": "0.3.9",
   "private": true,
   "type": "module",
   "dependencies": {
-    "@shumai/api": "workspace:*",
-    "@shumai/core": "workspace:*",
-    "@shumai/db": "workspace:*",
-    "@shumai/dtos": "workspace:*",
-    "@shumai/workflow-core": "workspace:*",
-    "@shumai/agent": "workspace:*",
-    "@shumai/transcode": "workspace:*",
-    "@shumai/webui": "workspace:*",
+    "@zhenyue/api": "workspace:*",
+    "@zhenyue/core": "workspace:*",
+    "@zhenyue/db": "workspace:*",
+    "@zhenyue/dtos": "workspace:*",
+    "@zhenyue/workflow-core": "workspace:*",
+    "@zhenyue/agent": "workspace:*",
+    "@zhenyue/transcode": "workspace:*",
+    "@zhenyue/webui": "workspace:*",
     "hono": "4.12.23"
   },
   "devDependencies": {

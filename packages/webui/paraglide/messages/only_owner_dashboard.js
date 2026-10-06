@@ -5,12 +5,12 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 
 /** @typedef {{}} Only_Owner_DashboardInputs */
 
-const en_only_owner_dashboard = /** @type {(inputs: Only_Owner_DashboardInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Only team owners can access the dashboard.`)
-};
-
 const zh_only_owner_dashboard = /** @type {(inputs: Only_Owner_DashboardInputs) => LocalizedString} */ () => {
 	return /** @type {LocalizedString} */ (`只有团队所有者才能访问仪表盘。`)
+};
+
+const en_only_owner_dashboard = /** @type {(inputs: Only_Owner_DashboardInputs) => LocalizedString} */ () => {
+	return /** @type {LocalizedString} */ (`Only team owners can access the dashboard.`)
 };
 
 /**
@@ -19,11 +19,11 @@ const zh_only_owner_dashboard = /** @type {(inputs: Only_Owner_DashboardInputs) 
 * | "Only team owners can access the dashboard." |
 *
 * @param {Only_Owner_DashboardInputs} inputs
-* @param {{ locale?: "en" | "zh" }} options
+* @param {{ locale?: "zh" | "en" }} options
 * @returns {LocalizedString}
 */
-export const only_owner_dashboard = /** @type {((inputs?: Only_Owner_DashboardInputs, options?: { locale?: "en" | "zh" }) => LocalizedString) & import('../runtime.js').MessageMetadata<Only_Owner_DashboardInputs, { locale?: "en" | "zh" }, {}>} */ ((inputs = {}, options = {}) => {
+export const only_owner_dashboard = /** @type {((inputs?: Only_Owner_DashboardInputs, options?: { locale?: "zh" | "en" }) => LocalizedString) & import('../runtime.js').MessageMetadata<Only_Owner_DashboardInputs, { locale?: "zh" | "en" }, {}>} */ ((inputs = {}, options = {}) => {
 	const locale = experimentalStaticLocale ?? options.locale ?? getLocale()
-	if (locale === "en") return en_only_owner_dashboard(inputs)
-	return zh_only_owner_dashboard(inputs)
+	if (locale === "zh") return zh_only_owner_dashboard(inputs)
+	return en_only_owner_dashboard(inputs)
 });

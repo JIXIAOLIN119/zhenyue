@@ -5,12 +5,12 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 
 /** @typedef {{}} FreehandInputs */
 
-const en_freehand = /** @type {(inputs: FreehandInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Freehand`)
-};
-
 const zh_freehand = /** @type {(inputs: FreehandInputs) => LocalizedString} */ () => {
 	return /** @type {LocalizedString} */ (`手绘`)
+};
+
+const en_freehand = /** @type {(inputs: FreehandInputs) => LocalizedString} */ () => {
+	return /** @type {LocalizedString} */ (`Freehand`)
 };
 
 /**
@@ -19,11 +19,11 @@ const zh_freehand = /** @type {(inputs: FreehandInputs) => LocalizedString} */ (
 * | "Freehand" |
 *
 * @param {FreehandInputs} inputs
-* @param {{ locale?: "en" | "zh" }} options
+* @param {{ locale?: "zh" | "en" }} options
 * @returns {LocalizedString}
 */
-export const freehand = /** @type {((inputs?: FreehandInputs, options?: { locale?: "en" | "zh" }) => LocalizedString) & import('../runtime.js').MessageMetadata<FreehandInputs, { locale?: "en" | "zh" }, {}>} */ ((inputs = {}, options = {}) => {
+export const freehand = /** @type {((inputs?: FreehandInputs, options?: { locale?: "zh" | "en" }) => LocalizedString) & import('../runtime.js').MessageMetadata<FreehandInputs, { locale?: "zh" | "en" }, {}>} */ ((inputs = {}, options = {}) => {
 	const locale = experimentalStaticLocale ?? options.locale ?? getLocale()
-	if (locale === "en") return en_freehand(inputs)
-	return zh_freehand(inputs)
+	if (locale === "zh") return zh_freehand(inputs)
+	return en_freehand(inputs)
 });

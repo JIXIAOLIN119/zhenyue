@@ -1,4 +1,4 @@
-import type { AssetInfo, FieldValueInfo } from '@shumai/dtos'
+import type { AssetInfo, FieldValueInfo } from '@zhenyue/dtos'
 import { client } from '@/ui/api/client'
 import { useQuery } from '@tanstack/react-query'
 
@@ -16,7 +16,7 @@ import { EditableText } from '@/ui/components/ui/editable-text'
 import { useUploadStore } from '@/ui/stores/upload'
 import { ProgressCircle } from '@/ui/components/ui/progress-circle'
 
-import { type FieldInfo as MetadataFieldInfo } from '@shumai/dtos'
+import { type FieldInfo as MetadataFieldInfo } from '@zhenyue/dtos'
 
 interface FileListItemProps {
   teamId?: string

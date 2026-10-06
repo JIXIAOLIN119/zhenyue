@@ -5,12 +5,12 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 
 /** @typedef {{}} Chat_AgentsInputs */
 
-const en_chat_agents = /** @type {(inputs: Chat_AgentsInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Chat Agents`)
-};
-
 const zh_chat_agents = /** @type {(inputs: Chat_AgentsInputs) => LocalizedString} */ () => {
 	return /** @type {LocalizedString} */ (`对话智能体`)
+};
+
+const en_chat_agents = /** @type {(inputs: Chat_AgentsInputs) => LocalizedString} */ () => {
+	return /** @type {LocalizedString} */ (`Chat Agents`)
 };
 
 /**
@@ -19,11 +19,11 @@ const zh_chat_agents = /** @type {(inputs: Chat_AgentsInputs) => LocalizedString
 * | "Chat Agents" |
 *
 * @param {Chat_AgentsInputs} inputs
-* @param {{ locale?: "en" | "zh" }} options
+* @param {{ locale?: "zh" | "en" }} options
 * @returns {LocalizedString}
 */
-export const chat_agents = /** @type {((inputs?: Chat_AgentsInputs, options?: { locale?: "en" | "zh" }) => LocalizedString) & import('../runtime.js').MessageMetadata<Chat_AgentsInputs, { locale?: "en" | "zh" }, {}>} */ ((inputs = {}, options = {}) => {
+export const chat_agents = /** @type {((inputs?: Chat_AgentsInputs, options?: { locale?: "zh" | "en" }) => LocalizedString) & import('../runtime.js').MessageMetadata<Chat_AgentsInputs, { locale?: "zh" | "en" }, {}>} */ ((inputs = {}, options = {}) => {
 	const locale = experimentalStaticLocale ?? options.locale ?? getLocale()
-	if (locale === "en") return en_chat_agents(inputs)
-	return zh_chat_agents(inputs)
+	if (locale === "zh") return zh_chat_agents(inputs)
+	return en_chat_agents(inputs)
 });

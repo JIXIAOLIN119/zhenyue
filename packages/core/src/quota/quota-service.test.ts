@@ -1,6 +1,6 @@
 import { describe, it, expect } from 'vitest'
-import { prisma } from '@shumai/db'
-import { setupTestDbHooks } from '@shumai/db/test'
+import { prisma } from '@zhenyue/db'
+import { setupTestDbHooks } from '@zhenyue/db/test'
 import { quotaService, QuotaExceededError, wildcardToRegex } from './quota-service'
 
 describe('QuotaRule Wildcard Matchers', () => {
@@ -907,7 +907,7 @@ describe('QuotaService', () => {
     const agentUser = await prisma.user.create({
       data: {
         name: 'AI Agent Member',
-        email: 'ai.agent@shumai.ai',
+        email: 'ai.agent@zhenyue.ai',
         type: 'agent',
       },
     })

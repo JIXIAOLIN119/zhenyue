@@ -5,12 +5,12 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 
 /** @typedef {{ creator: NonNullable<unknown>, asset: NonNullable<unknown>, project: NonNullable<unknown> }} Notification_UploadedInputs */
 
-const en_notification_uploaded = /** @type {(inputs: Notification_UploadedInputs) => LocalizedString} */ (i) => {
-	return /** @type {LocalizedString} */ (`${i?.creator} uploaded ${i?.asset} to ${i?.project}`)
-};
-
 const zh_notification_uploaded = /** @type {(inputs: Notification_UploadedInputs) => LocalizedString} */ (i) => {
 	return /** @type {LocalizedString} */ (`${i?.creator} 将 ${i?.asset} 上传到 ${i?.project}`)
+};
+
+const en_notification_uploaded = /** @type {(inputs: Notification_UploadedInputs) => LocalizedString} */ (i) => {
+	return /** @type {LocalizedString} */ (`${i?.creator} uploaded ${i?.asset} to ${i?.project}`)
 };
 
 /**
@@ -19,11 +19,11 @@ const zh_notification_uploaded = /** @type {(inputs: Notification_UploadedInputs
 * | "{creator} uploaded {asset} to {project}" |
 *
 * @param {Notification_UploadedInputs} inputs
-* @param {{ locale?: "en" | "zh" }} options
+* @param {{ locale?: "zh" | "en" }} options
 * @returns {LocalizedString}
 */
-export const notification_uploaded = /** @type {((inputs: Notification_UploadedInputs, options?: { locale?: "en" | "zh" }) => LocalizedString) & import('../runtime.js').MessageMetadata<Notification_UploadedInputs, { locale?: "en" | "zh" }, {}>} */ ((inputs, options = {}) => {
+export const notification_uploaded = /** @type {((inputs: Notification_UploadedInputs, options?: { locale?: "zh" | "en" }) => LocalizedString) & import('../runtime.js').MessageMetadata<Notification_UploadedInputs, { locale?: "zh" | "en" }, {}>} */ ((inputs, options = {}) => {
 	const locale = experimentalStaticLocale ?? options.locale ?? getLocale()
-	if (locale === "en") return en_notification_uploaded(inputs)
-	return zh_notification_uploaded(inputs)
+	if (locale === "zh") return zh_notification_uploaded(inputs)
+	return en_notification_uploaded(inputs)
 });

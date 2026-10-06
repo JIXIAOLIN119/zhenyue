@@ -1,18 +1,18 @@
-import { loadEnvConfig } from '@shumai/core/src/env-loader'
+import { loadEnvConfig } from '@zhenyue/core/src/env-loader'
 import { readdirSync } from 'node:fs'
 import { dirname, join } from 'node:path'
 loadEnvConfig(process.cwd(), process.env.NODE_ENV !== 'production')
 
-import index from '@shumai/webui/index.html'
+import index from '@zhenyue/webui/index.html'
 
-import { initAgentWorkflows } from '@shumai/agent'
-import { app } from '@shumai/api'
-import { assetService } from '@shumai/core/src/asset/asset'
-import { metadataService } from '@shumai/core/src/metadata/metadata'
-import { initTranscodeWorkflows } from '@shumai/transcode'
-import { workflowService } from '@shumai/workflow-core'
+import { initAgentWorkflows } from '@zhenyue/agent'
+import { app } from '@zhenyue/api'
+import { assetService } from '@zhenyue/core/src/asset/asset'
+import { metadataService } from '@zhenyue/core/src/metadata/metadata'
+import { initTranscodeWorkflows } from '@zhenyue/transcode'
+import { workflowService } from '@zhenyue/workflow-core'
 
-import { handleDaemonCommands } from '@shumai/core/src/utils/daemon'
+import { handleDaemonCommands } from '@zhenyue/core/src/utils/daemon'
 
 if (process.argv.includes('--check')) {
   console.log('✅ Web app evaluated successfully!')
@@ -53,7 +53,7 @@ async function run() {
 
   const isProd = process.env.NODE_ENV === 'production'
 
-  const port = process.env.SHUMAI_SERVER_PORT ? parseInt(process.env.SHUMAI_SERVER_PORT) : 3000
+  const port = process.env.ZHENYUE_SERVER_PORT ? parseInt(process.env.ZHENYUE_SERVER_PORT) : 3000
 
   interface HtmlBundleFile {
     input: string
@@ -121,7 +121,7 @@ async function run() {
       routes['/'] = serveMainHtml
       routes['/*'] = serveMainHtml
     } else {
-      const fallbackHtmlPath = join(import.meta.dir, 'shumai-app.html')
+      const fallbackHtmlPath = join(import.meta.dir, 'zhenyue-app.html')
       const serveFallbackHtml = () =>
         new Response(Bun.file(fallbackHtmlPath), {
           headers: { 'content-type': 'text/html;charset=utf-8' },
@@ -158,13 +158,13 @@ async function run() {
   process.on('SIGTERM', shutdown)
 }
 
-if (process.env.SHUMAI_E2E === 'true') {
+if (process.env.ZHENYUE_E2E === 'true') {
   run().catch((err) => {
     console.error(err)
     process.exit(1)
   })
 } else {
-  handleDaemonCommands('shumai', run).catch((err) => {
+  handleDaemonCommands('zhenyue', run).catch((err) => {
     console.error(err)
     process.exit(1)
   })

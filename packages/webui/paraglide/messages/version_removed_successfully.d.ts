@@ -4,13 +4,13 @@
 * | "Version removed from stack" |
 *
 * @param {Version_Removed_SuccessfullyInputs} inputs
-* @param {{ locale?: "en" | "zh" }} options
+* @param {{ locale?: "zh" | "en" }} options
 * @returns {LocalizedString}
 */
 export const version_removed_successfully: ((inputs?: Version_Removed_SuccessfullyInputs, options?: {
-    locale?: "en" | "zh";
+    locale?: "zh" | "en";
 }) => LocalizedString) & import("../runtime.js").MessageMetadata<Version_Removed_SuccessfullyInputs, {
-    locale?: "en" | "zh";
+    locale?: "zh" | "en";
 }, {}>;
 export type LocalizedString = import("../runtime.js").LocalizedString;
 export type Version_Removed_SuccessfullyInputs = {};

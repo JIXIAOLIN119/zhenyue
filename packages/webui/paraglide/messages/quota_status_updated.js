@@ -5,12 +5,12 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 
 /** @typedef {{}} Quota_Status_UpdatedInputs */
 
-const en_quota_status_updated = /** @type {(inputs: Quota_Status_UpdatedInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Quota status updated`)
-};
-
 const zh_quota_status_updated = /** @type {(inputs: Quota_Status_UpdatedInputs) => LocalizedString} */ () => {
 	return /** @type {LocalizedString} */ (`配额状态已更新`)
+};
+
+const en_quota_status_updated = /** @type {(inputs: Quota_Status_UpdatedInputs) => LocalizedString} */ () => {
+	return /** @type {LocalizedString} */ (`Quota status updated`)
 };
 
 /**
@@ -19,11 +19,11 @@ const zh_quota_status_updated = /** @type {(inputs: Quota_Status_UpdatedInputs) 
 * | "Quota status updated" |
 *
 * @param {Quota_Status_UpdatedInputs} inputs
-* @param {{ locale?: "en" | "zh" }} options
+* @param {{ locale?: "zh" | "en" }} options
 * @returns {LocalizedString}
 */
-export const quota_status_updated = /** @type {((inputs?: Quota_Status_UpdatedInputs, options?: { locale?: "en" | "zh" }) => LocalizedString) & import('../runtime.js').MessageMetadata<Quota_Status_UpdatedInputs, { locale?: "en" | "zh" }, {}>} */ ((inputs = {}, options = {}) => {
+export const quota_status_updated = /** @type {((inputs?: Quota_Status_UpdatedInputs, options?: { locale?: "zh" | "en" }) => LocalizedString) & import('../runtime.js').MessageMetadata<Quota_Status_UpdatedInputs, { locale?: "zh" | "en" }, {}>} */ ((inputs = {}, options = {}) => {
 	const locale = experimentalStaticLocale ?? options.locale ?? getLocale()
-	if (locale === "en") return en_quota_status_updated(inputs)
-	return zh_quota_status_updated(inputs)
+	if (locale === "zh") return zh_quota_status_updated(inputs)
+	return en_quota_status_updated(inputs)
 });

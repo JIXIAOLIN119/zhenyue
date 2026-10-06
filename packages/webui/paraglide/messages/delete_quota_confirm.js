@@ -5,12 +5,12 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 
 /** @typedef {{}} Delete_Quota_ConfirmInputs */
 
-const en_delete_quota_confirm = /** @type {(inputs: Delete_Quota_ConfirmInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Are you sure you want to delete this quota rule? This action cannot be undone.`)
-};
-
 const zh_delete_quota_confirm = /** @type {(inputs: Delete_Quota_ConfirmInputs) => LocalizedString} */ () => {
 	return /** @type {LocalizedString} */ (`确定要删除此配额规则吗？此操作无法撤销。`)
+};
+
+const en_delete_quota_confirm = /** @type {(inputs: Delete_Quota_ConfirmInputs) => LocalizedString} */ () => {
+	return /** @type {LocalizedString} */ (`Are you sure you want to delete this quota rule? This action cannot be undone.`)
 };
 
 /**
@@ -19,11 +19,11 @@ const zh_delete_quota_confirm = /** @type {(inputs: Delete_Quota_ConfirmInputs) 
 * | "Are you sure you want to delete this quota rule? This action cannot be undone." |
 *
 * @param {Delete_Quota_ConfirmInputs} inputs
-* @param {{ locale?: "en" | "zh" }} options
+* @param {{ locale?: "zh" | "en" }} options
 * @returns {LocalizedString}
 */
-export const delete_quota_confirm = /** @type {((inputs?: Delete_Quota_ConfirmInputs, options?: { locale?: "en" | "zh" }) => LocalizedString) & import('../runtime.js').MessageMetadata<Delete_Quota_ConfirmInputs, { locale?: "en" | "zh" }, {}>} */ ((inputs = {}, options = {}) => {
+export const delete_quota_confirm = /** @type {((inputs?: Delete_Quota_ConfirmInputs, options?: { locale?: "zh" | "en" }) => LocalizedString) & import('../runtime.js').MessageMetadata<Delete_Quota_ConfirmInputs, { locale?: "zh" | "en" }, {}>} */ ((inputs = {}, options = {}) => {
 	const locale = experimentalStaticLocale ?? options.locale ?? getLocale()
-	if (locale === "en") return en_delete_quota_confirm(inputs)
-	return zh_delete_quota_confirm(inputs)
+	if (locale === "zh") return zh_delete_quota_confirm(inputs)
+	return en_delete_quota_confirm(inputs)
 });

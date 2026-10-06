@@ -1,14 +1,14 @@
 import { describe, it, expect, vi, beforeEach } from 'vitest'
 import { HTTPException } from 'hono/http-exception'
-import { agentService } from '@shumai/core/src/agent/agent'
-import { authzService } from '@shumai/core/src/authz/authz'
-import { auditLogService } from '@shumai/core/src/auditLog/auditLog'
-import type { AgentInfo } from '@shumai/dtos'
+import { agentService } from '@zhenyue/core/src/agent/agent'
+import { authzService } from '@zhenyue/core/src/authz/authz'
+import { auditLogService } from '@zhenyue/core/src/auditLog/auditLog'
+import type { AgentInfo } from '@zhenyue/dtos'
 import app from './agent'
 
-vi.mock('@shumai/core/src/agent/agent')
-vi.mock('@shumai/core/src/authz/authz')
-vi.mock('@shumai/core/src/auditLog/auditLog', () => ({
+vi.mock('@zhenyue/core/src/agent/agent')
+vi.mock('@zhenyue/core/src/authz/authz')
+vi.mock('@zhenyue/core/src/auditLog/auditLog', () => ({
   auditLogService: {
     logAction: vi.fn().mockResolvedValue({}),
   },
@@ -335,7 +335,7 @@ describe('Agent API', () => {
             name: 'Session 1',
             type: 'chat',
             createdAt: new Date().toISOString(),
-            creator: { id: 'u1', name: 'User 1', email: 'u1@shumai.ai', image: null },
+            creator: { id: 'u1', name: 'User 1', email: 'u1@zhenyue.ai', image: null },
             agentId: 'agent1',
           },
         ],

@@ -12,7 +12,7 @@ import { m } from '@/ui/paraglide/messages.js'
 import { useChatbotStore } from '@/ui/stores/chatbot'
 import { useTeamContextStore } from '@/ui/stores/team-context'
 import { useDroppable } from '@dnd-kit/react'
-import type { ChatMessage } from '@shumai/dtos'
+import type { ChatMessage } from '@zhenyue/dtos'
 import { useQuery, useQueryClient } from '@tanstack/react-query'
 import {
   ArrowLeft,
@@ -403,8 +403,7 @@ export function ChatbotSidebar({ projectId, contextAssetId }: ChatbotSidebarProp
         const msgObj = msg as unknown as Record<string, unknown>
         if (msgObj.customType === 'context_display_info') {
           const details = msgObj.details as
-            | { assets?: Array<{ id: string; name: string; type: string }> }
-            | undefined
+            { assets?: Array<{ id: string; name: string; type: string }> } | undefined
           const assets = details?.assets || []
           if (assets.length === 0) return null
           return (
@@ -476,7 +475,7 @@ export function ChatbotSidebar({ projectId, contextAssetId }: ChatbotSidebarProp
         ) : (
           <>
             <div className="flex items-center gap-2 font-semibold">
-              <span>{m.shumai_agent()}</span>
+              <span>{m.zhenyue_agent()}</span>
             </div>
             <div className="flex items-center gap-1">
               <button

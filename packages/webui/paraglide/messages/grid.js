@@ -5,12 +5,12 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 
 /** @typedef {{}} GridInputs */
 
-const en_grid = /** @type {(inputs: GridInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Grid`)
-};
-
 const zh_grid = /** @type {(inputs: GridInputs) => LocalizedString} */ () => {
 	return /** @type {LocalizedString} */ (`网格`)
+};
+
+const en_grid = /** @type {(inputs: GridInputs) => LocalizedString} */ () => {
+	return /** @type {LocalizedString} */ (`Grid`)
 };
 
 /**
@@ -19,11 +19,11 @@ const zh_grid = /** @type {(inputs: GridInputs) => LocalizedString} */ () => {
 * | "Grid" |
 *
 * @param {GridInputs} inputs
-* @param {{ locale?: "en" | "zh" }} options
+* @param {{ locale?: "zh" | "en" }} options
 * @returns {LocalizedString}
 */
-export const grid = /** @type {((inputs?: GridInputs, options?: { locale?: "en" | "zh" }) => LocalizedString) & import('../runtime.js').MessageMetadata<GridInputs, { locale?: "en" | "zh" }, {}>} */ ((inputs = {}, options = {}) => {
+export const grid = /** @type {((inputs?: GridInputs, options?: { locale?: "zh" | "en" }) => LocalizedString) & import('../runtime.js').MessageMetadata<GridInputs, { locale?: "zh" | "en" }, {}>} */ ((inputs = {}, options = {}) => {
 	const locale = experimentalStaticLocale ?? options.locale ?? getLocale()
-	if (locale === "en") return en_grid(inputs)
-	return zh_grid(inputs)
+	if (locale === "zh") return zh_grid(inputs)
+	return en_grid(inputs)
 });

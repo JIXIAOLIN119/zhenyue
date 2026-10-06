@@ -1,5 +1,5 @@
-import type { Prisma } from '@shumai/db'
-import '@shumai/db/src/prisma-json-types'
+import type { Prisma } from '@zhenyue/db'
+import '@zhenyue/db/src/prisma-json-types'
 
 export const systemFields: Prisma.MetadataFieldCreateInput[] = [
   {

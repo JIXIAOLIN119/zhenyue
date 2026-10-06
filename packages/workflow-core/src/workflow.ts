@@ -1,4 +1,4 @@
-import { prisma, registerWorkflowTrigger, WorkflowTask } from '@shumai/db'
+import { prisma, registerWorkflowTrigger, WorkflowTask } from '@zhenyue/db'
 import path from 'path'
 import { ulid } from 'ulid'
 import * as taskActivities from './activities/task'
@@ -133,7 +133,7 @@ export class WorkflowService {
               '@temporalio/workflow': path.dirname(
                 require.resolve('@temporalio/workflow/package.json'),
               ),
-              '@shumai/workflow-core': require.resolve('./workflow-utils'),
+              '@zhenyue/workflow-core': require.resolve('./workflow-utils'),
             }
             return config
           },
@@ -165,7 +165,7 @@ export class WorkflowService {
               '@temporalio/workflow': path.dirname(
                 require.resolve('@temporalio/workflow/package.json'),
               ),
-              '@shumai/workflow-core': require.resolve('./workflow-utils'),
+              '@zhenyue/workflow-core': require.resolve('./workflow-utils'),
             }
             return config
           },

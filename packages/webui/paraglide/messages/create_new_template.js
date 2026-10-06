@@ -5,12 +5,12 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 
 /** @typedef {{}} Create_New_TemplateInputs */
 
-const en_create_new_template = /** @type {(inputs: Create_New_TemplateInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Create New Template`)
-};
-
 const zh_create_new_template = /** @type {(inputs: Create_New_TemplateInputs) => LocalizedString} */ () => {
 	return /** @type {LocalizedString} */ (`创建新模板`)
+};
+
+const en_create_new_template = /** @type {(inputs: Create_New_TemplateInputs) => LocalizedString} */ () => {
+	return /** @type {LocalizedString} */ (`Create New Template`)
 };
 
 /**
@@ -19,11 +19,11 @@ const zh_create_new_template = /** @type {(inputs: Create_New_TemplateInputs) =>
 * | "Create New Template" |
 *
 * @param {Create_New_TemplateInputs} inputs
-* @param {{ locale?: "en" | "zh" }} options
+* @param {{ locale?: "zh" | "en" }} options
 * @returns {LocalizedString}
 */
-export const create_new_template = /** @type {((inputs?: Create_New_TemplateInputs, options?: { locale?: "en" | "zh" }) => LocalizedString) & import('../runtime.js').MessageMetadata<Create_New_TemplateInputs, { locale?: "en" | "zh" }, {}>} */ ((inputs = {}, options = {}) => {
+export const create_new_template = /** @type {((inputs?: Create_New_TemplateInputs, options?: { locale?: "zh" | "en" }) => LocalizedString) & import('../runtime.js').MessageMetadata<Create_New_TemplateInputs, { locale?: "zh" | "en" }, {}>} */ ((inputs = {}, options = {}) => {
 	const locale = experimentalStaticLocale ?? options.locale ?? getLocale()
-	if (locale === "en") return en_create_new_template(inputs)
-	return zh_create_new_template(inputs)
+	if (locale === "zh") return zh_create_new_template(inputs)
+	return en_create_new_template(inputs)
 });

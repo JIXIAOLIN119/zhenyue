@@ -1,14 +1,14 @@
 import { describe, it, expect, vi, beforeEach, afterEach } from 'vitest'
 import { createCreateVersionTool } from './create-version'
 import { fieldsToTypeBoxSchema } from '../index'
-import { s3Service } from '@shumai/core/src/s3/s3'
+import { s3Service } from '@zhenyue/core/src/s3/s3'
 import { executeAgentToolWorkflow } from './utils'
 import { Value } from 'typebox/value'
 import * as fs from 'fs'
 import * as os from 'os'
 import * as path from 'path'
 
-vi.mock('@shumai/core/src/s3/s3', () => ({
+vi.mock('@zhenyue/core/src/s3/s3', () => ({
   s3Service: {
     uploadFileToKey: vi.fn(),
   },

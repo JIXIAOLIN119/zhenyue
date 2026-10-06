@@ -1,11 +1,11 @@
 import { describe, expect, it, vi, beforeEach } from 'vitest'
 import { Hono } from 'hono'
 import { authMiddleware } from './auth'
-import { auth } from '@shumai/core/src/auth/auth'
-import { userService } from '@shumai/core/src/user/user'
-import { teamService } from '@shumai/core/src/team/team'
+import { auth } from '@zhenyue/core/src/auth/auth'
+import { userService } from '@zhenyue/core/src/user/user'
+import { teamService } from '@zhenyue/core/src/team/team'
 
-vi.mock('@shumai/core/src/auth/auth', () => ({
+vi.mock('@zhenyue/core/src/auth/auth', () => ({
   auth: {
     api: {
       getSession: vi.fn(),
@@ -13,13 +13,13 @@ vi.mock('@shumai/core/src/auth/auth', () => ({
   },
 }))
 
-vi.mock('@shumai/core/src/user/user', () => ({
+vi.mock('@zhenyue/core/src/user/user', () => ({
   userService: {
     getUserById: vi.fn(),
   },
 }))
 
-vi.mock('@shumai/core/src/team/team', () => ({
+vi.mock('@zhenyue/core/src/team/team', () => ({
   teamService: {
     hasWritableRoleInAnyTeam: vi.fn(),
   },
@@ -34,7 +34,7 @@ describe('authMiddleware', () => {
 
   beforeEach(() => {
     vi.resetAllMocks()
-    delete process.env.SHUMAI_DEMO_MODE
+    delete process.env.ZHENYUE_DEMO_MODE
   })
 
   it('allows access when authenticated', async () => {
@@ -56,7 +56,7 @@ describe('authMiddleware', () => {
 
   describe('read-only mode', () => {
     beforeEach(() => {
-      process.env.SHUMAI_DEMO_MODE = '1'
+      process.env.ZHENYUE_DEMO_MODE = '1'
     })
 
     it('allows GET for reviewer', async () => {

@@ -19,7 +19,7 @@ import { useNavigate } from '@tanstack/react-router'
 import { useEffect, useMemo, useState } from 'react'
 import { Bookmark, Calendar, LayoutGrid, Loader2 } from 'lucide-react'
 import { useInView } from 'react-intersection-observer'
-import type { CollectionInfo } from '@shumai/dtos'
+import type { CollectionInfo } from '@zhenyue/dtos'
 import { ProjectFolderSkeleton } from '@/ui/components/loading-skeletons'
 import { projectInfoQueryOptions } from './index'
 

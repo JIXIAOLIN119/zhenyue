@@ -5,12 +5,12 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 
 /** @typedef {{}} Media_ProcessingInputs */
 
-const en_media_processing = /** @type {(inputs: Media_ProcessingInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Media Processing`)
-};
-
 const zh_media_processing = /** @type {(inputs: Media_ProcessingInputs) => LocalizedString} */ () => {
 	return /** @type {LocalizedString} */ (`媒体处理`)
+};
+
+const en_media_processing = /** @type {(inputs: Media_ProcessingInputs) => LocalizedString} */ () => {
+	return /** @type {LocalizedString} */ (`Media Processing`)
 };
 
 /**
@@ -19,11 +19,11 @@ const zh_media_processing = /** @type {(inputs: Media_ProcessingInputs) => Local
 * | "Media Processing" |
 *
 * @param {Media_ProcessingInputs} inputs
-* @param {{ locale?: "en" | "zh" }} options
+* @param {{ locale?: "zh" | "en" }} options
 * @returns {LocalizedString}
 */
-export const media_processing = /** @type {((inputs?: Media_ProcessingInputs, options?: { locale?: "en" | "zh" }) => LocalizedString) & import('../runtime.js').MessageMetadata<Media_ProcessingInputs, { locale?: "en" | "zh" }, {}>} */ ((inputs = {}, options = {}) => {
+export const media_processing = /** @type {((inputs?: Media_ProcessingInputs, options?: { locale?: "zh" | "en" }) => LocalizedString) & import('../runtime.js').MessageMetadata<Media_ProcessingInputs, { locale?: "zh" | "en" }, {}>} */ ((inputs = {}, options = {}) => {
 	const locale = experimentalStaticLocale ?? options.locale ?? getLocale()
-	if (locale === "en") return en_media_processing(inputs)
-	return zh_media_processing(inputs)
+	if (locale === "zh") return zh_media_processing(inputs)
+	return en_media_processing(inputs)
 });

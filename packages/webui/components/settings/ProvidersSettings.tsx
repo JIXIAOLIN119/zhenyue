@@ -38,7 +38,7 @@ import {
   SelectValue,
 } from '@/ui/components/ui/select'
 import { Switch } from '@/ui/components/ui/switch'
-import { providerConfigSchema, providerModelSchema, KNOWN_APIS } from '@shumai/dtos'
+import { providerConfigSchema, providerModelSchema, KNOWN_APIS } from '@zhenyue/dtos'
 import { useForm } from '@tanstack/react-form'
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
 import { InferResponseType } from 'hono/client'

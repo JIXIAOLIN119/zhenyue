@@ -1,12 +1,12 @@
-import type { WorkflowTask } from '@shumai/db'
+import type { WorkflowTask } from '@zhenyue/db'
 import {
   executeActivity,
   getActivities,
   TaskQueueAgent,
   TaskQueueTranscode,
-} from '@shumai/workflow-core'
+} from '@zhenyue/workflow-core'
 import { ApplicationFailure } from '@temporalio/workflow'
-import { getProxyType } from '@shumai/core/src/utils/mime'
+import { getProxyType } from '@zhenyue/core/src/utils/mime'
 
 export async function agentAutofillMedia(task: WorkflowTask): Promise<void> {
   const {

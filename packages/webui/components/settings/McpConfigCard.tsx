@@ -41,7 +41,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@/ui/components/ui/select'
-import { McpServerInfo, McpServerPermission } from '@shumai/dtos'
+import { McpServerInfo, McpServerPermission } from '@zhenyue/dtos'
 import { m } from '@/ui/paraglide/messages.js'
 import { usePermissions } from '@/ui/hooks/use-permissions'
 import { toast } from 'sonner'

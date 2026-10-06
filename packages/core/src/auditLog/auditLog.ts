@@ -1,8 +1,8 @@
-import { prisma } from '@shumai/db'
-import type { Prisma } from '@shumai/db'
-import type { AuditAction } from '@shumai/dtos'
-import { paginateQuery } from '@shumai/core/src/pagination'
-import { logger } from '@shumai/core/src/logger'
+import { prisma } from '@zhenyue/db'
+import type { Prisma } from '@zhenyue/db'
+import type { AuditAction } from '@zhenyue/dtos'
+import { paginateQuery } from '@zhenyue/core/src/pagination'
+import { logger } from '@zhenyue/core/src/logger'
 
 export interface LogActionParams {
   action: AuditAction

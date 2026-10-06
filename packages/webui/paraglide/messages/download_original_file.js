@@ -5,12 +5,12 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 
 /** @typedef {{}} Download_Original_FileInputs */
 
-const en_download_original_file = /** @type {(inputs: Download_Original_FileInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Download original file`)
-};
-
 const zh_download_original_file = /** @type {(inputs: Download_Original_FileInputs) => LocalizedString} */ () => {
 	return /** @type {LocalizedString} */ (`下载原始文件`)
+};
+
+const en_download_original_file = /** @type {(inputs: Download_Original_FileInputs) => LocalizedString} */ () => {
+	return /** @type {LocalizedString} */ (`Download original file`)
 };
 
 /**
@@ -19,11 +19,11 @@ const zh_download_original_file = /** @type {(inputs: Download_Original_FileInpu
 * | "Download original file" |
 *
 * @param {Download_Original_FileInputs} inputs
-* @param {{ locale?: "en" | "zh" }} options
+* @param {{ locale?: "zh" | "en" }} options
 * @returns {LocalizedString}
 */
-export const download_original_file = /** @type {((inputs?: Download_Original_FileInputs, options?: { locale?: "en" | "zh" }) => LocalizedString) & import('../runtime.js').MessageMetadata<Download_Original_FileInputs, { locale?: "en" | "zh" }, {}>} */ ((inputs = {}, options = {}) => {
+export const download_original_file = /** @type {((inputs?: Download_Original_FileInputs, options?: { locale?: "zh" | "en" }) => LocalizedString) & import('../runtime.js').MessageMetadata<Download_Original_FileInputs, { locale?: "zh" | "en" }, {}>} */ ((inputs = {}, options = {}) => {
 	const locale = experimentalStaticLocale ?? options.locale ?? getLocale()
-	if (locale === "en") return en_download_original_file(inputs)
-	return zh_download_original_file(inputs)
+	if (locale === "zh") return zh_download_original_file(inputs)
+	return en_download_original_file(inputs)
 });

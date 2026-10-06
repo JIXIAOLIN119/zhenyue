@@ -4,13 +4,13 @@
 * | "None" |
 *
 * @param {Mcp_Auth_NoneInputs} inputs
-* @param {{ locale?: "en" | "zh" }} options
+* @param {{ locale?: "zh" | "en" }} options
 * @returns {LocalizedString}
 */
 export const mcp_auth_none: ((inputs?: Mcp_Auth_NoneInputs, options?: {
-    locale?: "en" | "zh";
+    locale?: "zh" | "en";
 }) => LocalizedString) & import("../runtime.js").MessageMetadata<Mcp_Auth_NoneInputs, {
-    locale?: "en" | "zh";
+    locale?: "zh" | "en";
 }, {}>;
 export type LocalizedString = import("../runtime.js").LocalizedString;
 export type Mcp_Auth_NoneInputs = {};

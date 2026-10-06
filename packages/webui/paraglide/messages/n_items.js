@@ -5,12 +5,12 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 
 /** @typedef {{ count: NonNullable<unknown> }} N_ItemsInputs */
 
-const en_n_items = /** @type {(inputs: N_ItemsInputs) => LocalizedString} */ (i) => {
-	return /** @type {LocalizedString} */ (`${i?.count} Items`)
-};
-
 const zh_n_items = /** @type {(inputs: N_ItemsInputs) => LocalizedString} */ (i) => {
 	return /** @type {LocalizedString} */ (`${i?.count} 个项目`)
+};
+
+const en_n_items = /** @type {(inputs: N_ItemsInputs) => LocalizedString} */ (i) => {
+	return /** @type {LocalizedString} */ (`${i?.count} Items`)
 };
 
 /**
@@ -19,11 +19,11 @@ const zh_n_items = /** @type {(inputs: N_ItemsInputs) => LocalizedString} */ (i)
 * | "{count} Items" |
 *
 * @param {N_ItemsInputs} inputs
-* @param {{ locale?: "en" | "zh" }} options
+* @param {{ locale?: "zh" | "en" }} options
 * @returns {LocalizedString}
 */
-export const n_items = /** @type {((inputs: N_ItemsInputs, options?: { locale?: "en" | "zh" }) => LocalizedString) & import('../runtime.js').MessageMetadata<N_ItemsInputs, { locale?: "en" | "zh" }, {}>} */ ((inputs, options = {}) => {
+export const n_items = /** @type {((inputs: N_ItemsInputs, options?: { locale?: "zh" | "en" }) => LocalizedString) & import('../runtime.js').MessageMetadata<N_ItemsInputs, { locale?: "zh" | "en" }, {}>} */ ((inputs, options = {}) => {
 	const locale = experimentalStaticLocale ?? options.locale ?? getLocale()
-	if (locale === "en") return en_n_items(inputs)
-	return zh_n_items(inputs)
+	if (locale === "zh") return zh_n_items(inputs)
+	return en_n_items(inputs)
 });

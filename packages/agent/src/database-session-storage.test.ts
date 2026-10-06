@@ -1,10 +1,10 @@
-import { prisma } from '@shumai/db'
-import { setupTestDbHooks } from '@shumai/db/test'
-import { s3Service } from '@shumai/core/src/s3/s3'
+import { prisma } from '@zhenyue/db'
+import { setupTestDbHooks } from '@zhenyue/db/test'
+import { s3Service } from '@zhenyue/core/src/s3/s3'
 import { type SessionTreeEntry } from '@earendil-works/pi-agent-core'
 import { describe, expect, it, vi, afterEach } from 'vitest'
 import { DatabaseSessionStorage } from './database-session-storage'
-import { agentService } from '@shumai/core/src/agent/agent'
+import { agentService } from '@zhenyue/core/src/agent/agent'
 import { createAgentSession, type DbProviderInfo } from './index'
 import * as sandboxedBashModule from './tools/sandboxed-bash'
 import * as analyzeImageModule from './tools/analyze-image'
@@ -256,7 +256,7 @@ describe('DatabaseSessionStorage', () => {
 
     // Verify retrieval reinjects data
     const retrieved = await storage.getEntry('msg-1')
-    expect(getObjectSpy).toHaveBeenCalledWith('shumai', 'path/to/image.png')
+    expect(getObjectSpy).toHaveBeenCalledWith('zhenyue', 'path/to/image.png')
     // retrieved is a SessionTreeEntry, but we need to access internal message properties for verification
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     expect((retrieved as any).message.content[0].data).toBe(

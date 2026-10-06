@@ -1,7 +1,7 @@
 {
-  "name": "Shumai",
-  "description": "Shumai Application",
-  "short_name": "Shumai",
+  "name": "帧阅",
+  "description": "帧阅 - 开源在线审片与创意协作平台",
+  "short_name": "帧阅",
   "icons": [
     {
       "src": "./favicon-72x72.png",
@@ -55,6 +55,6 @@
   "scope": "/",
   "start_url": "/?source=pwa",
   "display": "standalone",
-  "theme_color": "#ffffff",
+  "theme_color": "#f6f7f2",
   "background_color": "#ffffff"
 }

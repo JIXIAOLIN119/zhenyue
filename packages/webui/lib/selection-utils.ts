@@ -1,4 +1,4 @@
-import type { AssetInfo } from '@shumai/dtos'
+import type { AssetInfo } from '@zhenyue/dtos'
 
 export function getSelectedRangeIds(
   lastSelectedItem: AssetInfo,

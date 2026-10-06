@@ -5,12 +5,12 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 
 /** @typedef {{ creator: NonNullable<unknown>, asset: NonNullable<unknown> }} Notification_Commented_OnInputs */
 
-const en_notification_commented_on = /** @type {(inputs: Notification_Commented_OnInputs) => LocalizedString} */ (i) => {
-	return /** @type {LocalizedString} */ (`${i?.creator} commented on ${i?.asset}`)
-};
-
 const zh_notification_commented_on = /** @type {(inputs: Notification_Commented_OnInputs) => LocalizedString} */ (i) => {
 	return /** @type {LocalizedString} */ (`${i?.creator} 评论了 ${i?.asset}`)
+};
+
+const en_notification_commented_on = /** @type {(inputs: Notification_Commented_OnInputs) => LocalizedString} */ (i) => {
+	return /** @type {LocalizedString} */ (`${i?.creator} commented on ${i?.asset}`)
 };
 
 /**
@@ -19,11 +19,11 @@ const zh_notification_commented_on = /** @type {(inputs: Notification_Commented_
 * | "{creator} commented on {asset}" |
 *
 * @param {Notification_Commented_OnInputs} inputs
-* @param {{ locale?: "en" | "zh" }} options
+* @param {{ locale?: "zh" | "en" }} options
 * @returns {LocalizedString}
 */
-export const notification_commented_on = /** @type {((inputs: Notification_Commented_OnInputs, options?: { locale?: "en" | "zh" }) => LocalizedString) & import('../runtime.js').MessageMetadata<Notification_Commented_OnInputs, { locale?: "en" | "zh" }, {}>} */ ((inputs, options = {}) => {
+export const notification_commented_on = /** @type {((inputs: Notification_Commented_OnInputs, options?: { locale?: "zh" | "en" }) => LocalizedString) & import('../runtime.js').MessageMetadata<Notification_Commented_OnInputs, { locale?: "zh" | "en" }, {}>} */ ((inputs, options = {}) => {
 	const locale = experimentalStaticLocale ?? options.locale ?? getLocale()
-	if (locale === "en") return en_notification_commented_on(inputs)
-	return zh_notification_commented_on(inputs)
+	if (locale === "zh") return zh_notification_commented_on(inputs)
+	return en_notification_commented_on(inputs)
 });

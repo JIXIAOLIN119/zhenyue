@@ -6,7 +6,7 @@ import {
   type QuotaResourceType,
   type QuotaRule,
   type TeamMemberRole,
-} from '@shumai/db'
+} from '@zhenyue/db'
 import {
   type CreateQuotaRuleRequest,
   type ListQuotaRulesResponse,
@@ -19,7 +19,7 @@ import {
   mcpResourceDataSchema,
   bashResourceDataSchema,
   toolResourceDataSchema,
-} from '@shumai/dtos'
+} from '@zhenyue/dtos'
 import { HTTPException } from 'hono/http-exception'
 
 export class QuotaExceededError extends Error {

@@ -2,7 +2,7 @@
 
 > Auto-generated i18n message functions. Import `messages.js` to use translated strings.
 
-Compiled from: `/Users/yiling/Projects/shumai/packages/webui/project.inlang`
+Compiled from: `/Users/jxl/Documents/ChatGPT/在线审阅工具/packages/webui/project.inlang`
 
 
 ## What is this folder?

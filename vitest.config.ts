@@ -15,7 +15,7 @@ export default defineConfig({
     ],
     server: {
       deps: {
-        inline: ['zod', '@shumai/workflow-core', '@temporalio/activity'],
+        inline: ['zod', '@zhenyue/workflow-core', '@temporalio/activity'],
       },
     },
   },

@@ -5,12 +5,12 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 
 /** @typedef {{}} AppearanceInputs */
 
-const en_appearance = /** @type {(inputs: AppearanceInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Appearance`)
-};
-
 const zh_appearance = /** @type {(inputs: AppearanceInputs) => LocalizedString} */ () => {
 	return /** @type {LocalizedString} */ (`外观`)
+};
+
+const en_appearance = /** @type {(inputs: AppearanceInputs) => LocalizedString} */ () => {
+	return /** @type {LocalizedString} */ (`Appearance`)
 };
 
 /**
@@ -19,11 +19,11 @@ const zh_appearance = /** @type {(inputs: AppearanceInputs) => LocalizedString} 
 * | "Appearance" |
 *
 * @param {AppearanceInputs} inputs
-* @param {{ locale?: "en" | "zh" }} options
+* @param {{ locale?: "zh" | "en" }} options
 * @returns {LocalizedString}
 */
-export const appearance = /** @type {((inputs?: AppearanceInputs, options?: { locale?: "en" | "zh" }) => LocalizedString) & import('../runtime.js').MessageMetadata<AppearanceInputs, { locale?: "en" | "zh" }, {}>} */ ((inputs = {}, options = {}) => {
+export const appearance = /** @type {((inputs?: AppearanceInputs, options?: { locale?: "zh" | "en" }) => LocalizedString) & import('../runtime.js').MessageMetadata<AppearanceInputs, { locale?: "zh" | "en" }, {}>} */ ((inputs = {}, options = {}) => {
 	const locale = experimentalStaticLocale ?? options.locale ?? getLocale()
-	if (locale === "en") return en_appearance(inputs)
-	return zh_appearance(inputs)
+	if (locale === "zh") return zh_appearance(inputs)
+	return en_appearance(inputs)
 });

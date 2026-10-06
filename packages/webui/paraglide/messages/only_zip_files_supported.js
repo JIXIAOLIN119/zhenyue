@@ -5,12 +5,12 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 
 /** @typedef {{}} Only_Zip_Files_SupportedInputs */
 
-const en_only_zip_files_supported = /** @type {(inputs: Only_Zip_Files_SupportedInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Only .zip files are supported.`)
-};
-
 const zh_only_zip_files_supported = /** @type {(inputs: Only_Zip_Files_SupportedInputs) => LocalizedString} */ () => {
 	return /** @type {LocalizedString} */ (`仅支持 .zip 文件。`)
+};
+
+const en_only_zip_files_supported = /** @type {(inputs: Only_Zip_Files_SupportedInputs) => LocalizedString} */ () => {
+	return /** @type {LocalizedString} */ (`Only .zip files are supported.`)
 };
 
 /**
@@ -19,11 +19,11 @@ const zh_only_zip_files_supported = /** @type {(inputs: Only_Zip_Files_Supported
 * | "Only .zip files are supported." |
 *
 * @param {Only_Zip_Files_SupportedInputs} inputs
-* @param {{ locale?: "en" | "zh" }} options
+* @param {{ locale?: "zh" | "en" }} options
 * @returns {LocalizedString}
 */
-export const only_zip_files_supported = /** @type {((inputs?: Only_Zip_Files_SupportedInputs, options?: { locale?: "en" | "zh" }) => LocalizedString) & import('../runtime.js').MessageMetadata<Only_Zip_Files_SupportedInputs, { locale?: "en" | "zh" }, {}>} */ ((inputs = {}, options = {}) => {
+export const only_zip_files_supported = /** @type {((inputs?: Only_Zip_Files_SupportedInputs, options?: { locale?: "zh" | "en" }) => LocalizedString) & import('../runtime.js').MessageMetadata<Only_Zip_Files_SupportedInputs, { locale?: "zh" | "en" }, {}>} */ ((inputs = {}, options = {}) => {
 	const locale = experimentalStaticLocale ?? options.locale ?? getLocale()
-	if (locale === "en") return en_only_zip_files_supported(inputs)
-	return zh_only_zip_files_supported(inputs)
+	if (locale === "zh") return zh_only_zip_files_supported(inputs)
+	return en_only_zip_files_supported(inputs)
 });

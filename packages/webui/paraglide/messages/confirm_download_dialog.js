@@ -5,12 +5,12 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 
 /** @typedef {{}} Confirm_Download_DialogInputs */
 
-const en_confirm_download_dialog = /** @type {(inputs: Confirm_Download_DialogInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Confirm Download`)
-};
-
 const zh_confirm_download_dialog = /** @type {(inputs: Confirm_Download_DialogInputs) => LocalizedString} */ () => {
 	return /** @type {LocalizedString} */ (`确认下载`)
+};
+
+const en_confirm_download_dialog = /** @type {(inputs: Confirm_Download_DialogInputs) => LocalizedString} */ () => {
+	return /** @type {LocalizedString} */ (`Confirm Download`)
 };
 
 /**
@@ -19,11 +19,11 @@ const zh_confirm_download_dialog = /** @type {(inputs: Confirm_Download_DialogIn
 * | "Confirm Download" |
 *
 * @param {Confirm_Download_DialogInputs} inputs
-* @param {{ locale?: "en" | "zh" }} options
+* @param {{ locale?: "zh" | "en" }} options
 * @returns {LocalizedString}
 */
-export const confirm_download_dialog = /** @type {((inputs?: Confirm_Download_DialogInputs, options?: { locale?: "en" | "zh" }) => LocalizedString) & import('../runtime.js').MessageMetadata<Confirm_Download_DialogInputs, { locale?: "en" | "zh" }, {}>} */ ((inputs = {}, options = {}) => {
+export const confirm_download_dialog = /** @type {((inputs?: Confirm_Download_DialogInputs, options?: { locale?: "zh" | "en" }) => LocalizedString) & import('../runtime.js').MessageMetadata<Confirm_Download_DialogInputs, { locale?: "zh" | "en" }, {}>} */ ((inputs = {}, options = {}) => {
 	const locale = experimentalStaticLocale ?? options.locale ?? getLocale()
-	if (locale === "en") return en_confirm_download_dialog(inputs)
-	return zh_confirm_download_dialog(inputs)
+	if (locale === "zh") return zh_confirm_download_dialog(inputs)
+	return en_confirm_download_dialog(inputs)
 });

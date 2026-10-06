@@ -5,12 +5,12 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 
 /** @typedef {{}} Aspect_3_4Inputs */
 
-const en_aspect_3_4 = /** @type {(inputs: Aspect_3_4Inputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`3:4 Portrait`)
-};
-
 const zh_aspect_3_4 = /** @type {(inputs: Aspect_3_4Inputs) => LocalizedString} */ () => {
 	return /** @type {LocalizedString} */ (`3:4 肖像`)
+};
+
+const en_aspect_3_4 = /** @type {(inputs: Aspect_3_4Inputs) => LocalizedString} */ () => {
+	return /** @type {LocalizedString} */ (`3:4 Portrait`)
 };
 
 /**
@@ -19,11 +19,11 @@ const zh_aspect_3_4 = /** @type {(inputs: Aspect_3_4Inputs) => LocalizedString} 
 * | "3:4 Portrait" |
 *
 * @param {Aspect_3_4Inputs} inputs
-* @param {{ locale?: "en" | "zh" }} options
+* @param {{ locale?: "zh" | "en" }} options
 * @returns {LocalizedString}
 */
-export const aspect_3_4 = /** @type {((inputs?: Aspect_3_4Inputs, options?: { locale?: "en" | "zh" }) => LocalizedString) & import('../runtime.js').MessageMetadata<Aspect_3_4Inputs, { locale?: "en" | "zh" }, {}>} */ ((inputs = {}, options = {}) => {
+export const aspect_3_4 = /** @type {((inputs?: Aspect_3_4Inputs, options?: { locale?: "zh" | "en" }) => LocalizedString) & import('../runtime.js').MessageMetadata<Aspect_3_4Inputs, { locale?: "zh" | "en" }, {}>} */ ((inputs = {}, options = {}) => {
 	const locale = experimentalStaticLocale ?? options.locale ?? getLocale()
-	if (locale === "en") return en_aspect_3_4(inputs)
-	return zh_aspect_3_4(inputs)
+	if (locale === "zh") return zh_aspect_3_4(inputs)
+	return en_aspect_3_4(inputs)
 });

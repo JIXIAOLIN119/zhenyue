@@ -1,10 +1,10 @@
-import { setupTestDbHooks } from '@shumai/db/test'
-import { teamService } from '@shumai/core/src/team/team'
-import { agentService } from '@shumai/core/src/agent/agent'
+import { setupTestDbHooks } from '@zhenyue/db/test'
+import { teamService } from '@zhenyue/core/src/team/team'
+import { agentService } from '@zhenyue/core/src/agent/agent'
 import { providerService } from './provider'
 import { describe, expect, it } from 'vitest'
-import { ProviderConfigSerializable, providerModelSchema } from '@shumai/dtos'
-import { getBuiltinProvidersMap } from '@shumai/core/src/provider/builtin'
+import { ProviderConfigSerializable, providerModelSchema } from '@zhenyue/dtos'
+import { getBuiltinProvidersMap } from '@zhenyue/core/src/provider/builtin'
 import { z } from 'zod'
 
 type ProviderModel = z.infer<typeof providerModelSchema>

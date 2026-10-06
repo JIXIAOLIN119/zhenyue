@@ -5,12 +5,12 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 
 /** @typedef {{}} Best_Match_DescriptionInputs */
 
-const en_best_match_description = /** @type {(inputs: Best_Match_DescriptionInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Generates a single optimal resolution matching the source quality.`)
-};
-
 const zh_best_match_description = /** @type {(inputs: Best_Match_DescriptionInputs) => LocalizedString} */ () => {
 	return /** @type {LocalizedString} */ (`生成与源质量匹配的单一最优分辨率。`)
+};
+
+const en_best_match_description = /** @type {(inputs: Best_Match_DescriptionInputs) => LocalizedString} */ () => {
+	return /** @type {LocalizedString} */ (`Generates a single optimal resolution matching the source quality.`)
 };
 
 /**
@@ -19,11 +19,11 @@ const zh_best_match_description = /** @type {(inputs: Best_Match_DescriptionInpu
 * | "Generates a single optimal resolution matching the source quality." |
 *
 * @param {Best_Match_DescriptionInputs} inputs
-* @param {{ locale?: "en" | "zh" }} options
+* @param {{ locale?: "zh" | "en" }} options
 * @returns {LocalizedString}
 */
-export const best_match_description = /** @type {((inputs?: Best_Match_DescriptionInputs, options?: { locale?: "en" | "zh" }) => LocalizedString) & import('../runtime.js').MessageMetadata<Best_Match_DescriptionInputs, { locale?: "en" | "zh" }, {}>} */ ((inputs = {}, options = {}) => {
+export const best_match_description = /** @type {((inputs?: Best_Match_DescriptionInputs, options?: { locale?: "zh" | "en" }) => LocalizedString) & import('../runtime.js').MessageMetadata<Best_Match_DescriptionInputs, { locale?: "zh" | "en" }, {}>} */ ((inputs = {}, options = {}) => {
 	const locale = experimentalStaticLocale ?? options.locale ?? getLocale()
-	if (locale === "en") return en_best_match_description(inputs)
-	return zh_best_match_description(inputs)
+	if (locale === "zh") return zh_best_match_description(inputs)
+	return en_best_match_description(inputs)
 });

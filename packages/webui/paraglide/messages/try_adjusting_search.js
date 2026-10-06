@@ -5,12 +5,12 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 
 /** @typedef {{ query: NonNullable<unknown> }} Try_Adjusting_SearchInputs */
 
-const en_try_adjusting_search = /** @type {(inputs: Try_Adjusting_SearchInputs) => LocalizedString} */ (i) => {
-	return /** @type {LocalizedString} */ (`Try adjusting your search for "${i?.query}"`)
-};
-
 const zh_try_adjusting_search = /** @type {(inputs: Try_Adjusting_SearchInputs) => LocalizedString} */ (i) => {
 	return /** @type {LocalizedString} */ (`请尝试调整搜索 "${i?.query}"`)
+};
+
+const en_try_adjusting_search = /** @type {(inputs: Try_Adjusting_SearchInputs) => LocalizedString} */ (i) => {
+	return /** @type {LocalizedString} */ (`Try adjusting your search for "${i?.query}"`)
 };
 
 /**
@@ -19,11 +19,11 @@ const zh_try_adjusting_search = /** @type {(inputs: Try_Adjusting_SearchInputs) 
 * | "Try adjusting your search for \"{query}\"" |
 *
 * @param {Try_Adjusting_SearchInputs} inputs
-* @param {{ locale?: "en" | "zh" }} options
+* @param {{ locale?: "zh" | "en" }} options
 * @returns {LocalizedString}
 */
-export const try_adjusting_search = /** @type {((inputs: Try_Adjusting_SearchInputs, options?: { locale?: "en" | "zh" }) => LocalizedString) & import('../runtime.js').MessageMetadata<Try_Adjusting_SearchInputs, { locale?: "en" | "zh" }, {}>} */ ((inputs, options = {}) => {
+export const try_adjusting_search = /** @type {((inputs: Try_Adjusting_SearchInputs, options?: { locale?: "zh" | "en" }) => LocalizedString) & import('../runtime.js').MessageMetadata<Try_Adjusting_SearchInputs, { locale?: "zh" | "en" }, {}>} */ ((inputs, options = {}) => {
 	const locale = experimentalStaticLocale ?? options.locale ?? getLocale()
-	if (locale === "en") return en_try_adjusting_search(inputs)
-	return zh_try_adjusting_search(inputs)
+	if (locale === "zh") return zh_try_adjusting_search(inputs)
+	return en_try_adjusting_search(inputs)
 });

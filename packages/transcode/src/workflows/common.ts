@@ -1,5 +1,5 @@
-import type { WorkflowTask } from '@shumai/db'
-import { executeActivity, getActivities, TaskQueueTranscode } from '@shumai/workflow-core'
+import type { WorkflowTask } from '@zhenyue/db'
+import { executeActivity, getActivities, TaskQueueTranscode } from '@zhenyue/workflow-core'
 import { ApplicationFailure } from '@temporalio/workflow'
 
 export async function getWorkerQueueAndStartTask(task: WorkflowTask): Promise<string> {

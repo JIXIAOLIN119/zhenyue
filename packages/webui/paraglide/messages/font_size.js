@@ -5,12 +5,12 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 
 /** @typedef {{}} Font_SizeInputs */
 
-const en_font_size = /** @type {(inputs: Font_SizeInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Font Size`)
-};
-
 const zh_font_size = /** @type {(inputs: Font_SizeInputs) => LocalizedString} */ () => {
 	return /** @type {LocalizedString} */ (`字体大小`)
+};
+
+const en_font_size = /** @type {(inputs: Font_SizeInputs) => LocalizedString} */ () => {
+	return /** @type {LocalizedString} */ (`Font Size`)
 };
 
 /**
@@ -19,11 +19,11 @@ const zh_font_size = /** @type {(inputs: Font_SizeInputs) => LocalizedString} */
 * | "Font Size" |
 *
 * @param {Font_SizeInputs} inputs
-* @param {{ locale?: "en" | "zh" }} options
+* @param {{ locale?: "zh" | "en" }} options
 * @returns {LocalizedString}
 */
-export const font_size = /** @type {((inputs?: Font_SizeInputs, options?: { locale?: "en" | "zh" }) => LocalizedString) & import('../runtime.js').MessageMetadata<Font_SizeInputs, { locale?: "en" | "zh" }, {}>} */ ((inputs = {}, options = {}) => {
+export const font_size = /** @type {((inputs?: Font_SizeInputs, options?: { locale?: "zh" | "en" }) => LocalizedString) & import('../runtime.js').MessageMetadata<Font_SizeInputs, { locale?: "zh" | "en" }, {}>} */ ((inputs = {}, options = {}) => {
 	const locale = experimentalStaticLocale ?? options.locale ?? getLocale()
-	if (locale === "en") return en_font_size(inputs)
-	return zh_font_size(inputs)
+	if (locale === "zh") return zh_font_size(inputs)
+	return en_font_size(inputs)
 });

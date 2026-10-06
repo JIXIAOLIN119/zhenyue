@@ -5,12 +5,12 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 
 /** @typedef {{}} Add_First_ProviderInputs */
 
-const en_add_first_provider = /** @type {(inputs: Add_First_ProviderInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Add your first AI provider to get started.`)
-};
-
 const zh_add_first_provider = /** @type {(inputs: Add_First_ProviderInputs) => LocalizedString} */ () => {
 	return /** @type {LocalizedString} */ (`添加您的第一个 AI 提供商以开始使用。`)
+};
+
+const en_add_first_provider = /** @type {(inputs: Add_First_ProviderInputs) => LocalizedString} */ () => {
+	return /** @type {LocalizedString} */ (`Add your first AI provider to get started.`)
 };
 
 /**
@@ -19,11 +19,11 @@ const zh_add_first_provider = /** @type {(inputs: Add_First_ProviderInputs) => L
 * | "Add your first AI provider to get started." |
 *
 * @param {Add_First_ProviderInputs} inputs
-* @param {{ locale?: "en" | "zh" }} options
+* @param {{ locale?: "zh" | "en" }} options
 * @returns {LocalizedString}
 */
-export const add_first_provider = /** @type {((inputs?: Add_First_ProviderInputs, options?: { locale?: "en" | "zh" }) => LocalizedString) & import('../runtime.js').MessageMetadata<Add_First_ProviderInputs, { locale?: "en" | "zh" }, {}>} */ ((inputs = {}, options = {}) => {
+export const add_first_provider = /** @type {((inputs?: Add_First_ProviderInputs, options?: { locale?: "zh" | "en" }) => LocalizedString) & import('../runtime.js').MessageMetadata<Add_First_ProviderInputs, { locale?: "zh" | "en" }, {}>} */ ((inputs = {}, options = {}) => {
 	const locale = experimentalStaticLocale ?? options.locale ?? getLocale()
-	if (locale === "en") return en_add_first_provider(inputs)
-	return zh_add_first_provider(inputs)
+	if (locale === "zh") return zh_add_first_provider(inputs)
+	return en_add_first_provider(inputs)
 });

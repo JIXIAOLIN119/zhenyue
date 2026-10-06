@@ -1,5 +1,5 @@
 import { Hono } from 'hono'
-import { buildContentDisposition, s3Service } from '@shumai/core/src/s3/s3'
+import { buildContentDisposition, s3Service } from '@zhenyue/core/src/s3/s3'
 import { serveStatic } from 'hono/bun'
 
 const route = new Hono()

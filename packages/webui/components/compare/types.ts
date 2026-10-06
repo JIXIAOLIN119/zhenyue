@@ -1,4 +1,4 @@
-import type { VideoTranscode } from '@shumai/dtos'
+import type { VideoTranscode } from '@zhenyue/dtos'
 
 export type PaneKind = 'image' | 'video' | 'unsupported'
 

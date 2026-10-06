@@ -1,3 +1,4 @@
+import { E2E_STORAGE_STATE } from './apps/web/e2e/helpers/auth'
 import { defineConfig, devices } from '@playwright/test'
 
 /**
@@ -20,6 +21,7 @@ export default defineConfig({
   globalTeardown: './apps/web/e2e/global-teardown.ts',
 
   use: {
+    storageState: E2E_STORAGE_STATE,
     trace: 'on-first-retry',
     video: 'retain-on-failure',
   },
@@ -31,6 +33,8 @@ export default defineConfig({
       testDir: './packages/webui/e2e/tests',
       use: {
         ...devices['Desktop Chrome'],
+        // Allow local runs to use an installed Chrome when bundled Chromium is unavailable.
+        ...(process.env.E2E_CHROMIUM_CHANNEL ? { channel: process.env.E2E_CHROMIUM_CHANNEL } : {}),
         // eslint-disable-next-line @typescript-eslint/naming-convention
         baseURL: 'http://localhost:5199',
       },
@@ -62,6 +66,8 @@ export default defineConfig({
       fullyParallel: false, // run sequentially to avoid DB and storage conflicts
       use: {
         ...devices['Desktop Chrome'],
+        // Allow local runs to use an installed Chrome when bundled Chromium is unavailable.
+        ...(process.env.E2E_CHROMIUM_CHANNEL ? { channel: process.env.E2E_CHROMIUM_CHANNEL } : {}),
         // eslint-disable-next-line @typescript-eslint/naming-convention
         baseURL: 'http://localhost:5200',
       },

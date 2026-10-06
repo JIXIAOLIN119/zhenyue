@@ -29,7 +29,7 @@ import { Switch } from '@/ui/components/ui/switch'
 import { usePermissions } from '@/ui/hooks/use-permissions'
 import { cn } from '@/ui/lib/utils'
 import { m } from '@/ui/paraglide/messages.js'
-import { AgentInfo, AgentPermission, AgentType, ThinkingLevel } from '@shumai/dtos'
+import { AgentInfo, AgentPermission, AgentType, ThinkingLevel } from '@zhenyue/dtos'
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
 import {
   Bot,

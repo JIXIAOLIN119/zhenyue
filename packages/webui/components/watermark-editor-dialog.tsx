@@ -27,7 +27,7 @@ import {
   WatermarkBlockText,
   WatermarkConfigSpec,
   WatermarkTemplateInfo,
-} from '@shumai/dtos'
+} from '@zhenyue/dtos'
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
 import {
   Check,

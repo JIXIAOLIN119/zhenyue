@@ -1,9 +1,9 @@
-import { loadEnvConfig } from '@shumai/core/src/env-loader'
+import { loadEnvConfig } from '@zhenyue/core/src/env-loader'
 loadEnvConfig(process.cwd(), process.env.NODE_ENV !== 'production')
 
-import { initTranscodeWorkflows } from '@shumai/transcode'
-import { TaskQueueTranscode, workflowService } from '@shumai/workflow-core'
-import { handleDaemonCommands } from '@shumai/core/src/utils/daemon'
+import { initTranscodeWorkflows } from '@zhenyue/transcode'
+import { TaskQueueTranscode, workflowService } from '@zhenyue/workflow-core'
+import { handleDaemonCommands } from '@zhenyue/core/src/utils/daemon'
 
 if (process.argv.includes('--check')) {
   console.log('✅ Transcode worker evaluated successfully!')
@@ -28,7 +28,7 @@ async function run() {
   await workflowService.startWorkers(TaskQueueTranscode, options)
 }
 
-handleDaemonCommands('shumai-transcode', run).catch((err) => {
+handleDaemonCommands('zhenyue-transcode', run).catch((err) => {
   console.error(err)
   process.exit(1)
 })

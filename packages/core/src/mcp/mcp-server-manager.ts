@@ -17,8 +17,8 @@ import {
   type RequestOptions,
   type VersionNegotiationOptions,
 } from '@modelcontextprotocol/client'
-import '@shumai/db/src/prisma-json-types'
-import { logger } from '@shumai/core/src/logger'
+import '@zhenyue/db/src/prisma-json-types'
+import { logger } from '@zhenyue/core/src/logger'
 import type { McpDbStore } from './mcp-db-store'
 import { McpOauthProvider, type McpOauthConfig } from './mcp-oauth-provider'
 
@@ -221,7 +221,7 @@ export class McpServerManager {
   private createClient(serverId: string, definition: McpServerDefinition): Client {
     const versionNegotiation = resolveVersionNegotiation(definition)
     return new Client(
-      { name: `shumai-mcp-${serverId}`, version: '1.0.0' },
+      { name: `zhenyue-mcp-${serverId}`, version: '1.0.0' },
       {
         ...(versionNegotiation ? { versionNegotiation } : {}),
       },

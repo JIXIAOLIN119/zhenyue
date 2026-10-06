@@ -5,12 +5,12 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 
 /** @typedef {{}} ListInputs */
 
-const en_list = /** @type {(inputs: ListInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`List`)
-};
-
 const zh_list = /** @type {(inputs: ListInputs) => LocalizedString} */ () => {
 	return /** @type {LocalizedString} */ (`列表`)
+};
+
+const en_list = /** @type {(inputs: ListInputs) => LocalizedString} */ () => {
+	return /** @type {LocalizedString} */ (`List`)
 };
 
 /**
@@ -19,11 +19,11 @@ const zh_list = /** @type {(inputs: ListInputs) => LocalizedString} */ () => {
 * | "List" |
 *
 * @param {ListInputs} inputs
-* @param {{ locale?: "en" | "zh" }} options
+* @param {{ locale?: "zh" | "en" }} options
 * @returns {LocalizedString}
 */
-export const list = /** @type {((inputs?: ListInputs, options?: { locale?: "en" | "zh" }) => LocalizedString) & import('../runtime.js').MessageMetadata<ListInputs, { locale?: "en" | "zh" }, {}>} */ ((inputs = {}, options = {}) => {
+export const list = /** @type {((inputs?: ListInputs, options?: { locale?: "zh" | "en" }) => LocalizedString) & import('../runtime.js').MessageMetadata<ListInputs, { locale?: "zh" | "en" }, {}>} */ ((inputs = {}, options = {}) => {
 	const locale = experimentalStaticLocale ?? options.locale ?? getLocale()
-	if (locale === "en") return en_list(inputs)
-	return zh_list(inputs)
+	if (locale === "zh") return zh_list(inputs)
+	return en_list(inputs)
 });

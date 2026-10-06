@@ -5,12 +5,12 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 
 /** @typedef {{}} Email_AddressInputs */
 
-const en_email_address = /** @type {(inputs: Email_AddressInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Email Address`)
-};
-
 const zh_email_address = /** @type {(inputs: Email_AddressInputs) => LocalizedString} */ () => {
 	return /** @type {LocalizedString} */ (`邮箱地址`)
+};
+
+const en_email_address = /** @type {(inputs: Email_AddressInputs) => LocalizedString} */ () => {
+	return /** @type {LocalizedString} */ (`Email Address`)
 };
 
 /**
@@ -19,11 +19,11 @@ const zh_email_address = /** @type {(inputs: Email_AddressInputs) => LocalizedSt
 * | "Email Address" |
 *
 * @param {Email_AddressInputs} inputs
-* @param {{ locale?: "en" | "zh" }} options
+* @param {{ locale?: "zh" | "en" }} options
 * @returns {LocalizedString}
 */
-export const email_address = /** @type {((inputs?: Email_AddressInputs, options?: { locale?: "en" | "zh" }) => LocalizedString) & import('../runtime.js').MessageMetadata<Email_AddressInputs, { locale?: "en" | "zh" }, {}>} */ ((inputs = {}, options = {}) => {
+export const email_address = /** @type {((inputs?: Email_AddressInputs, options?: { locale?: "zh" | "en" }) => LocalizedString) & import('../runtime.js').MessageMetadata<Email_AddressInputs, { locale?: "zh" | "en" }, {}>} */ ((inputs = {}, options = {}) => {
 	const locale = experimentalStaticLocale ?? options.locale ?? getLocale()
-	if (locale === "en") return en_email_address(inputs)
-	return zh_email_address(inputs)
+	if (locale === "zh") return zh_email_address(inputs)
+	return en_email_address(inputs)
 });

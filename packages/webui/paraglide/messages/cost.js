@@ -5,12 +5,12 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 
 /** @typedef {{}} CostInputs */
 
-const en_cost = /** @type {(inputs: CostInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Cost`)
-};
-
 const zh_cost = /** @type {(inputs: CostInputs) => LocalizedString} */ () => {
 	return /** @type {LocalizedString} */ (`费用`)
+};
+
+const en_cost = /** @type {(inputs: CostInputs) => LocalizedString} */ () => {
+	return /** @type {LocalizedString} */ (`Cost`)
 };
 
 /**
@@ -19,11 +19,11 @@ const zh_cost = /** @type {(inputs: CostInputs) => LocalizedString} */ () => {
 * | "Cost" |
 *
 * @param {CostInputs} inputs
-* @param {{ locale?: "en" | "zh" }} options
+* @param {{ locale?: "zh" | "en" }} options
 * @returns {LocalizedString}
 */
-export const cost = /** @type {((inputs?: CostInputs, options?: { locale?: "en" | "zh" }) => LocalizedString) & import('../runtime.js').MessageMetadata<CostInputs, { locale?: "en" | "zh" }, {}>} */ ((inputs = {}, options = {}) => {
+export const cost = /** @type {((inputs?: CostInputs, options?: { locale?: "zh" | "en" }) => LocalizedString) & import('../runtime.js').MessageMetadata<CostInputs, { locale?: "zh" | "en" }, {}>} */ ((inputs = {}, options = {}) => {
 	const locale = experimentalStaticLocale ?? options.locale ?? getLocale()
-	if (locale === "en") return en_cost(inputs)
-	return zh_cost(inputs)
+	if (locale === "zh") return zh_cost(inputs)
+	return en_cost(inputs)
 });

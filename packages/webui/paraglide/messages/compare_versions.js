@@ -5,12 +5,12 @@ import { getLocale, experimentalStaticLocale } from '../runtime.js';
 
 /** @typedef {{}} Compare_VersionsInputs */
 
-const en_compare_versions = /** @type {(inputs: Compare_VersionsInputs) => LocalizedString} */ () => {
-	return /** @type {LocalizedString} */ (`Compare Versions`)
-};
-
 const zh_compare_versions = /** @type {(inputs: Compare_VersionsInputs) => LocalizedString} */ () => {
 	return /** @type {LocalizedString} */ (`对比版本`)
+};
+
+const en_compare_versions = /** @type {(inputs: Compare_VersionsInputs) => LocalizedString} */ () => {
+	return /** @type {LocalizedString} */ (`Compare Versions`)
 };
 
 /**
@@ -19,11 +19,11 @@ const zh_compare_versions = /** @type {(inputs: Compare_VersionsInputs) => Local
 * | "Compare Versions" |
 *
 * @param {Compare_VersionsInputs} inputs
-* @param {{ locale?: "en" | "zh" }} options
+* @param {{ locale?: "zh" | "en" }} options
 * @returns {LocalizedString}
 */
-export const compare_versions = /** @type {((inputs?: Compare_VersionsInputs, options?: { locale?: "en" | "zh" }) => LocalizedString) & import('../runtime.js').MessageMetadata<Compare_VersionsInputs, { locale?: "en" | "zh" }, {}>} */ ((inputs = {}, options = {}) => {
+export const compare_versions = /** @type {((inputs?: Compare_VersionsInputs, options?: { locale?: "zh" | "en" }) => LocalizedString) & import('../runtime.js').MessageMetadata<Compare_VersionsInputs, { locale?: "zh" | "en" }, {}>} */ ((inputs = {}, options = {}) => {
 	const locale = experimentalStaticLocale ?? options.locale ?? getLocale()
-	if (locale === "en") return en_compare_versions(inputs)
-	return zh_compare_versions(inputs)
+	if (locale === "zh") return zh_compare_versions(inputs)
+	return en_compare_versions(inputs)
 });

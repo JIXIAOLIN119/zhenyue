@@ -1,13 +1,13 @@
 import { describe, expect, it, vi, beforeEach, afterEach } from 'vitest'
-import { prisma } from '@shumai/db'
-import { setupTestDbHooks } from '@shumai/db/test'
+import { prisma } from '@zhenyue/db'
+import { setupTestDbHooks } from '@zhenyue/db/test'
 import { HTTPException } from 'hono/http-exception'
 
-import { AssetType, AssetStatus, Prisma } from '@shumai/db'
-import { s3Service } from '@shumai/core/src/s3/s3'
+import { AssetType, AssetStatus, Prisma } from '@zhenyue/db'
+import { s3Service } from '@zhenyue/core/src/s3/s3'
 import { AssetService } from './asset'
 
-vi.mock('@shumai/core/src/s3/s3', () => ({
+vi.mock('@zhenyue/core/src/s3/s3', () => ({
   s3Service: {
     presign: vi.fn().mockResolvedValue('http://mock-s3-url'),
     putObject: vi.fn().mockResolvedValue(undefined),
@@ -860,9 +860,9 @@ describe('AssetService', () => {
     await expect(prisma.storageKey.findUnique({ where: { id: storageKey.id } })).resolves.toBeNull()
 
     // 7. Verify S3 deletion was called
-    const { s3Service } = await import('@shumai/core/src/s3/s3')
+    const { s3Service } = await import('@zhenyue/core/src/s3/s3')
     expect(s3Service.deleteObject).toHaveBeenCalledWith(
-      'shumai',
+      'zhenyue',
       'attachments/test-attachment-file.png',
     )
   })
@@ -1044,7 +1044,7 @@ describe('AssetService', () => {
       data: {
         name: 'Bot Agent',
         type: 'agent',
-        email: 'bot-agent@shumai.ai',
+        email: 'bot-agent@zhenyue.ai',
       },
     })
     const agent = await prisma.agent.create({
@@ -1104,7 +1104,7 @@ describe('AssetService', () => {
       data: {
         name: 'Bot Agent',
         type: 'agent',
-        email: 'rule-bot@shumai.ai',
+        email: 'rule-bot@zhenyue.ai',
       },
     })
     const agent = await prisma.agent.create({
@@ -1250,7 +1250,7 @@ describe('AssetService', () => {
       data: {
         name: 'Owner Bot Agent',
         type: 'agent',
-        email: `owner-bot-${Date.now()}@shumai.ai`,
+        email: `owner-bot-${Date.now()}@zhenyue.ai`,
       },
     })
     const ownerAgent = await prisma.agent.create({
@@ -1267,7 +1267,7 @@ describe('AssetService', () => {
     const reviewerUser = await prisma.user.create({
       data: {
         name: 'Reviewer Member',
-        email: `rev-comment-${Date.now()}@shumai.ai`,
+        email: `rev-comment-${Date.now()}@zhenyue.ai`,
         password: 'pw',
       },
     })
@@ -1312,7 +1312,7 @@ describe('AssetService', () => {
       data: {
         name: 'Editor Bot Agent',
         type: 'agent',
-        email: `editor-bot-${Date.now()}@shumai.ai`,
+        email: `editor-bot-${Date.now()}@zhenyue.ai`,
       },
     })
     const editorAgent = await prisma.agent.create({
@@ -1327,7 +1327,7 @@ describe('AssetService', () => {
 
     // Team editor, demoted to project reviewer in this project
     const demoted = await prisma.user.create({
-      data: { name: 'Demoted Member', email: `dem-${Date.now()}@shumai.ai`, password: 'pw' },
+      data: { name: 'Demoted Member', email: `dem-${Date.now()}@zhenyue.ai`, password: 'pw' },
     })
     const demotedTm = await prisma.teamMember.create({
       data: { teamId: project.teamId, userId: demoted.id, role: 'editor', scope: 'team' },
@@ -1338,7 +1338,7 @@ describe('AssetService', () => {
 
     // Project-scoped member invited as editor
     const projEditor = await prisma.user.create({
-      data: { name: 'Proj Editor', email: `pe-${Date.now()}@shumai.ai`, password: 'pw' },
+      data: { name: 'Proj Editor', email: `pe-${Date.now()}@zhenyue.ai`, password: 'pw' },
     })
     const projEditorTm = await prisma.teamMember.create({
       data: { teamId: project.teamId, userId: projEditor.id, role: 'reviewer', scope: 'project' },

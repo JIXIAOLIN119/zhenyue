@@ -1,9 +1,9 @@
 import { describe, expect, it } from 'vitest'
-import { prisma } from '@shumai/db'
-import { setupTestDbHooks } from '@shumai/db/test'
-import { NotificationType } from '@shumai/db'
+import { prisma } from '@zhenyue/db'
+import { setupTestDbHooks } from '@zhenyue/db/test'
+import { NotificationType } from '@zhenyue/db'
 import { notificationService } from './notification'
-import { userMetadataService } from '@shumai/core/src/user-metadata/user-metadata'
+import { userMetadataService } from '@zhenyue/core/src/user-metadata/user-metadata'
 
 describe('NotificationService', () => {
   setupTestDbHooks()
