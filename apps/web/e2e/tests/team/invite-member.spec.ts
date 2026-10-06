@@ -1,3 +1,4 @@
+import { E2E_STORAGE_STATE } from '../../helpers/auth'
 import { expect, test } from '../../fixtures'
 import { E2E_PASSWORD, uniqueEmail } from '../../helpers/auth'
 import { generateInviteLink, openMembersDialog } from '../../helpers/ui'
@@ -21,7 +22,7 @@ test('owner invites a member via invite link and the invitee joins', async ({
   expect(inviteLink.startsWith(`${origin}/signup?inviteCode=`)).toBe(true)
 
   // 2. The invitee opens the link in a brand-new session (no cookies)
-  const inviteeContext = await browser.newContext()
+  const inviteeContext = await browser.newContext({ storageState: E2E_STORAGE_STATE })
   const inviteePage = await inviteeContext.newPage()
   const inviteeEmail = uniqueEmail('invitee')
   try {

@@ -2191,11 +2191,7 @@ export class AssetService {
             'GET',
           )
           const attachmentProxyType = (a.asset.media?.proxyType || null) as
-            | 'image'
-            | 'video'
-            | 'audio'
-            | 'pdf'
-            | null
+            'image' | 'video' | 'audio' | 'pdf' | null
           attachments.push({
             id: a.id,
             assetId: a.asset.id,

@@ -1,7 +1,8 @@
 // @vitest-environment happy-dom
 import { cleanup, fireEvent, render, screen, waitFor } from '@testing-library/react'
 import React from 'react'
-import { afterEach, describe, expect, it, vi } from 'vitest'
+import { setLocale } from '@/ui/paraglide/runtime.js'
+import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 import SelectMultiField from './select-multi-field'
 
 // Mock client and stores
@@ -27,6 +28,10 @@ vi.mock('@/ui/stores/fields', () => ({
 }))
 
 describe('SelectMultiField Component', () => {
+  beforeEach(() => {
+    setLocale('en', { reload: false })
+  })
+
   afterEach(() => {
     cleanup()
     vi.clearAllMocks()

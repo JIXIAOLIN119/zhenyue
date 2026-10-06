@@ -1,3 +1,4 @@
+import { E2E_STORAGE_STATE } from './auth'
 import type { Browser, BrowserContext } from '@playwright/test'
 import type { PrismaClient } from '../../../../packages/db/src/generated/prisma/client'
 import { E2E_APP_URL, E2E_PASSWORD, apiSignup, injectAuthState, uniqueEmail } from './auth'
@@ -30,8 +31,11 @@ export async function seedTeamMember(
     }
     const inviteBody = (await inviteRes.json()) as { code: string }
 
-    // eslint-disable-next-line @typescript-eslint/naming-convention
-    const context = await browser.newContext({ baseURL: E2E_APP_URL })
+    const context = await browser.newContext({
+      storageState: E2E_STORAGE_STATE,
+      // eslint-disable-next-line @typescript-eslint/naming-convention
+      baseURL: E2E_APP_URL,
+    })
     const email = uniqueEmail(`member-${role}`)
     const user = await apiSignup(context.request, email, E2E_PASSWORD, {
       inviteCode: inviteBody.code,
@@ -83,8 +87,11 @@ export async function seedProjectMember(
     }
     const inviteBody = (await inviteRes.json()) as { code: string }
 
-    // eslint-disable-next-line @typescript-eslint/naming-convention
-    const context = await browser.newContext({ baseURL: E2E_APP_URL })
+    const context = await browser.newContext({
+      storageState: E2E_STORAGE_STATE,
+      // eslint-disable-next-line @typescript-eslint/naming-convention
+      baseURL: E2E_APP_URL,
+    })
     const email = uniqueEmail(`proj-member-${role}`)
     const user = await apiSignup(context.request, email, E2E_PASSWORD, {
       inviteCode: inviteBody.code,

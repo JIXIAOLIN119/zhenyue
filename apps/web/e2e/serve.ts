@@ -14,6 +14,9 @@ async function start() {
   const randomSuffix = randomBytes(4).toString('hex')
   const bucketName = `zhenyue-e2e-${randomSuffix}`
 
+  // Keep uploads on this isolated server even if the developer .env points elsewhere.
+  process.env.STORAGE_BACKEND = 'local'
+  process.env.AWS_ENDPOINT_URL_S3 = 'http://localhost:5200'
   process.env.S3_BUCKET = bucketName
   process.env.ZHENYUE_SERVER_PORT = '5200'
   process.env.BETTER_AUTH_URL = 'http://localhost:5200'

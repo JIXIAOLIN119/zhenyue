@@ -1,3 +1,4 @@
+import { E2E_STORAGE_STATE } from '../../helpers/auth'
 import { expect, test } from '../../fixtures'
 import {
   apiAddAssetsToShare,
@@ -87,7 +88,7 @@ for (const mediaType of ['image', 'video'] as const) {
           (t) => t.key,
         ) ?? []
 
-      const guestContext = await browser.newContext()
+      const guestContext = await browser.newContext({ storageState: E2E_STORAGE_STATE })
       const guestPage = await guestContext.newPage()
       try {
         // ---------------- Public share list page ----------------

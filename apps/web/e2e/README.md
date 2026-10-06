@@ -54,7 +54,7 @@ apps/web/e2e/
 ### auth
 | Test | File |
 |---|---|
-| Sign up as the first user and become the team owner | `tests/auth/signup.spec.ts` |
+| Sign up as the first user, become the team owner, and preserve the selected locale | `tests/auth/signup.spec.ts` |
 | Log in with existing credentials | `tests/auth/login.spec.ts` |
 
 ### team

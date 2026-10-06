@@ -1,3 +1,4 @@
+import { E2E_STORAGE_STATE } from './helpers/auth'
 import { test as base } from '@playwright/test'
 import type { BrowserContext, Page } from '@playwright/test'
 import { PrismaClient } from '../../../packages/db/src/generated/prisma/client'
@@ -141,6 +142,7 @@ export const test = base.extend<{
    */
   owner: async ({ browser }, use) => {
     const context = await browser.newContext({
+      storageState: E2E_STORAGE_STATE,
       // eslint-disable-next-line @typescript-eslint/naming-convention
       baseURL: E2E_APP_URL,
     })

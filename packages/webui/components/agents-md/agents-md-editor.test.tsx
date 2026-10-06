@@ -1,6 +1,7 @@
 // @vitest-environment happy-dom
 import { cleanup, render, screen, waitFor } from '@testing-library/react'
 import React from 'react'
+import { setLocale } from '@/ui/paraglide/runtime.js'
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query'
 import { AgentsMdEditor } from './agents-md-editor'
@@ -38,6 +39,7 @@ describe('AgentsMdEditor Component', () => {
   let queryClient: QueryClient
 
   beforeEach(() => {
+    setLocale('en', { reload: false })
     queryClient = new QueryClient({
       defaultOptions: {
         queries: {

@@ -7,7 +7,7 @@ import { Input } from '@/ui/components/ui/input'
 import { Label } from '@/ui/components/ui/label'
 import { signUp } from '@/ui/lib/auth-client'
 import { m } from '@/ui/paraglide/messages.js'
-import { setLocale } from '@/ui/paraglide/runtime.js'
+import { getLocale, setLocale } from '@/ui/paraglide/runtime.js'
 import { useAuthStore } from '@/ui/stores/auth'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { useQuery } from '@tanstack/react-query'
@@ -31,7 +31,7 @@ function SignupPage() {
   const inviteCode = (search as { inviteCode?: string }).inviteCode
   const [error, setError] = useState<string | null>(null)
   const [loading, setLoading] = useState(false)
-  const [locale, setLocaleState] = useState<'en' | 'zh'>('zh')
+  const [locale, setLocaleState] = useState<'en' | 'zh'>(() => getLocale())
 
   const handleLocaleChange = (newLocale: 'en' | 'zh') => {
     setLocaleState(newLocale)
