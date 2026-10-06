@@ -137,7 +137,7 @@ export function TopNav() {
 function TeamHeader() {
   return (
     <div className="flex h-14 flex-wrap items-center justify-center gap-2 border-b border-border bg-card px-4 py-2 flex-shrink-0">
-      <ZhenYueLogo className="w-10 h-10 text-orange-600" />
+      <ZhenYueLogo className="w-10 h-10 text-primary" />
     </div>
   )
 }
